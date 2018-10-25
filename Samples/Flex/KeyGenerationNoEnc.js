@@ -2,7 +2,7 @@
 
 var CybersourceRestApi = require('CyberSource');
 
-function sampleCode() {
+function keyGenerationNoEnc() {
 
     var apiClient = new CybersourceRestApi.ApiClient();
     var instance = new CybersourceRestApi.KeyGenerationApi(apiClient);
@@ -25,8 +25,8 @@ function sampleCode() {
 
 };
 if (require.main === module) {
-    sampleCode(function () {
-        console.log('getMethod call complete.');
+    keyGenerationNoEnc(function () {
+        console.log('key generation end.');
     });
 }
-module.exports.sampleCode = sampleCode;
+module.exports.keyGenerationNoEnc = keyGenerationNoEnc;
