@@ -81,13 +81,13 @@ function processPayout() {
 
         instance.octCreatePayment(request, function (error, data, response) {
             if (error) {
-                console.log("Error : " + error);
+                console.log("\nError in Process Payout : " + error);
             }
             else if (data) {
-                console.log("Data : " + JSON.stringify(data));
+                console.log("\nData of Process Payout : " + JSON.stringify(data));
             }
-            console.log("Response : " + JSON.stringify(response));
-
+            console.log("\nResponse of  Process Payout : " + JSON.stringify(response));
+            console.log("\nResponse Code of Process Payout :" + JSON.stringify(response['status']));
         });
     } catch (error) {
         console.log(error);
@@ -95,7 +95,7 @@ function processPayout() {
 };
 if (require.main === module) {
     processPayout(function () {
-        console.log('getMethod call complete.');
+        console.log('Process Payout end.');
     });
 }
-module.exports.samprocessPayoutpleCode = processPayout;
+module.exports.processPayout = processPayout;

@@ -2,7 +2,7 @@
 
 var CybersourceRestApi = require('CyberSource');
 
-function sampleCode() {
+function generateKey() {
     try {
         var apiClient = new CybersourceRestApi.ApiClient();
         var instance = new CybersourceRestApi.KeyGenerationApi(apiClient);
@@ -27,8 +27,8 @@ function sampleCode() {
     }
 };
 if (require.main === module) {
-    sampleCode(function () {
-        console.log('Method call complete.');
+    generateKey(function () {
+        console.log('generateKey end.');
     });
 }
-module.exports.sampleCode = sampleCode;
+module.exports.generateKey = generateKey;

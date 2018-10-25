@@ -6,7 +6,7 @@ var CybersourceRestApi = require('CyberSource');
  * This is a sample code to call PaymentApi,
  * createPayment method will create a new payment
  */
-function processAPayment(callback) {
+function processPayment(callback, enableCapture) {
     try {
         var apiClient = new CybersourceRestApi.ApiClient();
         var instance = new CybersourceRestApi.PaymentApi(apiClient);
@@ -16,7 +16,6 @@ function processAPayment(callback) {
 
         var processingInformation = new CybersourceRestApi.V2paymentsProcessingInformation();
         processingInformation.commerceIndicator = "internet";
-        processingInformation.capture = true;
 
         var subMerchant = new CybersourceRestApi.V2paymentsAggregatorInformationSubMerchant();
         subMerchant.cardAcceptorId = "1234567890";
@@ -73,7 +72,10 @@ function processAPayment(callback) {
         request.aggregatorInformation = aggregatorInformation;
         request.orderInformation = orderInformation;
         request.paymentInformation = paymentInformation;
-        
+
+        if (enableCapture === true) {
+            request.processingInformation.capture = true;
+        }
         console.log("\n*************** Process Payment ********************* ");
 
         instance.createPayment(request, function (error, data, response) {
@@ -92,8 +94,8 @@ function processAPayment(callback) {
     }
 };
 if (require.main === module) {
-    processAPayment(function () {
+    processPayment(function () {
         console.log('ProcessPayment end.');
-    });
+    }, false);
 }
-module.exports.processAPayment = processAPayment;
+module.exports.processPayment = processPayment;

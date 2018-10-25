@@ -9,7 +9,7 @@ var verify = require('../VerifyToken.js');
  * 
  * to verify the token with the key generated.
  */
-function flexTokenizeCard() {
+function tokenizeCard() {
     try {
         var keyId = "";
         var publicKey = "";
@@ -65,8 +65,8 @@ function flexTokenizeCard() {
 
 };
 if (require.main === module) {
-    flexTokenizeCard(function () {
-        console.log('Method call complete.');
+    tokenizeCard(function () {
+        console.log('tokenizeCard end.');
     });
 }
-module.exports.flexTokenizeCard = flexTokenizeCard;
+module.exports.tokenizeCard = tokenizeCard;
