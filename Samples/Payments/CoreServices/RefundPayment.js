@@ -25,7 +25,9 @@ function refundAPayment(callback) {
         request.clientReferenceInformation = clientReferenceInformation;
         request.orderInformation = orderInformation;
 
-        ProcessPayment.processAPayment(function (error, data) {
+        var enableCapture = true;
+
+        ProcessPayment.processPayment(function (error, data) {
             if (data) {
                 var id = data['id'];
                 console.log("\n*************** Refund Payment ********************* ");
@@ -44,7 +46,7 @@ function refundAPayment(callback) {
                 });
 
             }
-        });
+        }, enableCapture);
     } catch (error) {
         console.log(error);
     }

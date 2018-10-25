@@ -16,7 +16,7 @@ function processCaptureAPayment(callback) {
         var clientReferenceInformation = new CybersourceRestApi.V2paymentsClientReferenceInformation();
         clientReferenceInformation.code = "test_capture";
         request.clientReferenceInformation = clientReferenceInformation;
-        
+
         var orderInformation = new CybersourceRestApi.V2paymentsOrderInformation();
         var amountDetails = new CybersourceRestApi.V2paymentsOrderInformationAmountDetails();
         amountDetails.totalAmount = "102.21";
@@ -24,11 +24,13 @@ function processCaptureAPayment(callback) {
         orderInformation.amountDetails = amountDetails;
         request.orderInformation = orderInformation;
 
-        ProcessPayment.processAPayment(function (error, data) {
+        var enableCapture = false;
+
+        ProcessPayment.processPayment(function (error, data) {
             if (data) {
                 var id = data['id'];
-                console.log("\n*************** Capture Payment ********************* " );
-                console.log("Payment ID passing to capturePayment : " +id);
+                console.log("\n*************** Capture Payment ********************* ");
+                console.log("Payment ID passing to capturePayment : " + id);
 
                 instance.capturePayment(request, id, function (error, data, response) {
                     if (error) {
@@ -39,11 +41,11 @@ function processCaptureAPayment(callback) {
                     }
                     console.log("\nResponse of  Capture Payment  : " + JSON.stringify(response));
                     console.log("\nResponse Code of Capture a payment : " + JSON.stringify(response['status']));
-                    callback(error,data);
+                    callback(error, data);
                 });
-                
+
             }
-        })
+        }, enableCapture);
     } catch (error) {
         console.log(error);
     }

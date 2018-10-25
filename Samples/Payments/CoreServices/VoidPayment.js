@@ -8,7 +8,7 @@ var ProcessPayment = require('./ProcessPayment');
  * Void a Payment
  * Include the payment ID in the POST request to cancel the payment.
  */
-function voidAPayment(callback) {
+function voidPayment(callback) {
 
     try {
 
@@ -21,7 +21,9 @@ function voidAPayment(callback) {
         var request = new CybersourceRestApi.VoidPaymentRequest();
         request.clientReferenceInformation = clientReferenceInformation;
 
-        ProcessPayment.processAPayment(function (error, data) {
+        var enableCapture = true;
+
+        ProcessPayment.processPayment(function (error, data) {
             if (data) {
                 var id = data['id'];
                 console.log("\n*************** Void Payment ********************* ");
@@ -40,15 +42,15 @@ function voidAPayment(callback) {
                 });
 
             }
-        });
+        }, enableCapture);
 
     } catch (error) {
         console.log(error);
     }
 };
 if (require.main === module) {
-    voidAPayment(function () {
+    voidPayment(function () {
         console.log('Void Payment end.');
     });
 }
-module.exports.voidAPayment = voidAPayment;
+module.exports.voidPayment = voidPayment;

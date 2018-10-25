@@ -1,5 +1,5 @@
 {
-  "name": "cybersource-rest-samples-nodejs",
+  "name": "cybersource-rest-samples-node",
   "version": "1.0.0",
   "description": "This is sample code for swagger generated payment API",
   "main": "index.js",
@@ -13,6 +13,7 @@
   "author": "ghari@visa.com",
   "license": "ISC",
   "dependencies": {
-    "CyberSource": "../cybersource-rest-client-nodejs"
+    "CyberSource": "../cybersource-rest-client-node",
+    "jwk-to-pem": "^2.0.0"
   }
 }
