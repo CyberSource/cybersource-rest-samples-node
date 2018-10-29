@@ -10,7 +10,7 @@ const MerchantId = "testrest";
 const MerchantSecretKey = "yBJxy6LjM2TmcPGu+GaJrHtkke25fPpUX+UY6/L/1tE=";
 const MerchantKeyId = "08c94330-f618-42a3-b09d-e1e43be5efda";
 const AuthenticationType = "http_signature";
-const KeysDirectory = "SampleCodeCybsNode\\Resource";
+const KeysDirectory = "Resource";
 const KeyFileName = "testrest";
 const RunEnvironment = "cybersource.environment.sandbox";
 const KeyAlias = "testrest";

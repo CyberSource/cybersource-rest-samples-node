@@ -19,7 +19,7 @@ function generateKey() {
                 console.log("Data : " + JSON.stringify(data));
             }
             console.log("Response : " + JSON.stringify(response));
-            console.log("Response id : " + response[text.id]);
+            console.log("Response id : " + response['status']);
 
         });
     } catch (error) {
