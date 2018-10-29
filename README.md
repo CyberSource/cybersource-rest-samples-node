@@ -14,7 +14,7 @@ You can also run each sample directly from the command line.
 ## Running the Samples From the Command Line
 * Clone this repository:
 ```
-    $ git clone https://github.com/khaaldrogo/cybersource-rest-samples-node
+    $ git clone https://github.com/CyberSource/cybersource-rest-samples-node
 ```
 * Install the cybersource-rest-client-nodejs
 ```
@@ -26,5 +26,5 @@ You can also run each sample directly from the command line.
 ```
 e.g.
 ```
-    $ node Samples\Payments\AuthorizePayment\AmericanExpressSafeKey.js
+    $ node Samples\Payments\CoreServices\ProcessPayment.js
 ```
