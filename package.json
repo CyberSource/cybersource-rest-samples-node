@@ -13,7 +13,7 @@
   "author": "developer@cybersource.com",
   "license": "MIT",
   "dependencies": {
-    "CyberSource": "0.0.1",
+    "cybersource-rest-client": "0.0.1",
     "jwk-to-pem": "^2.0.0"
   }
 }
