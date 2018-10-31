@@ -1,4 +1,4 @@
-# Node.js Sample Code for the Cybersource Rest client API
+# Node.js Sample Code for the CyberSource SDK
 
 This repository contains working code samples which demonstrate Node.js integration with the cybersourceRest-rest-client-nodejs and cybersource-rest-auth-nodejs
 
