@@ -1,6 +1,6 @@
 'use strict'
 
-var CybersourceRestApi = require('CyberSource');
+var CybersourceRestApi = require('cybersource-rest-client');
 
 function generateKey() {
     try {
@@ -19,7 +19,7 @@ function generateKey() {
                 console.log("Data : " + JSON.stringify(data));
             }
             console.log("Response : " + JSON.stringify(response));
-            console.log("Response id : " + response['status']);
+            console.log("Response Code Of GenerateKey : " + response['status']);
 
         });
     } catch (error) {

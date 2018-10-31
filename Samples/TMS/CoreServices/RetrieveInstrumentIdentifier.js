@@ -3,7 +3,7 @@
  * This is a sample code to call TMS InstrumentIdentifierApi,
  * instrumentidentifiersTokenIdGet method will retrive the token details
  */
-var CybersourceRestApi = require('CyberSource');
+var CybersourceRestApi = require('cybersource-rest-client');
 var CreateInstrumentIdentifier = require('./CreateInstrumentIdentifier');
 
 function retriveAInstrumentIdentifier(callback) {
