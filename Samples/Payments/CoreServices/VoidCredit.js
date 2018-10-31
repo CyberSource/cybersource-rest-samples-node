@@ -1,6 +1,6 @@
 'use strict'
 
-var CybersourceRestApi = require('CyberSource');
+var CybersourceRestApi = require('cybersource-rest-client');
 var ProcessCredit = require('./ProcessCredit');
 /**
  * This is a sample code to call VoidApi,

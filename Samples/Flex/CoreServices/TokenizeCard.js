@@ -1,6 +1,6 @@
 'use strict'
 
-var CybersourceRestApi = require('CyberSource');
+var CybersourceRestApi = require('cybersource-rest-client');
 var verify = require('../VerifyToken.js');
 
 /**
@@ -52,7 +52,7 @@ function tokenizeCard() {
                     else if (data) {
                         var result = verify(publicKey, data);
                         console.log("Response of tokenization : " + JSON.stringify(response));
-                        console.log("Response id of tokenization: " + response['status']);
+                        console.log("Response code of tokenization: " + response['status']);
                         console.log("KeyId: " + keyId);
                         console.log("PublicKey : " + publicKey);
                         console.log("Token Verified : " + result);

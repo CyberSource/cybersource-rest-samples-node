@@ -1,6 +1,6 @@
 'use strict'
 
-var CybersourceRestApi = require('CyberSource');
+var CybersourceRestApi = require('cybersource-rest-client');
 
 function updateInstrumentIdentifier() {
     try {
