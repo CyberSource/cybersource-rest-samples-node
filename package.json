@@ -1,7 +1,7 @@
 {
   "name": "cybersource-rest-samples-node",
   "version": "0.0.1",
-  "description": "This is sample code for swagger generated cybersource rest client API",
+  "description": "Sample code for CyberSource SDK",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,10 +10,10 @@
     "Nodejs",
     "paymentsAPI"
   ],
-  "author": "ghari@visa.com",
-  "license": "ISC",
+  "author": "developer@cybersource.com",
+  "license": "MIT",
   "dependencies": {
-    "CyberSource": "../cybersource-rest-client-node",
+    "CyberSource": "0.0.1",
     "jwk-to-pem": "^2.0.0"
   }
 }
