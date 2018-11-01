@@ -77,4 +77,5 @@ constant in resources/cybs.json file.  For example:
 The [API Reference Guide](https://developer.cybersource.com/api/reference/api-reference.html) provides examples of what information is needed for a particular request and how that information would be formatted. Using those examples, you can easily determine what methods would be necessary to include that information in a request
 using this SDK.
 
-  
+ ## License
+This repository is distributed under a proprietary license.
