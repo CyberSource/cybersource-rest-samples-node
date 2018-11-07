@@ -3,13 +3,16 @@
  * This is a sample code to call TMS InstrumentIdentifierApi,
  * instrumentidentifiersTokenIdGet method will retrive the token details
  */
+var path = require('path');
+var filePath = path.resolve('Data/Configuration.js');
+var Configuration = require(filePath);
 var CybersourceRestApi = require('cybersource-rest-client');
 var CreateInstrumentIdentifier = require('./CreateInstrumentIdentifier');
 
 function retriveAInstrumentIdentifier(callback) {
     try {
-        var apiClient = new CybersourceRestApi.ApiClient();
-        var instance = new CybersourceRestApi.InstrumentIdentifierApi(apiClient);
+        var configObject = new Configuration();
+        var instance = new CybersourceRestApi.InstrumentIdentifierApi(configObject);
 
         var profileId = "93B32398-AD51-4CC2-A682-EA3E93614EB1";
 
@@ -19,8 +22,7 @@ function retriveAInstrumentIdentifier(callback) {
                 console.log("\n*************** Retrieve instrument identifier ********************* ");
                 console.log("\nToken ID passing to instrumentidentifiersTokenIdGet : " + tokenId);
 
-
-                instance.instrumentidentifiersTokenIdGet(profileId, tokenId, function (error, data, response) {
+                instance.tmsV1InstrumentidentifiersTokenIdGet(profileId, tokenId, function (error, data, response) {
                     if (error) {
                         console.log("\nError in Retrieve instrument identifier : " + error);
                     }

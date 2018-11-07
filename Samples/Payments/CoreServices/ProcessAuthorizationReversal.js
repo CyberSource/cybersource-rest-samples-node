@@ -1,5 +1,8 @@
 'use strict'
 
+var path = require('path');
+var filePath = path.resolve('Data/Configuration.js');
+var Configuration = require(filePath);
 var CybersourceRestApi = require('cybersource-rest-client');
 var ProcessPayment = require('./ProcessPayment');
 
@@ -9,14 +12,14 @@ var ProcessPayment = require('./ProcessPayment');
  */
 function processAuthorizationReversal(callback) {
     try {
-        var apiClient = new CybersourceRestApi.ApiClient();
-        var instance = new CybersourceRestApi.ReversalApi(apiClient);
+        var configObject = new Configuration();
+        var instance = new CybersourceRestApi.ReversalApi(configObject);
 
-        var clientReferenceInformation = new CybersourceRestApi.V2paymentsClientReferenceInformation();
+        var clientReferenceInformation = new CybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
         clientReferenceInformation.code = "test_reversal";
 
-        var reversalInformation = new CybersourceRestApi.V2paymentsidreversalsReversalInformation();
-        var reversalInformationAmountDetails = new CybersourceRestApi.V2paymentsidreversalsReversalInformationAmountDetails();
+        var reversalInformation = new CybersourceRestApi.Ptsv2paymentsidreversalsReversalInformation();
+        var reversalInformationAmountDetails = new CybersourceRestApi.Ptsv2paymentsidreversalsReversalInformationAmountDetails();
         reversalInformationAmountDetails.totalAmount = "102.21";
         reversalInformation.reason = "testing";
         reversalInformation.amountDetails = reversalInformationAmountDetails;

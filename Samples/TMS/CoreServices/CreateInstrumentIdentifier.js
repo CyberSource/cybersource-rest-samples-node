@@ -1,5 +1,8 @@
 'use strict'
 
+var path = require('path');
+var filePath = path.resolve('Data/Configuration.js');
+var Configuration = require(filePath);
 var CybersourceRestApi = require('cybersource-rest-client');
 
 /**
@@ -9,38 +12,34 @@ var CybersourceRestApi = require('cybersource-rest-client');
 
 function createInstrumentIdentifier(callback) {
     try {
-        var apiClient = new CybersourceRestApi.ApiClient();
-        var instance = new CybersourceRestApi.InstrumentIdentifierApi(apiClient);
+        var configObject = new Configuration();
+        var instance = new CybersourceRestApi.InstrumentIdentifiersApi(configObject);
 
-        var card = new CybersourceRestApi.PaymentinstrumentsCard();
+        var card = new CybersourceRestApi.Tmsv1paymentinstrumentsCard();
         card.number = "1234567890117654";
 
 
-        var merchantInitiatedTransaction = new CybersourceRestApi.InstrumentidentifiersProcessingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction();
+        var merchantInitiatedTransaction = new CybersourceRestApi.Tmsv1instrumentidentifiersProcessingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction();
         var previousTransactionId = "123456789012345";
         merchantInitiatedTransaction.previousTransactionId = previousTransactionId;
 
-        var initiator = new CybersourceRestApi.InstrumentidentifiersProcessingInformationAuthorizationOptionsInitiator();
+        var initiator = new CybersourceRestApi.Tmsv1instrumentidentifiersProcessingInformationAuthorizationOptionsInitiator();
         initiator.merchantInitiatedTransaction = merchantInitiatedTransaction;
 
-        var authorizationOptions = new CybersourceRestApi.InstrumentidentifiersProcessingInformationAuthorizationOptions();
+        var authorizationOptions = new CybersourceRestApi.Tmsv1instrumentidentifiersProcessingInformationAuthorizationOptions();
         authorizationOptions.initiator = initiator;
 
-        var processingInformation = new CybersourceRestApi.PaymentinstrumentsProcessingInformation();
+        var processingInformation = new CybersourceRestApi.Tmsv1paymentinstrumentsProcessingInformation();
         processingInformation.authorizationOptions = authorizationOptions;
 
         var body = new CybersourceRestApi.Body();
         body.card = card;
         body.processingInformation = processingInformation;
 
-        var options = {
-            "body": body
-        };
-
         var profileId = "93B32398-AD51-4CC2-A682-EA3E93614EB1";
         
         console.log("\n*************** Create Instrument Identifier ********************* ");
-        instance.instrumentidentifiersPost(profileId, options, function (error, data, response) {
+        instance.tmsV1InstrumentidentifiersPost(profileId, body, function (error, data, response) {
             if (error) {
                 console.log("\nError in create instrument identifier : " + error);
             }

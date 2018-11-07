@@ -1,5 +1,8 @@
 'use strict'
 
+var path = require('path');
+var filePath = path.resolve('Data/Configuration.js');
+var Configuration = require(filePath);
 var CybersourceRestApi = require('cybersource-rest-client');
 
 /**
@@ -8,16 +11,16 @@ var CybersourceRestApi = require('cybersource-rest-client');
  */
 function processPayment(callback, enableCapture) {
     try {
-        var apiClient = new CybersourceRestApi.ApiClient();
-        var instance = new CybersourceRestApi.PaymentApi(apiClient);
+        var configObject = new Configuration();
+        var instance = new CybersourceRestApi.PaymentsApi(configObject);
 
-        var clientReferenceInformation = new CybersourceRestApi.V2paymentsClientReferenceInformation();
+        var clientReferenceInformation = new CybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
         clientReferenceInformation.code = "test_payment";
 
-        var processingInformation = new CybersourceRestApi.V2paymentsProcessingInformation();
+        var processingInformation = new CybersourceRestApi.Ptsv2paymentsProcessingInformation();
         processingInformation.commerceIndicator = "internet";
 
-        var subMerchant = new CybersourceRestApi.V2paymentsAggregatorInformationSubMerchant();
+        var subMerchant = new CybersourceRestApi.Ptsv2paymentsAggregatorInformationSubMerchant();
         subMerchant.cardAcceptorId = "1234567890";
         subMerchant.country = "US";
         subMerchant.phoneNumber = "4158880000";
@@ -29,16 +32,16 @@ function processPayment(callback, enableCapture) {
         subMerchant.region = "PEN";
         subMerchant.email = "test@cybs.com";
 
-        var aggregatorInformation = new CybersourceRestApi.V2paymentsAggregatorInformation();
+        var aggregatorInformation = new CybersourceRestApi.Ptsv2paymentsAggregatorInformation();
         aggregatorInformation.subMerchant = subMerchant;
         aggregatorInformation.name = "V-Internatio";
         aggregatorInformation.aggregatorId = "123456789";
 
-        var amountDetails = new CybersourceRestApi.V2paymentsOrderInformationAmountDetails();
+        var amountDetails = new CybersourceRestApi.Ptsv2paymentsOrderInformationAmountDetails();
         amountDetails.totalAmount = "102.21";
         amountDetails.currency = "USD";
 
-        var billTo = new CybersourceRestApi.V2paymentsOrderInformationBillTo();
+        var billTo = new CybersourceRestApi.Ptsv2paymentsOrderInformationBillTo();
         billTo.country = "US";
         billTo.firstName = "John";
         billTo.lastName = "Deo";
@@ -53,12 +56,12 @@ function processPayment(callback, enableCapture) {
         billTo.buildingNumber = "123";
         billTo.company = "Visa";
 
-        var orderInformation = new CybersourceRestApi.V2paymentsOrderInformation();
+        var orderInformation = new CybersourceRestApi.Ptsv2paymentsOrderInformation();
         orderInformation.amountDetails = amountDetails;
         orderInformation.billTo = billTo;
 
-        var paymentInformation = new CybersourceRestApi.V2paymentsPaymentInformation();
-        var card = new CybersourceRestApi.V2paymentsPaymentInformationCard();
+        var paymentInformation = new CybersourceRestApi.Ptsv2paymentsPaymentInformation();
+        var card = new CybersourceRestApi.Ptsv2paymentsPaymentInformationCard();
         card.expirationYear = "2031";
         card.number = "4111111111111111";
         card.expirationMonth = "03";

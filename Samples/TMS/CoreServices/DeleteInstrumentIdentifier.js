@@ -1,5 +1,8 @@
 'use strict'
 
+var path = require('path');
+var filePath = path.resolve('Data/Configuration.js');
+var Configuration = require(filePath);
 var CybersourceRestApi = require('cybersource-rest-client');
 var RetrieveInstrumentIdentifier = require('./RetrieveInstrumentIdentifier');
 
@@ -10,8 +13,8 @@ var RetrieveInstrumentIdentifier = require('./RetrieveInstrumentIdentifier');
 
 function removeInstrumentIdentifier(callback) {
     try {
-        var apiClient = new CybersourceRestApi.ApiClient();
-        var instance = new CybersourceRestApi.InstrumentIdentifierApi(apiClient);
+        var configObject = new Configuration();
+        var instance = new CybersourceRestApi.InstrumentIdentifierApi(configObject);
 
         var profileId = "93B32398-AD51-4CC2-A682-EA3E93614EB1";
 
@@ -20,8 +23,8 @@ function removeInstrumentIdentifier(callback) {
                 var tokenId = data['id'];
                 console.log("\n*************** Delete instrument identifier ********************* ");
                 console.log("\nToken ID passing to instrumentidentifiersTokenIdDelete : " + tokenId);
-
-                instance.instrumentidentifiersTokenIdDelete(profileId, tokenId, function (error, data, response) {
+                
+                instance.tmsV1InstrumentidentifiersTokenIdDelete(profileId, tokenId, function (error, data, response) {
                     if (error) {
                         console.log("\nError in Delete instrument identifier : " + error);
                     }

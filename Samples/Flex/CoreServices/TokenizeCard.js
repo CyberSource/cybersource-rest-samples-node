@@ -1,5 +1,8 @@
 'use strict'
 
+var path = require('path');
+var filePath = path.resolve('Data/Configuration.js');
+var Configuration = require(filePath);
 var CybersourceRestApi = require('cybersource-rest-client');
 var verify = require('../VerifyToken.js');
 
@@ -9,27 +12,31 @@ var verify = require('../VerifyToken.js');
  * 
  * to verify the token with the key generated.
  */
-function tokenizeCard() {
+function tokenizeCard(callback) {
     try {
         var keyId = "";
         var publicKey = "";
-        var cardInfo = new CybersourceRestApi.Paymentsflexv1tokensCardInfo();
+        var cardInfo = new CybersourceRestApi.Flexv1tokensCardInfo();
 
         cardInfo.cardNumber = "5555555555554444";
         cardInfo.cardExpirationMonth = "03";
         cardInfo.cardExpirationYear = "2031";
         cardInfo.cardType = "002";
 
-        var apiClient = new CybersourceRestApi.ApiClient();
+        var configObject = new Configuration();
 
-        var tokenizeInstance = new CybersourceRestApi.TokenizationApi(apiClient);
+        var tokenizeInstance = new CybersourceRestApi.FlexTokenApi(configObject);
 
-        var keyInstance = new CybersourceRestApi.KeyGenerationApi(apiClient);
+        var keyInstance = new CybersourceRestApi.KeyGenerationApi(configObject);
 
         var KeyRequest = new CybersourceRestApi.GeneratePublicKeyRequest();
         KeyRequest.encryptionType = "None";
 
-        keyInstance.generatePublicKey(KeyRequest, function (error, data, response) {
+        var options = {
+            "generatePublicKeyRequest": KeyRequest
+        };
+
+        keyInstance.generatePublicKey(options, function (error, data, response) {
             if (error) {
                 console.log("Error : " + error);
             }
@@ -41,10 +48,10 @@ function tokenizeCard() {
                 tokenizeRequest.keyId = keyId;
                 tokenizeRequest.cardInfo = cardInfo;
 
-                var options = {
+                var options = { 
                     "tokenizeRequest": tokenizeRequest
                 };
-
+                console.log("\n*************** Tokenize Card ********************* ");
                 tokenizeInstance.tokenize(options, function (error, data, response) {
                     if (error) {
                         console.log("Error : " + error.stack);
@@ -57,6 +64,7 @@ function tokenizeCard() {
                         console.log("PublicKey : " + publicKey);
                         console.log("Token Verified : " + result);
                     }
+                    callback(error, data);
                 });
             }
         });

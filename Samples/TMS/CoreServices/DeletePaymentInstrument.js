@@ -1,7 +1,10 @@
 'use strict'
 
+var path = require('path');
+var filePath = path.resolve('Data/Configuration.js');
+var Configuration = require(filePath);
 var CybersourceRestApi = require('cybersource-rest-client');
-var RetrievePaymentInstrument = require('./RetrievePaymentInstrument');
+var RetrievePaymentInstrument = require('./RetrievePaymentInstrument'); 
 
 /**
  * This is a sample code to call TMS PaymentInstrumentApi,
@@ -9,8 +12,8 @@ var RetrievePaymentInstrument = require('./RetrievePaymentInstrument');
  */
 function retrivePaymentIdentifiers(callback) {
     try {
-        var apiClient = new CybersourceRestApi.ApiClient();
-        var instance = new CybersourceRestApi.PaymentInstrumentApi(apiClient);
+        var configObject = new Configuration();
+        var instance = new CybersourceRestApi.PaymentInstrumentsApi(configObject);
 
         var profileId = "93B32398-AD51-4CC2-A682-EA3E93614EB1";
 
@@ -20,7 +23,7 @@ function retrivePaymentIdentifiers(callback) {
                 console.log("\n*************** Delete PaymentInstrument  ********************* ");
                 console.log("\nToken ID passing to paymentinstrumentsTokenIdDelete : " + tokenId);
 
-        instance.paymentinstrumentsTokenIdDelete(profileId, tokenId, function (error, data, response) {
+        instance.tmsV1PaymentinstrumentsTokenIdDelete(profileId, tokenId, function (error, data, response) {
             if (error) {
                         console.log("\nError in Delete PaymentInstrument : " + error);
                     }

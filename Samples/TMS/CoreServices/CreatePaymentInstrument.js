@@ -1,5 +1,8 @@
 'use strict'
 
+var path = require('path');
+var filePath = path.resolve('Data/Configuration.js');
+var Configuration = require(filePath);
 var CybersourceRestApi = require('cybersource-rest-client');
 
 /**
@@ -9,15 +12,15 @@ var CybersourceRestApi = require('cybersource-rest-client');
 
 function createPaymentInstrument(callback) {
     try {
-        var apiClient = new CybersourceRestApi.ApiClient();
-        var instance = new CybersourceRestApi.PaymentInstrumentApi(apiClient);
+        var configObject = new Configuration();
+        var instance = new CybersourceRestApi.PaymentInstrumentsApi(configObject);
 
-        var card = new CybersourceRestApi.PaymentinstrumentsCard();
+        var card = new CybersourceRestApi.Tmsv1paymentinstrumentsCard();
         card.expirationMonth = "09";
         card.expirationYear = "2022";
         card.type = "visa";
 
-        var billTo = new CybersourceRestApi.PaymentinstrumentsBillTo();
+        var billTo = new CybersourceRestApi.Tmsv1paymentinstrumentsBillTo();
         billTo.firstName = "John";
         billTo.lastName = "Deo";
         billTo.company = "CyberSource";
@@ -30,10 +33,10 @@ function createPaymentInstrument(callback) {
         billTo.email = "john.smith@example.com";
         billTo.phoneNumber = "555123456";
 
-        var instrumentIdentifierCard = new CybersourceRestApi.InstrumentidentifiersCard()
+        var instrumentIdentifierCard = new CybersourceRestApi.Tmsv1instrumentidentifiersCard()
         instrumentIdentifierCard.number = "4111111111111111";
 
-        var instrumentIdentifier = new CybersourceRestApi.PaymentinstrumentsInstrumentIdentifier();
+        var instrumentIdentifier = new CybersourceRestApi.Tmsv1paymentinstrumentsInstrumentIdentifier();
         instrumentIdentifier.card = instrumentIdentifierCard;
 
         var body = new CybersourceRestApi.Body();
@@ -45,7 +48,7 @@ function createPaymentInstrument(callback) {
 
         console.log("\n*************** Create PaymentInstrument ********************* ");
 
-        instance.paymentinstrumentsPost(profileId, body, function (error, data, response) {
+        instance.tmsV1PaymentinstrumentsPost(profileId, body, function (error, data, response) {
             if (error) {
                 console.log("\nError in create PaymentInstrument : " + error);
             }
