@@ -14,7 +14,7 @@ function createSearchRequest(callback) {
         var configObject = new Configuration();
         var instance = new CybersourceRestApi.SearchTransactionsApi(configObject);
 
-        var createSearchRequest = new CybersourceRestApi.CreateSearchRequest();
+        var createSearchRequest = new CybersourceRestApi.TssV2TransactionsPostResponse();
         createSearchRequest.save = "false";
         createSearchRequest.name = "MRN";
         createSearchRequest.timezone = "America/Chicago";
