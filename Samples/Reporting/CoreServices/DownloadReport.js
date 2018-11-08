@@ -1,6 +1,5 @@
 'use strict'
 
-var fs = require('fs');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var Configuration = require(filePath);
