@@ -1,5 +1,8 @@
 'use strict'
 
+var path = require('path');
+var filePath = path.resolve('Data/Configuration.js');
+var Configuration = require(filePath);
 var CybersourceRestApi = require('cybersource-rest-client');
 var ProcessPayment = require('./ProcessPayment');
 /**
@@ -10,15 +13,15 @@ function processCaptureAPayment(callback) {
     try {
 
         var request = new CybersourceRestApi.CapturePaymentRequest();
-        var apiClient = new CybersourceRestApi.ApiClient();
-        var instance = new CybersourceRestApi.CaptureApi(apiClient);
+        var configObject = new Configuration();
+        var instance = new CybersourceRestApi.CaptureApi(configObject);
 
-        var clientReferenceInformation = new CybersourceRestApi.V2paymentsClientReferenceInformation();
+        var clientReferenceInformation = new CybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
         clientReferenceInformation.code = "test_capture";
         request.clientReferenceInformation = clientReferenceInformation;
 
-        var orderInformation = new CybersourceRestApi.V2paymentsOrderInformation();
-        var amountDetails = new CybersourceRestApi.V2paymentsOrderInformationAmountDetails();
+        var orderInformation = new CybersourceRestApi.Ptsv2paymentsOrderInformation();
+        var amountDetails = new CybersourceRestApi.Ptsv2paymentsOrderInformationAmountDetails();
         amountDetails.totalAmount = "102.21";
         amountDetails.currency = "USD";
         orderInformation.amountDetails = amountDetails;

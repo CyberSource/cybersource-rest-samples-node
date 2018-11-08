@@ -1,5 +1,8 @@
 'use strict'
 
+var path = require('path');
+var filePath = path.resolve('Data/Configuration.js');
+var Configuration = require(filePath);
 var CybersourceRestApi = require('cybersource-rest-client');
 
 /**
@@ -9,14 +12,14 @@ var CybersourceRestApi = require('cybersource-rest-client');
 function processACredit(callback) {
 
     try {
-        var apiClient = new CybersourceRestApi.ApiClient();
-        var instance = new CybersourceRestApi.CreditApi(apiClient);
+        var configObject = new Configuration();
+        var instance = new CybersourceRestApi.CreditApi(configObject);
 
-        var clientReferenceInformation = new CybersourceRestApi.V2paymentsClientReferenceInformation();
+        var clientReferenceInformation = new CybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
         clientReferenceInformation.code = "test_credits";
 
-        var orderInformation = new CybersourceRestApi.V2paymentsOrderInformation();
-        var billtoInformation = new CybersourceRestApi.V2paymentsOrderInformationBillTo();
+        var orderInformation = new CybersourceRestApi.Ptsv2paymentsOrderInformation();
+        var billtoInformation = new CybersourceRestApi.Ptsv2paymentsOrderInformationBillTo();
         billtoInformation.country = "US";
         billtoInformation.lastName = "Deo";
         billtoInformation.address1 = "201 S. Division St.";
@@ -28,13 +31,13 @@ function processACredit(callback) {
         billtoInformation.email = "test@cybs.com";
         orderInformation.billTo = billtoInformation;
 
-        var amountInformation = new CybersourceRestApi.V2paymentsOrderInformationAmountDetails();
+        var amountInformation = new CybersourceRestApi.Ptsv2paymentsOrderInformationAmountDetails();
         amountInformation.totalAmount = "102.21";
         amountInformation.currency = "USD";
         orderInformation.amountDetails = amountInformation;
 
-        var paymentInformation = new CybersourceRestApi.V2paymentsPaymentInformation();
-        var cardInformation = new CybersourceRestApi.V2paymentsPaymentInformationCard();
+        var paymentInformation = new CybersourceRestApi.Ptsv2paymentsPaymentInformation();
+        var cardInformation = new CybersourceRestApi.Ptsv2paymentsPaymentInformationCard();
         cardInformation.expirationYear = "2031";
         cardInformation.number = "5555555555554444";
         cardInformation.expirationMonth = "12";

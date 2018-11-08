@@ -1,16 +1,24 @@
 'use strict'
 
+var path = require('path');
+var filePath = path.resolve('Data/Configuration.js');
+var Configuration = require(filePath);
 var CybersourceRestApi = require('cybersource-rest-client');
 
-function keyGenerationNoEnc() {
+function keyGenerationNoEnc(callback) {
 
-    var apiClient = new CybersourceRestApi.ApiClient();
-    var instance = new CybersourceRestApi.KeyGenerationApi(apiClient);
+    var configObject = new Configuration();
+    var instance = new CybersourceRestApi.KeyGenerationApi(configObject);
 
     var request = new CybersourceRestApi.GeneratePublicKeyRequest();
     request.encryptionType = "None";
 
-    instance.generatePublicKey(request, function (error, data, response) {
+    var options = {
+        "generatePublicKeyRequest": request
+    };
+    console.log("\n*************** Key Generation NoEnc ********************* ");
+
+    instance.generatePublicKey(options, function (error, data, response) {
         if (error) {
             console.log("Error : " + error);
             console.log("Error status code : " + error.statusCode);
@@ -19,8 +27,8 @@ function keyGenerationNoEnc() {
             console.log("Data : " + JSON.stringify(data));
         }
         console.log("Response : " + JSON.stringify(response));
-        console.log("Response id : " + response[text.id]);
-        
+       console.log("Response id : " + response['status']);
+       callback(error, data);
     });
 
 };

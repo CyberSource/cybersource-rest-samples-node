@@ -1,5 +1,8 @@
 'use strict'
 
+var path = require('path');
+var filePath = path.resolve('Data/Configuration.js');
+var Configuration = require(filePath);
 var CybersourceRestApi = require('cybersource-rest-client');
 var RefundPayment = require('./RefundPayment');
 /**
@@ -10,10 +13,10 @@ var RefundPayment = require('./RefundPayment');
 function voidARefund(callback) {
 
     try {
-        var apiClient = new CybersourceRestApi.ApiClient();
-        var instance = new CybersourceRestApi.VoidApi(apiClient);
+        var configObject = new Configuration();
+        var instance = new CybersourceRestApi.VoidApi(configObject);
 
-        var clientReferenceInformation = new CybersourceRestApi.V2paymentsClientReferenceInformation();
+        var clientReferenceInformation = new CybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
         clientReferenceInformation.code = "test_refund_void";
 
         var request = new CybersourceRestApi.VoidRefundRequest();

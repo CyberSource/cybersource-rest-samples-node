@@ -1,5 +1,8 @@
 'use strict'
 
+var path = require('path');
+var filePath = path.resolve('Data/Configuration.js');
+var Configuration = require(filePath);
 var CybersourceRestApi = require('cybersource-rest-client');
 var CreatePaymentInstrument = require('./CreatePaymentInstrument');
 
@@ -9,8 +12,8 @@ var CreatePaymentInstrument = require('./CreatePaymentInstrument');
  */
 function retrivePaymentIdentifiers(callback) {
     try {
-        var apiClient = new CybersourceRestApi.ApiClient();
-        var instance = new CybersourceRestApi.PaymentInstrumentApi(apiClient);
+        var configObject = new Configuration();
+        var instance = new CybersourceRestApi.PaymentInstrumentsApi(configObject);
 
         var profileId = "93B32398-AD51-4CC2-A682-EA3E93614EB1";
 
@@ -20,7 +23,7 @@ function retrivePaymentIdentifiers(callback) {
                 console.log("\n*************** Retrieve PaymentInstrument  ********************* ");
                 console.log("\nToken ID passing to paymentinstrumentsTokenIdGet : " + tokenId);
 
-                instance.paymentinstrumentsTokenIdGet(profileId, tokenId, function (error, data, response) {
+                instance.tmsV1PaymentinstrumentsTokenIdGet(profileId, tokenId, function (error, data, response) {
                     if (error) {
                         console.log("\nError in Retrieve PaymentInstrument : " + error);
                     }
