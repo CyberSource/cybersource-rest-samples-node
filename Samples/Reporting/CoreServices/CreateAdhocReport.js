@@ -14,7 +14,7 @@ function createAdhocReport(callback) {
         var configObject = new Configuration();
         var instance = new CybersourceRestApi.ReportsApi(configObject);
 
-        var reportPreferences = new CybersourceRestApi.InlineResponse2006ReportPreferences();
+        var reportPreferences = new CybersourceRestApi.ReportingV3ReportSubscriptionsGet200ResponseReportPreferences();
         reportPreferences.signedAmounts = true;
         reportPreferences.fieldNameConvention = "SOAPI";
 
