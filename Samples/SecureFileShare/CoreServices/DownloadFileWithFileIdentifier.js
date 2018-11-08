@@ -23,13 +23,10 @@ function downloadFileWithFileIdentifier(callback) {
             if (error) {
                 console.log("\nError in dowload file with identifier : " + error);
             }
-            else if (data) {
-                console.log("\nData of dowload file with identifier : " + JSON.stringify(data));
-            }
-            console.log("\nResponse of dowload file with identifier : " + JSON.stringify(response));
-            console.log("\nResponse Code of dowload file with identifier : " + JSON.stringify(response['status']));
+            console.log("\n: ")
             callback(error, data);
         });
+        console.log("FileIdentifier.csv downloaded successfully")
     } catch (error) {
         console.log(error);
     }
@@ -37,7 +34,7 @@ function downloadFileWithFileIdentifier(callback) {
 };
 if (require.main === module) {
     downloadFileWithFileIdentifier(function () {
-        console.log('Method call complete.');
+        console.log('Download file with file identifier end.');
     });
 }
 module.exports.downloadFileWithFileIdentifier = downloadFileWithFileIdentifier;

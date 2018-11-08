@@ -5,7 +5,7 @@ var filePath = path.resolve('Data/Configuration.js');
 var Configuration = require(filePath);
 var CybersourceRestApi = require('cybersource-rest-client');
 
-function processPayout() {
+function processPayout(callback) {
     try {
         var configObject = new Configuration();
         var instance = new CybersourceRestApi.ProcessAPayoutApi(configObject);
@@ -71,7 +71,7 @@ function processPayout() {
         recipientInformation.phoneNumber = "6504320556"
         recipientInformation.country = "US"
 
-        var request = new CybersourceRestApi.OctCreatePaymentRequest();
+        var request = new CybersourceRestApi.PtsV2PayoutsPostResponse();
         request.clientReferenceInformation = clientReferenceInformation;
         request.senderInformation = senderInformation;
         request.processingInformation = processingInformation;
