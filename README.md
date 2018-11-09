@@ -18,7 +18,7 @@ You can also run each sample directly from the command line.
 ```
     $ git clone https://github.com/CyberSource/cybersource-rest-samples-node
 ```
-* Install the cybersource-rest-client-nodejs
+* Install the cybersource-rest-client-node and other dependencies, for that go inside cybersource-rest-samples-node run below command
 ```
     $ npm install 
 ```
