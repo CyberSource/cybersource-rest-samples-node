@@ -24,7 +24,7 @@ You can also run each sample directly from the command line.
 ```
 * Run the individual samples by name. For example: 
 ```
-    $ node [DirectoryPath]\[CodeSampleName]
+    $ node [DirectoryPath]/[CodeSampleName]
 ```
 e.g.
 ```
