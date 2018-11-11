@@ -7,8 +7,8 @@ var CybersourceRestApi = require('cybersource-rest-client');
 
 //set the constant values 
 const MerchantId = "testrest";
-const MerchantSecretKey = "yBJxy6LjM2TmcPGu+GaJrHtkke25fPpUX+UY6/L/1tE=";
 const MerchantKeyId = "08c94330-f618-42a3-b09d-e1e43be5efda";
+const MerchantSecretKey = "yBJxy6LjM2TmcPGu+GaJrHtkke25fPpUX+UY6/L/1tE=";
 const AuthenticationType = "http_signature";
 const KeysDirectory = "Resource";
 const KeyFileName = "testrest";
