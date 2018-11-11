@@ -59,8 +59,10 @@ configured to communicate with the sandbox environment. To switch to the product
 constant.  For example:
 
 ```javascript
-// For PRODUCTION use
+// For TESTING use
   const RunEnvironment = "cybersource.environment.sandbox";
+  // For PRODUCTION use
+  const RunEnvironment = "cybersource.environment.production";
 ```
 
 
