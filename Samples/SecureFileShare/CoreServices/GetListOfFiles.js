@@ -23,13 +23,16 @@ function getListOfFiles(callback) {
 
         instance.getFileDetails(startDate, endDate, opts, function (error, data, response) {
             if (error) {
-                console.log("\nError in getlist of files : " + error);
+                console.log("\nError in getlist of files : " + JSON.stringify(error));
+                console.log(error.hasOwnProperty('statusCode') ? 
+                "\nError Code  : " + error['statusCode'] : "\nError Code  : " + error['status']);
             }
             else if (data) {
                 console.log("\nData of getlist of files : " + JSON.stringify(data));
+                console.log("\nResponse of getlist of files : " + JSON.stringify(response));
+                console.log("\nResponse Code of getlist of files : " + JSON.stringify(response['status']));
             }
-            console.log("\nResponse of getlist of files : " + JSON.stringify(response));
-            console.log("\nResponse Code of getlist of files : " + JSON.stringify(response['status']));
+
             callback(error, data);
         });
     } catch (error) {

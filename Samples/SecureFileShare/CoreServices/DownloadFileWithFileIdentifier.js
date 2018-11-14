@@ -1,9 +1,9 @@
 'use strict'
 
+var CybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var Configuration = require(filePath);
-var CybersourceRestApi = require('cybersource-rest-client');
 
 /**
  * This is a sample code to call SecureFileShareApi,
@@ -12,21 +12,27 @@ var CybersourceRestApi = require('cybersource-rest-client');
 function downloadFileWithFileIdentifier(callback) {
     try {
         var configObject = new Configuration();
-        var instance = new CybersourceRestApi.SecureFileShareApi(configObject);
+        var apiClient = new CybersourceRestApi.ApiClient();
+
+        //File name in which report get downloaded
+        var downloadFilePath = "Resource\\DownloadFileWithFileIdentifier.csv";
+        apiClient.downloadFilePath = path.resolve(downloadFilePath);
+
+        var instance = new CybersourceRestApi.SecureFileShareApi(configObject, apiClient);
         var fileId = "VFJSUmVwb3J0LTc4NTVkMTNmLTkzOTgtNTExMy1lMDUzLWEyNTg4ZTBhNzE5Mi5jc3YtMjAxOC0xMC0yMA=="
         var opts = [];
         opts['organizationId'] = "testrest";
 
-        console.log("****************Dowload File with Identifier****************")
+        console.log("****************Download File with Identifier****************")
 
         instance.getFile(fileId, opts, function (error, data, response) {
             if (error) {
-                console.log("\nError in dowload file with identifier : " + error);
+                console.log("\nError in download file with identifier : " + error);
             }
             console.log("\n: ")
             callback(error, data);
         });
-        console.log("FileIdentifier.csv downloaded successfully")
+        console.log("File downloaded at the below location :\n" + apiClient.downloadFilePath);
     } catch (error) {
         console.log(error);
     }

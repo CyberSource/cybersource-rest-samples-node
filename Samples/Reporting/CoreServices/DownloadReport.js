@@ -1,9 +1,9 @@
 'use strict'
 
+var CybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var Configuration = require(filePath);
-var CybersourceRestApi = require('cybersource-rest-client');
 
 /**
  * This is a sample code to call ReportDownloadsApi,
@@ -12,13 +12,17 @@ var CybersourceRestApi = require('cybersource-rest-client');
 function downloadReport(callback) {
     try {
         var configObject = new Configuration();
-        var instance = new CybersourceRestApi.ReportDownloadsApi(configObject);
+        var apiClient = new CybersourceRestApi.ApiClient();
+
+        //File name in which report get downloaded
+        var downloadFilePath = "Resource\\reportName.xml";
+        apiClient.downloadFilePath = path.resolve(downloadFilePath);
+
+        var instance = new CybersourceRestApi.ReportDownloadsApi(configObject, apiClient);
 
         var reportDate = "2018-09-02";
         var reportName = "testrest_v2";
-
         var opts = [];
-
         opts['organizationId'] = "testrest";
 
         console.log("****************Download Report****************");
@@ -29,7 +33,7 @@ function downloadReport(callback) {
             }
             callback(error, data);
         });
-        console.log(reportName + '.xml downloaded successfully')
+        console.log("File downloaded at the below location :\n" + apiClient.downloadFilePath);
     } catch (error) {
         console.log(error);
     }

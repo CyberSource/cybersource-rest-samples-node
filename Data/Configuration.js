@@ -1,6 +1,5 @@
 'use strict'
 
-var CybersourceRestApi = require('cybersource-rest-client');
 /*
 * If Cybs.json file is not provided Merchant configuration properties are taken from Configuration module
 */
