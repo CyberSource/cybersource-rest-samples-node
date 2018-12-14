@@ -1,50 +1,52 @@
-'use strict'
+'use strict';
 
 /*
-* If Cybs.json file is not provided Merchant configuration properties are taken from Configuration module
+* Merchant configuration properties are taken from Configuration module
 */
 
-//set the constant values 
-const MerchantId = "testrest";
-const MerchantKeyId = "08c94330-f618-42a3-b09d-e1e43be5efda";
-const MerchantSecretKey = "yBJxy6LjM2TmcPGu+GaJrHtkke25fPpUX+UY6/L/1tE=";
-const AuthenticationType = "http_signature";
-const KeysDirectory = "Resource";
-const KeyFileName = "testrest";
-const RunEnvironment = "cybersource.environment.sandbox";
-const KeyAlias = "testrest";
-const KeyPass = "testrest";
-const RequestJsonPath = "Resource\\request.json";
+// common parameters
+const AuthenticationType = 'http_signature';
+const RunEnvironment = 'cybersource.environment.SANDBOX';
+const MerchantId = 'testrest';
+
+// http_signature parameters
+const MerchantKeyId = '08c94330-f618-42a3-b09d-e1e43be5efda';
+const MerchantSecretKey = 'yBJxy6LjM2TmcPGu+GaJrHtkke25fPpUX+UY6/L/1tE=';
+
+// jwt parameters
+const KeysDirectory = 'Resource';
+const KeyFileName = 'testrest';
+const KeyAlias = 'testrest';
+const KeyPass = 'testrest';
+
+// logging parameters
 const EnableLog = true;
-const LogFileName = "cybs";
-const LogDirectory = "../log";
-const LogfileMaxSize = "5242880"; //10 MB In Bytes
+const LogFileName = 'cybs';
+const LogDirectory = '../log';
+const LogfileMaxSize = '5242880'; //10 MB In Bytes
 
 // Constructor for Configuration
 function Configuration() {
 
-    var configObj = {
-        "authenticationType": AuthenticationType,
-        "merchantID": MerchantId,
-        "runEnvironment": RunEnvironment,
-        "requestJsonPath": RequestJsonPath,
+	var configObj = {
+		'authenticationType': AuthenticationType,	
+		'runEnvironment': RunEnvironment,
 
-        "keyAlias": KeyAlias,
-        "keyPass": KeyPass,
-        "keyFileName": KeyFileName,
-
-        "keysDirectory": KeysDirectory,
-
-        "merchantKeyId": MerchantKeyId,
-        "merchantsecretKey": MerchantSecretKey,
-
-        "enableLog": EnableLog,
-
-        "logFilename": LogFileName,
-        "logDirectory": LogDirectory,
-        "logFileMaxSize": LogfileMaxSize
-    };
-    return configObj;
+		'merchantID': MerchantId,
+		'merchantKeyId': MerchantKeyId,
+		'merchantsecretKey': MerchantSecretKey,
+        
+		'keyAlias': KeyAlias,
+		'keyPass': KeyPass,
+		'keyFileName': KeyFileName,
+		'keysDirectory': KeysDirectory,
+        
+		'enableLog': EnableLog,
+		'logFilename': LogFileName,
+		'logDirectory': LogDirectory,
+		'logFileMaxSize': LogfileMaxSize
+	};
+	return configObj;
 
 }
 
