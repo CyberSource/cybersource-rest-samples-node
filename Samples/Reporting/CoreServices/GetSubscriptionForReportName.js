@@ -14,9 +14,9 @@ function getSubscriptionForReportName(callback) {
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.ReportSubscriptionsApi(configObject);
 
-		var reportName = 'testrest_subcription_v1';
+		var reportName = 'createsubscription_report';
 
-		console.log('****************Get Subscrption for Report name****************');
+		console.log('****************Get Subscription for Report name****************');
 
 		instance.getSubscription(reportName, function (error, data, response) {
 			if (error) {
