@@ -17,7 +17,6 @@ function downloadFileWithFileIdentifier(callback) {
 
 		//File name in which report get downloaded
 		var downloadFilePath = 'Resource\\DownloadFileWithFileIdentifier.csv';
-		apiClient.downloadFilePath = path.resolve(downloadFilePath);
 
 		var instance = new cybersourceRestApi.SecureFileShareApi(configObject, apiClient);
 		var fileId = 'VFJSUmVwb3J0LTc4NTVkMTNmLTkzOTgtNTExMy1lMDUzLWEyNTg4ZTBhNzE5Mi5jc3YtMjAxOC0xMC0yMA==';
@@ -36,7 +35,7 @@ function downloadFileWithFileIdentifier(callback) {
 				if(JSON.stringify(response['status']) === '200'){
 					const stream = fs.createWriteStream(downloadFilePath);
 					response.pipe(stream);
-					console.log('\n File downloaded at the below location :\n' + apiClient.downloadFilePath);						
+					console.log('\n File downloaded at the below location :\n' + path.resolve(downloadFilePath));
 				}
 			}
 			callback(error, data);

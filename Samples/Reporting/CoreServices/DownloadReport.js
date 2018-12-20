@@ -17,7 +17,6 @@ function downloadReport(callback) {
 
 		//File name in which report get downloaded
 		var downloadFilePath = 'Resource\\reportName.xml';
-		apiClient.downloadFilePath = path.resolve(downloadFilePath);
 
 		var instance = new cybersourceRestApi.ReportDownloadsApi(configObject, apiClient);
 
@@ -38,7 +37,7 @@ function downloadReport(callback) {
 				if(JSON.stringify(response['status']) === '200'){
 					const stream = fs.createWriteStream(downloadFilePath);
 					response.pipe(stream);
-					console.log('\n File downloaded at the below location :\n' + apiClient.downloadFilePath);
+					console.log('\n File downloaded at the below location :\n' + path.resolve(downloadFilePath));
 				}						
 			}
 			callback(error, data);
