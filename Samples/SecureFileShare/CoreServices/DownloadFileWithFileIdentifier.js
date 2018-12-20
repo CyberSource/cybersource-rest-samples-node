@@ -2,6 +2,7 @@
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
+var fs = require('fs');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
@@ -25,14 +26,21 @@ function downloadFileWithFileIdentifier(callback) {
 
 		console.log('****************Download File with Identifier****************');
 
-		instance.getFile(fileId, opts, function (error, data) {
+		instance.getFile(fileId, opts, function (error, data, response) {
 			if (error) {
 				console.log('\nError in download file with identifier : ' + JSON.stringify(error));
 			}
-			console.log('\n: ');
+			if(response){
+				console.log('\n Response of download report: '+JSON.stringify(response));
+				console.log('\nResponse Code of download report : ' + JSON.stringify(response['status']));
+				if(JSON.stringify(response['status']) === '200'){
+					const stream = fs.createWriteStream(downloadFilePath);
+					response.pipe(stream);
+					console.log('\n File downloaded at the below location :\n' + apiClient.downloadFilePath);						
+				}
+			}
 			callback(error, data);
 		});
-		console.log('File downloaded at the below location :\n' + apiClient.downloadFilePath);
 	} catch (error) {
 		console.log(error);
 	}
