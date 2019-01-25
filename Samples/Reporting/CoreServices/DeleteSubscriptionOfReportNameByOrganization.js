@@ -2,8 +2,8 @@
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 
 /**
  * This is a sample code to call ReportSubscriptionsApi,
@@ -14,21 +14,22 @@ function deleteSubscriptionReport(name, callback) {
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.ReportSubscriptionsApi(configObject);
 
-
 		var reportName = 'testrest_v2';
 		if (name !== '')
 			reportName = name;
-		console.log('****************Delete Subscription of Report Name****************');
+
+			console.log('\n[BEGIN] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 
 		instance.deleteSubscription(reportName, function (error, data, response) {
 			if (error) {
-				console.log('\nError in Delete subscription of report name : ' + JSON.stringify(error));
+				console.log('\n API ERROR : \n ' + JSON.stringify(error));
 			}
-			else if (data) {
-				console.log('\nData of Delete subscription of report name : ' + JSON.stringify(data));
+			if (response) {
+				console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+				console.log('\n API RESPONSE BODY : ' + response.text + '\n'); 
+				console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+				console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
 			}
-			console.log('\nResponse of Delete subscription of report name : ' + JSON.stringify(response));
-			console.log('\nResponse Code of Delete subscription of report name : ' + JSON.stringify(response['status']));
 			callback(error, data);
 		});
 
@@ -38,7 +39,7 @@ function deleteSubscriptionReport(name, callback) {
 }
 if (require.main === module) {
 	deleteSubscriptionReport('', function () {
-		console.log('Delete subscription of report name end.');
+		console.log('\n[END] REQUEST & RESPONSE OF:'+ path.basename(__filename, path.extname(__filename)) + '\n');
 	});
 }
 module.exports.deleteSubscriptionReport = deleteSubscriptionReport;

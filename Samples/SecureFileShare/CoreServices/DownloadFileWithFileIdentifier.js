@@ -2,8 +2,9 @@
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var fs = require('fs');
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 
 /**
  * This is a sample code to call SecureFileShareApi,
@@ -15,24 +16,32 @@ function downloadFileWithFileIdentifier(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 
 		//File name in which report get downloaded
-		var downloadFilePath = 'Resource\\DownloadFileWithFileIdentifier.csv';
-		apiClient.downloadFilePath = path.resolve(downloadFilePath);
+		var downloadFilePath = path.join('Resource','DownloadFileWithFileIdentifier.csv');
 
 		var instance = new cybersourceRestApi.SecureFileShareApi(configObject, apiClient);
 		var fileId = 'VFJSUmVwb3J0LTc4NTVkMTNmLTkzOTgtNTExMy1lMDUzLWEyNTg4ZTBhNzE5Mi5jc3YtMjAxOC0xMC0yMA==';
 		var opts = [];
 		opts['organizationId'] = 'testrest';
 
-		console.log('****************Download File with Identifier****************');
+		console.log('\n[BEGIN] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 
-		instance.getFile(fileId, opts, function (error, data) {
+		instance.getFile(fileId, opts, function (error, data, response) {	
 			if (error) {
-				console.log('\nError in download file with identifier : ' + JSON.stringify(error));
+				console.log('\n API ERROR : \n ' + JSON.stringify(error));
 			}
-			console.log('\n: ');
+			if(response){
+				console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+				console.log('\n API RESPONSE BODY : ' + JSON.stringify(response) + '\n'); 
+				console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+				console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
+				if(JSON.stringify(response['status']) === '200'){
+					const stream = fs.createWriteStream(downloadFilePath);
+					response.pipe(stream);
+					console.log('\n File downloaded at the below location :\n' + path.resolve(downloadFilePath));
+				}
+			}
 			callback(error, data);
 		});
-		console.log('File downloaded at the below location :\n' + apiClient.downloadFilePath);
 	} catch (error) {
 		console.log(error);
 	}
@@ -40,7 +49,7 @@ function downloadFileWithFileIdentifier(callback) {
 }
 if (require.main === module) {
 	downloadFileWithFileIdentifier(function () {
-		console.log('Download file with file identifier end.');
+		console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 	});
 }
 module.exports.downloadFileWithFileIdentifier = downloadFileWithFileIdentifier;

@@ -2,8 +2,8 @@
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 var verify = require('../VerifyToken.js');
 
 /**
@@ -35,13 +35,13 @@ function tokenizeCard(callback) {
 		var options = {
 			'generatePublicKeyRequest': KeyRequest
 		};
-
-		keyInstance.generatePublicKey(options, function (error, data, response) {
+		console.log('\n[BEGIN] REQUEST & RESPONSE OF: Generate Key \n');
+		keyInstance.generatePublicKey(options, function (error, data, response) {		
 			if (error) {
-				console.log('Error : ' + error);
+				console.log('\n API ERROR : \n ' + JSON.stringify(error));
 			}
 			else if (data) {
-				keyId = data['keyId'];
+				keyId = data.keyId;
 				publicKey = data.der['publicKey'];
 
 				var tokenizeRequest = new cybersourceRestApi.TokenizeRequest();
@@ -51,23 +51,35 @@ function tokenizeCard(callback) {
 				var options = { 
 					'tokenizeRequest': tokenizeRequest
 				};
-				console.log('\n*************** Tokenize Card ********************* ');
+				if(response){
+					console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+					console.log('\n API REQUEST BODY : \n' + response.request._data + '\n');
+					console.log('\n API RESPONSE BODY : ' + response.text + '\n'); 
+					console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+					console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));	
+				}
+				console.log('\n[END] REQUEST & RESPONSE OF: Generate Key \n');
+				console.log('\n[BEGIN] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 				tokenizeInstance.tokenize(options, function (error, data, response) {
 					if (error) {
-						console.log('Error : ' + error.stack);
+						console.log('\n API ERROR : \n ' + JSON.stringify(error));
 					}
 					else if (data) {
 						var result = verify(publicKey, data);
-						console.log('Response of tokenization : ' + JSON.stringify(response));
-						console.log('Response code of tokenization: ' + response['status']);
-						console.log('KeyId: ' + keyId);
-						console.log('PublicKey : ' + publicKey);
-						console.log('Token Verified : ' + result);
+						console.log('\n KeyId: ' + keyId);
+						console.log('\n PublicKey : ' + publicKey);
+						console.log('\n Token Verified : ' + result);
+					}
+					if(response){
+						console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+						console.log('\n API REQUEST BODY : \n' + response.request._data + '\n');
+						console.log('\n API RESPONSE BODY : ' + response.text + '\n'); 
+						console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+						console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));	
 					}
 					callback(error, data);
 				});
 			}
-			console.log('Response code of generatePublicKey: ' + response['status']);
 		});
 
 	} catch (error) {
@@ -77,7 +89,7 @@ function tokenizeCard(callback) {
 }
 if (require.main === module) {
 	tokenizeCard(function () {
-		console.log('tokenizeCard end.');
+		console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 	});
 }
 module.exports.tokenizeCard = tokenizeCard;

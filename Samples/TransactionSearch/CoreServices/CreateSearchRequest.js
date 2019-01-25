@@ -2,8 +2,8 @@
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 
 /**
  * This is a sample code to call SearchTransactionsApi,
@@ -23,17 +23,19 @@ function createSearchRequest(callback) {
 		createSearchRequest.limit = 100;
 		createSearchRequest.sort = 'id:asc, submitTimeUtc:asc';
 
-		console.log('\n*************** Create Search Request  ********************* ');
+		console.log('\n[BEGIN] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 
-		instance.createSearch(createSearchRequest, function (error, data, response) {
+		instance.createSearch(createSearchRequest, function (error, data, response) {	
 			if (error) {
-				console.log('\nError in create search request : ' + JSON.stringify(error));
+				console.log('\n API ERROR : \n ' + JSON.stringify(error));
 			}
-			else if (data) {
-				console.log('\nData of create search request : ' + JSON.stringify(data));
+			if (response) {
+				console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+				console.log('\n API REQUEST BODY : \n' + response.request._data + '\n');
+				console.log('\n API RESPONSE BODY : ' + response.text + '\n'); 
+				console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+				console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
 			}
-			console.log('\nResponse of create search request : ' + JSON.stringify(response));
-			console.log('\nResponse Code of create search request : ' + JSON.stringify(response['status']));
 			callback(error, data);
 		});
 	} catch (error) {
@@ -42,7 +44,7 @@ function createSearchRequest(callback) {
 }
 if (require.main === module) {
 	createSearchRequest(function () {
-		console.log('create search request end.');
+		console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 	});
 }
 module.exports.createSearchRequest = createSearchRequest;

@@ -2,8 +2,8 @@
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 
 /**
  * This is a sample code to call TransactionDetailsApi,
@@ -16,24 +16,25 @@ function retrieveTransaction(callback) {
 
 	var id = '5408386919326811103004'; 
 
-	console.log('\n*************** Retrieve Transaction  ********************* ');
+	console.log('\n[BEGIN] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 
-	instance.getTransaction(id, function (error, data, response) {
-		if (error) {
-			console.log('Error in Retrieve Transaction Details : ' + JSON.stringify(error));
-		}
-		else if (data) {
-			console.log('\n Retrieve Transaction Details Data : ' + JSON.stringify(data));
-		}
-		console.log('\n Retrieve Transaction Details Response : ' + JSON.stringify(response));
-		console.log('\n Retrieve Transaction Details Response code : ' + response['status']);
-		callback(error, data);
+	instance.getTransaction(id, function (error, data, response) {		
+			if (error) {
+				console.log('\n API ERROR : \n ' + JSON.stringify(error));
+			}
+			if (response) {
+				console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+				console.log('\n API RESPONSE BODY : ' + response.text + '\n'); 
+				console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+				console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
+			}
+			callback(error, data);
 	});
 
 }
 if (require.main === module) {
 	retrieveTransaction(function () {
-		console.log('Retrieve Transaction Details end.');
+		console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 	});
 }
 module.exports.retrieveTransaction = retrieveTransaction;

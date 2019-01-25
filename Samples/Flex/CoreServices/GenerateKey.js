@@ -2,8 +2,8 @@
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 
 /**
  *  Generate a one-time use public key and key ID to encrypt the card number 
@@ -27,18 +27,18 @@ function generateKey(callback) {
 			'generatePublicKeyRequest': request
 		};
 
-		console.log('\n*************** Generate Key ********************* ');
+		console.log('\n[BEGIN] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
         
 		instance.generatePublicKey(options, function (error, data, response) {
 			if (error) {
-				console.log('Error : ' + error);
-				console.log('Error status code : ' + error.statusCode);
+				console.log('\n API ERROR : \n ' + JSON.stringify(error));
 			}
-			else if (data) {
-				console.log('Data : ' + JSON.stringify(data));
-			}
-			console.log('Response : ' + JSON.stringify(response));
-			console.log('Response Code Of GenerateKey : ' + response['status']);
+			if (response) {
+				console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+				console.log('\n API RESPONSE BODY : ' + response.text + '\n'); 
+				console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+				console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
+			}	
 			callback(error, data);
 		});
 	} catch (error) {
@@ -47,7 +47,7 @@ function generateKey(callback) {
 }
 if (require.main === module) {
 	generateKey(function () {
-		console.log('generateKey end.');
+		console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 	});
 }
 module.exports.generateKey = generateKey;

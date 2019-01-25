@@ -2,8 +2,9 @@
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var fs = require('fs');
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 
 /**
  * This is a sample code to call ReportDownloadsApi,
@@ -15,8 +16,7 @@ function downloadReport(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 
 		//File name in which report get downloaded
-		var downloadFilePath = 'Resource\\reportName.xml';
-		apiClient.downloadFilePath = path.resolve(downloadFilePath);
+		var downloadFilePath = path.join('Resource','reportName.xml');
 
 		var instance = new cybersourceRestApi.ReportDownloadsApi(configObject, apiClient);
 
@@ -25,22 +25,33 @@ function downloadReport(callback) {
 		var opts = [];
 		opts['organizationId'] = 'testrest';
 
-		console.log('****************Download Report****************');
+		console.log('\n[BEGIN] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 
-		instance.downloadReport(reportDate, reportName, opts, function (error, data) {
+		instance.downloadReport(reportDate, reportName, opts, function (error, data, response) {
 			if (error) {
-				console.log('\nError in Download report : ' + JSON.stringify(error));
+				console.log('\n API ERROR : \n ' + JSON.stringify(error));
+			}
+			if(response){
+				console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+				console.log('\n API RESPONSE BODY : ' + JSON.stringify(response) + '\n'); 
+				console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+				console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
+				if(JSON.stringify(response['status']) === '200'){
+					const stream = fs.createWriteStream(downloadFilePath);
+					response.pipe(stream);
+					console.log('\n File downloaded at the below location :\n' + path.resolve(downloadFilePath));
+				}						
 			}
 			callback(error, data);
 		});
-		console.log('File downloaded at the below location :\n' + apiClient.downloadFilePath);
+		
 	} catch (error) {
 		console.log(error);
 	}
 }
 if (require.main === module) {
 	downloadReport(function () {
-		console.log('Download report end.');
+		console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 	});
 }
 module.exports.downloadReport = downloadReport;

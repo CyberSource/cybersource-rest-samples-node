@@ -2,8 +2,8 @@
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 
 /**
  * This is a sample code to call CreditApi,
@@ -49,16 +49,19 @@ function processACredit(callback) {
 		request.orderInformation = orderInformation;
 		request.paymentInformation = paymentInformation;
 
-		console.log('\n*************** Process Credit ********************* ');
+		console.log('\n[BEGIN] REQUEST & RESPONSE OF:  '+ path.basename(__filename, path.extname(__filename)) + '\n');
 		instance.createCredit(request, function (error, data, response) {
 			if (error) {
-				console.log('\nError in process a credit : ' + JSON.stringify(error));
+				console.log('\n API ERROR : \n ' + JSON.stringify(error));
 			}
-			else if (data) {
-				console.log('\nData of process a credit : ' + JSON.stringify(data));
+			if (response) {
+				console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+				console.log('\n API REQUEST BODY : \n' + response.request._data + '\n');
+				console.log('\n API RESPONSE BODY : ' + response.text); 
+				console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+				console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
 			}
-			console.log('\nResponse of process a credit : ' + JSON.stringify(response));
-			console.log('\nResponse Code of process a credit : ' + JSON.stringify(response['status']));
+			console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 			callback(error, data);
 		});
 	} catch (error) {
@@ -67,7 +70,6 @@ function processACredit(callback) {
 }
 if (require.main === module) {
 	processACredit(function () {
-		console.log('Process Credit end.');
 	});
 }
 module.exports.processACredit = processACredit;

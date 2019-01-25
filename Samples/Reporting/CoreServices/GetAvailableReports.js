@@ -2,8 +2,8 @@
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 
 /**
  * This is a sample code to call ReportsApi,
@@ -20,17 +20,18 @@ function RetrieveAvailableReports(callback) {
 		var opts = [];
 		opts['organizationId'] = 'testrest';
 
-		console.log('****************Get Available Reports****************');
+		console.log('\n[BEGIN] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 
 		instance.searchReports(startTime, endTime, timeQueryType, opts, function (error, data, response) {
 			if (error) {
-				console.log('\nError in get available reports : ' + JSON.stringify(error));
+				console.log('\n API ERROR : \n ' + JSON.stringify(error));
 			}
-			else if (data) {
-				console.log('\nData of get available reports : ' + JSON.stringify(data));
+			if (response) {
+				console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+				console.log('\n API RESPONSE BODY : ' + response.text + '\n'); 
+				console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+				console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
 			}
-			console.log('\nResponse of get available reports : ' + JSON.stringify(response));
-			console.log('\nResponse Code of get available reports : ' + JSON.stringify(response['status']));
 			callback(error, data);
 		});
 	} catch (error) {
@@ -39,7 +40,7 @@ function RetrieveAvailableReports(callback) {
 }
 if (require.main === module) {
 	RetrieveAvailableReports(function () {
-		console.log('Retrieve Available Reports end.');
+		console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 	});
 }
 module.exports.RetrieveAvailableReports = RetrieveAvailableReports;

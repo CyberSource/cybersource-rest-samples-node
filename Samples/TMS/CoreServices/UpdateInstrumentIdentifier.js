@@ -2,8 +2,8 @@
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 var retrieveInstrumentIdentifier = require('./RetrieveInstrumentIdentifier');
 
 
@@ -29,23 +29,23 @@ function updateInstrumentIdentifier(callback) {
 		body.processingInformation = processingInformation;
 
 		var profileId = '93B32398-AD51-4CC2-A682-EA3E93614EB1';
-        
+		
+		console.log('\n[BEGIN] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 		retrieveInstrumentIdentifier.retriveAInstrumentIdentifier(function (error, data) {
 			if (!error) {
-				var tokenId = data['id'];
-				console.log('\n*************** Patch instrument identifier ********************* ');
-				console.log('\nToken ID passing to instrumentidentifiersTokenIdPatch : ' + tokenId);
-
-
+				var tokenId = data.id;
+			
 				instance.tmsV1InstrumentidentifiersTokenIdPatch(profileId, tokenId, body, function (error, data, response) {
 					if (error) {
-						console.log('\nError in Patch instrument identifier : ' + JSON.stringify(error));
+						console.log('\n API ERROR : \n ' + JSON.stringify(error));
 					}
-					else if (data) {
-						console.log('\nData of Patch instrument identifier : ' + JSON.stringify(data));
+					if (response) {
+						console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+						console.log('\n API REQUEST BODY : \n' + response.request._data );
+						console.log('\n API RESPONSE BODY : ' + response.text ); 
+						console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+						console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
 					}
-					console.log('\nResponse of  Patch instrument identifier : ' + JSON.stringify(response));
-					console.log('\nResponse Code of Patch instrument identifier :' + JSON.stringify(response['status']));
 					callback(error, data);
 				});
 			}
@@ -56,7 +56,7 @@ function updateInstrumentIdentifier(callback) {
 }
 if (require.main === module) {
 	updateInstrumentIdentifier(function () {
-		console.log('update instrument identifier end.');
+		console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 	});
 }
 module.exports.updateInstrumentIdentifier = updateInstrumentIdentifier;

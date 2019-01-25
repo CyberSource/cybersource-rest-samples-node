@@ -2,8 +2,8 @@
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 
 /**
  * This is a sample code to call SearchTransactionsApi,
@@ -14,19 +14,21 @@ function getSearchResults(callback) {
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.SearchTransactionsApi(configObject);
 
-		var id = '95f6ab1c-d64d-4fdb-949d-cf174405c21f';
+		var id = '27c74a80-c923-4034-a929-d968f194d774';
 
-		console.log('\n*************** Get Search Result  ********************* ');
+		console.log('\n[BEGIN] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 
 		instance.getSearch(id, function (error, data, response) {
+			
 			if (error) {
-				console.log('\nError in get search result : ' + JSON.stringify(error));
+				console.log('\n API ERROR : \n ' + JSON.stringify(error));
 			}
-			else if (data) {
-				console.log('\nData of get search result : ' + JSON.stringify(data));
+			if(response){
+				console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+				console.log('\n API RESPONSE BODY : ' + response.text + '\n'); 
+				console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+				console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
 			}
-			console.log('\nResponse of get search result : ' + JSON.stringify(response));
-			console.log('\nResponse Code of get search result : ' + JSON.stringify(response['status']));
 			callback(error, data);
 		});
 	} catch (error) {
@@ -36,7 +38,7 @@ function getSearchResults(callback) {
 }
 if (require.main === module) {
 	getSearchResults(function () {
-		console.log('get transaction search end.');
+		console.log('\n [END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 	});
 }
 module.exports.getSearchResults = getSearchResults;

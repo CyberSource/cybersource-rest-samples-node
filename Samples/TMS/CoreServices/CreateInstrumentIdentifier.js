@@ -1,9 +1,9 @@
 'use strict';
 
-var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var cybersourceRestApi = require('cybersource-rest-client');
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 
 /**
  * This is a sample code to call TMS InstrumentIdentifierApi,
@@ -37,20 +37,23 @@ function createInstrumentIdentifier(callback) {
 		body.processingInformation = processingInformation;
 
 		var profileId = '93B32398-AD51-4CC2-A682-EA3E93614EB1';
-        
-		console.log('\n*************** Create Instrument Identifier ********************* ');
+		
+		console.log('\n[BEGIN] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
+		
 		instance.tmsV1InstrumentidentifiersPost(profileId, body, function (error, data, response) {
 			if (error) {
-				console.log('\nError in create instrument identifier : ' + JSON.stringify(error));
+				console.log('\n API ERROR : \n ' + JSON.stringify(error));
 			}
-			else if (data) {
-				console.log('\nData of Create instrument identifier : ' + JSON.stringify(data));
+			if (response) {
+				console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+				console.log('\n API REQUEST BODY : \n' + response.request._data + '\n');
+				console.log('\n API RESPONSE BODY : ' + response.text + '\n'); 
+				console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+				console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
+				console.log('\n[END] REQUEST & RESPONSE OF:  '+ path.basename(__filename, path.extname(__filename)) + '\n');
 			}
-			console.log('\nResponse of  Create instrument identifier : ' + JSON.stringify(response));
-			console.log('\nResponse Code of Create instrument identifier :' + JSON.stringify(response['status']));
 			callback(error,data);
-		});
-        
+		});        
 	} catch (error) {
 		console.log(error);
 	}
@@ -58,7 +61,6 @@ function createInstrumentIdentifier(callback) {
 
 if (require.main === module) {
 	createInstrumentIdentifier(function () {
-		console.log('Create instrument identifier end.');
 	});
 }
 module.exports.createInstrumentIdentifier = createInstrumentIdentifier;
