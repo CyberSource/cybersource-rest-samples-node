@@ -22,7 +22,7 @@ const KeyPass = 'testrest';
 // logging parameters
 const EnableLog = true;
 const LogFileName = 'cybs';
-const LogDirectory = '../log';
+const LogDirectory = './log';
 const LogfileMaxSize = '5242880'; //10 MB In Bytes
 
 // Constructor for Configuration
