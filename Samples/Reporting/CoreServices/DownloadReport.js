@@ -33,14 +33,18 @@ function downloadReport(callback) {
 			}
 			if(response){
 				console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
-				console.log('\n API RESPONSE BODY : ' + JSON.stringify(response) + '\n'); 
-				console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
-				console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
-				if(JSON.stringify(response['status']) === '200'){
+				if(JSON.stringify(response['status']) === '200'){	
 					const stream = fs.createWriteStream(downloadFilePath);
 					response.pipe(stream);
+					console.log('\n API RESPONSE BODY : ' );
+					response.pipe(process.stdout);	
+				}
+				response.on('end', function() {
+					console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+					console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
 					console.log('\n File downloaded at the below location :\n' + path.resolve(downloadFilePath));
-				}						
+					console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
+				});						
 			}
 			callback(error, data);
 		});
@@ -51,7 +55,7 @@ function downloadReport(callback) {
 }
 if (require.main === module) {
 	downloadReport(function () {
-		console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
+		
 	});
 }
 module.exports.downloadReport = downloadReport;
