@@ -18,8 +18,7 @@ function createAdhocReport(callback) {
 		reportPreferences.signedAmounts = true;
 		reportPreferences.fieldNameConvention = 'SOAPI';
 
-		var opts = [];
-		opts['organizationId'] = 'testrest';
+		
 
 		var request = new cybersourceRestApi.RequestBody1();
 		request.reportName = 'testrest_v001';
@@ -36,7 +35,7 @@ function createAdhocReport(callback) {
 
 		console.log('\n*************** Create Adhoc Report ********************* ');
 
-		instance.createReport(request, opts, function (error, data, response) {
+		instance.createReport(request, function (error, data, response) {
 			if (error) { 
 				console.log('\nError in create adhoc report : ' + error);
 			}
