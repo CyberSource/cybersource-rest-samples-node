@@ -26,7 +26,7 @@ function CreateSubscriptionReport(callback) {
 		request.timezone = 'GMT';
 		request.startTime = '2000';
 		request.startDay = 1;
-		request.reportName = 'erttrt';
+		request.reportName = 'testrest_subcription_v1';
 
 		console.log('****************Create Report Subscrption****************');
 
