@@ -12,13 +12,13 @@ var configuration = require(filePath);
 function getIndividualBatchFile(callback) {
 
 	var configObject = new configuration();
-	var instance = new cybersourceRestApi.TransactionBatchesApi(configObject);
+	var instance = new cybersourceRestApi.TransactionBatchApi(configObject);
 
 	var id = 'Owcyk6pl';
  
 	console.log('\n*************** Retrieve Batch File  ********************* ');
                 
-	instance.getTransactionBatchId(id, function (error, data, response) {
+	instance.ptsV1TransactionBatchesIdGet(id, function (error, data, response) {
 		if (error) {
 			console.log('\nError in retrieve batch file : ' + JSON.stringify(error));
 		}

@@ -19,7 +19,7 @@ function getListOfBatchFiles(callback) {
     
 		console.log('\n*************** Retrieve list of batch file  ********************* ');
 
-		instance.getTransactionBatches(startTime, endTime, function (error, data, response) {
+		instance.ptsV1TransactionBatchesGet(startTime, endTime, function (error, data, response) {
 			if (error) {
 				console.log('\nError in retrieve list of batch file : ' + JSON.stringify(error));
 			}
