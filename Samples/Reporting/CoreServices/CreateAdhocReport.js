@@ -20,7 +20,7 @@ function createAdhocReport(callback) {
 
 
 		var request = new cybersourceRestApi.RequestBody();
-		request.reportName = 'dfdd_c_3-dec28';
+		request.reportName = 'testrest_v001';
 		request.reportDefinitionName = 'TransactionRequestClass';
 		request.timezone = 'GMT';
 		request.reportMimeType = 'application/xml';
