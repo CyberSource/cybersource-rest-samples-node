@@ -14,8 +14,7 @@ function CreateSubscriptionReport(callback) {
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.ReportSubscriptionsApi(configObject);
 
-		var request = new cybersourceRestApi.RequestBody();
-
+		var request = new cybersourceRestApi.RequestBody1();
 		request.reportDefinitionName = 'TransactionRequestClass';
 		request.reportFields = [
 			'Request.RequestID',
@@ -25,13 +24,13 @@ function CreateSubscriptionReport(callback) {
 		request.reportMimeType = 'application/xml';
 		request.reportFrequency = 'MONTHLY';
 		request.timezone = 'GMT';
-		request.startTime = '0900';
+		request.startTime = '2000';
 		request.startDay = 1;
-		request.reportName = 'testrest_subcription_v1';
+		request.reportName = 'erttrt';
 
 		console.log('****************Create Report Subscrption****************');
 
-		instance.createSubscription(request, function (error, data, response) {
+		instance.createSubscription(request, null,function (error, data, response) {
 			if (error) {
 				console.log('\nError in create report subscription : ' + JSON.stringify(error));
 			}
