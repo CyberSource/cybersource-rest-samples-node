@@ -1,9 +1,9 @@
 'use strict';
 
-var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var cybersourceRestApi = require('cybersource-rest-client');
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 
 function keyGenerationNoEnc(callback) {
 
@@ -16,24 +16,24 @@ function keyGenerationNoEnc(callback) {
 	var options = {
 		'generatePublicKeyRequest': request
 	};
-	console.log('\n*************** Key Generation NoEnc ********************* ');
-
+	console.log('\n[BEGIN] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 	instance.generatePublicKey(options, function (error, data, response) {
+		console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+		console.log('\n API REQUEST BODY : \n' + response.request._data + '\n');
 		if (error) {
-			console.log('Error : ' + error);
+			console.log('\n API ERROR : \n ' + JSON.stringify(error));
 		}
-		else if (data) {
-			console.log('Data : ' + JSON.stringify(data));
-		}
-		console.log('Response : ' + JSON.stringify(response));
-		console.log('Response id : ' + response['status']);
+		 			
+			console.log('\n API RESPONSE BODY : ' + response.text + '\n'); 
+			console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+			console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
+			console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 		callback(error, data);
 	});
 
 }
 if (require.main === module) {
-	keyGenerationNoEnc(function () {
-		console.log('key generation end.');
+	keyGenerationNoEnc(function () {		
 	});
 }
 module.exports.keyGenerationNoEnc = keyGenerationNoEnc;

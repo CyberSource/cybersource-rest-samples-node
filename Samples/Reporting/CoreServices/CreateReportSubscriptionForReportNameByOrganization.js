@@ -2,8 +2,8 @@
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 var deleteSubscription = require('./DeleteSubscriptionOfReportNameByOrganization');
 /**
  * This is a sample code to call ReportSubscriptionsApi,
@@ -25,31 +25,29 @@ function CreateSubscriptionReport(callback) {
 		request.reportMimeType = 'application/xml';
 		request.reportFrequency = 'MONTHLY';
 		request.timezone = 'GMT';
-		request.startTime = '0900';
+		request.startTime = '0942';
 		request.startDay = 1;
-		request.reportName = 'testrest_subcription_v1';
+		request.reportName = 'yyy';
 
-		console.log('****************Create Report Subscrption****************');
+		console.log('\n[BEGIN] REQUEST & RESPONSE OF:'+ path.basename(__filename, path.extname(__filename)) + '\n');
 
 		instance.createSubscription(request, function (error, data, response) {
 			if (error) {
-				console.log('\nError in create report subscription : ' + JSON.stringify(error));
+				console.log('\n API ERROR : \n ' + JSON.stringify(error));
 			}
-			else if (data) {
-				console.log('\nData of create report subscription : ' + JSON.stringify(data));
-			}
-			console.log('\nResponse of create report subscription : ' + JSON.stringify(response));
-			var status = JSON.stringify(response['status']);
-			console.log('\nResponse Code of create report subscription : ' + status);
-			if (status === '201') {
-				deleteSubscription.deleteSubscriptionReport(request.reportName, function (error, data) {
-					if (error) {
-						console.log('Error occured in deleting the report subscription');
-					}
-					else if(data){
-						console.log('Deleted the report subscription to clear the bad values in backend');
-					}
-				});
+			if (response) {
+				console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+				console.log('\n API REQUEST BODY : \n' + response.request._data + '\n');
+				console.log('\n API RESPONSE BODY : ' + response.text + '\n'); 
+				console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+				console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
+				if (response['status'] === 201) {
+					deleteSubscription.deleteSubscriptionReport(request.reportName, function (error, data) {
+						if (!error) {
+							console.log('\n[END] REQUEST & RESPONSE OF: DeleteSubscriptionOfReportNameByOrganization\n');
+						}
+					});
+				}
 			}
 			callback(error, request.reportName);
 		});
@@ -59,7 +57,7 @@ function CreateSubscriptionReport(callback) {
 }
 if (require.main === module) {
 	CreateSubscriptionReport(function () {
-		console.log('Create report subscription end.');
+		console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 	});
 }
 module.exports.CreateSubscriptionReport = CreateSubscriptionReport;

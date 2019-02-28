@@ -2,8 +2,8 @@
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 var capturePayment = require('./CapturePayment');
 /**
  * This is a sample code to call VoidApi,
@@ -20,24 +20,29 @@ function voidACapture(callback) {
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
 		clientReferenceInformation.code = 'test_capture_void';
 		request.clientReferenceInformation = clientReferenceInformation;
-
+		console.log('\n[BEGIN] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 		capturePayment.processCaptureAPayment(function (error, data) {
-			if (data) {
-				var id = data['id'];
-				console.log('\n*************** Void Capture ********************* ' );
-				console.log('\nCapture ID passing to voidCapture : ' + id);
+			if (!error) {
+				var id = data.id;
 
 				instance.voidCapture(request, id, function (error, data, response) {
 					if (error) {
-						console.log('Error : ' + error);
+						console.log('\n API ERROR : \n ' + JSON.stringify(error));
 					}
-					else if (data) {
-						console.log('\nData of Void Capture : ' + JSON.stringify(data));
+					if (response) {
+						console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+						console.log('\n API REQUEST BODY : \n' + response.request._data + '\n');
+						console.log('\n API RESPONSE BODY : ' + response.text); 
+						console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+						console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
 					}
-					console.log('\nResponse of Void Capture : ' + JSON.stringify(response));
-					console.log('\nResponse Code of Void Capture : ' + JSON.stringify(response['status']));
-					callback(error,data);
+					console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
+					callback(error, data);
 				});
+			}
+			else{
+				console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
+				callback(error, data);
 			}
 		});
 	} catch (error) {
@@ -46,7 +51,6 @@ function voidACapture(callback) {
 }
 if (require.main === module) {
 	voidACapture(function () {
-		console.log('VoidCapture end.');
 	});
 }
 module.exports.voidACapture = voidACapture;

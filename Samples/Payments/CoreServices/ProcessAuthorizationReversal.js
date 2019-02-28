@@ -2,8 +2,8 @@
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 var processPayment = require('./ProcessPayment');
 
 /**
@@ -29,25 +29,29 @@ function processAuthorizationReversal(callback) {
 		request.reversalInformation = reversalInformation;
 
 		var enableCapture = false;
-
+		console.log('\n[BEGIN] REQUEST & RESPONSE OF:  '+ path.basename(__filename, path.extname(__filename)) + '\n');
 		processPayment.processPayment(function (error, data) {
-			if (data) {
-				var id = data['id'];
-				console.log('\n*************** Authorizarion Reversal ********************* ');
-				console.log('Payment ID passing to authReversal : ' + id);
-
+			console.log('\n[END] REQUEST & RESPONSE OF: ProcessPayment\n');
+			if (!error) {
+				var id = data.id;				
 				instance.authReversal(id, request, function (error, data, response) {
 					if (error) {
-						console.log('\nError in authReversal: ' + JSON.stringify(error));
+						console.log('\n API ERROR : \n ' + JSON.stringify(error));
 					}
-					else if (data) {
-						console.log('\nData of authReversal : ' + JSON.stringify(data));
+					if (response) {
+						console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+						console.log('\n API REQUEST BODY : \n' + response.request._data + '\n');
+						console.log('\n API RESPONSE BODY : ' + response.text); 
+						console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+						console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
 					}
-					console.log('\nResponse of  authReversal  : ' + JSON.stringify(response));
-					console.log('\nResponse Code of authReversal : ' + JSON.stringify(response['status']));
+					console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 					callback(error, data);
 				});
-
+			}
+			else{
+				console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
+				callback(error, data);
 			}
 		}, enableCapture);
 
@@ -57,7 +61,6 @@ function processAuthorizationReversal(callback) {
 }
 if (require.main === module) {
 	processAuthorizationReversal(function () {
-		console.log('Process Authorization Reversal end');
 	});
 }
 module.exports.processAuthorizationReversal = processAuthorizationReversal;

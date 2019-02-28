@@ -1,9 +1,9 @@
 'use strict';
 
-var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var cybersourceRestApi = require('cybersource-rest-client');
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 var createInstrumentIdentifier = require('./CreateInstrumentIdentifier');
 
 /**
@@ -17,33 +17,37 @@ function retriveAInstrumentIdentifier(callback) {
 		var instance = new cybersourceRestApi.InstrumentIdentifierApi(configObject);
 
 		var profileId = '93B32398-AD51-4CC2-A682-EA3E93614EB1';
-
-		createInstrumentIdentifier.createInstrumentIdentifier(function (error, data) {
+		console.log('\n[BEGIN] REQUEST & RESPONSE OF:  '+ path.basename(__filename, path.extname(__filename)) + '\n');
+		createInstrumentIdentifier.createInstrumentIdentifier(function (error, data) {			
 			if (!error) {
-				var tokenId = data['id'];
-				console.log('\n*************** Retrieve instrument identifier ********************* ');
-				console.log('\nToken ID passing to instrumentidentifiersTokenIdGet : ' + tokenId);
-
+				var tokenId = data.id;
 				instance.tmsV1InstrumentidentifiersTokenIdGet(profileId, tokenId, function (error, data, response) {
 					if (error) {
-						console.log('\nError in Retrieve instrument identifier : ' + JSON.stringify(error));
+						console.log('\n API ERROR : \n ' + JSON.stringify(error));
 					}
-					else if (data) {
-						console.log('\nData of Retrieve instrument identifier : ' + JSON.stringify(data));
+					if (response) {
+						console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+						console.log('\n API RESPONSE BODY : ' + response.text + '\n'); 
+						console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+						console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
+						console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 					}
-					console.log('\nResponse of  Retrieve instrument identifier : ' + JSON.stringify(response));
-					console.log('\nResponse Code of Retrieve instrument identifier :' + JSON.stringify(response['status']));
-					callback(error, data);
+					callback(error, data);					
 				});
 			}
+			else
+			{
+				console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
+				callback(error, data);
+			}
 		});
+		
 	} catch (error) {
 		console.log(error);
 	}
 }
 if (require.main === module) {
 	retriveAInstrumentIdentifier(function () {
-		console.log('Retrieve InstrumentIdentifer end.');
 	});
 }
 module.exports.retriveAInstrumentIdentifier = retriveAInstrumentIdentifier;

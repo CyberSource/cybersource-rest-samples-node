@@ -2,8 +2,8 @@
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 var retrievePaymentInstrument = require('./RetrievePaymentInstrument');
 
 /**
@@ -45,23 +45,24 @@ function updatePaymentInstrument(callback) {
 
 		var profileId = '93B32398-AD51-4CC2-A682-EA3E93614EB1';
 
+		console.log('\n[BEGIN] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 		retrievePaymentInstrument.retrivePaymentIdentifiers(function (error, data) {
 			if (!error) {
-				var tokenId = data['id'];
-				console.log('\n*************** Update PaymentInstrument  ********************* ');
-				console.log('\nToken ID passing to paymentinstrumentsTokenIdPatch : ' + tokenId);
+				var tokenId = data.id;
 
 				instance.tmsV1PaymentinstrumentsTokenIdPatch(profileId, tokenId, request, function (error, data, response) {
 					if (error) {
-						console.log('\nError in Update PaymentInstrument : ' + JSON.stringify(error));
+						console.log('\n API ERROR : \n ' + JSON.stringify(error));
 					}
-					else if (data) {
-						console.log('\nData of Update PaymentInstrument : ' + JSON.stringify(data));
-					}
-					console.log('\nResponse of  Update PaymentInstrument : ' + JSON.stringify(response));
-					console.log('\nResponse Code of Update PaymentInstrument :' + JSON.stringify(response['status']));
-					callback(error, data);
-				});
+					if (response) {
+					console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+					console.log('\n API REQUEST BODY : \n' + response.request._data );
+					console.log('\n API RESPONSE BODY : ' + response.text ); 
+					console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+					console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
+				}
+				callback(error, data);
+			});
 			}
 		});
 	} catch (error) {
@@ -70,7 +71,7 @@ function updatePaymentInstrument(callback) {
 }
 if (require.main === module) {
 	updatePaymentInstrument(function () {
-		console.log('Update PaymentInstrument end');
+		console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 	});
 }
 module.exports.updatePaymentInstrument = updatePaymentInstrument;

@@ -2,8 +2,8 @@
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 
 /**
  * This is a sample code to call ReportSubscriptionsApi,
@@ -16,17 +16,18 @@ function getSubscriptionForReportName(callback) {
 
 		var reportName = 'createsubscription_report';
 
-		console.log('****************Get Subscription for Report name****************');
+		console.log('\n[BEGIN] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 
 		instance.getSubscription(reportName, function (error, data, response) {
 			if (error) {
-				console.log('\nError in get subscription for report name : ' + JSON.stringify(error));
+				console.log('\n API ERROR : \n ' + JSON.stringify(error));
 			}
-			else if (data) {
-				console.log('\nData of get subscription for report name : ' + JSON.stringify(data));
+			if (response) {
+				console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+				console.log('\n API RESPONSE BODY : ' + response.text + '\n'); 
+				console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+				console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
 			}
-			console.log('\nResponse of get subscription for report name : ' + JSON.stringify(response));
-			console.log('\nResponse Code of get subscription for report name : ' + JSON.stringify(response['status']));
 			callback(error, data);
 		});
 	} catch (error) {
@@ -35,7 +36,7 @@ function getSubscriptionForReportName(callback) {
 }
 if (require.main === module) {
 	getSubscriptionForReportName(function () {
-		console.log('Get subscription for report name end.');
+		console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 	});
 }
 module.exports.getSubscriptionForReportName = getSubscriptionForReportName;

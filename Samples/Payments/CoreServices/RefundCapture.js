@@ -2,8 +2,8 @@
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 var capturePayment = require('./CapturePayment');
 /**
  * This is a sample code to call RefundApi,
@@ -25,24 +25,29 @@ function refundACapture(callback) {
 		orderInformation.amountDetails = amountDetails;
 		request.orderInformation = orderInformation;
 
+		console.log('\n[BEGIN] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 		capturePayment.processCaptureAPayment(function (error, data) {
-			if (data) {
-				var id = data['id'];
-				console.log('\n*************** Refund Capture ********************* ');
-				console.log('\nCapture ID passing to refundCapture : ' + id);
+			if (!error) {
+				var id = data.id;
 
 				instance.refundCapture(request, id, function (error, data, response) {
 					if (error) {
-						console.log('\nError in Refund Capture : ' + JSON.stringify(error));
+						console.log('\n API ERROR : \n ' + JSON.stringify(error));
 					}
-					else if (data) {
-						console.log('\nData in Refund Capture: ' + JSON.stringify(data));
+					if (response) {
+						console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+						console.log('\n API REQUEST BODY : \n' + response.request._data + '\n');
+						console.log('\n API RESPONSE BODY : ' + response.text); 
+						console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+						console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
 					}
-					console.log('\nResponse of Refund Capture: ' + JSON.stringify(response));
-					console.log('\nResponse Code of Refund Capture  : ' + JSON.stringify(response['status']));
+					console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 					callback(error, data);
-
 				});
+			}
+			else{
+				console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
+				callback(error, data);
 			}
 		});
 	} catch (error) {
@@ -51,7 +56,6 @@ function refundACapture(callback) {
 }
 if (require.main === module) {
 	refundACapture(function () {
-		console.log('Refund Capture end.');
 	});
 }
 module.exports.refundACapture = refundACapture;

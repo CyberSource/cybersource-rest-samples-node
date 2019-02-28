@@ -2,8 +2,8 @@
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 var processPayment = require('./ProcessPayment');
 
 /**
@@ -25,25 +25,30 @@ function voidPayment(callback) {
 		request.clientReferenceInformation = clientReferenceInformation;
 
 		var enableCapture = true;
-
+		console.log('\n[BEGIN] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 		processPayment.processPayment(function (error, data) {
+			console.log('\n[END] REQUEST & RESPONSE OF: ProcessPayment \n');
 			if (data) {
-				var id = data['id'];
-				console.log('\n*************** Void Payment ********************* ');
-				console.log('Payment ID passing to voidPayment : ' + id);
-
+				var id = data.id;
+				
 				instance.voidPayment(request, id, function (error, data, response) {
 					if (error) {
-						console.log('\nError in void payment: ' + error);
+						console.log('\n API ERROR : \n ' + JSON.stringify(error));
 					}
-					else if (data) {
-						console.log('\nData of void Payment : ' + JSON.stringify(data));
+					if (response) {
+						console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+						console.log('\n API REQUEST BODY : \n' + response.request._data + '\n');
+						console.log('\n API RESPONSE BODY : ' + response.text); 
+						console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+						console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
 					}
-					console.log('\nResponse of  void Payment  : ' + JSON.stringify(response));
-					console.log('\nResponse Code of void Payment : ' + JSON.stringify(response['status']));
+					console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 					callback(error, data);
 				});
-
+			}
+			else{
+				console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
+				callback(error, data);
 			}
 		}, enableCapture);
 
@@ -53,7 +58,6 @@ function voidPayment(callback) {
 }
 if (require.main === module) {
 	voidPayment(function () {
-		console.log('Void Payment end.');
 	});
 }
 module.exports.voidPayment = voidPayment;

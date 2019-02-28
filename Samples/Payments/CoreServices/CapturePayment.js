@@ -2,8 +2,8 @@
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/Configuration.js');
-var configuration = require(filePath);
+var filePath = path.join('Data','Configuration.js');
+var configuration = require(path.resolve(filePath));
 var processPayment = require('./ProcessPayment');
 
 /**
@@ -30,24 +30,29 @@ function processCaptureAPayment(callback) {
 
 		var enableCapture = false;
 
+		console.log('\n[BEGIN] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 		processPayment.processPayment(function (error, data) {
-			if (data) {
-				var id = data['id'];
-				console.log('\n*************** Capture Payment *********************');
-				console.log('Payment ID passing to capturePayment : ' + id);
-
+			console.log('\n[END] REQUEST & RESPONSE OF: ProcessPayment\n');
+			if (!error) {
+				var id = data.id;
 				instance.capturePayment(request, id, function (error, data, response) {
 					if (error) {
-						console.log('\nError in capture payment: ' + JSON.stringify(error));
+						console.log('\n API ERROR : \n ' + JSON.stringify(error));
 					}
-					else if (data) {
-						console.log('\nData of Capture Payment : ' + JSON.stringify(data));
+					if (response) {
+						console.log('\n API REQUEST HEADERS : \n' + JSON.stringify(response.req._headers,0,2));
+						console.log('\n API REQUEST BODY : \n' + response.request._data + '\n');
+						console.log('\n API RESPONSE BODY : ' + response.text); 
+						console.log('\n API RESPONSE CODE : ' + JSON.stringify(response['status']));
+						console.log('\n API RESPONSE HEADERS : \n' + JSON.stringify(response.header,0,2));
 					}
-					console.log('\nResponse of  Capture Payment  : ' + JSON.stringify(response));
-					console.log('\nResponse Code of Capture a payment : ' + JSON.stringify(response['status']));
+					console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
 					callback(error, data);
 				});
-
+			}
+			else{
+				console.log('\n[END] REQUEST & RESPONSE OF: '+ path.basename(__filename, path.extname(__filename)) + '\n');
+				callback(error, data);
 			}
 		}, enableCapture);
 	} catch (error) {
@@ -56,7 +61,6 @@ function processCaptureAPayment(callback) {
 }
 if (require.main === module) {
 	processCaptureAPayment(function () {
-		console.log('CapturePayment end.');
 	});
 }
 module.exports.processCaptureAPayment = processCaptureAPayment;
