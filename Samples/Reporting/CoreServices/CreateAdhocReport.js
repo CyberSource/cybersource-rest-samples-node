@@ -14,14 +14,12 @@ function createAdhocReport(callback) {
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.ReportsApi(configObject);
 
-		var reportPreferences = new cybersourceRestApi.ReportingV3ReportSubscriptionsGet200ResponseReportPreferences();
+		var reportPreferences = new cybersourceRestApi.Reportingv3reportsReportPreferences();
 		reportPreferences.signedAmounts = true;
 		reportPreferences.fieldNameConvention = 'SOAPI';
 
-		var opts = [];
-		opts['organizationId'] = 'testrest';
 
-		var request = new cybersourceRestApi.RequestBody1();
+		var request = new cybersourceRestApi.RequestBody();
 		request.reportName = 'testrest_v001';
 		request.reportDefinitionName = 'TransactionRequestClass';
 		request.timezone = 'GMT';
@@ -36,7 +34,7 @@ function createAdhocReport(callback) {
 
 		console.log('\n*************** Create Adhoc Report ********************* ');
 
-		instance.createReport(request, opts, function (error, data, response) {
+		instance.createReport(request, null, function (error, data, response) {
 			if (error) { 
 				console.log('\nError in create adhoc report : ' + error);
 			}
