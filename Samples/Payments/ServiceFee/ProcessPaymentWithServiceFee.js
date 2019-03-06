@@ -5,10 +5,6 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
-/**
- * This is a sample code to call PaymentApi,
- * createPayment method will create a new payment
- */
 function ProcessPaymentWithServiceFee(callback, enableCapture) {
 	try {
 		var configObject = new configuration();
@@ -23,7 +19,7 @@ function ProcessPaymentWithServiceFee(callback, enableCapture) {
 		var amountDetails = new cybersourceRestApi.Ptsv2paymentsOrderInformationAmountDetails();
 		amountDetails.totalAmount = '2325.00';
 		amountDetails.currency = 'USD';
-		amountDetails.serviceFeeAmount = '30.0'
+		amountDetails.serviceFeeAmount = '30.00'
 
 		var billTo = new cybersourceRestApi.Ptsv2paymentsOrderInformationBillTo();
 		billTo.country = 'US';
@@ -38,23 +34,25 @@ function ProcessPaymentWithServiceFee(callback, enableCapture) {
 		billTo.address2 = 'Address 2';
 		billTo.district = 'MI';
 		billTo.buildingNumber = '123';
-		billTo.company = 'Visa';
+		billTo.company = 'ABC Company';
 
 		var orderInformation = new cybersourceRestApi.Ptsv2paymentsOrderInformation();
 		orderInformation.amountDetails = amountDetails;
 		orderInformation.billTo = billTo;
 
-		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();
 		var card = new cybersourceRestApi.Ptsv2paymentsPaymentInformationCard();
 		card.expirationYear = '2031';
 		card.number = '4111111111111111';
 		card.expirationMonth = '12';
+		
+		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();
 		paymentInformation.card = card;
 
 		var serviceFeeDescriptor = new cybersourceRestApi.Ptsv2paymentsMerchantInformationServiceFeeDescriptor();
 		serviceFeeDescriptor.name = "ABC";
 		serviceFeeDescriptor.contact = "4111111111111111";
 		serviceFeeDescriptor.state = "TEXAS";
+		
 		var merchantInformation = new cybersourceRestApi.Ptsv2paymentsMerchantInformation(); 
 		merchantInformation.serviceFeeDescriptor = serviceFeeDescriptor;
 
@@ -79,15 +77,18 @@ function ProcessPaymentWithServiceFee(callback, enableCapture) {
 			}
 			console.log('\nResponse of Process Payment With Service Fee : ' + JSON.stringify(response));
 			console.log('\nResponse Code of Process Payment With Service Fee : ' + JSON.stringify(response['status']));
+			
 			callback(error, data);
 		});
 	} catch (error) {
 		console.log(error);
 	}
 }
+
 if (require.main === module) {
 	ProcessPaymentWithServiceFee(function () {
 		console.log('\nService Fee Authorization end.');
 	}, false);
 }
+
 module.exports.ProcessPaymentWithServiceFee = ProcessPaymentWithServiceFee;

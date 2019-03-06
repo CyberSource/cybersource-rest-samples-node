@@ -5,10 +5,6 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
-/**
- * This is a sample code to call PaymentApi,
- * createPayment method will create a new payment
- */
 function ProcessEcheckCredit(callback) {
 	try {
 		var configObject = new configuration();
@@ -37,22 +33,22 @@ function ProcessEcheckCredit(callback) {
 		billTo.address2 = 'Address 2';
 		billTo.district = 'MI';
 		billTo.buildingNumber = '123';
-		billTo.company = 'Visa';
+		billTo.company = 'ABC Company';
 
 		var orderInformation = new cybersourceRestApi.Ptsv2paymentsOrderInformation();
 		orderInformation.amountDetails = amountDetails;
 		orderInformation.billTo = billTo;
-
-		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();		
-		var bank = new cybersourceRestApi.Ptsv2paymentsPaymentInformationBank();
+		
 		var account = new cybersourceRestApi.Ptsv2paymentsPaymentInformationBankAccount();		
 		account.number = "4100";
 		account.type = "C";
+				
+		var bank = new cybersourceRestApi.Ptsv2paymentsPaymentInformationBank();
 		bank.account = account;
 		bank.routingNumber = '071923284';
-		paymentInformation.bank = bank;
-		
 
+		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();		
+		paymentInformation.bank = bank;
 
 		var request = new cybersourceRestApi.CreateCreditRequest();
 		request.clientReferenceInformation = clientReferenceInformation;
@@ -71,15 +67,18 @@ function ProcessEcheckCredit(callback) {
 			}
 			console.log('\nResponse of Process Echeck Credit : ' + JSON.stringify(response));
 			console.log('\nResponse Code of Process Echeck Credit : ' + JSON.stringify(response['status']));
+			
 			callback(error, data);
 		});
 	} catch (error) {
 		console.log(error);
 	}
 }
+
 if (require.main === module) {
 	ProcessEcheckCredit(function () {
 		console.log('\nProcessEcheckCredit end.');
 	}, false);
 }
+
 module.exports.ProcessEcheckCredit = EcheckStandaloneCredit;

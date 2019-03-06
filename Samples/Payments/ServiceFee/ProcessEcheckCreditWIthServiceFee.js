@@ -6,12 +6,7 @@ var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 var processPayment = require('./ProcessEcheckPaymentWithServiceFee');
 
-/**
- * This is a sample code to call CreditApi,
- * call createCredit method to process a credit
- */
 function ProcessEcheckCreditWIthServiceFee(callback) {
-
 	try {
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.RefundApi(configObject);
@@ -25,7 +20,7 @@ function ProcessEcheckCreditWIthServiceFee(callback) {
 		var amountDetails = new cybersourceRestApi.Ptsv2paymentsOrderInformationAmountDetails();
 		amountDetails.totalAmount = '2325.00';
 		amountDetails.currency = 'USD';
-		amountDetails.serviceFeeAmount = "30.0"
+		amountDetails.serviceFeeAmount = "30.00"
 
 		var billTo = new cybersourceRestApi.Ptsv2paymentsOrderInformationBillTo();
 		billTo.country = 'US';
@@ -40,19 +35,21 @@ function ProcessEcheckCreditWIthServiceFee(callback) {
 		billTo.address2 = 'Address 2';
 		billTo.district = 'MI';
 		billTo.buildingNumber = '123';
-		billTo.company = 'Visa';
+		billTo.company = 'ABC Company';
 
 		var orderInformation = new cybersourceRestApi.Ptsv2paymentsOrderInformation();
 		orderInformation.amountDetails = amountDetails;
 		orderInformation.billTo = billTo;
 
-		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();		
-		var bank = new cybersourceRestApi.Ptsv2paymentsPaymentInformationBank();
 		var account = new cybersourceRestApi.Ptsv2paymentsPaymentInformationBankAccount();
 		account.number = "4100";
 		account.type = "C";
+
+		var bank = new cybersourceRestApi.Ptsv2paymentsPaymentInformationBank();
 		bank.account = account;
 		bank.routingNumber = '071923284';
+		
+		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();
 		paymentInformation.bank = bank;
 
 		var request = new cybersourceRestApi.RefundPaymentRequest();
@@ -78,18 +75,20 @@ function ProcessEcheckCreditWIthServiceFee(callback) {
 					}
 					console.log('\nResponse of  Process Echeck Credit WIth Service Fee  : ' + JSON.stringify(response));
 					console.log('\nResponse Code of Process Echeck Credit WIth Service Fee : ' + JSON.stringify(response['status']));
+					
 					callback(error, data);
 				});
-
 			}
 		}, enableCapture);
 	} catch (error) {
 		console.log(error);
 	}
 }
+
 if (require.main === module) {
 	ProcessEcheckCreditWIthServiceFee(function () {
 		console.log('Refund Payment end.');
 	});
 }
+
 module.exports.ProcessEcheckCreditWIthServiceFee = ProcessEcheckCreditWIthServiceFee;

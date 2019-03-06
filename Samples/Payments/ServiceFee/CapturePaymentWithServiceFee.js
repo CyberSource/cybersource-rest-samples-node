@@ -6,13 +6,8 @@ var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 var processPayment = require('./ProcessPaymentWithServiceFee');
 
-/**
- * This is a sample code to call CaptureApi,
- * call capturePayment method to process capture a payment
- */
 function CapturePaymentWithServiceFee(callback) {
 	try {
-
 		var request = new cybersourceRestApi.CapturePaymentRequest();
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.CaptureApi(configObject);
@@ -26,7 +21,7 @@ function CapturePaymentWithServiceFee(callback) {
 		var amountDetails = new cybersourceRestApi.Ptsv2paymentsOrderInformationAmountDetails();
 		amountDetails.totalAmount = '2325.00';
 		amountDetails.currency = 'USD';
-		amountDetails.serviceFeeAmount = '30.0'
+		amountDetails.serviceFeeAmount = '30.00'
 
 		var orderInformation = new cybersourceRestApi.Ptsv2paymentsOrderInformation();
 		orderInformation.amountDetails = amountDetails;
@@ -35,6 +30,7 @@ function CapturePaymentWithServiceFee(callback) {
 		serviceFeeDescriptor.name = "CyberVacations Service Fee";
 		serviceFeeDescriptor.contact = "800-999-9999";
 		serviceFeeDescriptor.state = "CA";
+		
 		var merchantInformation = new cybersourceRestApi.Ptsv2paymentsMerchantInformation(); 
 		merchantInformation.serviceFeeDescriptor = serviceFeeDescriptor;
 
@@ -61,18 +57,20 @@ function CapturePaymentWithServiceFee(callback) {
 					}
 					console.log('\nResponse of  Capture Payment With Service Fee  : ' + JSON.stringify(response));
 					console.log('\nResponse Code of Capture Payment With Service Fee : ' + JSON.stringify(response['status']));
+					
 					callback(error, data);
 				});
-
 			}
 		}, enableCapture);
 	} catch (error) {
 		console.log(error);
 	}
 }
+
 if (require.main === module) {
 	CapturePaymentWithServiceFee(function () {
 		console.log('Capture Payment With Service Fee end.');
 	});
 }
+
 module.exports.CapturePaymentWithServiceFee = CapturePaymentWithServiceFee;
