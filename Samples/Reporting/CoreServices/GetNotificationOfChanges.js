@@ -14,8 +14,8 @@ function getNotificationOfChanges(callback) {
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.NotificationOfChangesApi(configObject);
 
-		var startTime = '2018-10-01T12:00:00-05:00';
-		var endTime = '2018-10-30T12:00:00-05:00';
+		var startTime = '2018-05-01T12:00:00-05:00';
+		var endTime = '2018-05-30T12:00:00-05:00';
 
 		console.log('****************Get Notification of Changes****************');
 
