@@ -14,7 +14,7 @@ function retrieveTransaction(callback) {
 	var configObject = new configuration();
 	var instance = new cybersourceRestApi.TransactionDetailsApi(configObject);
 
-	var id = '5408386919326811103004'; 
+	var id = '5526242525726158003003'; 
 
 	console.log('\n*************** Retrieve Transaction  ********************* ');
 
