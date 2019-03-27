@@ -10,7 +10,7 @@ var processPayment = require('./ProcessPaymentWIthServiceFee');
  * This is a sample code to call ReversalApi,
  * call authReversal method
  */
-function processAuthorizationWithServiceFeeReversal(callback) {
+function processAuthorizationReversalWithServiceFee(callback) {
 	try {
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.ReversalApi(configObject);
@@ -56,8 +56,8 @@ function processAuthorizationWithServiceFeeReversal(callback) {
 	}
 }
 if (require.main === module) {
-	processAuthorizationWithServiceFeeReversal(function () {
+	processAuthorizationReversalWithServiceFee(function () {
 		console.log('Process Authorization Reversal end');
 	});
 }
-module.exports.processAuthorizationWithServiceFeeReversal = processAuthorizationWithServiceFeeReversal;
+module.exports.processAuthorizationReversalWithServiceFee = processAuthorizationReversalWithServiceFee;
