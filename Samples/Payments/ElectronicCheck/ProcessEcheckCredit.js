@@ -81,4 +81,4 @@ if (require.main === module) {
 	}, false);
 }
 
-module.exports.ProcessEcheckCredit = EcheckStandaloneCredit;
+module.exports.ProcessEcheckCredit = ProcessEcheckCredit;

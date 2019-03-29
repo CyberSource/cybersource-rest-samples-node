@@ -6,13 +6,13 @@ var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 var processPayment = require('./ProcessEcheckPaymentWithServiceFee');
 
-function ProcessEcheckCreditWIthServiceFee(callback) {
+function RefundEcheckWithServiceFee(callback) {
 	try {
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.RefundApi(configObject);
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
-		clientReferenceInformation.code = 'TC50171_3';
+		clientReferenceInformation.code = 'TC46125-1';
 
 		var processingInformation = new cybersourceRestApi.Ptsv2paymentsProcessingInformation();
 		processingInformation.commerceIndicator = 'internet';
@@ -20,7 +20,7 @@ function ProcessEcheckCreditWIthServiceFee(callback) {
 		var amountDetails = new cybersourceRestApi.Ptsv2paymentsOrderInformationAmountDetails();
 		amountDetails.totalAmount = '2325.00';
 		amountDetails.currency = 'USD';
-		amountDetails.serviceFeeAmount = "30.00"
+		amountDetails.serviceFeeAmount = "30.00";
 
 		var billTo = new cybersourceRestApi.Ptsv2paymentsOrderInformationBillTo();
 		billTo.country = 'US';
@@ -86,9 +86,9 @@ function ProcessEcheckCreditWIthServiceFee(callback) {
 }
 
 if (require.main === module) {
-	ProcessEcheckCreditWIthServiceFee(function () {
+	RefundEcheckWithServiceFee(function () {
 		console.log('Refund Payment end.');
 	});
 }
 
-module.exports.ProcessEcheckCreditWIthServiceFee = ProcessEcheckCreditWIthServiceFee;
+module.exports.RefundEcheckWithServiceFee = RefundEcheckWithServiceFee;
