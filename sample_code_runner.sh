@@ -13,7 +13,7 @@ do
   else
     printf '\n\n**** RUNNING - %s ****\n' "$p"
 	printf '\n\n**** RUNNING - %s ****\n' "$p" >> output.log
-    node $p	
+    node $p	>> output.log
     printf '\n\n**** END RUNNING - %s ****\n' "$p" >> output.log
 	FILECOUNT=$((FILECOUNT+1))
   fi
