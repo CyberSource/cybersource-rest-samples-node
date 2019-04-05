@@ -4,7 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
-var processPayment = require('./ProcessPaymentWIthServiceFee');
+var processPayment = require('./ProcessPaymentWithServiceFee');
 
 /**
  * This is a sample code to call ReversalApi,
