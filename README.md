@@ -1,4 +1,5 @@
 # Node.js Sample Code for the CyberSource SDK
+[![Travis CI Status](https://travis-ci.org/CyberSource/cybersource-rest-samples-node.svg?branch=master)](https://travis-ci.org/CyberSource/cybersource-rest-samples-node)
 
 This repository contains working code samples which demonstrate Node.js integration with the CyberSource REST APIs through the [CyberSource Node.JS SDK](https://github.com/CyberSource/cybersource-rest-client-node).
 
