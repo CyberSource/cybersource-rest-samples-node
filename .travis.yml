@@ -9,6 +9,7 @@ matrix:
   
 install:
  - npm install cybersource-rest-client
+ - npm install
 
 script:
   bash sample_code_runner.sh
