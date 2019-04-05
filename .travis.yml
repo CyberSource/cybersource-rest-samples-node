@@ -1,0 +1,14 @@
+language: node_js
+sudo: false
+
+node_js:
+  - "8"
+  
+matrix:
+  fast_finish: true
+  
+install:
+ - npm install cybersource-rest-client
+
+script:
+  bash sample_code_runner.sh
