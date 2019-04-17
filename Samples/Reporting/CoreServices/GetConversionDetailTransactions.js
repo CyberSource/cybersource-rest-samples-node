@@ -9,7 +9,7 @@ var configuration = require(filePath);
  * This is a sample code to call ReportsApi,
  * conversion details.
  */
-function GetConversionDetails(callback) {
+function GetConversionDetailTransactions(callback) {
 	try {
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.ConversionDetailsApi(configObject);
@@ -37,8 +37,8 @@ function GetConversionDetails(callback) {
 	}
 }
 if (require.main === module) {
-	GetConversionDetails(function () {
+	GetConversionDetailTransactions(function () {
 		console.log('Get Conversion Details end.');
 	});
 }
-module.exports.GetConversionDetails = GetConversionDetails;
+module.exports.GetConversionDetailTransactions = GetConversionDetailTransactions;

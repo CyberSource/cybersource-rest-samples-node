@@ -9,7 +9,7 @@ var configuration = require(filePath);
  * This is a sample code to call ReportsApi,
  * net funding info API.
  */
-function GetNetFundingInfo(callback) {
+function GetNetfundingInformationForAccountOrMerchant(callback) {
 	try {
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.NetFundingsApi(configObject);
@@ -39,8 +39,8 @@ function GetNetFundingInfo(callback) {
 	}
 }
 if (require.main === module) {
-	GetNetFundingInfo(function () {
+	GetNetfundingInformationForAccountOrMerchant(function () {
 		console.log('Retrieve Available Reports end.');
 	});
 }
-module.exports.GetNetFundingInfo = GetNetFundingInfo;
+module.exports.GetNetfundingInformationForAccountOrMerchant = GetNetfundingInformationForAccountOrMerchant;
