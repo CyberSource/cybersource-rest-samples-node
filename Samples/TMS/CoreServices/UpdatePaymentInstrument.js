@@ -13,14 +13,14 @@ var retrievePaymentInstrument = require('./RetrievePaymentInstrument');
 function updatePaymentInstrument(callback) {
 	try {
 		var configObject = new configuration();
-		var instance = new cybersourceRestApi.PaymentInstrumentsApi(configObject);
+		var instance = new cybersourceRestApi.PaymentInstrumentApi(configObject);
 
-		var card = new cybersourceRestApi.Tmsv1paymentinstrumentsCard();
+		var card = new cybersourceRestApi.TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedCard();
 		card.expirationMonth = '08';
 		card.expirationYear = '2022';
 		card.type = 'visa';
 
-		var billTo = new cybersourceRestApi.Tmsv1paymentinstrumentsBillTo();
+		var billTo = new cybersourceRestApi.TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedBillTo();
 		billTo.firstName = 'John';
 		billTo.lastName = 'Deo';
 		billTo.company = 'require(\'cybersource-rest-client\');';
@@ -33,12 +33,12 @@ function updatePaymentInstrument(callback) {
 		billTo.email = 'john.smith@example.com';
 		billTo.phoneNumber = '555123456';
 
-		var instrumentIdentifierCard = new cybersourceRestApi.Tmsv1instrumentidentifiersCard();
+		var instrumentIdentifierCard = new cybersourceRestApi.TmsV1InstrumentIdentifiersPost200ResponseCard();
 		instrumentIdentifierCard.number = '4111111111111111';
-		var instrumentIdentifier = new cybersourceRestApi.Tmsv1paymentinstrumentsInstrumentIdentifier();
+		var instrumentIdentifier = new cybersourceRestApi.TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedInstrumentIdentifier();
 		instrumentIdentifier.card = instrumentIdentifierCard;
 
-		var request = new cybersourceRestApi.Body3();
+		var request = new cybersourceRestApi.UpdatePaymentInstrumentRequest();
 		request.card = card;
 		request.billTo = billTo;
 		request.instrumentIdentifier = instrumentIdentifier;
@@ -51,7 +51,7 @@ function updatePaymentInstrument(callback) {
 				console.log('\n*************** Update PaymentInstrument  ********************* ');
 				console.log('\nToken ID passing to paymentinstrumentsTokenIdPatch : ' + tokenId);
 
-				instance.tmsV1PaymentinstrumentsTokenIdPatch(profileId, tokenId, request, function (error, data, response) {
+				instance.updatePaymentInstrument(profileId, tokenId, request, function (error, data, response) {
 					if (error) {
 						console.log('\nError in Update PaymentInstrument : ' + JSON.stringify(error));
 					}

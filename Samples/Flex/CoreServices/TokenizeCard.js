@@ -25,18 +25,14 @@ function tokenizeCard(callback) {
 
 		var configObject = new configuration();
 
-		var tokenizeInstance = new cybersourceRestApi.FlexTokenApi(configObject);
+		var tokenizeInstance = new cybersourceRestApi.TokenizationApi(configObject);
 
 		var keyInstance = new cybersourceRestApi.KeyGenerationApi(configObject);
 
 		var KeyRequest = new cybersourceRestApi.GeneratePublicKeyRequest();
 		KeyRequest.encryptionType = 'None';
 
-		var options = {
-			'generatePublicKeyRequest': KeyRequest
-		};
-
-		keyInstance.generatePublicKey(options, function (error, data, response) {
+		keyInstance.generatePublicKey(KeyRequest, function (error, data, response) {
 			if (error) {
 				console.log('Error : ' + error);
 			}
@@ -48,11 +44,8 @@ function tokenizeCard(callback) {
 				tokenizeRequest.keyId = keyId;
 				tokenizeRequest.cardInfo = cardInfo;
 
-				var options = { 
-					'tokenizeRequest': tokenizeRequest
-				};
 				console.log('\n*************** Tokenize Card ********************* ');
-				tokenizeInstance.tokenize(options, function (error, data, response) {
+				tokenizeInstance.tokenize(tokenizeRequest, function (error, data, response) {
 					if (error) {
 						console.log('Error : ' + error.stack);
 					}
