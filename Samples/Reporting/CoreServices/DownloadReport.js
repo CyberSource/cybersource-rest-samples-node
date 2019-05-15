@@ -27,13 +27,17 @@ function downloadReport(callback) {
 
 		console.log('****************Download Report****************');
 
-		instance.downloadReport(reportDate, reportName, opts, function (error, data) {
+		console.log('File will be downloaded at the below location :\n' + apiClient.downloadFilePath);
+
+		instance.downloadReport(reportDate, reportName, opts, function (error, data, response) {
 			if (error) {
 				console.log('\nError in Download report : ' + JSON.stringify(error));
 			}
 			callback(error, data);
 		});
-		console.log('File downloaded at the below location :\n' + apiClient.downloadFilePath);
+
+		callback();
+
 	} catch (error) {
 		console.log(error);
 	}
