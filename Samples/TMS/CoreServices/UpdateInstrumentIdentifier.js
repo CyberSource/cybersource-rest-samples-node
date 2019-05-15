@@ -12,20 +12,20 @@ function updateInstrumentIdentifier(callback) {
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.InstrumentIdentifierApi(configObject);
 
-		var merchantInitiatedTransaction = new cybersourceRestApi.Tmsv1instrumentidentifiersProcessingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction();
+		var merchantInitiatedTransaction = new cybersourceRestApi.TmsV1InstrumentIdentifiersPost200ResponseProcessingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction();
 		var previousTransactionId = '123456789012345';
 		merchantInitiatedTransaction.previousTransactionId = previousTransactionId;
 
-		var initiator = new cybersourceRestApi.Tmsv1instrumentidentifiersProcessingInformationAuthorizationOptionsInitiator();
+		var initiator = new cybersourceRestApi.TmsV1InstrumentIdentifiersPost200ResponseProcessingInformationAuthorizationOptionsInitiator();
 		initiator.merchantInitiatedTransaction = merchantInitiatedTransaction;
 
-		var authorizationOptions = new cybersourceRestApi.Tmsv1instrumentidentifiersProcessingInformationAuthorizationOptions();
+		var authorizationOptions = new cybersourceRestApi.TmsV1InstrumentIdentifiersPost200ResponseProcessingInformationAuthorizationOptions();
 		authorizationOptions.initiator = initiator;
 
-		var processingInformation = new cybersourceRestApi.Tmsv1paymentinstrumentsProcessingInformation();
+		var processingInformation = new cybersourceRestApi.TmsV1InstrumentIdentifiersPost200ResponseProcessingInformation();
 		processingInformation.authorizationOptions = authorizationOptions;
 
-		var body = new cybersourceRestApi.Body1();
+		var body = new cybersourceRestApi.UpdateInstrumentIdentifierRequest();
 		body.processingInformation = processingInformation;
 
 		var profileId = '93B32398-AD51-4CC2-A682-EA3E93614EB1';
@@ -37,7 +37,7 @@ function updateInstrumentIdentifier(callback) {
 				console.log('\nToken ID passing to instrumentidentifiersTokenIdPatch : ' + tokenId);
 
 
-				instance.tmsV1InstrumentidentifiersTokenIdPatch(profileId, tokenId, body, function (error, data, response) {
+				instance.updateInstrumentIdentifier(profileId, tokenId, body, function (error, data, response) {
 					if (error) {
 						console.log('\nError in Patch instrument identifier : ' + JSON.stringify(error));
 					}

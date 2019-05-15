@@ -23,7 +23,7 @@ function GetNetfundingInformationForAccountOrMerchant(callback) {
 
 		console.log('****************Get Net Funding Info****************');
 
-		instance.getNetFundingInfo(startTime, endTime, opts, function (error, data, response) {
+		instance.getNetFundingDetails(startTime, endTime, opts, function (error, data, response) {
 			if (error) {
 				console.log('\nError in get net funding info : ' + JSON.stringify(error));
 			}

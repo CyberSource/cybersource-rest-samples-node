@@ -8,7 +8,7 @@ var configuration = require(filePath);
 function processPayout(callback) {
 	try {
 		var configObject = new configuration();
-		var instance = new cybersourceRestApi.ProcessAPayoutApi(configObject);
+		var instance = new cybersourceRestApi.PayoutsApi(configObject);
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
 		clientReferenceInformation.code = '33557799';
@@ -71,7 +71,7 @@ function processPayout(callback) {
 		recipientInformation.phoneNumber = '6504320556';
 		recipientInformation.country = 'US';
 
-		var request = new cybersourceRestApi.PtsV2PayoutsPostResponse();
+		var request = new cybersourceRestApi.OctCreatePaymentRequest();
 		request.clientReferenceInformation = clientReferenceInformation;
 		request.senderInformation = senderInformation;
 		request.processingInformation = processingInformation;

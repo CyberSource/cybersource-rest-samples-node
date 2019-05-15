@@ -24,7 +24,7 @@ function removeInstrumentIdentifier(callback) {
 				console.log('\n*************** Delete instrument identifier ********************* ');
 				console.log('\nToken ID passing to instrumentidentifiersTokenIdDelete : ' + tokenId);
                 
-				instance.tmsV1InstrumentidentifiersTokenIdDelete(profileId, tokenId, function (error, data, response) {
+				instance.deleteInstrumentIdentifier(profileId, tokenId, function (error, data, response) {
 					if (error) {
 						console.log('\nError in Delete instrument identifier : ' + JSON.stringify(error));
 					}

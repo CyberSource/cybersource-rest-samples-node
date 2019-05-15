@@ -21,7 +21,7 @@ function downloadReport(callback) {
 		var instance = new cybersourceRestApi.ReportDownloadsApi(configObject, apiClient);
 
 		var reportDate = '2018-09-02';
-		var reportName = 'testrest_v2';
+		var reportName = 'testrest v2';
 		var opts = [];
 		opts['organizationId'] = 'testrest';
 
