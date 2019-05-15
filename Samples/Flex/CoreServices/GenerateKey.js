@@ -21,15 +21,11 @@ function generateKey(callback) {
 		var instance = new cybersourceRestApi.KeyGenerationApi(configObject);
 
 		var request = new cybersourceRestApi.GeneratePublicKeyRequest();
-		request.encryptionType = 'RsaOaep256';
-
-		var options = {
-			'generatePublicKeyRequest': request
-		};
+		request.encryptionType = 'None';
 
 		console.log('\n*************** Generate Key ********************* ');
         
-		instance.generatePublicKey(options, function (error, data, response) {
+		instance.generatePublicKey(request, function (error, data, response) {
 			if (error) {
 				console.log('Error : ' + error);
 				console.log('Error status code : ' + error.statusCode);

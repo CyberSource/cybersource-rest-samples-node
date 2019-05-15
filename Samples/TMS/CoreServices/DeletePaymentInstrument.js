@@ -13,7 +13,7 @@ var retrievePaymentInstrument = require('./RetrievePaymentInstrument');
 function retrivePaymentIdentifiers(callback) {
 	try {
 		var configObject = new configuration();
-		var instance = new cybersourceRestApi.PaymentInstrumentsApi(configObject);
+		var instance = new cybersourceRestApi.PaymentInstrumentApi(configObject);
 
 		var profileId = '93B32398-AD51-4CC2-A682-EA3E93614EB1';
 
@@ -23,7 +23,7 @@ function retrivePaymentIdentifiers(callback) {
 				console.log('\n*************** Delete PaymentInstrument  ********************* ');
 				console.log('\nToken ID passing to paymentinstrumentsTokenIdDelete : ' + tokenId);
 
-				instance.tmsV1PaymentinstrumentsTokenIdDelete(profileId, tokenId, function (error, data, response) {
+				instance.deletePaymentInstrument(profileId, tokenId, function (error, data, response) {
 					if (error) {
 						console.log('\nError in Delete PaymentInstrument : ' + JSON.stringify(error));
 					}

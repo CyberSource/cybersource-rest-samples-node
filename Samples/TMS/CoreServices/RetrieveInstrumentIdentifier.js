@@ -24,7 +24,7 @@ function retriveAInstrumentIdentifier(callback) {
 				console.log('\n*************** Retrieve instrument identifier ********************* ');
 				console.log('\nToken ID passing to instrumentidentifiersTokenIdGet : ' + tokenId);
 
-				instance.tmsV1InstrumentidentifiersTokenIdGet(profileId, tokenId, function (error, data, response) {
+				instance.getInstrumentIdentifier(profileId, tokenId, function (error, data, response) {
 					if (error) {
 						console.log('\nError in Retrieve instrument identifier : ' + JSON.stringify(error));
 					}

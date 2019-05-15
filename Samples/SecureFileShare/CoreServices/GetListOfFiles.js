@@ -21,7 +21,7 @@ function getListOfFiles(callback) {
 
 		console.log('****************Getlist of Files****************');
 
-		instance.getFileDetails(startDate, endDate, opts, function (error, data, response) {
+		instance.getFileDetail(startDate, endDate, opts, function (error, data, response) {
 			if (error) {
 				console.log('\nError in getlist of files : ' + JSON.stringify(error));
 			}

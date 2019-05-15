@@ -14,7 +14,7 @@ var createInstrumentIdentifier = require('./CreateInstrumentIdentifier');
 function retriveAllPaymentInstruments(callback) {
 	try {
 		var configObject = new configuration();
-		var instance = new cybersourceRestApi.PaymentInstrumentsApi(configObject);
+		var instance = new cybersourceRestApi.InstrumentIdentifierApi(configObject);
 
 		var profileId = '93B32398-AD51-4CC2-A682-EA3E93614EB1';
 		var options = null;
@@ -25,7 +25,7 @@ function retriveAllPaymentInstruments(callback) {
 				console.log('\n*************** Retrieve all payment instruments ********************* ');
 				console.log('\nToken ID passing to instrumentidentifiersTokenIdPaymentinstrumentsGet : ' + tokenId);
 
-				instance.tmsV1InstrumentidentifiersTokenIdPaymentinstrumentsGet(profileId, tokenId, options, function (error, data, response) {
+				instance.getAllPaymentInstruments(profileId, tokenId, options, function (error, data, response) {
 					if (error) {
 						console.log('\nError in Retrieve all payment instruments : ' + JSON.stringify(error));
 					}

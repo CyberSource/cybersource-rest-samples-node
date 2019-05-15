@@ -14,13 +14,13 @@ function createSearchRequest(callback) {
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.SearchTransactionsApi(configObject);
 
-		var createSearchRequest = new cybersourceRestApi.TssV2TransactionsPostResponse();
+		var createSearchRequest = new cybersourceRestApi.CreateSearchRequest();
 		createSearchRequest.save = 'false';
 		createSearchRequest.name = 'MRN';
 		createSearchRequest.timezone = 'America/Chicago';
-		createSearchRequest.query = 'clientReferenceInformation.code:TC50171_3';
+		createSearchRequest.query = 'clientReferenceInformation.code:12345';
 		createSearchRequest.offset = 0;
-		createSearchRequest.limit = 100;
+		createSearchRequest.limit = 10;
 		createSearchRequest.sort = 'id:asc, submitTimeUtc:asc';
 
 		console.log('\n*************** Create Search Request  ********************* ');

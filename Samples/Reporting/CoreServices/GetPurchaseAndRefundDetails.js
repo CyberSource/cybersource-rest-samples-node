@@ -14,8 +14,8 @@ function getPurchaseAndRefundDetails(callback) {
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.PurchaseAndRefundDetailsApi(configObject);
 
-		var startTime = '2018-05-01T12:00:00-05:00';
-		var endTime = '2018-05-30T12:00:00-05:00';
+		var startTime = '2019-02-01T12:00:00-05:00';
+		var endTime = '2019-02-20T12:00:00-05:00';
 		var opts = [];
 		opts['organizationId'] = 'testrest';
 		opts['paymentSubtype'] = 'VI';
