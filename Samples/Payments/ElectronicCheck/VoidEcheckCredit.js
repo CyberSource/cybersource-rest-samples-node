@@ -48,7 +48,7 @@ function voidEcheckCredit(callback) {
 }
 if (require.main === module) {
 	voidEcheckCredit(function () {
-		console.log('Void credit end.');
+		console.log('Void Echeck credit end.');
 	});
 }
 module.exports.voidEcheckCredit = voidEcheckCredit;

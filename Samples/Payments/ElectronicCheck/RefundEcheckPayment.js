@@ -88,7 +88,7 @@ function RefundEcheckPayment(callback) {
 
 if (require.main === module) {
 	RefundEcheckPayment(function () {
-		console.log('Refund Payment end.');
+		console.log('Refund Echeck Payment end.');
 	});
 }
 

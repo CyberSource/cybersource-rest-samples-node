@@ -80,7 +80,7 @@ function ProcessEcheckPayment(callback, enableCapture) {
 
 if (require.main === module) {
 	ProcessEcheckPayment(function () {
-		console.log('\nProcessPayment end.');
+		console.log('\nProcessEcheckPayment end.');
 	}, false);
 }
 
