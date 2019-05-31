@@ -18,7 +18,7 @@ function getIndividualBatchFile(callback) {
  
 	console.log('\n*************** Retrieve Batch File  ********************* ');
                 
-	instance.getTransactionBatchId(id, function (error, data, response) {
+	instance.ptsV1TransactionBatchesIdGet(id, function (error, data, response) {
 		if (error) {
 			console.log('\nError in retrieve batch file : ' + JSON.stringify(error));
 		}
