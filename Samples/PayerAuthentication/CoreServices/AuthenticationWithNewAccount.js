@@ -50,6 +50,7 @@ function AuthenticationWithNewAccount(callback) {
 			customerAccount.creationHistory = 'NEW_ACCOUNT';
 
 			var accountHistory = new cybersourceRestApi.Riskv1authenticationsRiskInformationBuyerHistoryAccountHistory();
+			accountHistory.shipAddressUsageDate = '2017-05-06';
 			accountHistory.firstUseOfShippingAddress = 'false';
 							
 			var buyerHistory = new cybersourceRestApi.Riskv1authenticationsRiskInformationBuyerHistory();
