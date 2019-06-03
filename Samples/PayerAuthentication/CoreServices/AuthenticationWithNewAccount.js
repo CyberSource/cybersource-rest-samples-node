@@ -14,33 +14,33 @@ function AuthenticationWithNewAccount(callback) {
 			clientReferenceInformation.code = 'New Account';
 
 			var card = new cybersourceRestApi.Riskv1authenticationsPaymentInformationCard();
-	    card.number = '4000990000000004';
-	    card.expirationMonth = '12';
+			card.number = '4000990000000004';
+			card.expirationMonth = '12';
 			card.expirationYear = '2025';
 			card.type = '001';
 	    
-	    var paymentInformation = new cybersourceRestApi.Riskv1authenticationsPaymentInformation();
-	    paymentInformation.card = card;
+			var paymentInformation = new cybersourceRestApi.Riskv1authenticationsPaymentInformation();
+			paymentInformation.card = card;
 
-	    var amountDetails = new cybersourceRestApi.Riskv1decisionsOrderInformationAmountDetails();
-	    amountDetails.currency = 'USD';
-	    amountDetails.totalAmount = '10.99';
+			var amountDetails = new cybersourceRestApi.Riskv1decisionsOrderInformationAmountDetails();
+			amountDetails.currency = 'USD';
+			amountDetails.totalAmount = '10.99';
 
 
-	    var billTo = new cybersourceRestApi.Riskv1authenticationsOrderInformationBillTo();
+			var billTo = new cybersourceRestApi.Riskv1authenticationsOrderInformationBillTo();
 			billTo.address1 = '1 Market St';
 			billTo.address2 = 'Address 2';
-	    billTo.administrativeArea = 'CA';
-	    billTo.country = 'US';
-	    billTo.locality = 'san francisco';
-	    billTo.firstName = 'James';
-	    billTo.lastName = 'Doe';
-	    billTo.phoneNumber = '4158880000';
-	    billTo.email = 'test@cybs.com';
-	    billTo.postalCode = '94105';    
+			billTo.administrativeArea = 'CA';
+			billTo.country = 'US';
+			billTo.locality = 'san francisco';
+			billTo.firstName = 'James';
+			billTo.lastName = 'Doe';
+			billTo.phoneNumber = '4158880000';
+			billTo.email = 'test@cybs.com';
+			billTo.postalCode = '94105';    
 
-	    var orderInformation = new cybersourceRestApi.Riskv1authenticationsOrderInformation();
-	    orderInformation.amountDetails = amountDetails;
+			var orderInformation = new cybersourceRestApi.Riskv1authenticationsOrderInformation();
+			orderInformation.amountDetails = amountDetails;
 			orderInformation.billTo = billTo;
 
 			var consumerAuthenticationInformation = new cybersourceRestApi.Riskv1authenticationsConsumerAuthenticationInformation();
@@ -59,9 +59,9 @@ function AuthenticationWithNewAccount(callback) {
 			var riskInformation = new cybersourceRestApi.Riskv1authenticationsRiskInformation();
 			riskInformation.buyerHistory = buyerHistory;
 	
-	    var request = new cybersourceRestApi.CheckPayerAuthEnrollmentRequest();
-	    request.clientReferenceInformation = clientReferenceInformation;
-	    request.paymentInformation = paymentInformation;
+			var request = new cybersourceRestApi.CheckPayerAuthEnrollmentRequest();
+			request.clientReferenceInformation = clientReferenceInformation;
+			request.paymentInformation = paymentInformation;
 			request.orderInformation = orderInformation;
 			request.consumerAuthenticationInformation = consumerAuthenticationInformation;
 			request.riskInformation = riskInformation;

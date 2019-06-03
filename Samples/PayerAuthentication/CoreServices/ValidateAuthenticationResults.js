@@ -37,7 +37,7 @@ function ValidateAuthenticationResults(callback) {
 
 			var consumerAuthenticationInformation = new cybersourceRestApi.Riskv1authenticationresultsConsumerAuthenticationInformation();
 			consumerAuthenticationInformation.authenticationTransactionId = 'PYffv9G3sa1e0CQr5fV0';
-			consumerAuthenticationInformation.signedPares = 'J4D90zD4yMz45PEFVhHzgA2zwjXnzhQ984Nvw61dAV1';
+			consumerAuthenticationInformation.signedPares = 'eNqdmFmT4jgSgN+J4D90zD4yMz45PEFVhHzgA2zwjXnzhQ984Nvw61dAV1';
 		
 			var request = new cybersourceRestApi.Request();
 			request.clientReferenceInformation = clientReferenceInformation;
