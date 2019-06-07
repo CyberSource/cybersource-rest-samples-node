@@ -5,7 +5,7 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
-function CreateDecisionManagerRequest(callback) {
+function CreateDecisionManagerCase(callback) {
 	try {
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.DecisionManagerApi(configObject);
@@ -49,13 +49,13 @@ function CreateDecisionManagerRequest(callback) {
 
 			instance.createDecisionManagerCase(request, function (error, data, response) {
 				if (error) {
-					console.log('\nError in CreateDecisionManagerRequest : ' + JSON.stringify(error));
+					console.log('\nError in CreateDecisionManagerCase : ' + JSON.stringify(error));
 				}
 				else if (data) {
-					console.log('\nData of CreateDecisionManagerRequest : ' + JSON.stringify(data));
+					console.log('\nData of CreateDecisionManagerCase : ' + JSON.stringify(data));
 				}
-				console.log('\nResponse of CreateDecisionManagerRequest : ' + JSON.stringify(response));
-				console.log('\nResponse Code of CreateDecisionManagerRequest : ' + JSON.stringify(response['status']));
+				console.log('\nResponse of CreateDecisionManagerCase : ' + JSON.stringify(response));
+				console.log('\nResponse Code of CreateDecisionManagerCase : ' + JSON.stringify(response['status']));
 				callback(error, data);
 			});
 		} catch (error) {
@@ -64,8 +64,8 @@ function CreateDecisionManagerRequest(callback) {
 }
 
 if (require.main === module) {
-	CreateDecisionManagerRequest(function () {
-		console.log('\nCreateDecisionManagerRequest end.');
+	CreateDecisionManagerCase(function () {
+		console.log('\nCreateDecisionManagerCase end.');
 	}, false);
 }
-module.exports.CreateDecisionManagerRequest = CreateDecisionManagerRequest;
+module.exports.CreateDecisionManagerCase = CreateDecisionManagerCase;
