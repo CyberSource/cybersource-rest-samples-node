@@ -65,7 +65,7 @@ function CreateDecisionManagerCase(callback) {
 
 if (require.main === module) {
 	CreateDecisionManagerCase(function () {
-		console.log('\CreateDecisionManagerCase end.');
+		console.log('\nCreateDecisionManagerCase end.');
 	}, false);
 }
 module.exports.CreateDecisionManagerCase = CreateDecisionManagerCase;
