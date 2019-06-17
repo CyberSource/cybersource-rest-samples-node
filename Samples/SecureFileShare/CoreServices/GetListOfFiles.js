@@ -38,7 +38,7 @@ function getListOfFiles(callback) {
 }
 if (require.main === module) {
 	getListOfFiles(function () {
-		console.log('Method call complete.');
+		console.log('GetListOfFiles end.');
 	});
 }
 module.exports.getListOfFiles = getListOfFiles;

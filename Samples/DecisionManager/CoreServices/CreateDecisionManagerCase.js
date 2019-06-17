@@ -45,7 +45,7 @@ function CreateDecisionManagerCase(callback) {
 	    request.clientReferenceInformation = clientReferenceInformation;
 	    request.paymentInformation = paymentInformation;
 	    request.orderInformation =orderInformation;
-	    console.log('\n*************** CreateDecisionManagerRequest ********************* ');
+	    console.log('\n*************** CreateDecisionManagerCase ********************* ');
 
 			instance.createDecisionManagerCase(request, function (error, data, response) {
 				if (error) {

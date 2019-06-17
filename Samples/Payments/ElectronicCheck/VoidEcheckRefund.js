@@ -48,7 +48,7 @@ function VoidEcheckRefund(callback) {
 }
 if (require.main === module) {
 	VoidEcheckRefund(function () {
-		console.log('Void Refund end.');
+		console.log('Void Echeck Refund end.');
 	});
 }
 module.exports.VoidEcheckRefund = VoidEcheckRefund;

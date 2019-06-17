@@ -25,16 +25,18 @@ function downloadFileWithFileIdentifier(callback) {
 
 		console.log('****************Download File with Identifier****************');
 
-		console.log('File will be downloaded at the below location :\n' + apiClient.downloadFilePath);
-
 		instance.getFile(fileId, opts, function (error, data, response) {
 			if (error) {
 				console.log('\nError in download file with identifier : ' + JSON.stringify(error));
 			}
-			console.log('\n: ');
-			callback(error, data);
+			else
+			{
+				console.log('\nSuccessfully retrieved the file');
+				console.log('File has been downloaded at this location :' + apiClient.downloadFilePath);
+			}
+			callback();
 		});
-		callback();
+
 	} catch (error) {
 		console.log(error);
 	}

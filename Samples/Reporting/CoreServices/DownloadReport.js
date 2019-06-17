@@ -25,18 +25,19 @@ function downloadReport(callback) {
 		var opts = [];
 		opts['organizationId'] = 'testrest';
 
-		console.log('****************Download Report****************');
-
-		console.log('File will be downloaded at the below location :\n' + apiClient.downloadFilePath);
+		console.log('****************Download Report****************');		
 
 		instance.downloadReport(reportDate, reportName, opts, function (error, data, response) {
 			if (error) {
-				console.log('\nError in Download report : ' + JSON.stringify(error));
+				console.log('\nError in retrieving report : ' + JSON.stringify(error));
 			}
-			callback(error, data);
+			else
+			{
+				console.log('\nSuccessfully retrieved the report');
+				console.log('File has been downloaded at this location :' + apiClient.downloadFilePath);
+			}
+			callback();
 		});
-
-		callback();
 
 	} catch (error) {
 		console.log(error);
