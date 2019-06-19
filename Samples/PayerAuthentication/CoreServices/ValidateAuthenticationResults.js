@@ -47,7 +47,7 @@ function ValidateAuthenticationResults(callback) {
 
 	    console.log('\n*************** ValidateAuthenticationResults ********************* ');
 
-			instance.riskV1AuthenticationResultsPost(request, function (error, data, response) {
+			instance.validateAuthenticationResults(request, function (error, data, response) {
 				if (error) {
 					console.log('\nError in ValidateAuthenticationResults : ' + JSON.stringify(error));
 				}
