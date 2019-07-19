@@ -90,7 +90,7 @@ function getJsonWebToken(resource, method, request) {
 	var date = new Date(Date.now()).toUTCString();
 	
 	// Getting the certificate
-	var filePath = path.resolve('Resource\\testrest.p12');
+	var filePath = path.resolve('Resource/testrest.p12');
 	var p12Buffer = fs.readFileSync(filePath);
     var p12Der = forge.util.binary.raw.encode(new Uint8Array(p12Buffer));
 	var p12Asn1 = forge.asn1.fromDer(p12Der);
