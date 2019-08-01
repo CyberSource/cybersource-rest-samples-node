@@ -14,7 +14,7 @@ function getSearchResults(callback) {
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.SearchTransactionsApi(configObject);
 
-		var id = 'ebaab624-7799-431f-9499-1262a1b06a3c';
+		var id = 'a50bdca7-8f76-499a-b5a6-be2df06afe1b';
 
 		console.log('\n*************** Get Search Result  ********************* ');
 
