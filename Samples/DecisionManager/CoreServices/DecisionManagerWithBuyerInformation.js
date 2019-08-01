@@ -47,7 +47,7 @@ function DecisionManagerWithBuyerInformation(callback) {
         buyerInformation.dateOfBirth = "1998-05-05";
 
         var personalIdentification0 = new cybersourceRestApi.Ptsv2paymentsBuyerInformationPersonalIdentification();
-        personalIdentification0.Type = cybersourceRestApi.Ptsv2paymentsBuyerInformationPersonalIdentification.TypeEnum.CPF;
+        personalIdentification0.Type = "CPF";
         personalIdentification0.Id = "1a23apwe98";
         buyerInformation.personalIdentification = personalIdentification0;
 	
