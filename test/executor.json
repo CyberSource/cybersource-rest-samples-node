@@ -1,0 +1,216 @@
+{
+  "Execution Order" : [ {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Generate Key",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Flex.GenerateKey",
+      "csharp" : "samples.Flex.GenerateKey",
+      "python" : "samples.Flex.generate_key",
+      "java" : "samples.Flex.GenerateKey",
+      "php" : "samples.Flex.GenerateKey",
+      "ruby" : "samples.Flex.GenerateKey"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ "id" ],
+    "uniqueName" : "Service Fees with Credit Card transaction",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ServiceFeeswithCreditCardtransaction",
+      "csharp" : "samples.Payments.ServiceFeeswithCreditCardtransaction",
+      "python" : "samples.Payments.service_fees_with_credit_card_transaction",
+      "java" : "samples.Payments.ServiceFeeswithCreditCardtransaction",
+      "php" : "samples.Payments.ServiceFeesWithCreditCardTransaction",
+      "ruby" : "samples.Payments.ServiceFeeswithCreditCardtransaction"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Electronic Check Debits",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ElectronicCheckDebits",
+      "csharp" : "samples.Payments.ElectronicCheckDebits",
+      "python" : "samples.Payments.electronic_check_debits",
+      "java" : "samples.Payments.ElectronicCheckDebits",
+      "php" : "samples.Payments.ElectronicCheckDebits",
+      "ruby" : "samples.Payments.ElectronicCheckDebits"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Level II Data",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.LevelIIData",
+      "csharp" : "samples.Payments.LevelIIData",
+      "python" : "samples.Payments.level_ii_data",
+      "java" : "samples.Payments.LevelIIData",
+      "php" : "samples.Payments.LevelIiData",
+      "ruby" : "samples.Payments.LevelIIData"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Zero Dollar Authorization",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ZeroDollarAuthorization",
+      "csharp" : "samples.Payments.ZeroDollarAuthorization",
+      "python" : "samples.Payments.zero_dollar_authorization",
+      "java" : "samples.Payments.ZeroDollarAuthorization",
+      "php" : "samples.Payments.ZeroDollarAuthorization",
+      "ruby" : "samples.Payments.ZeroDollarAuthorization"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Simple Authorization(Retail)",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.SimpleAuthorizationRetail",
+      "csharp" : "samples.Payments.SimpleAuthorizationRetail",
+      "python" : "samples.Payments.simple_authorizationretail",
+      "java" : "samples.Payments.SimpleAuthorizationRetail",
+      "php" : "samples.Payments.SimpleAuthorizationretail",
+      "ruby" : "samples.Payments.SimpleAuthorizationRetail"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ "id" ],
+    "uniqueName" : "Simple Authorization(Internet)",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.SimpleAuthorizationInternet",
+      "csharp" : "samples.Payments.SimpleAuthorizationInternet",
+      "python" : "samples.Payments.simple_authorizationinternet",
+      "java" : "samples.Payments.SimpleAuthorizationInternet",
+      "php" : "samples.Payments.SimpleAuthorizationinternet",
+      "ruby" : "samples.Payments.SimpleAuthorizationInternet"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Process an Authorization Reversal",
+    "dependentFieldMapping" : [ "id" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ProcessanAuthorizationReversal",
+      "csharp" : "samples.Payments.ProcessanAuthorizationReversal",
+      "python" : "samples.Payments.process_an_authorization_reversal",
+      "java" : "samples.Payments.ProcessanAuthorizationReversal",
+      "php" : "samples.Payments.ProcessAnAuthorizationReversal",
+      "ruby" : "samples.Payments.ProcessanAuthorizationReversal"
+    },
+    "prerequisiteRoad" : "Simple Authorization(Internet)"
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Capture a Payment - Service Fee",
+    "dependentFieldMapping" : [ "id" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.CaptureaPaymentServiceFee",
+      "csharp" : "samples.Payments.CaptureaPaymentServiceFee",
+      "python" : "samples.Payments.capture_a_payment__service_fee",
+      "java" : "samples.Payments.CaptureaPaymentServiceFee",
+      "php" : "samples.Payments.CaptureAPaymentServiceFee",
+      "ruby" : "samples.Payments.CaptureaPaymentServiceFee"
+    },
+    "prerequisiteRoad" : "Service Fees with Credit Card transaction"
+  }, {
+    "storedResponseFields" : [ "id" ],
+    "uniqueName" : "Simple Authorization(Internet)",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : { },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.SimpleAuthorizationInternet",
+      "csharp" : "samples.Payments.SimpleAuthorizationInternet",
+      "python" : "samples.Payments.simple_authorizationinternet",
+      "java" : "samples.Payments.SimpleAuthorizationInternet",
+      "php" : "samples.Payments.SimpleAuthorizationinternet",
+      "ruby" : "samples.Payments.SimpleAuthorizationInternet"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ "id" ],
+    "uniqueName" : "Capture a Payment",
+    "dependentFieldMapping" : [ "id" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.CaptureaPayment",
+      "csharp" : "samples.Payments.CaptureaPayment",
+      "python" : "samples.Payments.capture_a_payment",
+      "java" : "samples.Payments.CaptureaPayment",
+      "php" : "samples.Payments.CaptureAPayment",
+      "ruby" : "samples.Payments.CaptureaPayment"
+    },
+    "prerequisiteRoad" : "Simple Authorization(Internet)"
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Refund a Payment",
+    "dependentFieldMapping" : [ "id" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.RefundaPayment",
+      "csharp" : "samples.Payments.RefundaPayment",
+      "python" : "samples.Payments.refund_a_payment",
+      "java" : "samples.Payments.RefundaPayment",
+      "php" : "samples.Payments.RefundAPayment",
+      "ruby" : "samples.Payments.RefundaPayment"
+    },
+    "prerequisiteRoad" : "Capture a Payment"
+  } ],
+  "Ignored List" : [ ]
+}
