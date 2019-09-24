@@ -18,7 +18,7 @@ function createSearchRequest(callback) {
 		createSearchRequest.save = 'false';
 		createSearchRequest.name = 'MRN';
 		createSearchRequest.timezone = 'America/Chicago';
-		createSearchRequest.query = 'clientReferenceInformation.code:12345';
+		createSearchRequest.query = 'clientReferenceInformation.code:TC50171_3 AND submitTimeUtc:[NOW/DAY-7DAYS TO NOW/DAY+1DAY}';
 		createSearchRequest.offset = 0;
 		createSearchRequest.limit = 10;
 		createSearchRequest.sort = 'id:asc, submitTimeUtc:asc';
