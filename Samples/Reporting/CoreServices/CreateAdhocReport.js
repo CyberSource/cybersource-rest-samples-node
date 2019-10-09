@@ -19,7 +19,7 @@ function createAdhocReport(callback) {
 		reportPreferences.fieldNameConvention = 'SOAPI';
 
 
-		var request = new cybersourceRestApi.RequestBody();
+		var request = new cybersourceRestApi.CreateAdhocReportRequest();
 		request.reportName = 'testrest_v0871';
 		request.reportDefinitionName = 'TransactionRequestClass';
 		request.timezone = 'GMT';

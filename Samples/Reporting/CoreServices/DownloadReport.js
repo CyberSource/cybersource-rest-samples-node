@@ -15,13 +15,13 @@ function downloadReport(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 
 		//File name in which report get downloaded
-		var downloadFilePath = 'Resource\\reportName.xml';
+		var downloadFilePath = 'Resource\\reportName';
 		apiClient.downloadFilePath = path.resolve(downloadFilePath);
 
 		var instance = new cybersourceRestApi.ReportDownloadsApi(configObject, apiClient);
 
-		var reportDate = '2018-09-02';
-		var reportName = 'testrest v2';
+		var reportDate = '2019-09-05';
+		var reportName = 'testrest_subcription_v2989';
 		var opts = [];
 		opts['organizationId'] = 'testrest';
 

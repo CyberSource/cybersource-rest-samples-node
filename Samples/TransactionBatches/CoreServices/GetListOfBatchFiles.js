@@ -14,8 +14,8 @@ function getListOfBatchFiles(callback) {
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.TransactionBatchesApi(configObject);
 
-		var startTime = '2018-10-01T20:34:24.000Z';
-		var endTime = '2018-10-29T23:27:25.000Z';
+		var startTime = '2019-09-01T20:34:24.000Z';
+		var endTime = '2019-09-30T23:27:25.000Z';
     
 		console.log('\n*************** Retrieve list of batch file  ********************* ');
 

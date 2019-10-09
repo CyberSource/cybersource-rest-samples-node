@@ -14,7 +14,7 @@ function CreateSubscriptionReport(callback) {
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.ReportSubscriptionsApi(configObject);
 
-		var request = new cybersourceRestApi.RequestBody1();
+		var request = new cybersourceRestApi.CreateReportSubscriptionRequest();
 		request.reportDefinitionName = 'TransactionRequestClass';
 		request.reportFields = [
 			'Request.RequestID',
