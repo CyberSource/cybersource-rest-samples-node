@@ -18,26 +18,8 @@
     },
     "prerequisiteRoad" : ""
   }, {
-    "storedResponseFields" : [ "id" ],
-    "uniqueName" : "Service Fees with Credit Card transaction",
-    "dependentFieldMapping" : [ ],
-    "Assertions" : {
-      "requiredFields" : [ ],
-      "httpStatus" : "",
-      "expectedValues" : [ ]
-    },
-    "sampleClassNames" : {
-      "node" : "samples.Payments.ServiceFeeswithCreditCardtransaction",
-      "csharp" : "samples.Payments.ServiceFeeswithCreditCardtransaction",
-      "python" : "samples.Payments.service_fees_with_credit_card_transaction",
-      "java" : "samples.Payments.ServiceFeeswithCreditCardtransaction",
-      "php" : "samples.Payments.ServiceFeesWithCreditCardTransaction",
-      "ruby" : "samples.Payments.ServiceFeeswithCreditCardtransaction"
-    },
-    "prerequisiteRoad" : ""
-  }, {
     "storedResponseFields" : [ ],
-    "uniqueName" : "Electronic Check Debits",
+    "uniqueName" : "Tokenize Card",
     "dependentFieldMapping" : [ ],
     "Assertions" : {
       "requiredFields" : [ ],
@@ -45,71 +27,17 @@
       "expectedValues" : [ ]
     },
     "sampleClassNames" : {
-      "node" : "samples.Payments.ElectronicCheckDebits",
-      "csharp" : "samples.Payments.ElectronicCheckDebits",
-      "python" : "samples.Payments.electronic_check_debits",
-      "java" : "samples.Payments.ElectronicCheckDebits",
-      "php" : "samples.Payments.ElectronicCheckDebits",
-      "ruby" : "samples.Payments.ElectronicCheckDebits"
-    },
-    "prerequisiteRoad" : ""
-  }, {
-    "storedResponseFields" : [ ],
-    "uniqueName" : "Level II Data",
-    "dependentFieldMapping" : [ ],
-    "Assertions" : {
-      "requiredFields" : [ ],
-      "httpStatus" : "",
-      "expectedValues" : [ ]
-    },
-    "sampleClassNames" : {
-      "node" : "samples.Payments.LevelIIData",
-      "csharp" : "samples.Payments.LevelIIData",
-      "python" : "samples.Payments.level_ii_data",
-      "java" : "samples.Payments.LevelIIData",
-      "php" : "samples.Payments.LevelIiData",
-      "ruby" : "samples.Payments.LevelIIData"
-    },
-    "prerequisiteRoad" : ""
-  }, {
-    "storedResponseFields" : [ ],
-    "uniqueName" : "Zero Dollar Authorization",
-    "dependentFieldMapping" : [ ],
-    "Assertions" : {
-      "requiredFields" : [ ],
-      "httpStatus" : "",
-      "expectedValues" : [ ]
-    },
-    "sampleClassNames" : {
-      "node" : "samples.Payments.ZeroDollarAuthorization",
-      "csharp" : "samples.Payments.ZeroDollarAuthorization",
-      "python" : "samples.Payments.zero_dollar_authorization",
-      "java" : "samples.Payments.ZeroDollarAuthorization",
-      "php" : "samples.Payments.ZeroDollarAuthorization",
-      "ruby" : "samples.Payments.ZeroDollarAuthorization"
-    },
-    "prerequisiteRoad" : ""
-  }, {
-    "storedResponseFields" : [ ],
-    "uniqueName" : "Simple Authorization(Retail)",
-    "dependentFieldMapping" : [ ],
-    "Assertions" : {
-      "requiredFields" : [ ],
-      "httpStatus" : "",
-      "expectedValues" : [ ]
-    },
-    "sampleClassNames" : {
-      "node" : "samples.Payments.SimpleAuthorizationRetail",
-      "csharp" : "samples.Payments.SimpleAuthorizationRetail",
-      "python" : "samples.Payments.simple_authorizationretail",
-      "java" : "samples.Payments.SimpleAuthorizationRetail",
-      "php" : "samples.Payments.SimpleAuthorizationretail",
-      "ruby" : "samples.Payments.SimpleAuthorizationRetail"
+      "node" : "samples.Flex.TokenizeCard",
+      "csharp" : "samples.Flex.TokenizeCard",
+      "python" : "samples.Flex.tokenize_card",
+      "java" : "samples.Flex.TokenizeCard",
+      "php" : "samples.Flex.TokenizeCard",
+      "ruby" : "samples.Flex.TokenizeCard"
     },
     "prerequisiteRoad" : ""
   }, {
     "storedResponseFields" : [ "id" ],
-    "uniqueName" : "Simple Authorization(Internet)",
+    "uniqueName" : "Process Payment Service Fees with Credit Card transaction",
     "dependentFieldMapping" : [ ],
     "Assertions" : {
       "requiredFields" : [ ],
@@ -117,14 +45,248 @@
       "expectedValues" : [ ]
     },
     "sampleClassNames" : {
-      "node" : "samples.Payments.SimpleAuthorizationInternet",
-      "csharp" : "samples.Payments.SimpleAuthorizationInternet",
-      "python" : "samples.Payments.simple_authorizationinternet",
-      "java" : "samples.Payments.SimpleAuthorizationInternet",
-      "php" : "samples.Payments.SimpleAuthorizationinternet",
-      "ruby" : "samples.Payments.SimpleAuthorizationInternet"
+      "node" : "samples.Payments.ProcessPaymentServiceFeesWithCreditCardTransaction",
+      "csharp" : "samples.Payments.ProcessPaymentServiceFeesWithCreditCardTransaction",
+      "python" : "samples.Payments.process_payment_service_fees_with_credit_card_transaction",
+      "java" : "samples.Payments.ProcessPaymentServiceFeesWithCreditCardTransaction",
+      "php" : "samples.Payments.ProcessPaymentServiceFeesWithCreditCardTransaction",
+      "ruby" : "samples.Payments.ProcessPaymentServiceFeesWithCreditCardTransaction"
     },
     "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Process Payment ECheck Debits",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ProcessPaymentECheckDebits",
+      "csharp" : "samples.Payments.ProcessPaymentECheckDebits",
+      "python" : "samples.Payments.process_payment_echeck_debits",
+      "java" : "samples.Payments.ProcessPaymentECheckDebits",
+      "php" : "samples.Payments.ProcessPaymentECheckDebits",
+      "ruby" : "samples.Payments.ProcessPaymentECheckDebits"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Process Payment with Partial Authorization",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ProcessPaymentWithPartialAuthorization",
+      "csharp" : "samples.Payments.ProcessPaymentWithPartialAuthorization",
+      "python" : "samples.Payments.process_payment_with_partial_authorization",
+      "java" : "samples.Payments.ProcessPaymentWithPartialAuthorization",
+      "php" : "samples.Payments.ProcessPaymentWithPartialAuthorization",
+      "ruby" : "samples.Payments.ProcessPaymentWithPartialAuthorization"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Process Payment with Level III Data",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ProcessPaymentWithLevelIIIData",
+      "csharp" : "samples.Payments.ProcessPaymentWithLevelIIIData",
+      "python" : "samples.Payments.process_payment_with_level_iii_data",
+      "java" : "samples.Payments.ProcessPaymentWithLevelIIIData",
+      "php" : "samples.Payments.ProcessPaymentWithLevelIIIData",
+      "ruby" : "samples.Payments.ProcessPaymentWithLevelIIIData"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Process Payment with Level II Data",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ProcessPaymentWithLevelIIData",
+      "csharp" : "samples.Payments.ProcessPaymentWithLevelIIData",
+      "python" : "samples.Payments.process_payment_with_level_ii_data",
+      "java" : "samples.Payments.ProcessPaymentWithLevelIIData",
+      "php" : "samples.Payments.ProcessPaymentWithLevelIIData",
+      "ruby" : "samples.Payments.ProcessPaymentWithLevelIIData"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Process Payment for Zero Dollar Authorization",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ProcessPaymentForZeroDollarAuthorization",
+      "csharp" : "samples.Payments.ProcessPaymentForZeroDollarAuthorization",
+      "python" : "samples.Payments.process_payment_for_zero_dollar_authorization",
+      "java" : "samples.Payments.ProcessPaymentForZeroDollarAuthorization",
+      "php" : "samples.Payments.ProcessPaymentForZeroDollarAuthorization",
+      "ruby" : "samples.Payments.ProcessPaymentForZeroDollarAuthorization"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Process Payment with CyberSource MPOS EMV",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ProcessPaymentWithCyberSourceMPOSEMV",
+      "csharp" : "samples.Payments.ProcessPaymentWithCyberSourceMPOSEMV",
+      "python" : "samples.Payments.process_payment_with_cybersource_mpos_emv",
+      "java" : "samples.Payments.ProcessPaymentWithCyberSourceMPOSEMV",
+      "php" : "samples.Payments.ProcessPaymentWithCyberSourceMPOSEMV",
+      "ruby" : "samples.Payments.ProcessPaymentWithCyberSourceMPOSEMV"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Process Payment with ApplePay",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ProcessPaymentWithApplePay",
+      "csharp" : "samples.Payments.ProcessPaymentWithApplePay",
+      "python" : "samples.Payments.process_payment_with_applepay",
+      "java" : "samples.Payments.ProcessPaymentWithApplePay",
+      "php" : "samples.Payments.ProcessPaymentWithApplePay",
+      "ruby" : "samples.Payments.ProcessPaymentWithApplePay"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Process Payment with GooglePay",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ProcessPaymentWithGooglePay",
+      "csharp" : "samples.Payments.ProcessPaymentWithGooglePay",
+      "python" : "samples.Payments.process_payment_with_googlepay",
+      "java" : "samples.Payments.ProcessPaymentWithGooglePay",
+      "php" : "samples.Payments.ProcessPaymentWithGooglePay",
+      "ruby" : "samples.Payments.ProcessPaymentWithGooglePay"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Process Payment with Network Tokenization",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ProcessPaymentWithNetworkTokenization",
+      "csharp" : "samples.Payments.ProcessPaymentWithNetworkTokenization",
+      "python" : "samples.Payments.process_payment_with_network_tokenization",
+      "java" : "samples.Payments.ProcessPaymentWithNetworkTokenization",
+      "php" : "samples.Payments.ProcessPaymentWithNetworkTokenization",
+      "ruby" : "samples.Payments.ProcessPaymentWithNetworkTokenization"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Process Payment with Payment Instrument Token",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ProcessPaymentWithPaymentInstrumentToken",
+      "csharp" : "samples.Payments.ProcessPaymentWithPaymentInstrumentToken",
+      "python" : "samples.Payments.process_payment_with_payment_instrument_token",
+      "java" : "samples.Payments.ProcessPaymentWithPaymentInstrumentToken",
+      "php" : "samples.Payments.ProcessPaymentWithPaymentInstrumentToken",
+      "ruby" : "samples.Payments.ProcessPaymentWithPaymentInstrumentToken"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Process Payment Simple Authorization Retail",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ProcessPaymentSimpleAuthorizationRetail",
+      "csharp" : "samples.Payments.ProcessPaymentSimpleAuthorizationRetail",
+      "python" : "samples.Payments.process_payment_simple_authorization_retail",
+      "java" : "samples.Payments.ProcessPaymentSimpleAuthorizationRetail",
+      "php" : "samples.Payments.ProcessPaymentSimpleAuthorizationRetail",
+      "ruby" : "samples.Payments.ProcessPaymentSimpleAuthorizationRetail"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ "id" ],
+    "uniqueName" : "Process Payment",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ProcessPayment",
+      "csharp" : "samples.Payments.ProcessPayment",
+      "python" : "samples.Payments.process_payment",
+      "java" : "samples.Payments.ProcessPayment",
+      "php" : "samples.Payments.ProcessPayment",
+      "ruby" : "samples.Payments.ProcessPayment"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Service Fees Authorization Reversal",
+    "dependentFieldMapping" : [ "id" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ServiceFeesAuthorizationReversal",
+      "csharp" : "samples.Payments.ServiceFeesAuthorizationReversal",
+      "python" : "samples.Payments.service_fees_authorization_reversal",
+      "java" : "samples.Payments.ServiceFeesAuthorizationReversal",
+      "php" : "samples.Payments.ServiceFeesAuthorizationReversal",
+      "ruby" : "samples.Payments.ServiceFeesAuthorizationReversal"
+    },
+    "prerequisiteRoad" : "Process Payment Service Fees with Credit Card transaction"
   }, {
     "storedResponseFields" : [ ],
     "uniqueName" : "Process an Authorization Reversal",
@@ -135,14 +297,28 @@
       "expectedValues" : [ ]
     },
     "sampleClassNames" : {
-      "node" : "samples.Payments.ProcessanAuthorizationReversal",
-      "csharp" : "samples.Payments.ProcessanAuthorizationReversal",
-      "python" : "samples.Payments.process_an_authorization_reversal",
-      "java" : "samples.Payments.ProcessanAuthorizationReversal",
-      "php" : "samples.Payments.ProcessAnAuthorizationReversal",
-      "ruby" : "samples.Payments.ProcessanAuthorizationReversal"
+      "node" : "samples.Payments.ProcessAuthorizationReversal",
+      "csharp" : "samples.Payments.ProcessAuthorizationReversal",
+      "python" : "samples.Payments.process_authorization_reversal",
+      "java" : "samples.Payments.ProcessAuthorizationReversal",
+      "php" : "samples.Payments.ProcessAuthorizationReversal",
+      "ruby" : "samples.Payments.ProcessAuthorizationReversal"
     },
-    "prerequisiteRoad" : "Simple Authorization(Internet)"
+    "prerequisiteRoad" : "Process Payment"
+  }, {
+    "storedResponseFields" : [ "id" ],
+    "uniqueName" : "Process Payment Service Fees with Credit Card transaction",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : { },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ProcessPaymentServiceFeesWithCreditCardTransaction",
+      "csharp" : "samples.Payments.ProcessPaymentServiceFeesWithCreditCardTransaction",
+      "python" : "samples.Payments.process_payment_service_fees_with_credit_card_transaction",
+      "java" : "samples.Payments.ProcessPaymentServiceFeesWithCreditCardTransaction",
+      "php" : "samples.Payments.ProcessPaymentServiceFeesWithCreditCardTransaction",
+      "ruby" : "samples.Payments.ProcessPaymentServiceFeesWithCreditCardTransaction"
+    },
+    "prerequisiteRoad" : ""
   }, {
     "storedResponseFields" : [ ],
     "uniqueName" : "Capture a Payment - Service Fee",
@@ -153,26 +329,26 @@
       "expectedValues" : [ ]
     },
     "sampleClassNames" : {
-      "node" : "samples.Payments.CaptureaPaymentServiceFee",
-      "csharp" : "samples.Payments.CaptureaPaymentServiceFee",
-      "python" : "samples.Payments.capture_a_payment__service_fee",
-      "java" : "samples.Payments.CaptureaPaymentServiceFee",
-      "php" : "samples.Payments.CaptureAPaymentServiceFee",
-      "ruby" : "samples.Payments.CaptureaPaymentServiceFee"
+      "node" : "samples.Payments.CapturePaymentServiceFee",
+      "csharp" : "samples.Payments.CapturePaymentServiceFee",
+      "python" : "samples.Payments.capture_payment__service_fee",
+      "java" : "samples.Payments.CapturePaymentServiceFee",
+      "php" : "samples.Payments.CapturePaymentServiceFee",
+      "ruby" : "samples.Payments.CapturePaymentServiceFee"
     },
-    "prerequisiteRoad" : "Service Fees with Credit Card transaction"
+    "prerequisiteRoad" : "Process Payment Service Fees with Credit Card transaction"
   }, {
     "storedResponseFields" : [ "id" ],
-    "uniqueName" : "Simple Authorization(Internet)",
+    "uniqueName" : "Process Payment",
     "dependentFieldMapping" : [ ],
     "Assertions" : { },
     "sampleClassNames" : {
-      "node" : "samples.Payments.SimpleAuthorizationInternet",
-      "csharp" : "samples.Payments.SimpleAuthorizationInternet",
-      "python" : "samples.Payments.simple_authorizationinternet",
-      "java" : "samples.Payments.SimpleAuthorizationInternet",
-      "php" : "samples.Payments.SimpleAuthorizationinternet",
-      "ruby" : "samples.Payments.SimpleAuthorizationInternet"
+      "node" : "samples.Payments.ProcessPayment",
+      "csharp" : "samples.Payments.ProcessPayment",
+      "python" : "samples.Payments.process_payment",
+      "java" : "samples.Payments.ProcessPayment",
+      "php" : "samples.Payments.ProcessPayment",
+      "ruby" : "samples.Payments.ProcessPayment"
     },
     "prerequisiteRoad" : ""
   }, {
@@ -185,16 +361,30 @@
       "expectedValues" : [ ]
     },
     "sampleClassNames" : {
-      "node" : "samples.Payments.CaptureaPayment",
-      "csharp" : "samples.Payments.CaptureaPayment",
-      "python" : "samples.Payments.capture_a_payment",
-      "java" : "samples.Payments.CaptureaPayment",
-      "php" : "samples.Payments.CaptureAPayment",
-      "ruby" : "samples.Payments.CaptureaPayment"
+      "node" : "samples.Payments.CapturePayment",
+      "csharp" : "samples.Payments.CapturePayment",
+      "python" : "samples.Payments.capture_payment",
+      "java" : "samples.Payments.CapturePayment",
+      "php" : "samples.Payments.CapturePayment",
+      "ruby" : "samples.Payments.CapturePayment"
     },
-    "prerequisiteRoad" : "Simple Authorization(Internet)"
+    "prerequisiteRoad" : "Process Payment"
   }, {
-    "storedResponseFields" : [ ],
+    "storedResponseFields" : [ "id" ],
+    "uniqueName" : "Process Payment",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : { },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ProcessPayment",
+      "csharp" : "samples.Payments.ProcessPayment",
+      "python" : "samples.Payments.process_payment",
+      "java" : "samples.Payments.ProcessPayment",
+      "php" : "samples.Payments.ProcessPayment",
+      "ruby" : "samples.Payments.ProcessPayment"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ "id" ],
     "uniqueName" : "Refund a Payment",
     "dependentFieldMapping" : [ "id" ],
     "Assertions" : {
@@ -203,14 +393,1110 @@
       "expectedValues" : [ ]
     },
     "sampleClassNames" : {
-      "node" : "samples.Payments.RefundaPayment",
-      "csharp" : "samples.Payments.RefundaPayment",
-      "python" : "samples.Payments.refund_a_payment",
-      "java" : "samples.Payments.RefundaPayment",
-      "php" : "samples.Payments.RefundAPayment",
-      "ruby" : "samples.Payments.RefundaPayment"
+      "node" : "samples.Payments.RefundPayment",
+      "csharp" : "samples.Payments.RefundPayment",
+      "python" : "samples.Payments.refund_payment",
+      "java" : "samples.Payments.RefundPayment",
+      "php" : "samples.Payments.RefundPayment",
+      "ruby" : "samples.Payments.RefundPayment"
+    },
+    "prerequisiteRoad" : "Process Payment"
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Refund a Capture",
+    "dependentFieldMapping" : [ "id" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.RefundCapture",
+      "csharp" : "samples.Payments.RefundCapture",
+      "python" : "samples.Payments.refund_capture",
+      "java" : "samples.Payments.RefundCapture",
+      "php" : "samples.Payments.RefundCapture",
+      "ruby" : "samples.Payments.RefundCapture"
     },
     "prerequisiteRoad" : "Capture a Payment"
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Process Credit with Service Fees",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ProcessCreditWithServiceFees",
+      "csharp" : "samples.Payments.ProcessCreditWithServiceFees",
+      "python" : "samples.Payments.process_credit_with_service_fees",
+      "java" : "samples.Payments.ProcessCreditWithServiceFees",
+      "php" : "samples.Payments.ProcessCreditWithServiceFees",
+      "ruby" : "samples.Payments.ProcessCreditWithServiceFees"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Process Credit ECheck Stand-Alone",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ProcessCreditECheckStandAlone",
+      "csharp" : "samples.Payments.ProcessCreditECheckStandAlone",
+      "python" : "samples.Payments.process_credit_echeck_standalone",
+      "java" : "samples.Payments.ProcessCreditECheckStandAlone",
+      "php" : "samples.Payments.ProcessCreditECheckStandAlone",
+      "ruby" : "samples.Payments.ProcessCreditECheckStandAlone"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Process Credit",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ProcessCredit",
+      "csharp" : "samples.Payments.ProcessCredit",
+      "python" : "samples.Payments.process_credit",
+      "java" : "samples.Payments.ProcessCredit",
+      "php" : "samples.Payments.ProcessCredit",
+      "ruby" : "samples.Payments.ProcessCredit"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ "id" ],
+    "uniqueName" : "Process Payment",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : { },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ProcessPayment",
+      "csharp" : "samples.Payments.ProcessPayment",
+      "python" : "samples.Payments.process_payment",
+      "java" : "samples.Payments.ProcessPayment",
+      "php" : "samples.Payments.ProcessPayment",
+      "ruby" : "samples.Payments.ProcessPayment"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Void a Payment",
+    "dependentFieldMapping" : [ "id" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.VoidPayment",
+      "csharp" : "samples.Payments.VoidPayment",
+      "python" : "samples.Payments.void_payment",
+      "java" : "samples.Payments.VoidPayment",
+      "php" : "samples.Payments.VoidPayment",
+      "ruby" : "samples.Payments.VoidPayment"
+    },
+    "prerequisiteRoad" : "Process Payment"
+  }, {
+    "storedResponseFields" : [ "id" ],
+    "uniqueName" : "Process Payment",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : { },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ProcessPayment",
+      "csharp" : "samples.Payments.ProcessPayment",
+      "python" : "samples.Payments.process_payment",
+      "java" : "samples.Payments.ProcessPayment",
+      "php" : "samples.Payments.ProcessPayment",
+      "ruby" : "samples.Payments.ProcessPayment"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ "id" ],
+    "uniqueName" : "Capture a Payment",
+    "dependentFieldMapping" : [ "id" ],
+    "Assertions" : { },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.CapturePayment",
+      "csharp" : "samples.Payments.CapturePayment",
+      "python" : "samples.Payments.capture_payment",
+      "java" : "samples.Payments.CapturePayment",
+      "php" : "samples.Payments.CapturePayment",
+      "ruby" : "samples.Payments.CapturePayment"
+    },
+    "prerequisiteRoad" : "Process Payment"
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Void a Capture",
+    "dependentFieldMapping" : [ "id" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.VoidCapture",
+      "csharp" : "samples.Payments.VoidCapture",
+      "python" : "samples.Payments.void_capture",
+      "java" : "samples.Payments.VoidCapture",
+      "php" : "samples.Payments.VoidCapture",
+      "ruby" : "samples.Payments.VoidCapture"
+    },
+    "prerequisiteRoad" : "Capture a Payment"
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Void a Refund",
+    "dependentFieldMapping" : [ "id" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.VoidRefund",
+      "csharp" : "samples.Payments.VoidRefund",
+      "python" : "samples.Payments.void_refund",
+      "java" : "samples.Payments.VoidRefund",
+      "php" : "samples.Payments.VoidRefund",
+      "ruby" : "samples.Payments.VoidRefund"
+    },
+    "prerequisiteRoad" : "Refund a Payment"
+  }, {
+    "storedResponseFields" : [ "transactionBatches[0].id" ],
+    "uniqueName" : "Get a list of batch files",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Transaction_Batches.GetListOfBatchFiles",
+      "csharp" : "samples.Transaction_Batches.GetListOfBatchFiles",
+      "python" : "samples.Transaction_Batches.get_list_of_batch_files",
+      "java" : "samples.Transaction_Batches.GetListOfBatchFiles",
+      "php" : "samples.Transaction_Batches.GetListOfBatchFiles",
+      "ruby" : "samples.Transaction_Batches.GetListOfBatchFiles"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ "id" ],
+    "uniqueName" : "Get individual batch file",
+    "dependentFieldMapping" : [ "transactionBatches[0].id" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Transaction_Batches.GetIndividualBatchFile",
+      "csharp" : "samples.Transaction_Batches.GetIndividualBatchFile",
+      "python" : "samples.Transaction_Batches.get_individual_batch_file",
+      "java" : "samples.Transaction_Batches.GetIndividualBatchFile",
+      "php" : "samples.Transaction_Batches.GetIndividualBatchFile",
+      "ruby" : "samples.Transaction_Batches.GetIndividualBatchFile"
+    },
+    "prerequisiteRoad" : "Get a list of batch files"
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Get transaction details for a given batch id",
+    "dependentFieldMapping" : [ "id" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Transaction_Batches.GetTransactionDetailsForGivenBatchId",
+      "csharp" : "samples.Transaction_Batches.GetTransactionDetailsForGivenBatchId",
+      "python" : "samples.Transaction_Batches.get_transaction_details_for_given_batch_id",
+      "java" : "samples.Transaction_Batches.GetTransactionDetailsForGivenBatchId",
+      "php" : "samples.Transaction_Batches.GetTransactionDetailsForGivenBatchId",
+      "ruby" : "samples.Transaction_Batches.GetTransactionDetailsForGivenBatchId"
+    },
+    "prerequisiteRoad" : "Get individual batch file"
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Process Payout Token",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payouts.ProcessPayoutToken",
+      "csharp" : "samples.Payouts.ProcessPayoutToken",
+      "python" : "samples.Payouts.process_payout_token",
+      "java" : "samples.Payouts.ProcessPayoutToken",
+      "php" : "samples.Payouts.ProcessPayoutToken",
+      "ruby" : "samples.Payouts.ProcessPayoutToken"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Process Payout Card",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Payouts.ProcessPayoutCard",
+      "csharp" : "samples.Payouts.ProcessPayoutCard",
+      "python" : "samples.Payouts.process_payout_card",
+      "java" : "samples.Payouts.ProcessPayoutCard",
+      "php" : "samples.Payouts.ProcessPayoutCard",
+      "ruby" : "samples.Payouts.ProcessPayoutCard"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Download a report",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Reporting.DownloadReport",
+      "csharp" : "samples.Reporting.DownloadReport",
+      "python" : "samples.Reporting.download_report",
+      "java" : "samples.Reporting.DownloadReport",
+      "php" : "samples.Reporting.DownloadReport",
+      "ruby" : "samples.Reporting.DownloadReport"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Create Adhoc Report",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Reporting.CreateAdhocReport",
+      "csharp" : "samples.Reporting.CreateAdhocReport",
+      "python" : "samples.Reporting.create_adhoc_report",
+      "java" : "samples.Reporting.CreateAdhocReport",
+      "php" : "samples.Reporting.CreateAdhocReport",
+      "ruby" : "samples.Reporting.CreateAdhocReport"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ "reportSearchResults[0].reportId" ],
+    "uniqueName" : "Retrieve available reports",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Reporting.RetrieveAvailableReports",
+      "csharp" : "samples.Reporting.RetrieveAvailableReports",
+      "python" : "samples.Reporting.retrieve_available_reports",
+      "java" : "samples.Reporting.RetrieveAvailableReports",
+      "php" : "samples.Reporting.RetrieveAvailableReports",
+      "ruby" : "samples.Reporting.RetrieveAvailableReports"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Get Report based on reportId",
+    "dependentFieldMapping" : [ "reportSearchResults[0].reportId" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Reporting.GetReportBasedOnReportId",
+      "csharp" : "samples.Reporting.GetReportBasedOnReportId",
+      "python" : "samples.Reporting.get_report_based_on_reportid",
+      "java" : "samples.Reporting.GetReportBasedOnReportId",
+      "php" : "samples.Reporting.GetReportBasedOnReportId",
+      "ruby" : "samples.Reporting.GetReportBasedOnReportId"
+    },
+    "prerequisiteRoad" : "Retrieve available reports"
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Get report definition",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Reporting.GetReportDefinition",
+      "csharp" : "samples.Reporting.GetReportDefinition",
+      "python" : "samples.Reporting.get_report_definition",
+      "java" : "samples.Reporting.GetReportDefinition",
+      "php" : "samples.Reporting.GetReportDefinition",
+      "ruby" : "samples.Reporting.GetReportDefinition"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Get reporting resource information",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Reporting.GetReportingResourceInformation",
+      "csharp" : "samples.Reporting.GetReportingResourceInformation",
+      "python" : "samples.Reporting.get_reporting_resource_information",
+      "java" : "samples.Reporting.GetReportingResourceInformation",
+      "php" : "samples.Reporting.GetReportingResourceInformation",
+      "ruby" : "samples.Reporting.GetReportingResourceInformation"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ "_embedded.Subscriptions[0].reportName" ],
+    "uniqueName" : "Get all subscriptions",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Reporting.GetAllSubscriptions",
+      "csharp" : "samples.Reporting.GetAllSubscriptions",
+      "python" : "samples.Reporting.get_all_subscriptions",
+      "java" : "samples.Reporting.GetAllSubscriptions",
+      "php" : "samples.Reporting.GetAllSubscriptions",
+      "ruby" : "samples.Reporting.GetAllSubscriptions"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Create Report Subscription",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Reporting.CreateReportSubscription",
+      "csharp" : "samples.Reporting.CreateReportSubscription",
+      "python" : "samples.Reporting.create_report_subscription",
+      "java" : "samples.Reporting.CreateReportSubscription",
+      "php" : "samples.Reporting.CreateReportSubscription",
+      "ruby" : "samples.Reporting.CreateReportSubscription"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ "reportName" ],
+    "uniqueName" : "Get subscription for report name",
+    "dependentFieldMapping" : [ "_embedded.Subscriptions[0].reportName" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Reporting.GetSubscriptionForReportName",
+      "csharp" : "samples.Reporting.GetSubscriptionForReportName",
+      "python" : "samples.Reporting.get_subscription_for_report_name",
+      "java" : "samples.Reporting.GetSubscriptionForReportName",
+      "php" : "samples.Reporting.GetSubscriptionForReportName",
+      "ruby" : "samples.Reporting.GetSubscriptionForReportName"
+    },
+    "prerequisiteRoad" : "Get all subscriptions"
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Delete subscription of a report name by organization",
+    "dependentFieldMapping" : [ "reportName" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Reporting.DeleteSubscriptionOfReportNameByOrganization",
+      "csharp" : "samples.Reporting.DeleteSubscriptionOfReportNameByOrganization",
+      "python" : "samples.Reporting.delete_subscription_of_report_name_by_organization",
+      "java" : "samples.Reporting.DeleteSubscriptionOfReportNameByOrganization",
+      "php" : "samples.Reporting.DeleteSubscriptionOfReportNameByOrganization",
+      "ruby" : "samples.Reporting.DeleteSubscriptionOfReportNameByOrganization"
+    },
+    "prerequisiteRoad" : "Get subscription for report name"
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Get Notification Of Changes",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Reporting.GetNotificationOfChanges",
+      "csharp" : "samples.Reporting.GetNotificationOfChanges",
+      "python" : "samples.Reporting.get_notification_of_changes",
+      "java" : "samples.Reporting.GetNotificationOfChanges",
+      "php" : "samples.Reporting.GetNotificationOfChanges",
+      "ruby" : "samples.Reporting.GetNotificationOfChanges"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Get Purchase and Refund details",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Reporting.GetPurchaseAndRefundDetails",
+      "csharp" : "samples.Reporting.GetPurchaseAndRefundDetails",
+      "python" : "samples.Reporting.get_purchase_and_refund_details",
+      "java" : "samples.Reporting.GetPurchaseAndRefundDetails",
+      "php" : "samples.Reporting.GetPurchaseAndRefundDetails",
+      "ruby" : "samples.Reporting.GetPurchaseAndRefundDetails"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Get payment batch summary data",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Reporting.GetPaymentBatchSummaryData",
+      "csharp" : "samples.Reporting.GetPaymentBatchSummaryData",
+      "python" : "samples.Reporting.get_payment_batch_summary_data",
+      "java" : "samples.Reporting.GetPaymentBatchSummaryData",
+      "php" : "samples.Reporting.GetPaymentBatchSummaryData",
+      "ruby" : "samples.Reporting.GetPaymentBatchSummaryData"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Get conversion detail transactions",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Reporting.GetConversionDetailTransactions",
+      "csharp" : "samples.Reporting.GetConversionDetailTransactions",
+      "python" : "samples.Reporting.get_conversion_detail_transactions",
+      "java" : "samples.Reporting.GetConversionDetailTransactions",
+      "php" : "samples.Reporting.GetConversionDetailTransactions",
+      "ruby" : "samples.Reporting.GetConversionDetailTransactions"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Get Netfunding information for an account or a merchant",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Reporting.GetNetfundingInformationForAccountOrMerchant",
+      "csharp" : "samples.Reporting.GetNetfundingInformationForAccountOrMerchant",
+      "python" : "samples.Reporting.get_netfunding_information_for_account_or_merchant",
+      "java" : "samples.Reporting.GetNetfundingInformationForAccountOrMerchant",
+      "php" : "samples.Reporting.GetNetfundingInformationForAccountOrMerchant",
+      "ruby" : "samples.Reporting.GetNetfundingInformationForAccountOrMerchant"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Download DTD for report",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Reporting.DownloadDTDForReport",
+      "csharp" : "samples.Reporting.DownloadDTDForReport",
+      "python" : "samples.Reporting.download_dtd_for_report",
+      "java" : "samples.Reporting.DownloadDTDForReport",
+      "php" : "samples.Reporting.DownloadDTDForReport",
+      "ruby" : "samples.Reporting.DownloadDTDForReport"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Download XSD for report",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Reporting.DownloadXSDForReport",
+      "csharp" : "samples.Reporting.DownloadXSDForReport",
+      "python" : "samples.Reporting.download_xsd_for_report",
+      "java" : "samples.Reporting.DownloadXSDForReport",
+      "php" : "samples.Reporting.DownloadXSDForReport",
+      "ruby" : "samples.Reporting.DownloadXSDForReport"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "DM with Decision_Profile_Reject Response",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Decision_Manager.DMWithDecisionProfileRejectResponse",
+      "csharp" : "samples.Decision_Manager.DMWithDecisionProfileRejectResponse",
+      "python" : "samples.Decision_Manager.dm_with_decisionprofilereject_response",
+      "java" : "samples.Decision_Manager.DMWithDecisionProfileRejectResponse",
+      "php" : "samples.Decision_Manager.DMWithDecisionProfileRejectResponse",
+      "ruby" : "samples.Decision_Manager.DMWithDecisionProfileRejectResponse"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "DM with Score_Exceeds_Threshold Response",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Decision_Manager.DMWithScoreExceedsThresholdResponse",
+      "csharp" : "samples.Decision_Manager.DMWithScoreExceedsThresholdResponse",
+      "python" : "samples.Decision_Manager.dm_with_scoreexceedsthreshold_response",
+      "java" : "samples.Decision_Manager.DMWithScoreExceedsThresholdResponse",
+      "php" : "samples.Decision_Manager.DMWithScoreExceedsThresholdResponse",
+      "ruby" : "samples.Decision_Manager.DMWithScoreExceedsThresholdResponse"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "DM with Shipping Information",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Decision_Manager.DMWithShippingInformation",
+      "csharp" : "samples.Decision_Manager.DMWithShippingInformation",
+      "python" : "samples.Decision_Manager.dm_with_shipping_information",
+      "java" : "samples.Decision_Manager.DMWithShippingInformation",
+      "php" : "samples.Decision_Manager.DMWithShippingInformation",
+      "ruby" : "samples.Decision_Manager.DMWithShippingInformation"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "DM with Buyer Information",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Decision_Manager.DMWithBuyerInformation",
+      "csharp" : "samples.Decision_Manager.DMWithBuyerInformation",
+      "python" : "samples.Decision_Manager.dm_with_buyer_information",
+      "java" : "samples.Decision_Manager.DMWithBuyerInformation",
+      "php" : "samples.Decision_Manager.DMWithBuyerInformation",
+      "ruby" : "samples.Decision_Manager.DMWithBuyerInformation"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "DM with Travel Information",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Decision_Manager.DMWithTravelInformation",
+      "csharp" : "samples.Decision_Manager.DMWithTravelInformation",
+      "python" : "samples.Decision_Manager.dm_with_travel_information",
+      "java" : "samples.Decision_Manager.DMWithTravelInformation",
+      "php" : "samples.Decision_Manager.DMWithTravelInformation",
+      "ruby" : "samples.Decision_Manager.DMWithTravelInformation"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "DM with Merchant Defined Information",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Decision_Manager.DMWithMerchantDefinedInformation",
+      "csharp" : "samples.Decision_Manager.DMWithMerchantDefinedInformation",
+      "python" : "samples.Decision_Manager.dm_with_merchant_defined_information",
+      "java" : "samples.Decision_Manager.DMWithMerchantDefinedInformation",
+      "php" : "samples.Decision_Manager.DMWithMerchantDefinedInformation",
+      "ruby" : "samples.Decision_Manager.DMWithMerchantDefinedInformation"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "DM with Device Information",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Decision_Manager.DMWithDeviceInformation",
+      "csharp" : "samples.Decision_Manager.DMWithDeviceInformation",
+      "python" : "samples.Decision_Manager.dm_with_device_information",
+      "java" : "samples.Decision_Manager.DMWithDeviceInformation",
+      "php" : "samples.Decision_Manager.DMWithDeviceInformation",
+      "ruby" : "samples.Decision_Manager.DMWithDeviceInformation"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Create Decision Manager Case",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Decision_Manager.CreateDecisionManagerCase",
+      "csharp" : "samples.Decision_Manager.CreateDecisionManagerCase",
+      "python" : "samples.Decision_Manager.create_decision_manager_case",
+      "java" : "samples.Decision_Manager.CreateDecisionManagerCase",
+      "php" : "samples.Decision_Manager.CreateDecisionManagerCase",
+      "ruby" : "samples.Decision_Manager.CreateDecisionManagerCase"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ "fileDetails[0].fileId" ],
+    "uniqueName" : "Get list of files",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Secure_File_Share.GetListOfFiles",
+      "csharp" : "samples.Secure_File_Share.GetListOfFiles",
+      "python" : "samples.Secure_File_Share.get_list_of_files",
+      "java" : "samples.Secure_File_Share.GetListOfFiles",
+      "php" : "samples.Secure_File_Share.GetListOfFiles",
+      "ruby" : "samples.Secure_File_Share.GetListOfFiles"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Download a file with file identifier",
+    "dependentFieldMapping" : [ "fileDetails[0].fileId" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Secure_File_Share.DownloadFileWithFileIdentifier",
+      "csharp" : "samples.Secure_File_Share.DownloadFileWithFileIdentifier",
+      "python" : "samples.Secure_File_Share.download_file_with_file_identifier",
+      "java" : "samples.Secure_File_Share.DownloadFileWithFileIdentifier",
+      "php" : "samples.Secure_File_Share.DownloadFileWithFileIdentifier",
+      "ruby" : "samples.Secure_File_Share.DownloadFileWithFileIdentifier"
+    },
+    "prerequisiteRoad" : "Get list of files"
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Create Instrument Identifier (Card & Enroll for Network Token)",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Token_Management.CreateInstrumentIdentifierCardEnrollForNetworkToken",
+      "csharp" : "samples.Token_Management.CreateInstrumentIdentifierCardEnrollForNetworkToken",
+      "python" : "samples.Token_Management.create_instrument_identifier_card__enroll_for_network_token",
+      "java" : "samples.Token_Management.CreateInstrumentIdentifierCardEnrollForNetworkToken",
+      "php" : "samples.Token_Management.CreateInstrumentIdentifierCardEnrollForNetworkToken",
+      "ruby" : "samples.Token_Management.CreateInstrumentIdentifierCardEnrollForNetworkToken"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Create Instrument Identifier (Bank Account)",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Token_Management.CreateInstrumentIdentifierBankAccount",
+      "csharp" : "samples.Token_Management.CreateInstrumentIdentifierBankAccount",
+      "python" : "samples.Token_Management.create_instrument_identifier_bank_account",
+      "java" : "samples.Token_Management.CreateInstrumentIdentifierBankAccount",
+      "php" : "samples.Token_Management.CreateInstrumentIdentifierBankAccount",
+      "ruby" : "samples.Token_Management.CreateInstrumentIdentifierBankAccount"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ "id" ],
+    "uniqueName" : "Create Instrument Identifier (Card)",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Token_Management.CreateInstrumentIdentifierCard",
+      "csharp" : "samples.Token_Management.CreateInstrumentIdentifierCard",
+      "python" : "samples.Token_Management.create_instrument_identifier_card",
+      "java" : "samples.Token_Management.CreateInstrumentIdentifierCard",
+      "php" : "samples.Token_Management.CreateInstrumentIdentifierCard",
+      "ruby" : "samples.Token_Management.CreateInstrumentIdentifierCard"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Retrieve an Instrument Identifier",
+    "dependentFieldMapping" : [ "id" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Token_Management.RetrieveInstrumentIdentifier",
+      "csharp" : "samples.Token_Management.RetrieveInstrumentIdentifier",
+      "python" : "samples.Token_Management.retrieve_instrument_identifier",
+      "java" : "samples.Token_Management.RetrieveInstrumentIdentifier",
+      "php" : "samples.Token_Management.RetrieveInstrumentIdentifier",
+      "ruby" : "samples.Token_Management.RetrieveInstrumentIdentifier"
+    },
+    "prerequisiteRoad" : "Create Instrument Identifier (Card)"
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Delete an Instrument Identifier",
+    "dependentFieldMapping" : [ "id" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Token_Management.DeleteInstrumentIdentifier",
+      "csharp" : "samples.Token_Management.DeleteInstrumentIdentifier",
+      "python" : "samples.Token_Management.delete_instrument_identifier",
+      "java" : "samples.Token_Management.DeleteInstrumentIdentifier",
+      "php" : "samples.Token_Management.DeleteInstrumentIdentifier",
+      "ruby" : "samples.Token_Management.DeleteInstrumentIdentifier"
+    },
+    "prerequisiteRoad" : "Create Instrument Identifier (Card)"
+  }, {
+    "storedResponseFields" : [ "id" ],
+    "uniqueName" : "Create Instrument Identifier (Card)",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : { },
+    "sampleClassNames" : {
+      "node" : "samples.Token_Management.CreateInstrumentIdentifierCard",
+      "csharp" : "samples.Token_Management.CreateInstrumentIdentifierCard",
+      "python" : "samples.Token_Management.create_instrument_identifier_card",
+      "java" : "samples.Token_Management.CreateInstrumentIdentifierCard",
+      "php" : "samples.Token_Management.CreateInstrumentIdentifierCard",
+      "ruby" : "samples.Token_Management.CreateInstrumentIdentifierCard"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Retrieve all Payment Instruments",
+    "dependentFieldMapping" : [ "id" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Token_Management.RetrieveAllPaymentInstruments",
+      "csharp" : "samples.Token_Management.RetrieveAllPaymentInstruments",
+      "python" : "samples.Token_Management.retrieve_all_payment_instruments",
+      "java" : "samples.Token_Management.RetrieveAllPaymentInstruments",
+      "php" : "samples.Token_Management.RetrieveAllPaymentInstruments",
+      "ruby" : "samples.Token_Management.RetrieveAllPaymentInstruments"
+    },
+    "prerequisiteRoad" : "Create Instrument Identifier (Card)"
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Create Payment Instrument (Card & Enroll for Network Token)",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Token_Management.CreatePaymentInstrumentCardEnrollForNetworkToken",
+      "csharp" : "samples.Token_Management.CreatePaymentInstrumentCardEnrollForNetworkToken",
+      "python" : "samples.Token_Management.create_payment_instrument_card__enroll_for_network_token",
+      "java" : "samples.Token_Management.CreatePaymentInstrumentCardEnrollForNetworkToken",
+      "php" : "samples.Token_Management.CreatePaymentInstrumentCardEnrollForNetworkToken",
+      "ruby" : "samples.Token_Management.CreatePaymentInstrumentCardEnrollForNetworkToken"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Create Payment Instrument (Tokenized Card)",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Token_Management.CreatePaymentInstrumentTokenizedCard",
+      "csharp" : "samples.Token_Management.CreatePaymentInstrumentTokenizedCard",
+      "python" : "samples.Token_Management.create_payment_instrument_tokenized_card",
+      "java" : "samples.Token_Management.CreatePaymentInstrumentTokenizedCard",
+      "php" : "samples.Token_Management.CreatePaymentInstrumentTokenizedCard",
+      "ruby" : "samples.Token_Management.CreatePaymentInstrumentTokenizedCard"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Create Payment Instrument (Card with Instrument Identifier Id)",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Token_Management.CreatePaymentInstrumentCardWithInstrumentIdentifierId",
+      "csharp" : "samples.Token_Management.CreatePaymentInstrumentCardWithInstrumentIdentifierId",
+      "python" : "samples.Token_Management.create_payment_instrument_card_with_instrument_identifier_id",
+      "java" : "samples.Token_Management.CreatePaymentInstrumentCardWithInstrumentIdentifierId",
+      "php" : "samples.Token_Management.CreatePaymentInstrumentCardWithInstrumentIdentifierId",
+      "ruby" : "samples.Token_Management.CreatePaymentInstrumentCardWithInstrumentIdentifierId"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Create Payment Instrument (Pinless Debit)",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Token_Management.CreatePaymentInstrumentPinlessDebit",
+      "csharp" : "samples.Token_Management.CreatePaymentInstrumentPinlessDebit",
+      "python" : "samples.Token_Management.create_payment_instrument_pinless_debit",
+      "java" : "samples.Token_Management.CreatePaymentInstrumentPinlessDebit",
+      "php" : "samples.Token_Management.CreatePaymentInstrumentPinlessDebit",
+      "ruby" : "samples.Token_Management.CreatePaymentInstrumentPinlessDebit"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Create Payment Instrument (Bank Account)",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Token_Management.CreatePaymentInstrumentBankAccount",
+      "csharp" : "samples.Token_Management.CreatePaymentInstrumentBankAccount",
+      "python" : "samples.Token_Management.create_payment_instrument_bank_account",
+      "java" : "samples.Token_Management.CreatePaymentInstrumentBankAccount",
+      "php" : "samples.Token_Management.CreatePaymentInstrumentBankAccount",
+      "ruby" : "samples.Token_Management.CreatePaymentInstrumentBankAccount"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ "id" ],
+    "uniqueName" : "Create Payment Instrument (Card)",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Token_Management.CreatePaymentInstrumentCard",
+      "csharp" : "samples.Token_Management.CreatePaymentInstrumentCard",
+      "python" : "samples.Token_Management.create_payment_instrument_card",
+      "java" : "samples.Token_Management.CreatePaymentInstrumentCard",
+      "php" : "samples.Token_Management.CreatePaymentInstrumentCard",
+      "ruby" : "samples.Token_Management.CreatePaymentInstrumentCard"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Retrieve a Payment Instrument",
+    "dependentFieldMapping" : [ "id" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Token_Management.RetrievePaymentInstrument",
+      "csharp" : "samples.Token_Management.RetrievePaymentInstrument",
+      "python" : "samples.Token_Management.retrieve_payment_instrument",
+      "java" : "samples.Token_Management.RetrievePaymentInstrument",
+      "php" : "samples.Token_Management.RetrievePaymentInstrument",
+      "ruby" : "samples.Token_Management.RetrievePaymentInstrument"
+    },
+    "prerequisiteRoad" : "Create Payment Instrument (Card)"
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Delete a Payment Instrument",
+    "dependentFieldMapping" : [ "id" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Token_Management.DeletePaymentInstrument",
+      "csharp" : "samples.Token_Management.DeletePaymentInstrument",
+      "python" : "samples.Token_Management.delete_payment_instrument",
+      "java" : "samples.Token_Management.DeletePaymentInstrument",
+      "php" : "samples.Token_Management.DeletePaymentInstrument",
+      "ruby" : "samples.Token_Management.DeletePaymentInstrument"
+    },
+    "prerequisiteRoad" : "Create Payment Instrument (Card)"
+  }, {
+    "storedResponseFields" : [ "id" ],
+    "uniqueName" : "Process Payment",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : { },
+    "sampleClassNames" : {
+      "node" : "samples.Payments.ProcessPayment",
+      "csharp" : "samples.Payments.ProcessPayment",
+      "python" : "samples.Payments.process_payment",
+      "java" : "samples.Payments.ProcessPayment",
+      "php" : "samples.Payments.ProcessPayment",
+      "ruby" : "samples.Payments.ProcessPayment"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Retrieve a Transaction",
+    "dependentFieldMapping" : [ "id" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Transaction_Details.RetrieveTransaction",
+      "csharp" : "samples.Transaction_Details.RetrieveTransaction",
+      "python" : "samples.Transaction_Details.retrieve_transaction",
+      "java" : "samples.Transaction_Details.RetrieveTransaction",
+      "php" : "samples.Transaction_Details.RetrieveTransaction",
+      "ruby" : "samples.Transaction_Details.RetrieveTransaction"
+    },
+    "prerequisiteRoad" : "Process Payment"
+  }, {
+    "storedResponseFields" : [ "searchId" ],
+    "uniqueName" : "Create a search request",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Transaction_Search.CreateSearchRequest",
+      "csharp" : "samples.Transaction_Search.CreateSearchRequest",
+      "python" : "samples.Transaction_Search.create_search_request",
+      "java" : "samples.Transaction_Search.CreateSearchRequest",
+      "php" : "samples.Transaction_Search.CreateSearchRequest",
+      "ruby" : "samples.Transaction_Search.CreateSearchRequest"
+    },
+    "prerequisiteRoad" : ""
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Get Search results",
+    "dependentFieldMapping" : [ "searchId" ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.Transaction_Search.GetSearchResults",
+      "csharp" : "samples.Transaction_Search.GetSearchResults",
+      "python" : "samples.Transaction_Search.get_search_results",
+      "java" : "samples.Transaction_Search.GetSearchResults",
+      "php" : "samples.Transaction_Search.GetSearchResults",
+      "ruby" : "samples.Transaction_Search.GetSearchResults"
+    },
+    "prerequisiteRoad" : "Create a search request"
+  }, {
+    "storedResponseFields" : [ ],
+    "uniqueName" : "Get user information",
+    "dependentFieldMapping" : [ ],
+    "Assertions" : {
+      "requiredFields" : [ ],
+      "httpStatus" : "",
+      "expectedValues" : [ ]
+    },
+    "sampleClassNames" : {
+      "node" : "samples.User_Management.GetUserInformation",
+      "csharp" : "samples.User_Management.GetUserInformation",
+      "python" : "samples.User_Management.get_user_information",
+      "java" : "samples.User_Management.GetUserInformation",
+      "php" : "samples.User_Management.GetUserInformation",
+      "ruby" : "samples.User_Management.GetUserInformation"
+    },
+    "prerequisiteRoad" : ""
   } ],
   "Ignored List" : [ ]
 }

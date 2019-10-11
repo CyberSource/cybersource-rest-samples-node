@@ -14,5 +14,8 @@ install:
  - npm install
 
 script:
- - bash sample_code_runner.sh
+ - bash test/sample_code_runner.sh
  - cat output.log
+
+# For RoadRunner
+# - npm test
