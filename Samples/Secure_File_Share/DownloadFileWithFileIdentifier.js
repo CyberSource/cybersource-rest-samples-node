@@ -9,23 +9,26 @@ var readline = require('readline-sync');
 function downloadFileWithFileIdentifier(callback, fileId) {
 	try {
 		var configObject = new configuration();
+		var apiClient = new cybersourceRestApi.ApiClient();
 		var organizationId = "testrest";
 
 		var opts = [];
 		if (organizationId!= null) opts['organizationId'] = organizationId;
 
-		var instance = new cybersourceRestApi.SecureFileShareApi(configObject);
+		// File name in which details will be downloaded
+		var downloadFilePath = 'Resource\\DownloadedFileWithFileID';
+		apiClient.downloadFilePath = path.resolve(downloadFilePath);
+
+		var instance = new cybersourceRestApi.SecureFileShareApi(configObject, apiClient);
 
 		instance.getFile( fileId, opts, function (error, data, response) {
 			if(error) {
 				console.log('\nError : ' + JSON.stringify(error));
 			}
-			else if (data) {
-				console.log('\nData : ' + JSON.stringify(data));
+			else {
+				console.log('\nSuccessfully retrieved response');
+				console.log('\nResponse downloaded at this location:' + apiClient.downloadFilePath);
 			}
-
-			console.log('\nResponse : ' + JSON.stringify(response));
-			console.log('\nResponse Code of Download a file with file identifier : ' + JSON.stringify(response['status']));
 			callback(error, data, response);
 		});
 	}

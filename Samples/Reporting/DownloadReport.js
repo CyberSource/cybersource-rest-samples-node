@@ -9,25 +9,28 @@ var readline = require('readline-sync');
 function downloadReport(callback) {
 	try {
 		var configObject = new configuration();
+		var apiClient = new cybersourceRestApi.ApiClient();
 		var organizationId = "testrest";
-		var reportDate = '2018-09-30';
-		var reportName = "Demo_Report";
+		var reportDate = '2019-09-05';
+		var reportName = "testrest_subcription_v2989";
 
 		var opts = [];
 		if (organizationId!= null) opts['organizationId'] = organizationId;
 
-		var instance = new cybersourceRestApi.ReportDownloadsApi(configObject);
+		// File name in which details will be downloaded
+		var downloadFilePath = 'Resource\\DownloadedReport';
+		apiClient.downloadFilePath = path.resolve(downloadFilePath);
+
+		var instance = new cybersourceRestApi.ReportDownloadsApi(configObject, apiClient);
 
 		instance.downloadReport( reportDate, reportName, opts, function (error, data, response) {
 			if(error) {
 				console.log('\nError : ' + JSON.stringify(error));
 			}
-			else if (data) {
-				console.log('\nData : ' + JSON.stringify(data));
+			else {
+				console.log('\nSuccessfully retrieved response');
+				console.log('\nResponse downloaded at this location:' + apiClient.downloadFilePath);
 			}
-
-			console.log('\nResponse : ' + JSON.stringify(response));
-			console.log('\nResponse Code of Download a report : ' + JSON.stringify(response['status']));
 			callback(error, data, response);
 		});
 	}
