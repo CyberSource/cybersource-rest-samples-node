@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
+// var tokenVerifier = require('cybersource-rest-client/src/utilities/flex/TokenVerification');
 var verify = require('../VerifyToken.js');
 
 /**
@@ -50,7 +51,8 @@ function tokenizeCard(callback) {
 						console.log('Error : ' + error.stack);
 					}
 					else if (data) {
-						var result = verify(publicKey, data);
+						var tokenVerifier = new cybersourceRestApi.TokenVerification();
+						var result = tokenVerifier.verifyToken(publicKey, data);
 						console.log('Response of tokenization : ' + JSON.stringify(response));
 						console.log('Response code of tokenization: ' + response['status']);
 						console.log('KeyId: ' + keyId);
