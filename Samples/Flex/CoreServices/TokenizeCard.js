@@ -4,8 +4,6 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
-// var tokenVerifier = require('cybersource-rest-client/src/utilities/flex/TokenVerification');
-var verify = require('../VerifyToken.js');
 
 /**
  * This  is a sample code to call KeyGenerationApi which will return key and
