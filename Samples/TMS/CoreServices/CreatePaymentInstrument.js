@@ -36,7 +36,7 @@ function createPaymentInstrument(callback) {
 		var instrumentIdentifierCard = new cybersourceRestApi.TmsV1InstrumentIdentifiersPost200ResponseCard();
 		instrumentIdentifierCard.number = '4111111111111111';
 
-		var instrumentIdentifier = new cybersourceRestApi.TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedInstrumentIdentifier();
+		var instrumentIdentifier = new cybersourceRestApi.Tmsv1paymentinstrumentsInstrumentIdentifier();
 		instrumentIdentifier.card = instrumentIdentifierCard;
 
 		var body = new cybersourceRestApi.CreatePaymentInstrumentRequest();

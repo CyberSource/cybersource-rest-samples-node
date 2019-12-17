@@ -4,7 +4,6 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
-var verify = require('../VerifyToken.js');
 
 /**
  * This  is a sample code to call KeyGenerationApi which will return key and
@@ -50,7 +49,8 @@ function tokenizeCard(callback) {
 						console.log('Error : ' + error.stack);
 					}
 					else if (data) {
-						var result = verify(publicKey, data);
+						var tokenVerifier = new cybersourceRestApi.TokenVerification();
+						var result = tokenVerifier.verifyToken(publicKey, data);
 						console.log('Response of tokenization : ' + JSON.stringify(response));
 						console.log('Response code of tokenization: ' + response['status']);
 						console.log('KeyId: ' + keyId);
