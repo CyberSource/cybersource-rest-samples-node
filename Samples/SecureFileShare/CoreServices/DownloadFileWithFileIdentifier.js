@@ -15,7 +15,7 @@ function downloadFileWithFileIdentifier(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 
 		//File name in which report get downloaded
-		var downloadFilePath = 'Resource\\DownloadFileWithFileIdentifier.csv';
+		var downloadFilePath = 'Resource\\DownloadFileWithFileIdentifier';
 		apiClient.downloadFilePath = path.resolve(downloadFilePath);
 
 		var instance = new cybersourceRestApi.SecureFileShareApi(configObject, apiClient);
