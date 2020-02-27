@@ -5,7 +5,7 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
-function markAsSuspect(callback, id) {
+function fraudMarking(callback, id) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
@@ -48,8 +48,8 @@ function markAsSuspect(callback, id) {
 }
 if (require.main === module) {	
 		var id = "5825489395116729903003";
-		markAsSuspect(function () {
+		fraudMarking(function () {
 		console.log('\nFraudUpdate end.');
 	},id);
 }
-module.exports.markAsSuspect = markAsSuspect;
+module.exports.fraudMarking = fraudMarking;

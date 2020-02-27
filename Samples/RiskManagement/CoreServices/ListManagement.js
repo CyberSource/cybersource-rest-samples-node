@@ -5,7 +5,7 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
-function addDataToList(callback, type) {
+function listManagement(callback, type) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
@@ -65,8 +65,8 @@ function addDataToList(callback, type) {
 }
 if (require.main === module) {	
 		var type = "negative";
-		addDataToList(function () {
+		listManagement(function () {
 		console.log('\nAddNegative end.');
 	},type);
 }
-module.exports.addDataToList = addDataToList;
+module.exports.listManagement = listManagement;
