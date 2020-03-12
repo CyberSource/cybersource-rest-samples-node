@@ -88,6 +88,6 @@ function multipleLineItems(callback) {
 if (require.main === module) {	
 		multipleLineItems(function () {
 		console.log('\nVerifyCustomerAddress end.');
-	},);
+	});
 }
 module.exports.multipleLineItems = multipleLineItems;

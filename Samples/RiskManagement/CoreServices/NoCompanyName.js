@@ -71,6 +71,6 @@ function noCompanyName(callback) {
 if (require.main === module) {	
 		noCompanyName(function () {
 		console.log('\nValidateExportCompliance end.');
-	},);
+	});
 }
 module.exports.noCompanyName = noCompanyName;

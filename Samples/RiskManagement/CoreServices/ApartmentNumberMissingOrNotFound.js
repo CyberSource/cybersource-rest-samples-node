@@ -63,6 +63,6 @@ function apartmentNumberMissingOrNotFound(callback) {
 if (require.main === module) {	
 		apartmentNumberMissingOrNotFound(function () {
 		console.log('\nVerifyCustomerAddress end.');
-	},);
+	});
 }
 module.exports.apartmentNumberMissingOrNotFound = apartmentNumberMissingOrNotFound;

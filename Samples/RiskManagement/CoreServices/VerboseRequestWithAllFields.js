@@ -80,6 +80,6 @@ function verboseRequestWithAllFields(callback) {
 if (require.main === module) {	
 		verboseRequestWithAllFields(function () {
 		console.log('\nVerifyCustomerAddress end.');
-	},);
+	});
 }
 module.exports.verboseRequestWithAllFields = verboseRequestWithAllFields;

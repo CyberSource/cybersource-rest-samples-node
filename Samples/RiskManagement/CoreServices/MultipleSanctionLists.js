@@ -104,6 +104,6 @@ function multipleSanctionLists(callback) {
 if (require.main === module) {	
 		multipleSanctionLists(function () {
 		console.log('\nValidateExportCompliance end.');
-	},);
+	});
 }
 module.exports.multipleSanctionLists = multipleSanctionLists;

@@ -88,6 +88,6 @@ function complianceStatusCompleted(callback) {
 if (require.main === module) {	
 		complianceStatusCompleted(function () {
 		console.log('\nValidateExportCompliance end.');
-	},);
+	});
 }
 module.exports.complianceStatusCompleted = complianceStatusCompleted;

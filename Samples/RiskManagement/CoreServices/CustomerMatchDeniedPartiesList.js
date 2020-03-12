@@ -75,6 +75,6 @@ function customerMatchDeniedPartiesList(callback) {
 if (require.main === module) {	
 		customerMatchDeniedPartiesList(function () {
 		console.log('\nValidateExportCompliance end.');
-	},);
+	});
 }
 module.exports.customerMatchDeniedPartiesList = customerMatchDeniedPartiesList;
