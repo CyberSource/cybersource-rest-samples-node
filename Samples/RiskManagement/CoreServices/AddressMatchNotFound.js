@@ -51,6 +51,6 @@ function addressMatchNotFound(callback) {
 if (require.main === module) {	
 		addressMatchNotFound(function () {
 		console.log('\nVerifyCustomerAddress end.');
-	},);
+	});
 }
 module.exports.addressMatchNotFound = addressMatchNotFound;
