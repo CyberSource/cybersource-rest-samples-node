@@ -5,7 +5,7 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
-function customerMatchDeniedPartiesList(callback) {
+function validateExportCompliance(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
@@ -73,8 +73,8 @@ function customerMatchDeniedPartiesList(callback) {
 	}
 }
 if (require.main === module) {	
-		customerMatchDeniedPartiesList(function () {
+		validateExportCompliance(function () {
 		console.log('\nValidateExportCompliance end.');
 	},);
 }
-module.exports.customerMatchDeniedPartiesList = customerMatchDeniedPartiesList;
+module.exports.validateExportCompliance = validateExportCompliance;

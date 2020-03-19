@@ -5,7 +5,7 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
-function verboseRequestWithAllFields(callback) {
+function verifyCustomerAddress(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
@@ -78,8 +78,8 @@ function verboseRequestWithAllFields(callback) {
 	}
 }
 if (require.main === module) {	
-		verboseRequestWithAllFields(function () {
+		verifyCustomerAddress(function () {
 		console.log('\nVerifyCustomerAddress end.');
 	},);
 }
-module.exports.verboseRequestWithAllFields = verboseRequestWithAllFields;
+module.exports.verifyCustomerAddress = verifyCustomerAddress;
