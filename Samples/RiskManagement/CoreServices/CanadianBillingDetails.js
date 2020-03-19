@@ -69,6 +69,6 @@ function canadianBillingDetails(callback) {
 if (require.main === module) {	
 		canadianBillingDetails(function () {
 		console.log('\nVerifyCustomerAddress end.');
-	},);
+	});
 }
 module.exports.canadianBillingDetails = canadianBillingDetails;

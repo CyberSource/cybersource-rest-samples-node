@@ -80,6 +80,6 @@ function shippingDetailsNotUSOrCanada(callback) {
 if (require.main === module) {	
 		shippingDetailsNotUSOrCanada(function () {
 		console.log('\nVerifyCustomerAddress end.');
-	},);
+	});
 }
 module.exports.shippingDetailsNotUSOrCanada = shippingDetailsNotUSOrCanada;

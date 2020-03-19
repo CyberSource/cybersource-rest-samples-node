@@ -75,6 +75,6 @@ function validateExportCompliance(callback) {
 if (require.main === module) {	
 		validateExportCompliance(function () {
 		console.log('\nValidateExportCompliance end.');
-	},);
+	});
 }
 module.exports.validateExportCompliance = validateExportCompliance;

@@ -90,6 +90,6 @@ function exportComplianceInformationProvided(callback) {
 if (require.main === module) {	
 		exportComplianceInformationProvided(function () {
 		console.log('\nValidateExportCompliance end.');
-	},);
+	});
 }
 module.exports.exportComplianceInformationProvided = exportComplianceInformationProvided;

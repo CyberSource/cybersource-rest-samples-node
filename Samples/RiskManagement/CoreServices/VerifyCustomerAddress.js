@@ -80,6 +80,6 @@ function verifyCustomerAddress(callback) {
 if (require.main === module) {	
 		verifyCustomerAddress(function () {
 		console.log('\nVerifyCustomerAddress end.');
-	},);
+	});
 }
 module.exports.verifyCustomerAddress = verifyCustomerAddress;
