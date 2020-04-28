@@ -10,7 +10,7 @@ function processPayout(callback) {
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.PayoutsApi(configObject);
 
-		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Ptsv2payoutsClientReferenceInformation();
 		clientReferenceInformation.code = '33557799';
 
 		var senderInformation = new cybersourceRestApi.Ptsv2payoutsSenderInformation();

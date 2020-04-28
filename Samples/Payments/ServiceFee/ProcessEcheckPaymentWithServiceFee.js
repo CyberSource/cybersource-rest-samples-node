@@ -34,7 +34,6 @@ function ProcessEcheckPaymentWithServiceFee(callback, enableCapture) {
 		billTo.address2 = 'Address 2';
 		billTo.district = 'MI';
 		billTo.buildingNumber = '123';
-		billTo.company = 'ABC Company';
 
 		var orderInformation = new cybersourceRestApi.Ptsv2paymentsOrderInformation();
 		orderInformation.amountDetails = amountDetails;

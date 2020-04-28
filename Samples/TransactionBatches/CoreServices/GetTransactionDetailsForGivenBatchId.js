@@ -18,7 +18,7 @@ function getTransactionDetailsForGivenBatchId(callback, id){
 		
 		var instance = new CyberSourceRestApi.TransactionBatchesApi(configObject, apiClient);		
 
-		instance.getTransactionBatchDetails(id, function (error, data, response) {
+		instance.getTransactionBatchDetails(id, opts, function (error, data, response) {
 			if (error) {
 				console.log('\nError in fetching batch details : ' + JSON.stringify(error));
 			}

@@ -29,7 +29,6 @@ function ProcessEcheckCreditWithServiceFee(callback) {
 		billtoInformation.firstName = 'John';
 		billtoInformation.phoneNumber = '4158880000';
 		billtoInformation.email = 'test@cybs.com';
-		billtoInformation.company = "ABC Company";
 		orderInformation.billTo = billtoInformation;
 
 		var amountInformation = new cybersourceRestApi.Ptsv2paymentsOrderInformationAmountDetails();

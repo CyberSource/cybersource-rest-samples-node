@@ -23,9 +23,11 @@ function generateKey(callback) {
 		var request = new cybersourceRestApi.GeneratePublicKeyRequest();
 		request.encryptionType = 'None';
 
+		var opts = {}
+
 		console.log('\n*************** Generate Key ********************* ');
         
-		instance.generatePublicKey(request, function (error, data, response) {
+		instance.generatePublicKey(request, opts, function (error, data, response) {
 			if (error) {
 				console.log('Error : ' + error);
 				console.log('Error status code : ' + error.statusCode);

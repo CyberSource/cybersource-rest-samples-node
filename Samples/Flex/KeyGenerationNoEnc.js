@@ -13,9 +13,11 @@ function keyGenerationNoEnc(callback) {
 	var request = new cybersourceRestApi.GeneratePublicKeyRequest();
 	request.encryptionType = 'None';
 
+	var opts = {}
+
 	console.log('\n*************** Key Generation NoEnc ********************* ');
 
-	instance.generatePublicKey(request, function (error, data, response) {
+	instance.generatePublicKey(request, opts, function (error, data, response) {
 		if (error) {
 			console.log('Error : ' + error);
 		}

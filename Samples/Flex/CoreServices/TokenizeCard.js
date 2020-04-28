@@ -31,7 +31,9 @@ function tokenizeCard(callback) {
 		var KeyRequest = new cybersourceRestApi.GeneratePublicKeyRequest();
 		KeyRequest.encryptionType = 'None';
 
-		keyInstance.generatePublicKey(KeyRequest, function (error, data, response) {
+		var opts = {}
+
+		keyInstance.generatePublicKey(KeyRequest, opts, function (error, data, response) {
 			if (error) {
 				console.log('Error : ' + error);
 			}

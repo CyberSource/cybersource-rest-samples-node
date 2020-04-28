@@ -41,7 +41,7 @@ function DecisionProfileReject(callback) {
 	    orderInformation.amountDetails = amountDetails;
 	    orderInformation.billTo = billTo;
 
-	    var profile = new cybersourceRestApi.Riskv1decisionsRiskInformationProfile();
+	    var profile = new cybersourceRestApi.Ptsv2paymentsRiskInformationProfile();
 	    profile.name = "profile2";
         
         var riskInformation = new cybersourceRestApi.Riskv1decisionsRiskInformation();
