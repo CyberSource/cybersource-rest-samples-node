@@ -13,9 +13,11 @@ function generate_key(callback) {
 
 		requestObj.encryptionType = 'None';
 
+		var opts = {};
+
 		var instance = new cybersourceRestApi.KeyGenerationApi(configObject, apiClient);
 
-		instance.generatePublicKey(requestObj, function (error, data, response) {
+		instance.generatePublicKey(requestObj, opts, function (error, data, response) {
 			if (error) {
 				console.log('\nError : ' + JSON.stringify(error));
 			}

@@ -45,7 +45,7 @@ function dm_with_decision_profile_reject_response(callback) {
 		requestObj.orderInformation = orderInformation;
 
 		var riskInformation = new cybersourceRestApi.Riskv1decisionsRiskInformation();
-		var riskInformationProfile = new cybersourceRestApi.Riskv1decisionsRiskInformationProfile();
+		var riskInformationProfile = new cybersourceRestApi.Ptsv2paymentsRiskInformationProfile();
 		riskInformationProfile.name = 'profile2';
 		riskInformation.profile = riskInformationProfile;
 

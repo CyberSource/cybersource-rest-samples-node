@@ -15,6 +15,7 @@ function retrieve_transaction(callback) {
 
 		processPayment.simple_authorization_internet(function (error, data, response) {
 			var id = data['id'];
+			
 			setTimeout(() => {  
 				instance.getTransaction(id, function (error, data, response) {
 					if (error) {
