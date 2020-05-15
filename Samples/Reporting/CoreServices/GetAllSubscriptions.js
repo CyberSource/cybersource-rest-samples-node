@@ -10,13 +10,14 @@ var configuration = require(filePath);
  * retrive  report subscription
  */
 function getAllSubscriptions(callback) {
+	var opts = {}
 	try {
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.ReportSubscriptionsApi(configObject);
 
 		console.log('****************Get All Subscription****************');
 
-		instance.getAllSubscriptions(function (error, data, response) {
+		instance.getAllSubscriptions(opts, function (error, data, response) {
 			if (error) {
 				console.log('\nError in get all subscriptions : ' + JSON.stringify(error));
 			}
