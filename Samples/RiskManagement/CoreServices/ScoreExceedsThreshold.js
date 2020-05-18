@@ -52,14 +52,14 @@ function ScoreExceedsThreshold(callback) {
 	    orderInformation.billTo = billTo;
 	    orderInformation.shipTo = shipTo;
 		
-	    var request = new cybersourceRestApi.CreateBundledDecisionManagerCaseRequest();
+	    var request = new cybersourceRestApi.CreateDecisionManagerCaseRequest();
 	    request.clientReferenceInformation = clientReferenceInformation;
 	    request.paymentInformation = paymentInformation;
 	    request.orderInformation = orderInformation;
 
 	    console.log('\n*************** ScoreExceedsThreshold ********************* ');
 
-			instance.createBundledDecisionManagerCase(request, function (error, data, response) {
+			instance.createDecisionManagerCase(request, function (error, data, response) {
 				if (error) {
 					console.log('\nError in ScoreExceedsThreshold : ' + JSON.stringify(error));
 				}

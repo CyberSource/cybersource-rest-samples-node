@@ -54,14 +54,14 @@ function DecisionManagerWithShippingInformation(callback) {
 	    orderInformation.shipTo = shipTo;
 		
 
-	    var request = new cybersourceRestApi.CreateBundledDecisionManagerCaseRequest();
+	    var request = new cybersourceRestApi.CreateDecisionManagerCaseRequest();
 	    request.clientReferenceInformation = clientReferenceInformation;
 	    request.paymentInformation = paymentInformation;
 	    request.orderInformation =orderInformation;
 
 	    console.log('\n*************** DecisionManagerWithShippingInformation ********************* ');
 
-			instance.createBundledDecisionManagerCase(request, function (error, data, response) {
+			instance.createDecisionManagerCase(request, function (error, data, response) {
 				if (error) {
 					console.log('\nError in DecisionManagerWithShippingInformation : ' + JSON.stringify(error));
 				}
