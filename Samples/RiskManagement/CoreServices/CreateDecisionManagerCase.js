@@ -41,13 +41,13 @@ function CreateDecisionManagerCase(callback) {
 	    orderInformation.amountDetails = amountDetails;
 	    orderInformation.billTo = billTo;
 	
-	    var request = new cybersourceRestApi.CreateDecisionManagerCaseRequest();
+	    var request = new cybersourceRestApi.CreateBundledDecisionManagerCaseRequest();
 	    request.clientReferenceInformation = clientReferenceInformation;
 	    request.paymentInformation = paymentInformation;
 	    request.orderInformation =orderInformation;
 	    console.log('\n*************** CreateDecisionManagerCase ********************* ');
 
-			instance.createDecisionManagerCase(request, function (error, data, response) {
+			instance.createBundledDecisionManagerCase(request, function (error, data, response) {
 				if (error) {
 					console.log('\nError in CreateDecisionManagerCase : ' + JSON.stringify(error));
 				}

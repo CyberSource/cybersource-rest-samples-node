@@ -56,7 +56,7 @@ function DecisionManagerWithTravelInformation(callback) {
         travelInformation.journeyType = "One way";
         travelInformation.legs = legs;
 
-	    var request = new cybersourceRestApi.CreateDecisionManagerCaseRequest();
+	    var request = new cybersourceRestApi.CreateBundledDecisionManagerCaseRequest();
 	    request.clientReferenceInformation = clientReferenceInformation;
 	    request.paymentInformation = paymentInformation;
 	    request.orderInformation = orderInformation;
@@ -64,7 +64,7 @@ function DecisionManagerWithTravelInformation(callback) {
 
 	    console.log('\n*************** DecisionManagerWithTravelInformation ********************* ');
 
-			instance.createDecisionManagerCase(request, function (error, data, response) {
+			instance.createBundledDecisionManagerCase(request, function (error, data, response) {
 				if (error) {
 					console.log('\nError in DecisionManagerWithTravelInformation : ' + JSON.stringify(error));
 				}

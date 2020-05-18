@@ -10,6 +10,7 @@ var configuration = require(filePath);
  * retrive report by report name
  */
 function getSubscriptionForReportName(callback) {
+	var opts = {}
 	try {
 		var configObject = new configuration();
 		var instance = new cybersourceRestApi.ReportSubscriptionsApi(configObject);
@@ -18,7 +19,7 @@ function getSubscriptionForReportName(callback) {
 
 		console.log('****************Get Subscription for Report name****************');
 
-		instance.getSubscription(reportName, function (error, data, response) {
+		instance.getSubscription(reportName, opts, function (error, data, response) {
 			if (error) {
 				console.log('\nError in get subscription for report name : ' + JSON.stringify(error));
 			}

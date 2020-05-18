@@ -54,7 +54,7 @@ function DecisionManagerWithMerchantDefinedInformation(callback) {
         
 		
 
-	    var request = new cybersourceRestApi.CreateDecisionManagerCaseRequest();
+	    var request = new cybersourceRestApi.CreateBundledDecisionManagerCaseRequest();
 	    request.clientReferenceInformation = clientReferenceInformation;
 	    request.paymentInformation = paymentInformation;
 	    request.orderInformation =orderInformation;
@@ -62,7 +62,7 @@ function DecisionManagerWithMerchantDefinedInformation(callback) {
 
 	    console.log('\n*************** DecisionManagerWithMerchantDefinedInformation ********************* ');
 
-			instance.createDecisionManagerCase(request, function (error, data, response) {
+			instance.createBundledDecisionManagerCase(request, function (error, data, response) {
 				if (error) {
 					console.log('\nError in DecisionManagerWithMerchantDefinedInformation : ' + JSON.stringify(error));
 				}

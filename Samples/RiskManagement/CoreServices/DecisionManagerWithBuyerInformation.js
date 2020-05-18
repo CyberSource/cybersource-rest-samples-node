@@ -51,7 +51,7 @@ function DecisionManagerWithBuyerInformation(callback) {
         personalIdentification0.Id = "1a23apwe98";
         buyerInformation.personalIdentification = personalIdentification0;
 	
-	    var request = new cybersourceRestApi.CreateDecisionManagerCaseRequest();
+	    var request = new cybersourceRestApi.CreateBundledDecisionManagerCaseRequest();
 	    request.clientReferenceInformation = clientReferenceInformation;
 	    request.paymentInformation = paymentInformation;
 	    request.orderInformation =orderInformation;
@@ -59,7 +59,7 @@ function DecisionManagerWithBuyerInformation(callback) {
 
 	    console.log('\n*************** DecisionManagerWithBuyerInformation ********************* ');
 
-			instance.createDecisionManagerCase(request, function (error, data, response) {
+			instance.createBundledDecisionManagerCase(request, function (error, data, response) {
 				if (error) {
 					console.log('\nError in DecisionManagerWithBuyerInformation : ' + JSON.stringify(error));
 				}

@@ -50,7 +50,7 @@ function DecisionManagerWithDeviceInformation(callback) {
         deviceInformation.userAgent = "Chrome";
         
 
-	    var request = new cybersourceRestApi.CreateDecisionManagerCaseRequest();
+	    var request = new cybersourceRestApi.CreateBundledDecisionManagerCaseRequest();
 	    request.clientReferenceInformation = clientReferenceInformation;
 	    request.paymentInformation = paymentInformation;
 	    request.orderInformation =orderInformation;
@@ -58,7 +58,7 @@ function DecisionManagerWithDeviceInformation(callback) {
 
 	    console.log('\n*************** DecisionManagerWithDeviceInformation ********************* ');
 
-			instance.createDecisionManagerCase(request, function (error, data, response) {
+			instance.createBundledDecisionManagerCase(request, function (error, data, response) {
 				if (error) {
 					console.log('\nError in DecisionManagerWithDeviceInformation : ' + JSON.stringify(error));
 				}

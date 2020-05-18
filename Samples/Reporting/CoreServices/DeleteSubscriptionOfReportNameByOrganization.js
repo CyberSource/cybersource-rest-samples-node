@@ -18,9 +18,11 @@ function deleteSubscriptionReport(name, callback) {
 		var reportName = 'testrest_v2';
 		if (name !== '')
 			reportName = name;
+
+		var opts = {}
 		console.log('****************Delete Subscription of Report Name****************');
 
-		instance.deleteSubscription(reportName, function (error, data, response) {
+		instance.deleteSubscription(reportName, opts, function (error, data, response) {
 			if (error) {
 				console.log('\nError in Delete subscription of report name : ' + JSON.stringify(error));
 			}
