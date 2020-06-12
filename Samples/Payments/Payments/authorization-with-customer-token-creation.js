@@ -5,19 +5,35 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
-function zero_dollar_authorization(callback) {
+function authorization_with_customer_token_creation(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.CreatePaymentRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
-		clientReferenceInformation.code = '1234567890';
+		clientReferenceInformation.code = 'TC50171_3';
 		requestObj.clientReferenceInformation = clientReferenceInformation;
+
+		var processingInformation = new cybersourceRestApi.Ptsv2paymentsProcessingInformation();
+
+		var actionList = new Array();
+		actionList.push("TOKEN_CREATE");
+		processingInformation.actionList = actionList;
+
+
+		var actionTokenTypes = new Array();
+		actionTokenTypes.push("customer");
+		actionTokenTypes.push("paymentInstrument");
+		actionTokenTypes.push("shippingAddress");
+		processingInformation.actionTokenTypes = actionTokenTypes;
+
+		processingInformation.capture = false;
+		requestObj.processingInformation = processingInformation;
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();
 		var paymentInformationCard = new cybersourceRestApi.Ptsv2paymentsPaymentInformationCard();
-		paymentInformationCard.number = '5555555555554444';
+		paymentInformationCard.number = '4111111111111111';
 		paymentInformationCard.expirationMonth = '12';
 		paymentInformationCard.expirationYear = '2031';
 		paymentInformationCard.securityCode = '123';
@@ -27,7 +43,7 @@ function zero_dollar_authorization(callback) {
 
 		var orderInformation = new cybersourceRestApi.Ptsv2paymentsOrderInformation();
 		var orderInformationAmountDetails = new cybersourceRestApi.Ptsv2paymentsOrderInformationAmountDetails();
-		orderInformationAmountDetails.totalAmount = '0';
+		orderInformationAmountDetails.totalAmount = '102.21';
 		orderInformationAmountDetails.currency = 'USD';
 		orderInformation.amountDetails = orderInformationAmountDetails;
 
@@ -42,6 +58,16 @@ function zero_dollar_authorization(callback) {
 		orderInformationBillTo.email = 'test@cybs.com';
 		orderInformationBillTo.phoneNumber = '4158880000';
 		orderInformation.billTo = orderInformationBillTo;
+
+		var orderInformationShipTo = new cybersourceRestApi.Ptsv2paymentsOrderInformationShipTo();
+		orderInformationShipTo.firstName = 'John';
+		orderInformationShipTo.lastName = 'Doe';
+		orderInformationShipTo.address1 = '1 Market St';
+		orderInformationShipTo.locality = 'san francisco';
+		orderInformationShipTo.administrativeArea = 'CA';
+		orderInformationShipTo.postalCode = '94105';
+		orderInformationShipTo.country = 'US';
+		orderInformation.shipTo = orderInformationShipTo;
 
 		requestObj.orderInformation = orderInformation;
 
@@ -66,8 +92,8 @@ function zero_dollar_authorization(callback) {
 	}
 }
 if (require.main === module) {	
-		zero_dollar_authorization(function () {
+		authorization_with_customer_token_creation(function () {
 		console.log('\nCreatePayment end.');
 	});
 }
-module.exports.zero_dollar_authorization = zero_dollar_authorization;
+module.exports.authorization_with_customer_token_creation = authorization_with_customer_token_creation;

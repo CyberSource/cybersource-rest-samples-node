@@ -48,8 +48,8 @@ function credit(callback) {
 
 		var instance = new cybersourceRestApi.CreditApi(configObject, apiClient);
 
-		instance.createCredit(requestObj, function (error, data, response) {
-			if (error) {
+		instance.createCredit( requestObj, function (error, data, response) {
+			if(error) {
 				console.log('\nError : ' + JSON.stringify(error));
 			}
 			else if (data) {
@@ -65,8 +65,8 @@ function credit(callback) {
 		console.log('\nException on calling the API : ' + error);
 	}
 }
-if (require.main === module) {
-	credit(function () {
+if (require.main === module) {	
+		credit(function () {
 		console.log('\nCreateCredit end.');
 	});
 }

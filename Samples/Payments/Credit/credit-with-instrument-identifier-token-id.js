@@ -5,49 +5,45 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
-function electronic_check_standalone_credits(callback) {
+function credit_with_instrument_identifier_token_id(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.CreateCreditRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
-		clientReferenceInformation.code = 'TC46125-1';
+		clientReferenceInformation.code = '12345678';
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsidrefundsPaymentInformation();
-		var paymentInformationBank = new cybersourceRestApi.Ptsv2paymentsPaymentInformationBank();
-		var paymentInformationBankAccount = new cybersourceRestApi.Ptsv2paymentsPaymentInformationBankAccount();
-		paymentInformationBankAccount.type = 'C';
-		paymentInformationBankAccount.number = '4100';
-		paymentInformationBankAccount.checkNumber = '123456';
-		paymentInformationBank.account = paymentInformationBankAccount;
+		var paymentInformationCard = new cybersourceRestApi.Ptsv2paymentsidrefundsPaymentInformationCard();
+		paymentInformationCard.expirationMonth = '03';
+		paymentInformationCard.expirationYear = '2031';
+		paymentInformationCard.type = '001';
+		paymentInformation.card = paymentInformationCard;
 
-		paymentInformationBank.routingNumber = '071923284';
-		paymentInformation.bank = paymentInformationBank;
-
-		var paymentInformationPaymentType = new cybersourceRestApi.Ptsv2paymentsPaymentInformationPaymentType();
-		paymentInformationPaymentType.name = 'CHECK';
-		paymentInformation.paymentType = paymentInformationPaymentType;
+		var paymentInformationInstrumentIdentifier = new cybersourceRestApi.Ptsv2paymentsPaymentInformationInstrumentIdentifier();
+		paymentInformationInstrumentIdentifier.id = '7500BB199B4270EFE05340588D0AFCII';
+		paymentInformation.instrumentIdentifier = paymentInformationInstrumentIdentifier;
 
 		requestObj.paymentInformation = paymentInformation;
 
 		var orderInformation = new cybersourceRestApi.Ptsv2paymentsidrefundsOrderInformation();
 		var orderInformationAmountDetails = new cybersourceRestApi.Ptsv2paymentsidcapturesOrderInformationAmountDetails();
-		orderInformationAmountDetails.totalAmount = '100';
-		orderInformationAmountDetails.currency = 'USD';
+		orderInformationAmountDetails.totalAmount = '200';
+		orderInformationAmountDetails.currency = 'usd';
 		orderInformation.amountDetails = orderInformationAmountDetails;
 
 		var orderInformationBillTo = new cybersourceRestApi.Ptsv2paymentsidcapturesOrderInformationBillTo();
 		orderInformationBillTo.firstName = 'John';
-		orderInformationBillTo.lastName = 'Doe';
-		orderInformationBillTo.address1 = '1 Market St';
-		orderInformationBillTo.locality = 'san francisco';
+		orderInformationBillTo.lastName = 'Deo';
+		orderInformationBillTo.address1 = '900 Metro Center Blvd';
+		orderInformationBillTo.locality = 'Foster City';
 		orderInformationBillTo.administrativeArea = 'CA';
-		orderInformationBillTo.postalCode = '94105';
+		orderInformationBillTo.postalCode = '48104-2201';
 		orderInformationBillTo.country = 'US';
 		orderInformationBillTo.email = 'test@cybs.com';
-		orderInformationBillTo.phoneNumber = '4158880000';
+		orderInformationBillTo.phoneNumber = '9321499232';
 		orderInformation.billTo = orderInformationBillTo;
 
 		requestObj.orderInformation = orderInformation;
@@ -73,8 +69,8 @@ function electronic_check_standalone_credits(callback) {
 	}
 }
 if (require.main === module) {	
-		electronic_check_standalone_credits(function () {
+		credit_with_instrument_identifier_token_id(function () {
 		console.log('\nCreateCredit end.');
 	});
 }
-module.exports.electronic_check_standalone_credits = electronic_check_standalone_credits;
+module.exports.credit_with_instrument_identifier_token_id = credit_with_instrument_identifier_token_id;

@@ -5,29 +5,30 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
-function zero_dollar_authorization(callback) {
+function electronic_check_debits_with_payment_instrument_token(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.CreatePaymentRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
-		clientReferenceInformation.code = '1234567890';
+		clientReferenceInformation.code = 'TC50171_3';
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();
-		var paymentInformationCard = new cybersourceRestApi.Ptsv2paymentsPaymentInformationCard();
-		paymentInformationCard.number = '5555555555554444';
-		paymentInformationCard.expirationMonth = '12';
-		paymentInformationCard.expirationYear = '2031';
-		paymentInformationCard.securityCode = '123';
-		paymentInformation.card = paymentInformationCard;
+		var paymentInformationCustomer = new cybersourceRestApi.Ptsv2paymentsPaymentInformationCustomer();
+		paymentInformationCustomer.customerId = '7500BB199B4270EFE05340588D0AFCAD';
+		paymentInformation.customer = paymentInformationCustomer;
+
+		var paymentInformationPaymentType = new cybersourceRestApi.Ptsv2paymentsPaymentInformationPaymentType();
+		paymentInformationPaymentType.name = 'CHECK';
+		paymentInformation.paymentType = paymentInformationPaymentType;
 
 		requestObj.paymentInformation = paymentInformation;
 
 		var orderInformation = new cybersourceRestApi.Ptsv2paymentsOrderInformation();
 		var orderInformationAmountDetails = new cybersourceRestApi.Ptsv2paymentsOrderInformationAmountDetails();
-		orderInformationAmountDetails.totalAmount = '0';
+		orderInformationAmountDetails.totalAmount = '100';
 		orderInformationAmountDetails.currency = 'USD';
 		orderInformation.amountDetails = orderInformationAmountDetails;
 
@@ -40,7 +41,6 @@ function zero_dollar_authorization(callback) {
 		orderInformationBillTo.postalCode = '94105';
 		orderInformationBillTo.country = 'US';
 		orderInformationBillTo.email = 'test@cybs.com';
-		orderInformationBillTo.phoneNumber = '4158880000';
 		orderInformation.billTo = orderInformationBillTo;
 
 		requestObj.orderInformation = orderInformation;
@@ -66,8 +66,8 @@ function zero_dollar_authorization(callback) {
 	}
 }
 if (require.main === module) {	
-		zero_dollar_authorization(function () {
+		electronic_check_debits_with_payment_instrument_token(function () {
 		console.log('\nCreatePayment end.');
 	});
 }
-module.exports.zero_dollar_authorization = zero_dollar_authorization;
+module.exports.electronic_check_debits_with_payment_instrument_token = electronic_check_debits_with_payment_instrument_token;

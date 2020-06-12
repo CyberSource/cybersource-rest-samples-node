@@ -5,42 +5,41 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
-function zero_dollar_authorization(callback) {
+function authorization_with_decision_manager(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.CreatePaymentRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
-		clientReferenceInformation.code = '1234567890';
+		clientReferenceInformation.code = 'TSYS_Eh_FE_01';
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();
 		var paymentInformationCard = new cybersourceRestApi.Ptsv2paymentsPaymentInformationCard();
-		paymentInformationCard.number = '5555555555554444';
-		paymentInformationCard.expirationMonth = '12';
-		paymentInformationCard.expirationYear = '2031';
-		paymentInformationCard.securityCode = '123';
+		paymentInformationCard.number = '4111111111111111';
+		paymentInformationCard.expirationMonth = '11';
+		paymentInformationCard.expirationYear = '2025';
 		paymentInformation.card = paymentInformationCard;
 
 		requestObj.paymentInformation = paymentInformation;
 
 		var orderInformation = new cybersourceRestApi.Ptsv2paymentsOrderInformation();
 		var orderInformationAmountDetails = new cybersourceRestApi.Ptsv2paymentsOrderInformationAmountDetails();
-		orderInformationAmountDetails.totalAmount = '0';
+		orderInformationAmountDetails.totalAmount = '10';
 		orderInformationAmountDetails.currency = 'USD';
 		orderInformation.amountDetails = orderInformationAmountDetails;
 
 		var orderInformationBillTo = new cybersourceRestApi.Ptsv2paymentsOrderInformationBillTo();
-		orderInformationBillTo.firstName = 'John';
-		orderInformationBillTo.lastName = 'Doe';
-		orderInformationBillTo.address1 = '1 Market St';
-		orderInformationBillTo.locality = 'san francisco';
+		orderInformationBillTo.firstName = 'JSON';
+		orderInformationBillTo.lastName = 'RTS';
+		orderInformationBillTo.address1 = '201 S. Division St._1';
+		orderInformationBillTo.locality = 'Foster City';
 		orderInformationBillTo.administrativeArea = 'CA';
-		orderInformationBillTo.postalCode = '94105';
+		orderInformationBillTo.postalCode = '94404';
 		orderInformationBillTo.country = 'US';
-		orderInformationBillTo.email = 'test@cybs.com';
-		orderInformationBillTo.phoneNumber = '4158880000';
+		orderInformationBillTo.email = 'beforeauth@cybersource.com';
+		orderInformationBillTo.phoneNumber = '6504327113';
 		orderInformation.billTo = orderInformationBillTo;
 
 		requestObj.orderInformation = orderInformation;
@@ -66,8 +65,8 @@ function zero_dollar_authorization(callback) {
 	}
 }
 if (require.main === module) {	
-		zero_dollar_authorization(function () {
+		authorization_with_decision_manager(function () {
 		console.log('\nCreatePayment end.');
 	});
 }
-module.exports.zero_dollar_authorization = zero_dollar_authorization;
+module.exports.authorization_with_decision_manager = authorization_with_decision_manager;

@@ -5,29 +5,32 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
-function zero_dollar_authorization(callback) {
+function authorization_with_capturesale(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.CreatePaymentRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
-		clientReferenceInformation.code = '1234567890';
+		clientReferenceInformation.code = 'TC50171_3';
 		requestObj.clientReferenceInformation = clientReferenceInformation;
+
+		var processingInformation = new cybersourceRestApi.Ptsv2paymentsProcessingInformation();
+		processingInformation.capture = true;
+		requestObj.processingInformation = processingInformation;
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();
 		var paymentInformationCard = new cybersourceRestApi.Ptsv2paymentsPaymentInformationCard();
-		paymentInformationCard.number = '5555555555554444';
+		paymentInformationCard.number = '4111111111111111';
 		paymentInformationCard.expirationMonth = '12';
 		paymentInformationCard.expirationYear = '2031';
-		paymentInformationCard.securityCode = '123';
 		paymentInformation.card = paymentInformationCard;
 
 		requestObj.paymentInformation = paymentInformation;
 
 		var orderInformation = new cybersourceRestApi.Ptsv2paymentsOrderInformation();
 		var orderInformationAmountDetails = new cybersourceRestApi.Ptsv2paymentsOrderInformationAmountDetails();
-		orderInformationAmountDetails.totalAmount = '0';
+		orderInformationAmountDetails.totalAmount = '102.21';
 		orderInformationAmountDetails.currency = 'USD';
 		orderInformation.amountDetails = orderInformationAmountDetails;
 
@@ -66,8 +69,8 @@ function zero_dollar_authorization(callback) {
 	}
 }
 if (require.main === module) {	
-		zero_dollar_authorization(function () {
+		authorization_with_capturesale(function () {
 		console.log('\nCreatePayment end.');
 	});
 }
-module.exports.zero_dollar_authorization = zero_dollar_authorization;
+module.exports.authorization_with_capturesale = authorization_with_capturesale;
