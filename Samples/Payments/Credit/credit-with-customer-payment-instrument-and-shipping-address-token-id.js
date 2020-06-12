@@ -5,7 +5,7 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
-function service_fees_credit(callback) {
+function credit_with_customer_payment_instrument_and_shipping_address_token_id(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
@@ -16,32 +16,25 @@ function service_fees_credit(callback) {
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsidrefundsPaymentInformation();
-		var paymentInformationCard = new cybersourceRestApi.Ptsv2paymentsidrefundsPaymentInformationCard();
-		paymentInformationCard.number = '4111111111111111';
-		paymentInformationCard.expirationMonth = '03';
-		paymentInformationCard.expirationYear = '2031';
-		paymentInformation.card = paymentInformationCard;
+		var paymentInformationCustomer = new cybersourceRestApi.Ptsv2paymentsPaymentInformationCustomer();
+		paymentInformationCustomer.id = '7500BB199B4270EFE05340588D0AFCAD';
+		paymentInformation.customer = paymentInformationCustomer;
+
+		var paymentInformationPaymentInstrument = new cybersourceRestApi.Ptsv2paymentsPaymentInformationPaymentInstrument();
+		paymentInformationPaymentInstrument.id = '7500BB199B4270EFE05340588D0AFCPI';
+		paymentInformation.paymentInstrument = paymentInformationPaymentInstrument;
+
+		var paymentInformationShippingAddress = new cybersourceRestApi.Ptsv2paymentsPaymentInformationShippingAddress();
+		paymentInformationShippingAddress.id = '7500BB199B4270EFE05340588D0AFCSA';
+		paymentInformation.shippingAddress = paymentInformationShippingAddress;
 
 		requestObj.paymentInformation = paymentInformation;
 
 		var orderInformation = new cybersourceRestApi.Ptsv2paymentsidrefundsOrderInformation();
 		var orderInformationAmountDetails = new cybersourceRestApi.Ptsv2paymentsidcapturesOrderInformationAmountDetails();
-		orderInformationAmountDetails.totalAmount = '2325.00';
+		orderInformationAmountDetails.totalAmount = '200';
 		orderInformationAmountDetails.currency = 'usd';
-		orderInformationAmountDetails.serviceFeeAmount = '30.0';
 		orderInformation.amountDetails = orderInformationAmountDetails;
-
-		var orderInformationBillTo = new cybersourceRestApi.Ptsv2paymentsidcapturesOrderInformationBillTo();
-		orderInformationBillTo.firstName = 'John';
-		orderInformationBillTo.lastName = 'Doe';
-		orderInformationBillTo.address1 = '1 Market St';
-		orderInformationBillTo.locality = 'san francisco';
-		orderInformationBillTo.administrativeArea = 'CA';
-		orderInformationBillTo.postalCode = '94105';
-		orderInformationBillTo.country = 'US';
-		orderInformationBillTo.email = 'test@cybs.com';
-		orderInformationBillTo.phoneNumber = '4158880000';
-		orderInformation.billTo = orderInformationBillTo;
 
 		requestObj.orderInformation = orderInformation;
 
@@ -66,8 +59,8 @@ function service_fees_credit(callback) {
 	}
 }
 if (require.main === module) {	
-		service_fees_credit(function () {
+		credit_with_customer_payment_instrument_and_shipping_address_token_id(function () {
 		console.log('\nCreateCredit end.');
 	});
 }
-module.exports.service_fees_credit = service_fees_credit;
+module.exports.credit_with_customer_payment_instrument_and_shipping_address_token_id = credit_with_customer_payment_instrument_and_shipping_address_token_id;

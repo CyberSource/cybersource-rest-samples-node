@@ -5,43 +5,53 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
-function zero_dollar_authorization(callback) {
+function authorization_with_decision_manager_shipping_information(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.CreatePaymentRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
-		clientReferenceInformation.code = '1234567890';
+		clientReferenceInformation.code = '54323007';
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();
 		var paymentInformationCard = new cybersourceRestApi.Ptsv2paymentsPaymentInformationCard();
-		paymentInformationCard.number = '5555555555554444';
+		paymentInformationCard.number = '4444444444444448';
 		paymentInformationCard.expirationMonth = '12';
-		paymentInformationCard.expirationYear = '2031';
-		paymentInformationCard.securityCode = '123';
+		paymentInformationCard.expirationYear = '2020';
 		paymentInformation.card = paymentInformationCard;
 
 		requestObj.paymentInformation = paymentInformation;
 
 		var orderInformation = new cybersourceRestApi.Ptsv2paymentsOrderInformation();
 		var orderInformationAmountDetails = new cybersourceRestApi.Ptsv2paymentsOrderInformationAmountDetails();
-		orderInformationAmountDetails.totalAmount = '0';
+		orderInformationAmountDetails.totalAmount = '144.14';
 		orderInformationAmountDetails.currency = 'USD';
 		orderInformation.amountDetails = orderInformationAmountDetails;
 
 		var orderInformationBillTo = new cybersourceRestApi.Ptsv2paymentsOrderInformationBillTo();
-		orderInformationBillTo.firstName = 'John';
-		orderInformationBillTo.lastName = 'Doe';
-		orderInformationBillTo.address1 = '1 Market St';
-		orderInformationBillTo.locality = 'san francisco';
-		orderInformationBillTo.administrativeArea = 'CA';
-		orderInformationBillTo.postalCode = '94105';
+		orderInformationBillTo.firstName = 'James';
+		orderInformationBillTo.lastName = 'Smith';
+		orderInformationBillTo.address1 = '96, powers street';
+		orderInformationBillTo.locality = 'Clearwater milford';
+		orderInformationBillTo.administrativeArea = 'NH';
+		orderInformationBillTo.postalCode = '03055';
 		orderInformationBillTo.country = 'US';
-		orderInformationBillTo.email = 'test@cybs.com';
-		orderInformationBillTo.phoneNumber = '4158880000';
+		orderInformationBillTo.email = 'test@visa.com';
+		orderInformationBillTo.phoneNumber = '7606160717';
 		orderInformation.billTo = orderInformationBillTo;
+
+		var orderInformationShipTo = new cybersourceRestApi.Ptsv2paymentsOrderInformationShipTo();
+		orderInformationShipTo.firstName = 'James';
+		orderInformationShipTo.lastName = 'Smith';
+		orderInformationShipTo.address1 = '96, powers street';
+		orderInformationShipTo.locality = 'Clearwater milford';
+		orderInformationShipTo.administrativeArea = 'KA';
+		orderInformationShipTo.postalCode = '560056';
+		orderInformationShipTo.country = 'IN';
+		orderInformationShipTo.phoneNumber = '7606160717';
+		orderInformation.shipTo = orderInformationShipTo;
 
 		requestObj.orderInformation = orderInformation;
 
@@ -66,8 +76,8 @@ function zero_dollar_authorization(callback) {
 	}
 }
 if (require.main === module) {	
-		zero_dollar_authorization(function () {
+		authorization_with_decision_manager_shipping_information(function () {
 		console.log('\nCreatePayment end.');
 	});
 }
-module.exports.zero_dollar_authorization = zero_dollar_authorization;
+module.exports.authorization_with_decision_manager_shipping_information = authorization_with_decision_manager_shipping_information;
