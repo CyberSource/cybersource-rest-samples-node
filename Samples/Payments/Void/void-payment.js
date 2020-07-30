@@ -4,7 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
-var processPayment = require('../Payments/simple-authorization-internet');
+var processPayment = require('../Payments/simple-authorizationinternet');
 
 function void_payment(callback) {
 	try {
