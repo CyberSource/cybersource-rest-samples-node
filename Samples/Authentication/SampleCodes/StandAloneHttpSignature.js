@@ -8,63 +8,63 @@ var merchantId = 'testrest';
 var merchantKeyId = '08c94330-f618-42a3-b09d-e1e43be5efda';
 var merchantSecretKey = 'yBJxy6LjM2TmcPGu+GaJrHtkke25fPpUX+UY6/L/1tE=';
 var payload = '{' +
-        '  \"clientReferenceInformation\": {' +
-        '    \"code\": \"TC50171_3\"' +
-        '  },' +
-        '  \"processingInformation\": {' +
-        '    \"commerceIndicator\": \"internet\"' +
-        '  },' +
-        '  \"orderInformation\": {' +
-        '    \"billTo\": {' +
-        '      \"firstName\": \"john\",' +
-        '      \"lastName\": \"doe\",' +
-        '      \"address1\": \"201 S. Division St.\",' +
-        '      \"postalCode\": \"48104-2201\",' +
-        '      \"locality\": \"Ann Arbor\",' +
-        '      \"administrativeArea\": \"MI\",' +
-        '      \"country\": \"US\",' +
-        '      \"phoneNumber\": \"999999999\",' +
-        '      \"email\": \"test@cybs.com\"' +
-        '    },' +
-        '    \"amountDetails\": {' +
-        '      \"totalAmount\": \"10\",' +
-        '      \"currency\": \"USD\"' +
-        '    }' +
-        '  },' +
-        '  \"paymentInformation\": {' +
-        '    \"card\": {' +
-        '      \"expirationYear\": \"2031\",' +
-        '      \"number\": \"5555555555554444\",' +
-        '      \"securityCode\": \"123\",' +
-        '      \"expirationMonth\": \"12\",' +
-        '      \"type\": \"002\"' +
-        '    }' +
-        '  }' +
-        '}';
+		'	\"clientReferenceInformation\": {' +
+		'	\"code\": \"TC50171_3\"' +
+		'	},' +
+		'	\"processingInformation\": {' +
+		'	\"commerceIndicator\": \"internet\"' +
+		'	},' +
+		'	\"orderInformation\": {' +
+		'	\"billTo\": {' +
+		'		\"firstName\": \"john\",' +
+		'		\"lastName\": \"doe\",' +
+		'		\"address1\": \"201 S. Division St.\",' +
+		'		\"postalCode\": \"48104-2201\",' +
+		'		\"locality\": \"Ann Arbor\",' +
+		'		\"administrativeArea\": \"MI\",' +
+		'		\"country\": \"US\",' +
+		'		\"phoneNumber\": \"999999999\",' +
+		'		\"email\": \"test@cybs.com\"' +
+		'	},' +
+		'	\"amountDetails\": {' +
+		'		\"totalAmount\": \"10\",' +
+		'		\"currency\": \"USD\"' +
+		'	}' +
+		'	},' +
+		'	\"paymentInformation\": {' +
+		'	\"card\": {' +
+		'		\"expirationYear\": \"2031\",' +
+		'		\"number\": \"5555555555554444\",' +
+		'		\"securityCode\": \"123\",' +
+		'		\"expirationMonth\": \"12\",' +
+		'		\"type\": \"002\"' +
+		'	}' +
+		'	}' +
+		'}';
 		
 function paramToString(param) {
 	if (param == undefined || param == null) {
-      return '';
-    }
-    if (param instanceof Date) {
-      return param.toJSON();
-    }
-    return param.toString();
+		return '';
+	}
+	if (param instanceof Date) {
+		return param.toJSON();
+	}
+	return param.toString();
 }
 		
 function normalizeParams(params) {
 	var newParams = {};
-    for (var key in params) {
-      if (params.hasOwnProperty(key) && params[key] != undefined && params[key] != null) {
-        var value = params[key];
-        if (Array.isArray(value)) {
-          newParams[key] = value;
-        } else {
-          newParams[key] = paramToString(value);
-        }
-      }
-    }
-    return newParams;
+	for (var key in params) {
+		if (params.hasOwnProperty(key) && params[key] != undefined && params[key] != null) {
+		var value = params[key];
+		if (Array.isArray(value)) {
+			newParams[key] = value;
+		} else {
+			newParams[key] = paramToString(value);
+		}
+		}
+	}
+	return newParams;
 }
 		
 function generateDigest(request) {
@@ -81,7 +81,7 @@ function generateDigest(request) {
 		
 function getHttpSignature(resource, method, request) {
 	var signatureHeader = "";
-    var signatureValue = "";
+	var signatureValue = "";
 	
 	// KeyId is the key obtained from EBC
 	signatureHeader += "keyid=\"" + merchantKeyId + "\"";
@@ -137,13 +137,13 @@ function getHttpSignature(resource, method, request) {
 		
 function processPost(callback) {
 	var resource = "/pts/v2/payments/";
-    var method = "post";
-    var statusCode = -1;
+	var method = "post";
+	var statusCode = -1;
 	var url = 'https://' + requestHost + resource;
 	
 	var headerParams = {};
 	var contentType = 'application/json;charset=utf-8';
-    var acceptType = 'application/hal+json;charset=utf-8';
+	var acceptType = 'application/hal+json;charset=utf-8';
 	
 	var request = superagent(method, url);
 	
@@ -175,10 +175,10 @@ function processPost(callback) {
 	headerParams['User-Agent'] = "Mozilla/5.0";
 	
 	// Set header parameters
-    request.set(normalizeParams(headerParams));
+	request.set(normalizeParams(headerParams));
 	
 	// Set request timeout
-    request.timeout(60000);
+	request.timeout(60000);
 	
 	request.type(contentType);
 	
@@ -189,8 +189,8 @@ function processPost(callback) {
 	request.end(function(error, response) {
 		var data = response.body;
 		if (data == null || (typeof data === 'object' && typeof data.length === 'undefined' && !Object.keys(data).length)) {
-		  // SuperAgent does not always produce a body; use the unparsed response as a fallback
-		  data = response.text;
+			// SuperAgent does not always produce a body; use the unparsed response as a fallback
+			data = response.text;
 		}
 		
 		console.log("\n -- Response Message for POST call --");
@@ -205,20 +205,20 @@ function processPost(callback) {
 		}
 		
 		callback(error, data, response, _status);
-    });
+	});
 	
 	return request;
 }
 
 function processGet(callback) {
 	var resource = "/reporting/v3/reports?startTime=2018-10-01T00:00:00.0Z&endTime=2018-10-30T23:59:59.0Z&timeQueryType=executedTime&reportMimeType=application/xml";
-    var method = "get";
-    var statusCode = -1;
+	var method = "get";
+	var statusCode = -1;
 	var url = 'https://' + requestHost + resource;
 	
 	var headerParams = {};
 	var contentType = 'application/json;charset=utf-8';
-    var acceptType = 'application/hal+json;charset=utf-8';
+	var acceptType = 'application/hal+json;charset=utf-8';
 	
 	var request = superagent(method, url);
 	
@@ -242,10 +242,10 @@ function processGet(callback) {
 	headerParams['User-Agent'] = "Mozilla/5.0";
 	
 	// Set header parameters
-    request.set(normalizeParams(headerParams));
+	request.set(normalizeParams(headerParams));
 	
 	// Set request timeout
-    request.timeout(60000);
+	request.timeout(60000);
 	
 	request.type(contentType);
 	
@@ -254,8 +254,8 @@ function processGet(callback) {
 	request.end(function(error, response) {
 		var data = response.body;
 		if (data == null || (typeof data === 'object' && typeof data.length === 'undefined' && !Object.keys(data).length)) {
-		  // SuperAgent does not always produce a body; use the unparsed response as a fallback
-		  data = response.text;
+			// SuperAgent does not always produce a body; use the unparsed response as a fallback
+			data = response.text;
 		}
 		
 		console.log("\n -- Response Message for GET call --");
@@ -270,13 +270,13 @@ function processGet(callback) {
 		}
 		
 		callback(error, data, response, _status);
-    });
+	});
 	
 	return request;
 }
 
 function standaloneHttpSignature(callback) {
-	// HTTP POST REQUEST    
+	// HTTP POST REQUEST	
 	console.log('\n\nSample 1: POST call - CyberSource Payments API - HTTP POST Payment request');
 	processPost(function (error, data, response, statusCode) {
 		if (statusCode == 0) {
@@ -286,10 +286,10 @@ function standaloneHttpSignature(callback) {
 			console.log("\nSTATUS : ERROR (HTTP Status = " + statusCode + ")");
 		}
 	});
-    
+	
 	// HTTP GET REQUEST
-    console.log('\n\nSample 2: GET call - CyberSource Reporting API - HTTP GET Reporting request');
-    processGet(function (error, data, response, statusCode) {    
+	console.log('\n\nSample 2: GET call - CyberSource Reporting API - HTTP GET Reporting request');
+	processGet(function (error, data, response, statusCode) {	
 		if (statusCode == 0) {
 			console.log("\nSTATUS : SUCCESS (HTTP Status = " + statusCode + ")");
 		}

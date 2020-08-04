@@ -11,22 +11,22 @@ function create_payment_instrument_bank_account(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
-		var requestObj = new cybersourceRestApi.CreatePaymentInstrumentRequest();
+		var requestObj = new cybersourceRestApi.PostPaymentInstrumentRequest();
 
-		var bankAccount = new cybersourceRestApi.TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedBankAccount();
+		var bankAccount = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentBankAccount();
 		bankAccount.type = 'savings';
 		requestObj.bankAccount = bankAccount;
 
-		var buyerInformation = new cybersourceRestApi.TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedBuyerInformation();
+		var buyerInformation = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentBuyerInformation();
 		buyerInformation.companyTaxID = '12345';
 		buyerInformation.currency = 'USD';
 		buyerInformation.dateOfBirth = '2000-12-13';
 
 		var personalIdentification = new Array();
-		var personalIdentification1 = new cybersourceRestApi.TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedBuyerInformationPersonalIdentification();
+		var	personalIdentification1 = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentBuyerInformationPersonalIdentification();
 		personalIdentification1.id = '57684432111321';
 		personalIdentification1.type = 'driver license';
-		var issuedBy1 = new cybersourceRestApi.TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedBuyerInformationIssuedBy();
+		var issuedBy1 = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentBuyerInformationIssuedBy();
 		issuedBy1.administrativeArea = 'CA';
 		personalIdentification1.issuedBy = issuedBy1;
 
@@ -36,47 +36,37 @@ function create_payment_instrument_bank_account(callback) {
 
 		requestObj.buyerInformation = buyerInformation;
 
-		var billTo = new cybersourceRestApi.TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedBillTo();
+		var billTo = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentBillTo();
 		billTo.firstName = 'John';
-		billTo.lastName = 'Smith';
-		billTo.company = 'Cybersource';
-		billTo.address1 = '8310 Capital of Texas Highwas North';
-		billTo.address2 = 'Bluffstone Drive';
-		billTo.locality = 'Austin';
-		billTo.administrativeArea = 'TX';
-		billTo.postalCode = '78731';
+		billTo.lastName = 'Doe';
+		billTo.company = 'CyberSource';
+		billTo.address1 = '1 Market St';
+		billTo.locality = 'San Francisco';
+		billTo.administrativeArea = 'CA';
+		billTo.postalCode = '94105';
 		billTo.country = 'US';
-		billTo.email = 'john.smith@test.com';
-		billTo.phoneNumber = '+44 2890447951';
+		billTo.email = 'test@cybs.com';
+		billTo.phoneNumber = '4158880000';
 		requestObj.billTo = billTo;
 
-		var processingInformation = new cybersourceRestApi.TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedProcessingInformation();
-		processingInformation.billPaymentProgramEnabled = true;
-		var processingInformationBankTransferOptions = new cybersourceRestApi.TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedProcessingInformationBankTransferOptions();
-		processingInformationBankTransferOptions.seCCode = 'WEB';
+		var processingInformation = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentProcessingInformation();
+		var processingInformationBankTransferOptions = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentProcessingInformationBankTransferOptions();
+		processingInformationBankTransferOptions.SECCode = 'WEB';
 		processingInformation.bankTransferOptions = processingInformationBankTransferOptions;
 
 		requestObj.processingInformation = processingInformation;
 
-		var merchantInformation = new cybersourceRestApi.TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedMerchantInformation();
-		var merchantInformationMerchantDescriptor = new cybersourceRestApi.TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedMerchantInformationMerchantDescriptor();
-		merchantInformationMerchantDescriptor.alternateName = 'Branch Name';
-		merchantInformation.merchantDescriptor = merchantInformationMerchantDescriptor;
-
-		requestObj.merchantInformation = merchantInformation;
-
-		var instrumentIdentifier = new cybersourceRestApi.Tmsv1paymentinstrumentsInstrumentIdentifier();
-		var instrumentIdentifierBankAccount = new cybersourceRestApi.Tmsv1instrumentidentifiersBankAccount();
-		instrumentIdentifierBankAccount.number = '4100';
-		instrumentIdentifierBankAccount.routingNumber = '071923284';
-		instrumentIdentifier.bankAccount = instrumentIdentifierBankAccount;
+		var instrumentIdentifier = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentInstrumentIdentifier();
+		instrumentIdentifier.id = 'A7A91A2CA872B272E05340588D0A0699';
 
 		requestObj.instrumentIdentifier = instrumentIdentifier;
 
+		var opts = [];
+		if (profileid != null) opts['profile-id'] = profileid;
 
 		var instance = new cybersourceRestApi.PaymentInstrumentApi(configObject, apiClient);
 
-		instance.createPaymentInstrument(profileid, requestObj, function (error, data, response) {
+		instance.postPaymentInstrument(requestObj, opts, function (error, data, response) {
 			if (error) {
 				console.log('\nError : ' + JSON.stringify(error));
 			}
@@ -95,7 +85,7 @@ function create_payment_instrument_bank_account(callback) {
 }
 if (require.main === module) {
 	create_payment_instrument_bank_account(function () {
-		console.log('\nCreatePaymentInstrument end.');
+		console.log('\nPostPaymentInstrument end.');
 	});
 }
 module.exports.create_payment_instrument_bank_account = create_payment_instrument_bank_account;

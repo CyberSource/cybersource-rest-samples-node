@@ -11,17 +11,18 @@ function create_instrument_identifier_bank_account(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
-		var requestObj = new cybersourceRestApi.CreateInstrumentIdentifierRequest();
+		var requestObj = new cybersourceRestApi.PostInstrumentIdentifierRequest();
 
-		var bankAccount = new cybersourceRestApi.Tmsv1instrumentidentifiersBankAccount();
+		var bankAccount = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierBankAccount();
 		bankAccount.number = '4100';
 		bankAccount.routingNumber = '071923284';
 		requestObj.bankAccount = bankAccount;
 
+	var opts = [];
 
 		var instance = new cybersourceRestApi.InstrumentIdentifierApi(configObject, apiClient);
 
-		instance.createInstrumentIdentifier(profileid, requestObj, function (error, data, response) {
+		instance.postInstrumentIdentifier(requestObj, opts, function (error, data, response) {
 			if (error) {
 				console.log('\nError : ' + JSON.stringify(error));
 			}
@@ -40,7 +41,7 @@ function create_instrument_identifier_bank_account(callback) {
 }
 if (require.main === module) {
 	create_instrument_identifier_bank_account(function () {
-		console.log('\nCreateInstrumentIdentifier end.');
+		console.log('\nPostInstrumentIdentifier end.');
 	});
 }
 module.exports.create_instrument_identifier_bank_account = create_instrument_identifier_bank_account;

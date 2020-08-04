@@ -21,7 +21,6 @@ function service_fees_with_credit_card_transaction(callback, enable_capture) {
 			request.processingInformation.capture = true;
 		}
 
-		processingInformation.commerceIndicator = 'internet';
 		requestObj.processingInformation = processingInformation;
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();

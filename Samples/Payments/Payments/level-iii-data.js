@@ -21,7 +21,6 @@ function level_iii_data(callback, enable_capture) {
 			request.processingInformation.capture = true;
 		}
 
-		processingInformation.commerceIndicator = 'internet';
 		processingInformation.purchaseLevel = '3';
 		requestObj.processingInformation = processingInformation;
 

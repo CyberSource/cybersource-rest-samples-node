@@ -21,6 +21,8 @@ function updateinvoicesettings(callback) {
 		invoiceSettingsInformationHeaderStyle.backgroundColor = '#FFFFFF';
 		invoiceSettingsInformation.headerStyle = invoiceSettingsInformationHeaderStyle;
 
+		invoiceSettingsInformation.deliveryLanguage = 'en-US';
+		invoiceSettingsInformation.defaultCurrencyCode = 'USD';
 		requestObj.invoiceSettingsInformation = invoiceSettingsInformation;
 
 

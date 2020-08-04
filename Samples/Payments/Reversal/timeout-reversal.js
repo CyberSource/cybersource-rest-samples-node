@@ -13,8 +13,7 @@ function timeout_reversal(callback) {
 		var requestObj = new cybersourceRestApi.MitReversalRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
-		clientReferenceInformation.code = 'TC50171_3';
-		clientReferenceInformation.transactionId = '984194577614846';
+		clientReferenceInformation.transactionId = '';
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var reversalInformation = new cybersourceRestApi.Ptsv2paymentsidreversalsReversalInformation();
@@ -28,8 +27,9 @@ function timeout_reversal(callback) {
 
 		var instance = new cybersourceRestApi.ReversalApi(configObject, apiClient);
 
-		authorization_flow.authorization_for_timeout_reversal_flow(function(error, data) {
+		authorization_flow.authorization_for_timeout_reversal_flow(function(error, data, timeoutReversalTransactionId) {
 			if (data) {
+				requestObj.clientReferenceInformation.transactionId = timeoutReversalTransactionId;
 				instance.mitReversal( requestObj, function (error, data, response) {
 					if(error) {
 						console.log('\nError : ' + JSON.stringify(error));

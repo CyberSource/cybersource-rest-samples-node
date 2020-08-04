@@ -13,11 +13,7 @@ function incremental_authorization(callback, id) {
 		var requestObj = new cybersourceRestApi.IncrementAuthRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsidClientReferenceInformation();
-		var clientReferenceInformationPartner = new cybersourceRestApi.Ptsv2paymentsidClientReferenceInformationPartner();
-		clientReferenceInformationPartner.originalTransactionId = '12345';
-		clientReferenceInformationPartner.developerId = '12345';
-		clientReferenceInformationPartner.solutionId = '12345';
-		clientReferenceInformation.partner = clientReferenceInformationPartner;
+		clientReferenceInformation.code = 'TC50171_3';
 
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
@@ -33,17 +29,18 @@ function incremental_authorization(callback, id) {
 
 		var orderInformation = new cybersourceRestApi.Ptsv2paymentsidOrderInformation();
 		var orderInformationAmountDetails = new cybersourceRestApi.Ptsv2paymentsidOrderInformationAmountDetails();
-		orderInformationAmountDetails.additionalAmount = '100';
+		orderInformationAmountDetails.additionalAmount = '22.49';
 		orderInformationAmountDetails.currency = 'USD';
 		orderInformation.amountDetails = orderInformationAmountDetails;
 
 		requestObj.orderInformation = orderInformation;
 
 		var merchantInformation = new cybersourceRestApi.Ptsv2paymentsidMerchantInformation();
+		merchantInformation.transactionLocalDateTime = '20191002080000';
 		requestObj.merchantInformation = merchantInformation;
 
 		var travelInformation = new cybersourceRestApi.Ptsv2paymentsidTravelInformation();
-		travelInformation.duration = '3';
+		travelInformation.duration = '4';
 		requestObj.travelInformation = travelInformation;
 
 

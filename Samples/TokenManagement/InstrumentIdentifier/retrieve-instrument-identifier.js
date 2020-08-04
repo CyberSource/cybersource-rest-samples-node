@@ -4,7 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
-var createInstrumentIdentifier = require('../InstrumentIdentifier/create-instrument-identifier-card');
+var createInstrumentIdentifier = require('./create-instrument-identifier-card');
 
 function retrieve_instrument_identifier(callback) {
 	var profileid = '93B32398-AD51-4CC2-A682-EA3E93614EB1';
@@ -12,13 +12,16 @@ function retrieve_instrument_identifier(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
+	
+	var opts = [];
+	if (profileid != null) opts['profile-id'] = profileid;
 
 		var instance = new cybersourceRestApi.InstrumentIdentifierApi(configObject, apiClient);
 
 		createInstrumentIdentifier.create_instrument_identifier_card(function (error, data, response) {
-			if (!error) {
-				var tokenId = data['id'];
-				instance.getInstrumentIdentifier(profileid, tokenId, function (error, data, response) {
+			if (data) {
+				var instrumentIdentifierTokenId = data['id'];
+				instance.getInstrumentIdentifier(instrumentIdentifierTokenId, opts, function (error, data, response) {
 					if (error) {
 						console.log('\nError : ' + JSON.stringify(error));
 					}

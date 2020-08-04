@@ -11,12 +11,12 @@ function enroll_with_pending_authentication(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.CheckPayerAuthEnrollmentRequest();
 
-		var clientReferenceInformation = new cybersourceRestApi.Riskv1authenticationsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Riskv1authenticationsetupsClientReferenceInformation();
 		clientReferenceInformation.code = 'cybs_test';
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var orderInformation = new cybersourceRestApi.Riskv1authenticationsOrderInformation();
-		var orderInformationAmountDetails = new cybersourceRestApi.Riskv1decisionsOrderInformationAmountDetails();
+		var orderInformationAmountDetails = new cybersourceRestApi.Riskv1authenticationsOrderInformationAmountDetails();
 		orderInformationAmountDetails.currency = 'USD';
 		orderInformationAmountDetails.totalAmount = '10.99';
 		orderInformation.amountDetails = orderInformationAmountDetails;
@@ -50,7 +50,8 @@ function enroll_with_pending_authentication(callback) {
 		buyerInformation.mobilePhone = 1245789632;
 		requestObj.buyerInformation = buyerInformation;
 
-		var consumerAuthenticationInformation = new cybersourceRestApi.Riskv1authenticationsConsumerAuthenticationInformation();
+		var consumerAuthenticationInformation = new cybersourceRestApi.Riskv1decisionsConsumerAuthenticationInformation();
+		consumerAuthenticationInformation.returnUrl = 'http://localhost:8189/cart/enterprise/collect-term';
 		consumerAuthenticationInformation.transactionMode = 'MOTO';
 		requestObj.consumerAuthenticationInformation = consumerAuthenticationInformation;
 

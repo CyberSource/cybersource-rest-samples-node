@@ -17,15 +17,15 @@ function credit_with_customer_payment_instrument_and_shipping_address_token_id(c
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsidrefundsPaymentInformation();
 		var paymentInformationCustomer = new cybersourceRestApi.Ptsv2paymentsPaymentInformationCustomer();
-		paymentInformationCustomer.id = '7500BB199B4270EFE05340588D0AFCAD';
+		paymentInformationCustomer.id = 'AB695DA801DD1BB6E05341588E0A3BDC';
 		paymentInformation.customer = paymentInformationCustomer;
 
 		var paymentInformationPaymentInstrument = new cybersourceRestApi.Ptsv2paymentsPaymentInformationPaymentInstrument();
-		paymentInformationPaymentInstrument.id = '7500BB199B4270EFE05340588D0AFCPI';
+		paymentInformationPaymentInstrument.id = 'AB6A54B982A6FCB6E05341588E0A3935';
 		paymentInformation.paymentInstrument = paymentInformationPaymentInstrument;
 
 		var paymentInformationShippingAddress = new cybersourceRestApi.Ptsv2paymentsPaymentInformationShippingAddress();
-		paymentInformationShippingAddress.id = '7500BB199B4270EFE05340588D0AFCSA';
+		paymentInformationShippingAddress.id = 'AB6A54B97C00FCB6E05341588E0A3935';
 		paymentInformation.shippingAddress = paymentInformationShippingAddress;
 
 		requestObj.paymentInformation = paymentInformation;

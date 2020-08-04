@@ -9,12 +9,16 @@ function get_subscription_for_report_name(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
+		var organizationId = null;
+
+		var opts = [];
+		if (organizationId!= null) opts['organizationId'] = organizationId;
 
 		var instance = new cybersourceRestApi.ReportSubscriptionsApi(configObject, apiClient);
 
-		var reportName = 'createsubscription_report';
+		var reportName = 'testv2_subscription';
 
-		instance.getSubscription(reportName, function (error, data, response) {
+		instance.getSubscription( reportName, opts, function (error, data, response) {
 			if (error) {
 				console.log('\nError : ' + JSON.stringify(error));
 			}

@@ -6,6 +6,7 @@ var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
 function authorization_for_timeout_reversal_flow(callback) {
+	var timeoutReversalTransactionId = Math.floor(Math.random() * (1000000000 - 1000 + 1) + 1000);
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
@@ -13,7 +14,7 @@ function authorization_for_timeout_reversal_flow(callback) {
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
 		clientReferenceInformation.code = 'TC50171_3';
-		clientReferenceInformation.transactionId = '984194577614846';
+		clientReferenceInformation.transactionId = timeoutReversalTransactionId;
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();
@@ -58,7 +59,7 @@ function authorization_for_timeout_reversal_flow(callback) {
 
 			console.log('\nResponse : ' + JSON.stringify(response));
 			console.log('\nResponse Code of Process a Payment : ' + JSON.stringify(response['status']));
-			callback(error, data, response);
+			callback(error, data, timeoutReversalTransactionId, response);
 		});
 	}
 	catch (error) {

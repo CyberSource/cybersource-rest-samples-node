@@ -89,13 +89,13 @@ function authorization_for_incremental_authorization_flow(callback) {
 		travelInformationLodging.checkInDate = '11062019';
 		travelInformationLodging.checkOutDate = '11092019';
 
-		var room =  new Array();
-		var  room1 = new cybersourceRestApi.Ptsv2paymentsTravelInformationLodgingRoom();
+		var room =	new Array();
+		var	room1 = new cybersourceRestApi.Ptsv2paymentsTravelInformationLodgingRoom();
 		room1.dailyRate = '1.50';
 		room1.numberOfNights = 5;
 		room.push(room1);
 
-		var  room2 = new cybersourceRestApi.Ptsv2paymentsTravelInformationLodgingRoom();
+		var	room2 = new cybersourceRestApi.Ptsv2paymentsTravelInformationLodgingRoom();
 		room2.dailyRate = '11.50';
 		room2.numberOfNights = 5;
 		room.push(room2);

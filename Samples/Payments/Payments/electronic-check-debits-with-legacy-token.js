@@ -17,7 +17,7 @@ function electronic_check_debits_with_legacy_token(callback) {
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();
 		var paymentInformationLegacyToken = new cybersourceRestApi.Ptsv2paymentsPaymentInformationLegacyToken();
-		paymentInformationLegacyToken.id = '7500BB199B4270EFE05340588D0AFCAD';
+		paymentInformationLegacyToken.id = 'AB7C01E66529EA42E05341588E0A22AD';
 		paymentInformation.legacyToken = paymentInformationLegacyToken;
 
 		var paymentInformationPaymentType = new cybersourceRestApi.Ptsv2paymentsPaymentInformationPaymentType();

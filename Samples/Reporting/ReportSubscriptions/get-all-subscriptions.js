@@ -9,10 +9,14 @@ function get_all_subscriptions(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
+		var organizationId = null;
+
+		var opts = [];
+		if (organizationId!= null) opts['organizationId'] = organizationId;
 
 		var instance = new cybersourceRestApi.ReportSubscriptionsApi(configObject, apiClient);
 
-		instance.getAllSubscriptions(function (error, data, response) {
+		instance.getAllSubscriptions( opts, function (error, data, response) {
 			if (error) {
 				console.log('\nError : ' + JSON.stringify(error));
 			}

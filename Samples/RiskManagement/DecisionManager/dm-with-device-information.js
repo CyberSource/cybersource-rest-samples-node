@@ -9,7 +9,7 @@ function dm_with_device_information(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
-		var requestObj = new cybersourceRestApi.CreateDecisionManagerCaseRequest();
+		var requestObj = new cybersourceRestApi.CreateBundledDecisionManagerCaseRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Riskv1decisionsClientReferenceInformation();
 		clientReferenceInformation.code = '54323007';
@@ -55,7 +55,7 @@ function dm_with_device_information(callback) {
 
 		var instance = new cybersourceRestApi.DecisionManagerApi(configObject, apiClient);
 
-		instance.createDecisionManagerCase(requestObj, function (error, data, response) {
+		instance.createBundledDecisionManagerCase( requestObj, function (error, data, response) {
 			if (error) {
 				console.log('\nError : ' + JSON.stringify(error));
 			}
@@ -74,7 +74,7 @@ function dm_with_device_information(callback) {
 }
 if (require.main === module) {
 	dm_with_device_information(function () {
-		console.log('\nCreateDecisionManagerCase end.');
+		console.log('\nCreateBundledDecisionManagerCase end.');
 	});
 }
 module.exports.dm_with_device_information = dm_with_device_information;

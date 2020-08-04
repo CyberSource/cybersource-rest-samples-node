@@ -4,7 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
-var createPaymentInstrument = require('../PaymentInstrument/create-payment-instrument-card');
+var createPaymentInstrument = require('./create-payment-instrument-card');
 
 function delete_payment_instrument(callback) {
 	var profileid = '93B32398-AD51-4CC2-A682-EA3E93614EB1';
@@ -12,13 +12,16 @@ function delete_payment_instrument(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
+	
+	var opts = [];
+	if (profileid != null) opts['profile-id'] = profileid;
 
 		var instance = new cybersourceRestApi.PaymentInstrumentApi(configObject, apiClient);
 
 		createPaymentInstrument.create_payment_instrument_card(function (error, data, response) {
-			if (!error) {
-				var tokenId = data['id'];
-				instance.deletePaymentInstrument(profileid, tokenId, function (error, data, response) {
+			if (data) {
+				var paymentInstrumentTokenId = data['id'];
+				instance.deletePaymentInstrument(paymentInstrumentTokenId, opts, function (error, data, response) {
 					if (error) {
 						console.log('\nError : ' + JSON.stringify(error));
 					}

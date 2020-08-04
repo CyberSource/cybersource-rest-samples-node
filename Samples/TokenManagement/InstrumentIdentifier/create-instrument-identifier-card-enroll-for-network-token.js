@@ -11,29 +11,29 @@ function create_instrument_identifier_card_enroll_for_network_token(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
-		var requestObj = new cybersourceRestApi.CreateInstrumentIdentifierRequest();
+		var requestObj = new cybersourceRestApi.PostInstrumentIdentifierRequest();
 
 		requestObj.type = 'enrollable card';
-		var card = new cybersourceRestApi.Tmsv1instrumentidentifiersCard();
-		card.number = '4622943127013705';
+		var card = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierCard();
+		card.number = '4111111111111111';
 		card.expirationMonth = '12';
-		card.expirationYear = '2022';
-		card.securityCode = '838';
+		card.expirationYear = '2031';
+		card.securityCode = '123';
 		requestObj.card = card;
 
-		var billTo = new cybersourceRestApi.Tmsv1instrumentidentifiersBillTo();
-		billTo.address1 = '8310 Capital of Texas Highway North';
-		billTo.address2 = 'Bluffstone Drive';
-		billTo.locality = 'Austin';
-		billTo.administrativeArea = 'TX';
-		billTo.postalCode = '78731';
+		var billTo = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierBillTo();
+		billTo.address1 = '1 Market St';
+		billTo.locality = 'San Francisco';
+		billTo.administrativeArea = 'CA';
+		billTo.postalCode = '94105';
 		billTo.country = 'US';
 		requestObj.billTo = billTo;
 
+	var opts = [];
 
 		var instance = new cybersourceRestApi.InstrumentIdentifierApi(configObject, apiClient);
 
-		instance.createInstrumentIdentifier(profileid, requestObj, function (error, data, response) {
+		instance.postInstrumentIdentifier(requestObj, opts, function (error, data, response) {
 			if (error) {
 				console.log('\nError : ' + JSON.stringify(error));
 			}
@@ -52,7 +52,7 @@ function create_instrument_identifier_card_enroll_for_network_token(callback) {
 }
 if (require.main === module) {
 	create_instrument_identifier_card_enroll_for_network_token(function () {
-		console.log('\nCreateInstrumentIdentifier end.');
+		console.log('\nPostInstrumentIdentifier end.');
 	});
 }
 module.exports.create_instrument_identifier_card_enroll_for_network_token = create_instrument_identifier_card_enroll_for_network_token;

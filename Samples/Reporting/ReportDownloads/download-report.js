@@ -12,11 +12,9 @@ function download_report(callback) {
 		var organizationId = "testrest";
 		var reportDate = '2018-09-30';
 		var reportName = "Demo_Report";
-		var reportTime = "00:00:00Z";
 
 		var opts = [];
 		if (organizationId != null) opts['organizationId'] = organizationId;
-		if (reportTime != null) opts['reportTime'] = reportTime;
 
 		// File name in which details will be downloaded
 		var downloadFilePath = 'Resource\\DownloadedReport';

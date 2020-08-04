@@ -11,12 +11,12 @@ function authentication_with_no_redirect(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.CheckPayerAuthEnrollmentRequest();
 
-		var clientReferenceInformation = new cybersourceRestApi.Riskv1authenticationsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Riskv1authenticationsetupsClientReferenceInformation();
 		clientReferenceInformation.code = 'cybs_test';
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var orderInformation = new cybersourceRestApi.Riskv1authenticationsOrderInformation();
-		var orderInformationAmountDetails = new cybersourceRestApi.Riskv1decisionsOrderInformationAmountDetails();
+		var orderInformationAmountDetails = new cybersourceRestApi.Riskv1authenticationsOrderInformationAmountDetails();
 		orderInformationAmountDetails.currency = 'USD';
 		orderInformationAmountDetails.totalAmount = '10.99';
 		orderInformation.amountDetails = orderInformationAmountDetails;

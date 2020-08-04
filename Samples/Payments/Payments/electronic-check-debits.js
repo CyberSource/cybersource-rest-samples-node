@@ -21,7 +21,6 @@ function electronic_check_debits(callback, enable_capture) {
 			request.processingInformation.capture = true;
 		}
 
-		processingInformation.commerceIndicator = 'internet';
 		requestObj.processingInformation = processingInformation;
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();
@@ -33,6 +32,10 @@ function electronic_check_debits(callback, enable_capture) {
 
 		paymentInformationBank.routingNumber = '071923284';
 		paymentInformation.bank = paymentInformationBank;
+
+		var paymentInformationPaymentType = new cybersourceRestApi.Ptsv2paymentsPaymentInformationPaymentType();
+		paymentInformationPaymentType.name = 'CHECK';
+		paymentInformation.paymentType = paymentInformationPaymentType;
 
 		requestObj.paymentInformation = paymentInformation;
 

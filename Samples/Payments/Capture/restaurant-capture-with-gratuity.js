@@ -4,7 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
-var processPayment = require('./restaurant-authorization');
+var processPayment = require('../Payments/restaurant-authorization');
 
 function restaurant_capture_with_gratuity(callback) {
 	try {
@@ -62,7 +62,7 @@ function restaurant_capture_with_gratuity(callback) {
 }
 if (require.main === module) {	
 		restaurant_capture_with_gratuity(function () {
-		console.log('\nCreatePayment end.');
+		console.log('\nCapturePayment end.');
 	});
 }
 module.exports.restaurant_capture_with_gratuity = restaurant_capture_with_gratuity;

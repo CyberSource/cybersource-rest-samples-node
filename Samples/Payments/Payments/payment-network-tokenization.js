@@ -21,7 +21,7 @@ function payment_network_tokenization(callback, enable_capture) {
 			request.processingInformation.capture = true;
 		}
 
-		processingInformation.commerceIndicator = 'internet';
+		processingInformation.commerceIndicator = 'vbv';
 		requestObj.processingInformation = processingInformation;
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();

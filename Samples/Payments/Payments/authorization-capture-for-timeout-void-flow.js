@@ -6,6 +6,7 @@ var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
 function authorization_capture_for_timeout_void_flow(callback) {
+	var timeoutVoidTransactionId = Math.floor(Math.random() * (1000000000 - 1000 + 1) + 1000);
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
@@ -13,7 +14,7 @@ function authorization_capture_for_timeout_void_flow(callback) {
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
 		clientReferenceInformation.code = 'TC50171_3';
-		clientReferenceInformation.transactionId = '48597865325866';
+		clientReferenceInformation.transactionId = timeoutVoidTransactionId;
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var processingInformation = new cybersourceRestApi.Ptsv2paymentsProcessingInformation();
@@ -62,7 +63,7 @@ function authorization_capture_for_timeout_void_flow(callback) {
 
 			console.log('\nResponse : ' + JSON.stringify(response));
 			console.log('\nResponse Code of Process a Payment : ' + JSON.stringify(response['status']));
-			callback(error, data, response);
+			callback(error, data, timeoutVoidTransactionId, response);
 		});
 	}
 	catch (error) {

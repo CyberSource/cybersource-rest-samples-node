@@ -13,15 +13,15 @@ function timeout_void(callback) {
 		var requestObj = new cybersourceRestApi.MitVoidRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
-		clientReferenceInformation.code = 'TC50171_3';
-		clientReferenceInformation.transactionId = '48597865325866';
+		clientReferenceInformation.transactionId = '';
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 
 		var instance = new cybersourceRestApi.VoidApi(configObject, apiClient);
 
-		authorization_flow.authorization_capture_for_timeout_void_flow(function (error, data) {
+		authorization_flow.authorization_capture_for_timeout_void_flow(function (error, data, timeoutVoidTransactionId) {
 			if (data) {
+				requestObj.clientReferenceInformation.transactionId = timeoutVoidTransactionId;
 				instance.mitVoid( requestObj, function (error, data, response) {
 					if(error) {
 						console.log('\nError : ' + JSON.stringify(error));

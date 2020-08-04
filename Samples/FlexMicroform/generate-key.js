@@ -11,13 +11,13 @@ function generate_key(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.GeneratePublicKeyRequest();
 
-		requestObj.encryptionType = 'None';
-
-		var opts = {};
+		requestObj.encryptionType = 'RsaOaep';
+		requestObj.targetOrigin = 'https://www.test.com';
+		var format = "JWT";
 
 		var instance = new cybersourceRestApi.KeyGenerationApi(configObject, apiClient);
 
-		instance.generatePublicKey(requestObj, opts, function (error, data, response) {
+		instance.generatePublicKey(format, requestObj, function (error, data, response) {
 			if (error) {
 				console.log('\nError : ' + JSON.stringify(error));
 			}

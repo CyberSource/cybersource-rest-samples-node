@@ -21,7 +21,6 @@ function digital_payment_googlepay(callback, enable_capture) {
 			request.processingInformation.capture = true;
 		}
 
-		processingInformation.commerceIndicator = 'internet';
 		processingInformation.paymentSolution = '012';
 		requestObj.processingInformation = processingInformation;
 

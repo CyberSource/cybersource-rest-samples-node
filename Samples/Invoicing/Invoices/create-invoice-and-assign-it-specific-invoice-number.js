@@ -47,8 +47,8 @@ function create_invoice_and_assign_it_specific_invoice_number(callback) {
 		orderInformation.amountDetails = orderInformationAmountDetails;
 
 
-		var lineItems =  new Array();
-		var  lineItems1 = new cybersourceRestApi.Invoicingv2invoicesOrderInformationLineItems();
+		var lineItems =	new Array();
+		var	lineItems1 = new cybersourceRestApi.Invoicingv2invoicesOrderInformationLineItems();
 		lineItems1.productSku = 'P653727383';
 		lineItems1.productName = 'First line item\'s name';
 		lineItems1.quantity = 21;

@@ -20,7 +20,6 @@ function level_ii_data(callback, enable_capture) {
 		if (enable_capture === true) {
 			request.processingInformation.capture = true;
 		}
-		processingInformation.commerceIndicator = 'internet';
 		requestObj.processingInformation = processingInformation;
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();

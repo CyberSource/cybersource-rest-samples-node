@@ -11,51 +11,37 @@ function create_payment_instrument_card(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
-		var requestObj = new cybersourceRestApi.CreatePaymentInstrumentRequest();
+		var requestObj = new cybersourceRestApi.PostPaymentInstrumentRequest();
 
-		var card = new cybersourceRestApi.TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedCard();
-		card.expirationMonth = '09';
-		card.expirationYear = '2017';
+		var card = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentCard();
+		card.expirationMonth = '12';
+		card.expirationYear = '2031';
 		card.type = 'visa';
-		card.issueNumber = '01';
-		card.startMonth = '01';
-		card.startYear = '2016';
 		requestObj.card = card;
 
-		var buyerInformation = new cybersourceRestApi.TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedBuyerInformation();
-		buyerInformation.companyTaxID = '12345';
-		buyerInformation.currency = 'USD';
-		requestObj.buyerInformation = buyerInformation;
-
-		var billTo = new cybersourceRestApi.TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedBillTo();
+		var billTo = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentBillTo();
 		billTo.firstName = 'John';
-		billTo.lastName = 'Smith';
-		billTo.company = 'Cybersource';
-		billTo.address1 = '8310 Capital of Texas Highwas North';
-		billTo.address2 = 'Bluffstone Drive';
-		billTo.locality = 'Austin';
-		billTo.administrativeArea = 'TX';
-		billTo.postalCode = '78731';
+		billTo.lastName = 'Doe';
+		billTo.company = 'CyberSource';
+		billTo.address1 = '1 Market St';
+		billTo.locality = 'San Francisco';
+		billTo.administrativeArea = 'CA';
+		billTo.postalCode = '94105';
 		billTo.country = 'US';
-		billTo.email = 'john.smith@test.com';
-		billTo.phoneNumber = '+44 2890447951';
+		billTo.email = 'test@cybs.com';
+		billTo.phoneNumber = '4158880000';
 		requestObj.billTo = billTo;
 
-		var processingInformation = new cybersourceRestApi.TmsV1InstrumentIdentifiersPaymentInstrumentsGet200ResponseEmbeddedProcessingInformation();
-		processingInformation.billPaymentProgramEnabled = true;
-		requestObj.processingInformation = processingInformation;
-
-		var instrumentIdentifier = new cybersourceRestApi.Tmsv1paymentinstrumentsInstrumentIdentifier();
-		var instrumentIdentifierCard = new cybersourceRestApi.TmsV1InstrumentIdentifiersPost200ResponseCard();
-		instrumentIdentifierCard.number = '411111111111112';
-		instrumentIdentifier.card = instrumentIdentifierCard;
-
+		var instrumentIdentifier = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentInstrumentIdentifier();
+		instrumentIdentifier.id = '7010000000016241111';
 		requestObj.instrumentIdentifier = instrumentIdentifier;
 
+	var opts = [];
+	if (profileid != null) opts['profile-id'] = profileid;
 
 		var instance = new cybersourceRestApi.PaymentInstrumentApi(configObject, apiClient);
 
-		instance.createPaymentInstrument(profileid, requestObj, function (error, data, response) {
+		instance.postPaymentInstrument(requestObj, opts, function (error, data, response) {
 			if (error) {
 				console.log('\nError : ' + JSON.stringify(error));
 			}
@@ -74,7 +60,7 @@ function create_payment_instrument_card(callback) {
 }
 if (require.main === module) {
 	create_payment_instrument_card(function () {
-		console.log('\nCreatePaymentInstrument end.');
+		console.log('\nPostPaymentInstrument end.');
 	});
 }
 module.exports.create_payment_instrument_card = create_payment_instrument_card;

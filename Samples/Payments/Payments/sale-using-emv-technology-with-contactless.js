@@ -37,7 +37,7 @@ function sale_using_emv_technology_with_contactless(callback) {
 		pointOfSaleInformationEmv.fallback = false;
 		pointOfSaleInformation.emv = pointOfSaleInformationEmv;
 
-		pointOfSaleInformation.trackData = '%B38000000000006^TEST/CYBS         ^2012121019761100      00868000000?;38000000000006=20121210197611868000?';
+		pointOfSaleInformation.trackData = '%B38000000000006^TEST/CYBS		 ^2012121019761100		00868000000?;38000000000006=20121210197611868000?';
 		requestObj.pointOfSaleInformation = pointOfSaleInformation;
 
 

@@ -9,12 +9,16 @@ function delete_subscription_of_report_name_by_organization(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
+		var organizationId = null;
+
+		var opts = [];
+		if (organizationId!= null) opts['organizationId'] = organizationId;
 
 		var instance = new cybersourceRestApi.ReportSubscriptionsApi(configObject, apiClient);
 
 		var reportName = 'testrest_v2';
 
-		instance.deleteSubscription(reportName, function (error, data, response) {
+		instance.deleteSubscription( reportName, opts, function (error, data, response) {
 			if (error) {
 				console.log('\nError : ' + JSON.stringify(error));
 			}

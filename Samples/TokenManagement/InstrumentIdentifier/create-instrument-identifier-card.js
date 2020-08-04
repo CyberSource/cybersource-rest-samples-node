@@ -11,16 +11,17 @@ function create_instrument_identifier_card(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
-		var requestObj = new cybersourceRestApi.CreateInstrumentIdentifierRequest();
+		var requestObj = new cybersourceRestApi.PostInstrumentIdentifierRequest();
 
-		var card = new cybersourceRestApi.Tmsv1instrumentidentifiersCard();
-		card.number = '411111111111111';
+		var card = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierCard();
+		card.number = '4111111111111111';
 		requestObj.card = card;
 
+	var opts = [];
 
 		var instance = new cybersourceRestApi.InstrumentIdentifierApi(configObject, apiClient);
 
-		instance.createInstrumentIdentifier(profileid, requestObj, function (error, data, response) {
+		instance.postInstrumentIdentifier(requestObj, opts, function (error, data, response) {
 			if (error) {
 				console.log('\nError : ' + JSON.stringify(error));
 			}
@@ -39,7 +40,7 @@ function create_instrument_identifier_card(callback) {
 }
 if (require.main === module) {
 	create_instrument_identifier_card(function () {
-		console.log('\nCreateInstrumentIdentifier end.');
+		console.log('\nPostInstrumentIdentifier end.');
 	});
 }
 module.exports.create_instrument_identifier_card = create_instrument_identifier_card;

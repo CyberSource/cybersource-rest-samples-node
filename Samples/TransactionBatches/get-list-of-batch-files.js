@@ -9,8 +9,8 @@ function get_list_of_batch_files(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
-		var startTime = '2019-05-22T01:47:57.000Z';
-		var endTime = '2019-07-22T22:47:57.000Z';
+		var startTime = '2020-02-22T01:47:57.000Z';
+		var endTime = '2020-02-22T22:47:57.000Z';
 
 		var opts = [];
 

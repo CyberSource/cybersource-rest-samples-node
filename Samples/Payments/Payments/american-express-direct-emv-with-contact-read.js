@@ -43,7 +43,7 @@ function american_express_direct_emv_with_contact_read(callback) {
 		pointOfSaleInformationEmv.fallback = false;
 		pointOfSaleInformation.emv = pointOfSaleInformationEmv;
 
-		pointOfSaleInformation.trackData = '%B4111111111111111^TEST/CYBS         ^2012121019761100      00868000000?;';
+		pointOfSaleInformation.trackData = '%B4111111111111111^TEST/CYBS		 ^2012121019761100		00868000000?;';
 
 		var cardholderVerificationMethod = new Array();
 		cardholderVerificationMethod.push("pin");

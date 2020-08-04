@@ -4,7 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
-var processPayment = require('./authorization-using-swiped-track-data');
+var processPayment = require('../Payments/authorization-using-swiped-track-data');
 
 function capture_of_authorization_that_used_swiped_track_data(callback) {
 	try {
@@ -57,7 +57,7 @@ function capture_of_authorization_that_used_swiped_track_data(callback) {
 }
 if (require.main === module) {	
 		capture_of_authorization_that_used_swiped_track_data(function () {
-		console.log('\nCreatePayment end.');
+		console.log('\nCapturePayment end.');
 	});
 }
 module.exports.capture_of_authorization_that_used_swiped_track_data = capture_of_authorization_that_used_swiped_track_data;

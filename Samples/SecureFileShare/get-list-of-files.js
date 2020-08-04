@@ -12,9 +12,11 @@ function get_list_of_files(callback) {
 		var startDate = '2020-03-20';
 		var endDate = '2020-03-30';
 		var organizationId = "testrest";
+		var name = null;
 
 		var opts = [];
 		if (organizationId != null) opts['organizationId'] = organizationId;
+		if (name!= null) opts['name'] = name;
 
 		var instance = new cybersourceRestApi.SecureFileShareApi(configObject, apiClient);
 

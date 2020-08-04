@@ -31,7 +31,7 @@ function swiped(callback) {
 		var pointOfSaleInformation = new cybersourceRestApi.Ptsv2paymentsPointOfSaleInformation();
 		pointOfSaleInformation.entryMode = 'swiped';
 		pointOfSaleInformation.terminalCapability = 2;
-		pointOfSaleInformation.trackData = '%B38000000000006^TEST/CYBS         ^2012121019761100      00868000000?;38000000000006=20121210197611868000?';
+		pointOfSaleInformation.trackData = '%B38000000000006^TEST/CYBS		 ^2012121019761100		00868000000?;38000000000006=20121210197611868000?';
 		requestObj.pointOfSaleInformation = pointOfSaleInformation;
 
 

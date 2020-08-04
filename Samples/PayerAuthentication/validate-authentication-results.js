@@ -11,19 +11,19 @@ function validate_authentication_results(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.ValidateRequest();
 
-		var clientReferenceInformation = new cybersourceRestApi.Riskv1authenticationsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Riskv1authenticationsetupsClientReferenceInformation();
 		clientReferenceInformation.code = 'pavalidatecheck';
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var orderInformation = new cybersourceRestApi.Riskv1authenticationresultsOrderInformation();
-		var orderInformationAmountDetails = new cybersourceRestApi.Riskv1decisionsOrderInformationAmountDetails();
+		var orderInformationAmountDetails = new cybersourceRestApi.Riskv1authenticationsOrderInformationAmountDetails();
 		orderInformationAmountDetails.currency = 'USD';
 		orderInformationAmountDetails.totalAmount = '200.00';
 		orderInformation.amountDetails = orderInformationAmountDetails;
 
 
-		var lineItems =  new Array();
-		var  lineItems1 = new cybersourceRestApi.Riskv1authenticationresultsOrderInformationLineItems();
+		var lineItems =	new Array();
+		var	lineItems1 = new cybersourceRestApi.Riskv1authenticationresultsOrderInformationLineItems();
 		lineItems1.unitPrice = '10';
 		lineItems1.quantity = 2;
 		lineItems1.taxAmount = '32.40';
@@ -45,6 +45,7 @@ function validate_authentication_results(callback) {
 
 		var consumerAuthenticationInformation = new cybersourceRestApi.Riskv1authenticationresultsConsumerAuthenticationInformation();
 		consumerAuthenticationInformation.authenticationTransactionId = 'PYffv9G3sa1e0CQr5fV0';
+		consumerAuthenticationInformation.responseAccessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5YTAwYTYzMC0zNzFhLTExZTYtYTU5Ni1kZjQwZjUwMjAwNmMiLCJpYXQiOjE0NjY0NDk4MDcsImlzcyI6Ik1pZGFzLU5vRFYtS2V5IiwiUGF5bG9hZCI6eyJPcmRlckRldGFpbHMiOnsiT3JkZXJOdW1iZXIiOjE1NTc4MjAyMzY3LCJBbW91bnQiOiIxNTAwIiwiQ3VycmVudENvZGUiOiI4NDAiLCJUcmFuc2FjdGlvbklkIjoiOVVzaGVoRFFUcWh1SFk5SElqZTAifX0sIk9yZ1VuaXRJZCI6IjU2NGNkY2JjYjlmNjNmMGM0OGQ2Mzg3ZiIsIk9iamVjdGlmeVBheWxvYWQiOnRydWV9.eaU8LZJnMtY3mPl4vBXVCVUuyeSeAp8zoNaEOmKS4XY';
 		consumerAuthenticationInformation.signedPares = 'eNqdmFmT4jgSgN+J4D90zD4yMz45PEFVhHzgA2zwjXnzhQ984Nvw61dAV1';
 		requestObj.consumerAuthenticationInformation = consumerAuthenticationInformation;
 

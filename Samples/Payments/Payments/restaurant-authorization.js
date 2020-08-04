@@ -41,7 +41,7 @@ function restaurant_authorization(callback) {
 		var pointOfSaleInformation = new cybersourceRestApi.Ptsv2paymentsPointOfSaleInformation();
 		pointOfSaleInformation.entryMode = 'swiped';
 		pointOfSaleInformation.terminalCapability = 2;
-		pointOfSaleInformation.trackData = '%B38000000000006^TEST/CYBS         ^2012121019761100      00868000000?';
+		pointOfSaleInformation.trackData = '%B38000000000006^TEST/CYBS		 ^2012121019761100		00868000000?';
 		requestObj.pointOfSaleInformation = pointOfSaleInformation;
 
 

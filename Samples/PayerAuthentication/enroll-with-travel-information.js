@@ -11,12 +11,12 @@ function enroll_with_travel_information(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.CheckPayerAuthEnrollmentRequest();
 
-		var clientReferenceInformation = new cybersourceRestApi.Riskv1authenticationsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Riskv1authenticationsetupsClientReferenceInformation();
 		clientReferenceInformation.code = 'cybs_test';
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var orderInformation = new cybersourceRestApi.Riskv1authenticationsOrderInformation();
-		var orderInformationAmountDetails = new cybersourceRestApi.Riskv1decisionsOrderInformationAmountDetails();
+		var orderInformationAmountDetails = new cybersourceRestApi.Riskv1authenticationsOrderInformationAmountDetails();
 		orderInformationAmountDetails.currency = 'USD';
 		orderInformationAmountDetails.totalAmount = '10.99';
 		orderInformation.amountDetails = orderInformationAmountDetails;
@@ -50,20 +50,20 @@ function enroll_with_travel_information(callback) {
 		buyerInformation.mobilePhone = 1245789632;
 		requestObj.buyerInformation = buyerInformation;
 
-		var consumerAuthenticationInformation = new cybersourceRestApi.Riskv1authenticationsConsumerAuthenticationInformation();
+		var consumerAuthenticationInformation = new cybersourceRestApi.Riskv1decisionsConsumerAuthenticationInformation();
 		consumerAuthenticationInformation.transactionMode = 'MOTO';
 		requestObj.consumerAuthenticationInformation = consumerAuthenticationInformation;
 
 		var travelInformation = new cybersourceRestApi.Riskv1authenticationsTravelInformation();
 
-		var legs =  new Array();
-		var  legs1 = new cybersourceRestApi.Riskv1authenticationsTravelInformationLegs();
+		var legs =	new Array();
+		var	legs1 = new cybersourceRestApi.Riskv1decisionsTravelInformationLegs();
 		legs1.destination = 'DEF';
 		legs1.carrierCode = 'UA';
 		legs1.departureDate = '2019-01-01';
 		legs.push(legs1);
 
-		var  legs2 = new cybersourceRestApi.Riskv1authenticationsTravelInformationLegs();
+		var	legs2 = new cybersourceRestApi.Riskv1decisionsTravelInformationLegs();
 		legs2.destination = 'RES';
 		legs2.carrierCode = 'AS';
 		legs2.departureDate = '2019-02-21';
@@ -73,13 +73,13 @@ function enroll_with_travel_information(callback) {
 
 		travelInformation.numberOfPassengers = 2;
 
-		var passengers =  new Array();
-		var  passengers1 = new cybersourceRestApi.Riskv1authenticationsTravelInformationPassengers();
+		var passengers =	new Array();
+		var	passengers1 = new cybersourceRestApi.Riskv1decisionsTravelInformationPassengers();
 		passengers1.firstName = 'Raj';
 		passengers1.lastName = 'Charles';
 		passengers.push(passengers1);
 
-		var  passengers2 = new cybersourceRestApi.Riskv1authenticationsTravelInformationPassengers();
+		var	passengers2 = new cybersourceRestApi.Riskv1decisionsTravelInformationPassengers();
 		passengers2.firstName = 'Potter';
 		passengers2.lastName = 'Suhember';
 		passengers.push(passengers2);

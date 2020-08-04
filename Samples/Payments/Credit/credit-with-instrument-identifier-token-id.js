@@ -23,7 +23,7 @@ function credit_with_instrument_identifier_token_id(callback) {
 		paymentInformation.card = paymentInformationCard;
 
 		var paymentInformationInstrumentIdentifier = new cybersourceRestApi.Ptsv2paymentsPaymentInformationInstrumentIdentifier();
-		paymentInformationInstrumentIdentifier.id = '7500BB199B4270EFE05340588D0AFCII';
+		paymentInformationInstrumentIdentifier.id = '7010000000016241111';
 		paymentInformation.instrumentIdentifier = paymentInformationInstrumentIdentifier;
 
 		requestObj.paymentInformation = paymentInformation;

@@ -47,8 +47,8 @@ function authorization_with_decision_manager_buyer_information(callback) {
 		var buyerInformation = new cybersourceRestApi.Ptsv2paymentsBuyerInformation();
 		buyerInformation.dateOfBirth = '19980505';
 
-		var personalIdentification =  new Array();
-		var  personalIdentification1 = new cybersourceRestApi.Ptsv2paymentsBuyerInformationPersonalIdentification();
+		var personalIdentification =	new Array();
+		var	personalIdentification1 = new cybersourceRestApi.Ptsv2paymentsBuyerInformationPersonalIdentification();
 		personalIdentification1.type = 'CPF';
 		personalIdentification1.id = '1a23apwe98';
 		personalIdentification.push(personalIdentification1);

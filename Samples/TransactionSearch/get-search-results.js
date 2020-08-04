@@ -14,7 +14,7 @@ function get_search_results(callback) {
 		var instance = new cybersourceRestApi.SearchTransactionsApi(configObject, apiClient);
 
 		createSearchRequest.create_search_request(function (error, data, response) {
-			if (!error) {
+			if (data) {
 				var searchId = data['searchId'];
 				instance.getSearch(searchId, function (error, data, response) {
 					if (error) {

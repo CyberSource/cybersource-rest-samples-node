@@ -11,7 +11,7 @@ function payout_card_not_token(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.OctCreatePaymentRequest();
 
-		var clientReferenceInformation = new cybersourceRestApi.PtsV2IncrementalAuthorizationPatch201ResponseClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Ptsv2payoutsClientReferenceInformation();
 		clientReferenceInformation.code = '33557799';
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 

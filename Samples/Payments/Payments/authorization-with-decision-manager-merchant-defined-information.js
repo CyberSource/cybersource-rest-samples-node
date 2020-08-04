@@ -45,13 +45,13 @@ function authorization_with_decision_manager_merchant_defined_information(callba
 		requestObj.orderInformation = orderInformation;
 
 
-		var merchantDefinedInformation =  new Array();
-		var  merchantDefinedInformation1 = new cybersourceRestApi.Ptsv2paymentsMerchantDefinedInformation();
+		var merchantDefinedInformation =	new Array();
+		var	merchantDefinedInformation1 = new cybersourceRestApi.Ptsv2paymentsMerchantDefinedInformation();
 		merchantDefinedInformation1.key = '1';
 		merchantDefinedInformation1.value = 'Test';
 		merchantDefinedInformation.push(merchantDefinedInformation1);
 
-		var  merchantDefinedInformation2 = new cybersourceRestApi.Ptsv2paymentsMerchantDefinedInformation();
+		var	merchantDefinedInformation2 = new cybersourceRestApi.Ptsv2paymentsMerchantDefinedInformation();
 		merchantDefinedInformation2.key = '2';
 		merchantDefinedInformation2.value = 'Test2';
 		merchantDefinedInformation.push(merchantDefinedInformation2);
