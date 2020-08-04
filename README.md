@@ -27,7 +27,7 @@ You can also run each sample directly from the command line.
 ```
 e.g.
 ```
-    $ node Samples/Payments/CoreServices/ProcessPayment.js
+    $ node Samples/Payments/Payments/authorization-with-capturesale.js
 ```
 
 #### To set your own sandbox credentials for an API request, configure the following information in Data/Configuration.js file:
