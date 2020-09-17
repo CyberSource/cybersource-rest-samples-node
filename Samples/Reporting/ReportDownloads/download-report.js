@@ -10,8 +10,8 @@ function download_report(callback) {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var organizationId = "testrest";
-		var reportDate = '2018-09-30';
-		var reportName = "Demo_Report";
+		var reportDate = '2020-07-05';
+		var reportName = "testrest_subcription_v2989";
 
 		var opts = [];
 		if (organizationId != null) opts['organizationId'] = organizationId;

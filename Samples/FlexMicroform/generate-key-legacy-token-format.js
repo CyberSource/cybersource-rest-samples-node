@@ -5,22 +5,19 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
-function get_list_of_files(callback) {
+function generate_key_legacy_token_format(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
-		var startDate = '2020-07-20';
-		var endDate = '2020-07-30';
-		var organizationId = "testrest";
-		var name = null;
+		var requestObj = new cybersourceRestApi.GeneratePublicKeyRequest();
 
-		var opts = [];
-		if (organizationId != null) opts['organizationId'] = organizationId;
-		if (name!= null) opts['name'] = name;
+		requestObj.encryptionType = 'None';
+		requestObj.targetOrigin = 'https://www.test.com';
+		var format = "legacy";
 
-		var instance = new cybersourceRestApi.SecureFileShareApi(configObject, apiClient);
+		var instance = new cybersourceRestApi.KeyGenerationApi(configObject, apiClient);
 
-		instance.getFileDetail(startDate, endDate, opts, function (error, data, response) {
+		instance.generatePublicKey(format, requestObj, function (error, data, response) {
 			if (error) {
 				console.log('\nError : ' + JSON.stringify(error));
 			}
@@ -29,7 +26,7 @@ function get_list_of_files(callback) {
 			}
 
 			console.log('\nResponse : ' + JSON.stringify(response));
-			console.log('\nResponse Code of Get List of Files : ' + JSON.stringify(response['status']));
+			console.log('\nResponse Code of Generate Key : ' + JSON.stringify(response['status']));
 			callback(error, data, response);
 		});
 	}
@@ -38,8 +35,8 @@ function get_list_of_files(callback) {
 	}
 }
 if (require.main === module) {
-	get_list_of_files(function () {
-		console.log('\nGetFileDetail end.');
+	generate_key_legacy_token_format(function () {
+		console.log('\nGeneratePublicKey end.');
 	});
 }
-module.exports.get_list_of_files = get_list_of_files;
+module.exports.generate_key_legacy_token_format = generate_key_legacy_token_format;

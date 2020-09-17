@@ -15,7 +15,7 @@ function retrieve_transaction(callback) {
 
 		processPayment.simple_authorization_internet(function (error, data, response) {
 			if (data) {
-		var id = data['id'];
+				var id = data['id'];
 				setTimeout(() => {	
 					instance.getTransaction(id, function (error, data, response) {
 						if (error) {
@@ -30,7 +30,7 @@ function retrieve_transaction(callback) {
 						callback(error, data, response);
 					}); 
 				}, 15000);
-		}
+			}
 		});
 	}
 	catch (error) {

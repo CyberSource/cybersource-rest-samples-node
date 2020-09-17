@@ -51,7 +51,6 @@ function enroll_with_pending_authentication(callback) {
 		requestObj.buyerInformation = buyerInformation;
 
 		var consumerAuthenticationInformation = new cybersourceRestApi.Riskv1decisionsConsumerAuthenticationInformation();
-		consumerAuthenticationInformation.returnUrl = 'http://localhost:8189/cart/enterprise/collect-term';
 		consumerAuthenticationInformation.transactionMode = 'MOTO';
 		requestObj.consumerAuthenticationInformation = consumerAuthenticationInformation;
 
