@@ -5,41 +5,43 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
-function create_customer_payment_instrument_card(callback) {
-	var customerTokenId = 'AB695DA801DD1BB6E05341588E0A3BDC';
+function update_payment_instrument(callback) {
+	var profileid = '93B32398-AD51-4CC2-A682-EA3E93614EB1';
+	var paymentInstrumentTokenId = '888454C31FB6150CE05340588D0AA9BE';
+
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
-		var requestObj = new cybersourceRestApi.PostCustomerPaymentInstrumentRequest();
+		var requestObj = new cybersourceRestApi.PatchPaymentInstrumentRequest();
 
 		var card = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentCard();
 		card.expirationMonth = '12';
 		card.expirationYear = '2031';
-		card.type = '001';
+		card.type = 'visa';
 		requestObj.card = card;
 
 		var billTo = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentBillTo();
-		billTo.firstName = 'John';
-		billTo.lastName = 'Doe';
+		billTo.firstName = 'Jack';
+		billTo.lastName = 'Smith';
 		billTo.company = 'CyberSource';
 		billTo.address1 = '1 Market St';
 		billTo.locality = 'San Francisco';
 		billTo.administrativeArea = 'CA';
 		billTo.postalCode = '94105';
 		billTo.country = 'US';
-		billTo.email = 'test@cybs.com';
-		billTo.phoneNumber = '4158880000';
+		billTo.email = 'updatedemail@cybs.com';
+		billTo.phoneNumber = '4158888674';
 		requestObj.billTo = billTo;
 
 		var instrumentIdentifier = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentInstrumentIdentifier();
 		instrumentIdentifier.id = '7010000000016241111';
 		requestObj.instrumentIdentifier = instrumentIdentifier;
 
-	var opts = [];
+		var opts = [];
 
-		var instance = new cybersourceRestApi.CustomerPaymentInstrumentApi(configObject, apiClient);
+		var instance = new cybersourceRestApi.PaymentInstrumentApi(configObject, apiClient);
 
-		instance.postCustomerPaymentInstrument(customerTokenId, requestObj, opts, function (error, data, response) {
+		instance.patchPaymentInstrument(paymentInstrumentTokenId, requestObj, opts, function (error, data, response) {
 			if(error) {
 				console.log('\nError : ' + JSON.stringify(error));
 			}
@@ -48,7 +50,7 @@ function create_customer_payment_instrument_card(callback) {
 			}
 
 			console.log('\nResponse : ' + JSON.stringify(response));
-			console.log('\nResponse Code of Create a Customer Payment Instrument : ' + JSON.stringify(response['status']));
+			console.log('\nResponse Code of Update a Payment Instrument : ' + JSON.stringify(response['status']));
 			callback(error, data, response);
 		});
 	}
@@ -57,8 +59,8 @@ function create_customer_payment_instrument_card(callback) {
 	}
 }
 if (require.main === module) {	
-		create_customer_payment_instrument_card(function () {
-		console.log('\nPostCustomerPaymentInstrument end.');
+		update_payment_instrument(function () {
+		console.log('\nPatchPaymentInstrument end.');
 	});
 }
-module.exports.create_customer_payment_instrument_card = create_customer_payment_instrument_card;
+module.exports.update_payment_instrument = update_payment_instrument;

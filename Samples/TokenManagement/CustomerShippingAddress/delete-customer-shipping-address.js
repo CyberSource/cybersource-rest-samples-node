@@ -4,7 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
-var createShippingAddress = require('./create-shipping-address');
+var createShippingAddress = require('./create-customer-non-default-shipping-address');
 
 function delete_customer_shipping_address(callback) {
 	var customerTokenId = 'AB695DA801DD1BB6E05341588E0A3BDC';
@@ -16,7 +16,7 @@ function delete_customer_shipping_address(callback) {
 	
 	var opts = [];
 
-		createShippingAddress.create_shipping_address(function(error, data) {
+		createShippingAddress.create_customer_non_default_shipping_address(function(error, data) {
 		if (data) {
 		var shippingAddressTokenId = data['id'];
 			instance.deleteCustomerShippingAddress(customerTokenId, shippingAddressTokenId, opts, function (error, data, response) {

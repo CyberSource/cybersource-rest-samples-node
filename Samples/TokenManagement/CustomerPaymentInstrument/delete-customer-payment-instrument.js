@@ -4,7 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
-var createCustomerPaymentInstrument = require('./create-customer-payment-instrument-card');
+var createCustomerPaymentInstrument = require('./create-customer-non-default-payment-instrument-card');
 
 function delete_customer_payment_instrument(callback) {
 	var customerTokenId = 'AB695DA801DD1BB6E05341588E0A3BDC';
@@ -16,7 +16,7 @@ function delete_customer_payment_instrument(callback) {
 
 		var instance = new cybersourceRestApi.CustomerPaymentInstrumentApi(configObject, apiClient);
 
-		createCustomerPaymentInstrument.create_customer_payment_instrument_card(function(error, data) {
+		createCustomerPaymentInstrument.create_customer_non_default_payment_instrument_card(function(error, data) {
 		if (data) {
 		var paymentInstrumentTokenId = data['id'];
 		instance.deleteCustomerPaymentInstrument(customerTokenId, paymentInstrumentTokenId, opts, function (error, data, response) {

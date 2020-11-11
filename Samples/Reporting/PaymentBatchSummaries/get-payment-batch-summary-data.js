@@ -9,8 +9,8 @@ function get_payment_batch_summary_data(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
-		var startTime = '2019-05-01T12:00:00Z';
-		var endTime = '2019-08-30T12:00:00Z';
+		var startTime = '2020-09-01T12:00:00Z';
+		var endTime = '2020-09-30T12:00:00Z';
 		var organizationId = "testrest";
 		var rollUp = null;
 		var breakdown = null;

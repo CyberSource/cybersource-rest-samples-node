@@ -5,13 +5,14 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
-function create_shipping_address(callback) {
+function create_customer_default_shipping_address(callback) {
 	var customerTokenId = 'AB695DA801DD1BB6E05341588E0A3BDC';
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.PostCustomerShippingAddressRequest();
 
+		requestObj._default = true;
 		var shipTo = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultShippingAddressShipTo();
 		shipTo.firstName = 'John';
 		shipTo.lastName = 'Doe';
@@ -25,7 +26,7 @@ function create_shipping_address(callback) {
 		shipTo.phoneNumber = '4158880000';
 		requestObj.shipTo = shipTo;
 
-	var opts = [];
+		var opts = [];
 
 		var instance = new cybersourceRestApi.CustomerShippingAddressApi(configObject, apiClient);
 
@@ -47,8 +48,8 @@ function create_shipping_address(callback) {
 	}
 }
 if (require.main === module) {	
-		create_shipping_address(function () {
+		create_customer_default_shipping_address(function () {
 		console.log('\nPostCustomerShippingAddress end.');
 	});
 }
-module.exports.create_shipping_address = create_shipping_address;
+module.exports.create_customer_default_shipping_address = create_customer_default_shipping_address;

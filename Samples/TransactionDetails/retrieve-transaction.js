@@ -29,7 +29,7 @@ function retrieve_transaction(callback) {
 						console.log('\nResponse Code of Retrieve a Transaction : ' + JSON.stringify(response['status']));
 						callback(error, data, response);
 					}); 
-				}, 15000);
+				}, 20000);
 			}
 		});
 	}
