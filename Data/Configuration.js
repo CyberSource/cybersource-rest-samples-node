@@ -19,6 +19,10 @@ const KeyFileName = 'testrest';
 const KeyAlias = 'testrest';
 const KeyPass = 'testrest';
 
+//meta key parameters
+const UseMetaKey = false;
+const PortfolioID = "";
+
 // logging parameters
 const EnableLog = true;
 const LogFileName = 'cybs';
