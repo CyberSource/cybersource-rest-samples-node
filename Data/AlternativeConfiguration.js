@@ -19,6 +19,10 @@ const KeyFileName = 'testrest_cpctv';
 const KeyAlias = 'testrest_cpctv';
 const KeyPass = 'testrest_cpctv';
 
+//meta key parameters
+const UseMetaKey = false;
+const PortfolioID = '';
+
 // logging parameters
 const EnableLog = true;
 const LogFileName = 'cybs';
@@ -40,6 +44,9 @@ function Configuration() {
 		'keyPass': KeyPass,
 		'keyFileName': KeyFileName,
 		'keysDirectory': KeysDirectory,
+
+		'useMetaKey': UseMetaKey,
+		'portfolioID': PortfolioID,
         
 		'enableLog': EnableLog,
 		'logFilename': LogFileName,

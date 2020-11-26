@@ -21,7 +21,7 @@ const KeyPass = 'testrest';
 
 //meta key parameters
 const UseMetaKey = false;
-const PortfolioID = "";
+const PortfolioID = '';
 
 // logging parameters
 const EnableLog = true;
@@ -44,6 +44,9 @@ function Configuration() {
 		'keyPass': KeyPass,
 		'keyFileName': KeyFileName,
 		'keysDirectory': KeysDirectory,
+
+		'useMetaKey': UseMetaKey,
+		'portfolioID': PortfolioID,
         
 		'enableLog': EnableLog,
 		'logFilename': LogFileName,
