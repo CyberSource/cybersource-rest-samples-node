@@ -11,9 +11,14 @@ function customer_match_denied_parties_list(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.ValidateExportComplianceRequest();
 
-		var clientReferenceInformation = new cybersourceRestApi.Riskv1addressverificationsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Riskv1decisionsClientReferenceInformation();
 		clientReferenceInformation.code = 'verification example';
 		clientReferenceInformation.comments = 'Export-basic';
+		var clientReferenceInformationPartner = new cybersourceRestApi.Riskv1decisionsClientReferenceInformationPartner();
+		clientReferenceInformationPartner.developerId = '7891234';
+		clientReferenceInformationPartner.solutionId = '89012345';
+		clientReferenceInformation.partner = clientReferenceInformationPartner;
+
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var orderInformation = new cybersourceRestApi.Riskv1exportcomplianceinquiriesOrderInformation();

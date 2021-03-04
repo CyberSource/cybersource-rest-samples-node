@@ -18,7 +18,7 @@ function process_authorization_reversal(callback) {
 
 		var reversalInformation = new cybersourceRestApi.Ptsv2paymentsidreversalsReversalInformation();
 		var reversalInformationAmountDetails = new cybersourceRestApi.Ptsv2paymentsidreversalsReversalInformationAmountDetails();
-		reversalInformationAmountDetails.totalAmount = '102.21';
+		reversalInformationAmountDetails.totalAmount = '50.00';
 		reversalInformation.amountDetails = reversalInformationAmountDetails;
 
 		reversalInformation.reason = 'testing';

@@ -11,9 +11,14 @@ function verbose_request_with_all_fields(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.VerifyCustomerAddressRequest();
 
-		var clientReferenceInformation = new cybersourceRestApi.Riskv1addressverificationsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Riskv1decisionsClientReferenceInformation();
 		clientReferenceInformation.code = 'addressEg';
 		clientReferenceInformation.comments = 'dav-All fields';
+		var clientReferenceInformationPartner = new cybersourceRestApi.Riskv1decisionsClientReferenceInformationPartner();
+		clientReferenceInformationPartner.developerId = '7891234';
+		clientReferenceInformationPartner.solutionId = '89012345';
+		clientReferenceInformation.partner = clientReferenceInformationPartner;
+
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var orderInformation = new cybersourceRestApi.Riskv1addressverificationsOrderInformation();

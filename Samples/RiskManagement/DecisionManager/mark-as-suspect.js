@@ -27,6 +27,15 @@ function mark_as_suspect(callback) {
 
 		requestObj.riskInformation = riskInformation;
 
+		var clientReferenceInformation = new cybersourceRestApi.Riskv1decisionsClientReferenceInformation();
+		clientReferenceInformation.code = '12345';
+		var clientReferenceInformationPartner = new cybersourceRestApi.Riskv1decisionsClientReferenceInformationPartner();
+		clientReferenceInformationPartner.developerId = '1234';
+		clientReferenceInformationPartner.solutionId = '3321';
+		clientReferenceInformation.partner = clientReferenceInformationPartner;
+
+		requestObj.clientReferenceInformation = clientReferenceInformation;
+
 
 		var instance = new cybersourceRestApi.DecisionManagerApi(configObject, apiClient);
 

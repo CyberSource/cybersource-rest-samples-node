@@ -11,7 +11,7 @@ function export_compliance_information_provided(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.ValidateExportComplianceRequest();
 
-		var clientReferenceInformation = new cybersourceRestApi.Riskv1addressverificationsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Riskv1decisionsClientReferenceInformation();
 		clientReferenceInformation.code = 'verification example';
 		clientReferenceInformation.comments = 'Export -fields';
 		requestObj.clientReferenceInformation = clientReferenceInformation;

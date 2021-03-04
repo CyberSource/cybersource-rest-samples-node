@@ -11,7 +11,7 @@ function shipping_details_not_us_or_canada(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.VerifyCustomerAddressRequest();
 
-		var clientReferenceInformation = new cybersourceRestApi.Riskv1addressverificationsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Riskv1decisionsClientReferenceInformation();
 		clientReferenceInformation.code = 'addressEg';
 		clientReferenceInformation.comments = 'dav-All fields';
 		requestObj.clientReferenceInformation = clientReferenceInformation;

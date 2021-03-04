@@ -11,7 +11,7 @@ function enroll_instrument_identifier_for_network_tokenization(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
-		var requestObj = new cybersourceRestApi.PostInstrumentIdentifierRequest();
+		var requestObj = new cybersourceRestApi.PostInstrumentIdentifierEnrollmentRequest();
 
 		requestObj.type = 'enrollable card';
 		var card = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierCard();

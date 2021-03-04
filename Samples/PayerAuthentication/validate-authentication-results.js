@@ -11,8 +11,13 @@ function validate_authentication_results(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.ValidateRequest();
 
-		var clientReferenceInformation = new cybersourceRestApi.Riskv1authenticationsetupsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Riskv1decisionsClientReferenceInformation();
 		clientReferenceInformation.code = 'pavalidatecheck';
+		var clientReferenceInformationPartner = new cybersourceRestApi.Riskv1decisionsClientReferenceInformationPartner();
+		clientReferenceInformationPartner.developerId = '7891234';
+		clientReferenceInformationPartner.solutionId = '89012345';
+		clientReferenceInformation.partner = clientReferenceInformationPartner;
+
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var orderInformation = new cybersourceRestApi.Riskv1authenticationresultsOrderInformation();

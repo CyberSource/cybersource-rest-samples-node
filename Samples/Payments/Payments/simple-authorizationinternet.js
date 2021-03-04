@@ -34,7 +34,7 @@ function simple_authorization_internet(callback, enable_capture) {
 
 		var orderInformation = new cybersourceRestApi.Ptsv2paymentsOrderInformation();
 		var orderInformationAmountDetails = new cybersourceRestApi.Ptsv2paymentsOrderInformationAmountDetails();
-		orderInformationAmountDetails.totalAmount = '102.21';
+		orderInformationAmountDetails.totalAmount = '50.00';
 		orderInformationAmountDetails.currency = 'USD';
 		orderInformation.amountDetails = orderInformationAmountDetails;
 
