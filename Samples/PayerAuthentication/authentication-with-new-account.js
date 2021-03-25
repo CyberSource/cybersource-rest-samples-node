@@ -11,7 +11,7 @@ function authentication_with_new_account(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.CheckPayerAuthEnrollmentRequest();
 
-		var clientReferenceInformation = new cybersourceRestApi.Riskv1authenticationsetupsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Riskv1decisionsClientReferenceInformation();
 		clientReferenceInformation.code = 'New Account';
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 

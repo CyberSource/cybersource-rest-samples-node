@@ -18,7 +18,7 @@ function capture_payment(callback) {
 
 		var orderInformation = new cybersourceRestApi.Ptsv2paymentsidcapturesOrderInformation();
 		var orderInformationAmountDetails = new cybersourceRestApi.Ptsv2paymentsidcapturesOrderInformationAmountDetails();
-		orderInformationAmountDetails.totalAmount = '102.21';
+		orderInformationAmountDetails.totalAmount = '50.00';
 		orderInformationAmountDetails.currency = 'USD';
 		orderInformation.amountDetails = orderInformationAmountDetails;
 

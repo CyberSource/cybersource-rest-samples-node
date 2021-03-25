@@ -9,8 +9,8 @@ function get_notification_of_changes(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
-		var startTime = '2020-03-01T12:00:00Z';
-		var endTime = '2020-03-10T12:00:00Z';
+		var startTime = '2020-10-01T12:00:00Z';
+		var endTime = '2020-10-10T12:00:00Z';
 
 		var opts = [];
 

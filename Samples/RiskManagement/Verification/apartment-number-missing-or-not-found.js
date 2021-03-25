@@ -11,7 +11,7 @@ function apartment_number_missing_or_not_found(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.VerifyCustomerAddressRequest();
 
-		var clientReferenceInformation = new cybersourceRestApi.Riskv1addressverificationsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Riskv1decisionsClientReferenceInformation();
 		clientReferenceInformation.code = 'addressEg';
 		clientReferenceInformation.comments = 'dav-error response check';
 		requestObj.clientReferenceInformation = clientReferenceInformation;

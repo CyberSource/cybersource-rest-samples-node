@@ -11,7 +11,7 @@ function multiple_sanction_lists(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.ValidateExportComplianceRequest();
 
-		var clientReferenceInformation = new cybersourceRestApi.Riskv1addressverificationsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Riskv1decisionsClientReferenceInformation();
 		clientReferenceInformation.code = 'verification example';
 		clientReferenceInformation.comments = 'All fields';
 		requestObj.clientReferenceInformation = clientReferenceInformation;

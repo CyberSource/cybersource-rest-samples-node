@@ -36,6 +36,11 @@ function add_data_to_list(callback) {
 
 		var clientReferenceInformation = new cybersourceRestApi.Riskv1decisionsClientReferenceInformation();
 		clientReferenceInformation.code = '54323007';
+		var clientReferenceInformationPartner = new cybersourceRestApi.Riskv1decisionsClientReferenceInformationPartner();
+		clientReferenceInformationPartner.developerId = '7891234';
+		clientReferenceInformationPartner.solutionId = '89012345';
+		clientReferenceInformation.partner = clientReferenceInformationPartner;
+
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var riskInformation = new cybersourceRestApi.Riskv1liststypeentriesRiskInformation();

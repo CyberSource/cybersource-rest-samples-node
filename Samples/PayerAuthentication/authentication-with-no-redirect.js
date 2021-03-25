@@ -11,8 +11,13 @@ function authentication_with_no_redirect(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.CheckPayerAuthEnrollmentRequest();
 
-		var clientReferenceInformation = new cybersourceRestApi.Riskv1authenticationsetupsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Riskv1decisionsClientReferenceInformation();
 		clientReferenceInformation.code = 'cybs_test';
+		var clientReferenceInformationPartner = new cybersourceRestApi.Riskv1decisionsClientReferenceInformationPartner();
+		clientReferenceInformationPartner.developerId = '7891234';
+		clientReferenceInformationPartner.solutionId = '89012345';
+		clientReferenceInformation.partner = clientReferenceInformationPartner;
+
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var orderInformation = new cybersourceRestApi.Riskv1authenticationsOrderInformation();

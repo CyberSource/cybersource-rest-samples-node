@@ -9,8 +9,8 @@ function get_netfunding_information_for_account_or_merchant(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
-		var startTime = '2019-08-01T00:00:00Z';
-		var endTime = '2019-09-01T23:59:59Z';
+		var startTime = '2021-01-01T00:00:00Z';
+		var endTime = '2021-01-02T23:59:59Z';
 		var organizationId = "testrest";
 		var groupName = null;
 

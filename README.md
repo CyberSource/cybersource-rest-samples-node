@@ -53,6 +53,31 @@ const KeyAlias = "your_merchant_id";
 const KeyPass = "your_merchant_id";
 ```
 
+* MetaKey Http
+
+```
+const AuthenticationType  = "http_Signature";
+const MerchantId          = "your_child_merchant_id";
+const MerchantKeyId       = "your_metakey_serial_number";
+const MerchantSecretKey   = "your_metakey_shared_secret";
+const PortfolioId         = "your_portfolio_id";
+const UseMetaKey          = true;
+const EnableClientCert    = false;
+```
+
+* MetaKey JWT
+
+```
+const AuthenticationType  = "jwt";
+const MerchantId          = "your_child_merchant_id";
+const KeyAlias            = "your_child_merchant_id";
+const KeyPass             = "your_portfolio_id";
+const KeyFileName         = "your_portfolio_id";
+const KeysDirectory       = "Resource";
+const UseMetaKey          = true;
+const EnableClientCert    = false;
+```
+
 ### Switching between the sandbox environment and the production environment
 CyberSource maintains a complete sandbox environment for testing and development purposes. This sandbox environment is an exact
 duplicate of our production environment with the transaction authorization and settlement process simulated. By default, this SDK is 
