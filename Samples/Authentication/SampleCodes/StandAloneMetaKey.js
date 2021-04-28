@@ -6,15 +6,15 @@ var cybersourceRestApi = require('cybersource-rest-client');
 // common parameters
 const AuthenticationType = 'http_signature';
 const RunEnvironment = 'cybersource.environment.SANDBOX';
-const MerchantId = 'merchannt998';
+const MerchantId = '';
 
 // http_signature parameters
-const MerchantKeyId = '7a7f20a6-1f7f-4780-9a79-3ff8acf7cc83';
-const MerchantSecretKey = 'X+ynT3aTCD643tZgnEnnLD+sd5pplDGMw5vG5klPvVY=';
+const MerchantKeyId = '';
+const MerchantSecretKey = '';
 
 //meta key parameters
 const UseMetaKey = true;
-const PortfolioID = 'developercp';
+const PortfolioID = '';
 
 function getConfiguration() {
 
