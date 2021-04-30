@@ -104,7 +104,7 @@ The [API Reference Guide](https://developer.cybersource.com/api/reference/api-re
 
 ## Run Environments
 
-The run environments that were supported in CyberSource .NET SDK and CyberSource .NET Standard SDK have been deprecated.
+The run environments that were supported in CyberSource Nodejs SDK have been deprecated.
 Moving forward, the SDKs will only support the direct hostname as the run environment.
 
 For the old run environments previously used, they should be replaced by the following hostnames:
