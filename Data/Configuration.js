@@ -6,7 +6,7 @@
 
 // common parameters
 const AuthenticationType = 'http_signature';
-const RunEnvironment = 'cybersource.environment.SANDBOX';
+const RunEnvironment = 'apitest.cybersource.com';
 const MerchantId = 'testrest';
 
 // http_signature parameters
