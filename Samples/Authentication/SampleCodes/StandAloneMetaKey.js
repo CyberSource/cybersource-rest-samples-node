@@ -5,7 +5,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 
 // common parameters
 const AuthenticationType = 'http_signature';
-const RunEnvironment = 'cybersource.environment.SANDBOX';
+const RunEnvironment = 'apitest.cybersource.com';
 const MerchantId = '';
 
 // http_signature parameters
