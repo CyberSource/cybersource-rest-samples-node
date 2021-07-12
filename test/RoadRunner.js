@@ -73,21 +73,6 @@ function Test(road, callback) {
 		}
     }
 	
-    var assertions = road.Assertions;
-    
-	if(JSON.stringify(assertions) == '{}') {
-		var httpStatus = '';
-		var expectedValues = [];
-		var requiredFields = [];
-    }
-    else {
-		var httpStatus = road.Assertions.httpStatus;
-		var expectedValues = road.Assertions.expectedValues;
-		var requiredFields = road.Assertions.requiredFields;
-    }
-
-    var field, value;
-	
 	if(dependentName)
 	{
 		if(module_name.includes("Retrieve") || module_name.includes("Delete"))
@@ -111,34 +96,14 @@ function Test(road, callback) {
 					fieldMap.set(road.uniqueName + storedFields[j], returnval);
 				});
 			}
-		 
-			 //Passing all expected values assertions and corresponding values into a dictionary
-			for(j = 0; j < expectedValues.length; j++) {        
-				field = expectedValues[j].field;
-				value = expectedValues[j].value;
-				
-				ReturnVal(data, field, function(returnval) {
-					var sub_dict = {};
-					sub_dict["calculated"] = returnval;
-					sub_dict["expected"] = value;
-					dict[field] = sub_dict;
-				});
-			}
-		 
-			var sub_dict = {};
 			 
-			//Passing HTTP Status assertions and actual value into a dictionary
-			sub_dict["calculated"] = JSON.stringify(response['status']);
-			sub_dict["expected"] = httpStatus;
-			dict["httpStatus"] = sub_dict;
-			 
-			//Passing required field values and their expected value(Not Null) to the dictionary
-			for(j = 0; j < requiredFields.length; j++) {
-				ReturnVal(data, requiredFields[j], function(returnval) {
+			//Passing stored field values and their expected value(Not Null) to the dictionary
+			for(j = 0; j < storedFields.length; j++) {
+				ReturnVal(data, storedFields[j], function(returnval) {
 					var sub_dict = {};
 					sub_dict["calculated"] = (returnval == null);
 					sub_dict["expected"] = false;
-					dict[requiredFields[j]] = sub_dict;
+					dict[storedFields[j]] = sub_dict;
 				});
 			}
 		}
