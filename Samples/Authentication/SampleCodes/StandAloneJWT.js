@@ -10,8 +10,6 @@ var path = require('path');
 
 var requestHost = "apitest.cybersource.com";
 var merchantId = "testrest";
-var merchantKeyId = "08c94330-f618-42a3-b09d-e1e43be5efda";
-var merchantSecretKey = "yBJxy6LjM2TmcPGu+GaJrHtkke25fPpUX+UY6/L/1tE=";
 var keyPass = "testrest";
 var payload = "{" +
 		"	\"clientReferenceInformation\": {" +
@@ -97,8 +95,18 @@ function getJsonWebToken(resource, method, request) {
 	var certificate = forge.pkcs12.pkcs12FromAsn1(p12Asn1, false, keyPass);
 	
 	// Getting the RSA private key
+	
+	// get rsa key bags
 	var keyBags = certificate.getBags({ bagType: forge.pki.oids.keyBag });
 	var bag = keyBags[forge.pki.oids.keyBag][0];
+
+	if(bag == null)
+	{
+	  // if rsa key bag is null, get pkcs8 key bag
+	  keyBags = certificate.getBags({ bagType: forge.pki.oids.pkcs8ShroudedKeyBag });
+	  bag = keyBags[forge.pki.oids.pkcs8ShroudedKeyBag][0]; 
+	}
+
 	var privateKey = bag.key;
 	var rsaPrivateKey = forge.pki.privateKeyToPem(privateKey);
 	
