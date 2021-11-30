@@ -10,7 +10,7 @@ function getConfiguration() {
 		'enableClientCert'  : true,
 		'clientCertDir'     : 'Resource',
 		'sslClientCert'     : '',
-        'privateKey'        : '',
+		'privateKey'        : '',
 		'clientId'          : '',
 		'clientSecret'      : ''
 	};
@@ -63,9 +63,9 @@ function simple_authorization_internet(callback, accessToken, refreshToken) {
 
 		requestObj.orderInformation = orderInformation;
 
-        configObject['accessToken'] = accessToken
-        configObject['refreshToken'] = refreshToken
-        configObject['authenticationType'] = 'oauth'
+		configObject['accessToken'] = accessToken
+		configObject['refreshToken'] = refreshToken
+		configObject['authenticationType'] = 'oauth'
 		var instance = new cybersourceRestApi.PaymentsApi(configObject, apiClient);
 
 		instance.createPayment(requestObj, function (error, data, response) {
@@ -88,92 +88,102 @@ function simple_authorization_internet(callback, accessToken, refreshToken) {
 
 function postAccessTokenFromAuthCode(callback, code, grantType)
 {
-    var configObject = getConfiguration();
-    var apiClient = new cybersourceRestApi.ApiClient();
-    var requestObj = new cybersourceRestApi.CreateAccessTokenRequest();		
-    requestObj.client_id = configObject['clientId'];
-    requestObj.client_secret = configObject['clientSecret'];
-    requestObj.grant_type = grantType;
-    requestObj.code = code;
+	try {
+		var configObject = getConfiguration();
+		var apiClient = new cybersourceRestApi.ApiClient();
+		var requestObj = new cybersourceRestApi.CreateAccessTokenRequest();
+		requestObj.client_id = configObject['clientId'];
+		requestObj.client_secret = configObject['clientSecret'];
+		requestObj.grant_type = grantType;
+		requestObj.code = code;
 
-    var instance = new cybersourceRestApi.OAuthApi(configObject, apiClient);
+		var instance = new cybersourceRestApi.OAuthApi(configObject, apiClient);
 
-    var opts = {};
+		var opts = {};
 
-    instance.createAccessToken(requestObj, opts, function (error, data, response) {
-        if (error) {
-            console.log('\nError : ' + JSON.stringify(error));
-        }
-        else if (data) {
-            console.log('\nData : ' + JSON.stringify(data));
-        }
+		instance.createAccessToken(requestObj, opts, function (error, data, response) {
+			if (error) {
+				console.log('\nError : ' + JSON.stringify(error));
+			}
+			else if (data) {
+				console.log('\nData : ' + JSON.stringify(data));
+			}
 
-        var status = JSON.stringify(response['status']);
-        console.log('\nResponse : ' + JSON.stringify(response));
-        console.log('\nResponse Code of Creating Access Token using AuthCode : ' + status);
+			var status = JSON.stringify(response['status']);
+			console.log('\nResponse : ' + JSON.stringify(response));
+			console.log('\nResponse Code of Creating Access Token using AuthCode : ' + status);
 
-        if(status === "200")
-        {
-            var accessToken = data['access_token'];
-            var refreshToken = data['refresh_token'];
-            simple_authorization_internet(callback, accessToken, refreshToken);
-        }
-    });
+			if(status === "200")
+			{
+				var accessToken = data['access_token'];
+				var refreshToken = data['refresh_token'];
+				simple_authorization_internet(callback, accessToken, refreshToken);
+			}
+		});
+	}
+	catch (error) {
+		console.log('\nException on calling the API : ' + error);
+	}
 }
 
 function postAccessTokenFromRefreshToken(callback, grantType, refreshToken)
 {
-    var configObject = getConfiguration();
-    var apiClient = new cybersourceRestApi.ApiClient();
-    var requestObj = new cybersourceRestApi.CreateAccessTokenRequest();	    	
-    requestObj.client_id = configObject['clientId'];
-    requestObj.client_secret = configObject['clientSecret'];
-    requestObj.grant_type = grantType;
-    requestObj.refresh_token = refreshToken;
+	try {
+		var configObject = getConfiguration();
+		var apiClient = new cybersourceRestApi.ApiClient();
+		var requestObj = new cybersourceRestApi.CreateAccessTokenRequest();
+		requestObj.client_id = configObject['clientId'];
+		requestObj.client_secret = configObject['clientSecret'];
+		requestObj.grant_type = grantType;
+		requestObj.refresh_token = refreshToken;
 
-    var instance = new cybersourceRestApi.OAuthApi(configObject, apiClient);
+		var instance = new cybersourceRestApi.OAuthApi(configObject, apiClient);
 
-    var opts = {};
+		var opts = {};
 
-    instance.createAccessToken(requestObj, opts, function (error, data, response) {
-        if (error) {
-            console.log('\nError : ' + JSON.stringify(error));
-        }
-        else if (data) {
-            console.log('\nData : ' + JSON.stringify(data));
-        }
+		instance.createAccessToken(requestObj, opts, function (error, data, response) {
+			if (error) {
+				console.log('\nError : ' + JSON.stringify(error));
+			}
+			else if (data) {
+				console.log('\nData : ' + JSON.stringify(data));
+			}
 
-        var status = JSON.stringify(response['status']);
-        console.log('\nResponse : ' + JSON.stringify(response));
-        console.log('\nResponse Code of Creating Access Token using Refresh Token : ' + status);
+			var status = JSON.stringify(response['status']);
+			console.log('\nResponse : ' + JSON.stringify(response));
+			console.log('\nResponse Code of Creating Access Token using Refresh Token : ' + status);
 
-        if(status === "200")
-        {
-            var accessToken = data['access_token'];
-            var refreshToken = data['refresh_token'];
-            simple_authorization_internet(callback, accessToken, refreshToken);
-        }
-    });
+			if(status === "200")
+			{
+				var accessToken = data['access_token'];
+				var refreshToken = data['refresh_token'];
+				simple_authorization_internet(callback, accessToken, refreshToken);
+			}
+		});
+	}
+	catch (error) {
+		console.log('\nException on calling the API : ' + error);
+	}
 }
 
 function standaloneOAuth(callback) {
 	var grantType;
-    var result;
-    var code;
-    var refreshToken;
-    var createUsingAuthCode = true;
-    if(createUsingAuthCode)
-    {
-        code = '';
-        grantType = 'authorization_code';
-        result = postAccessTokenFromAuthCode(callback, code, grantType);
-    }
-    else
-    {
-        refreshToken = ''
-        grantType = 'refresh_token';
-        result = postAccessTokenFromRefreshToken(callback, grantType, refreshToken);
-    }
+	var result;
+	var code;
+	var refreshToken;
+	var createUsingAuthCode = true;
+	if(createUsingAuthCode)
+	{
+		code = '';
+		grantType = 'authorization_code';
+		result = postAccessTokenFromAuthCode(callback, code, grantType);
+	}
+	else
+	{
+		refreshToken = ''
+		grantType = 'refresh_token';
+		result = postAccessTokenFromRefreshToken(callback, grantType, refreshToken);
+	}
 	
 }
 
