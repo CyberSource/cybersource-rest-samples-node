@@ -16,7 +16,7 @@ function electronic_check_standalone_credits(callback) {
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsidrefundsPaymentInformation();
-		var paymentInformationBank = new cybersourceRestApi.Ptsv2paymentsPaymentInformationBank();
+		var paymentInformationBank = new cybersourceRestApi.Ptsv2paymentsidrefundsPaymentInformationBank();
 		var paymentInformationBankAccount = new cybersourceRestApi.Ptsv2paymentsPaymentInformationBankAccount();
 		paymentInformationBankAccount.type = 'C';
 		paymentInformationBankAccount.number = '4100';

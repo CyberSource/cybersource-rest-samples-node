@@ -121,10 +121,10 @@ function getHttpSignature(resource, method, request) {
 	
 	signatureString += 'v-c-merchant-id: ' + merchantId;
 	
-	var data = new Buffer(signatureString, 'utf8');
+	var data = new Buffer.from(signatureString, 'utf8');
 	
 	// Decoding scecret key
-	var key = new Buffer(merchantSecretKey, 'base64');
+	var key = new Buffer.from(merchantSecretKey, 'base64');
 	
 	signatureValue = crypto.createHmac('sha256', key)
 									.update(data)

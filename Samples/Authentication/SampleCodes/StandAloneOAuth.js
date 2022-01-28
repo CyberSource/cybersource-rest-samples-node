@@ -5,14 +5,21 @@ var cybersourceRestApi = require('cybersource-rest-client');
 function getConfiguration() {
 
 	var configObj = {
-		'authenticationType': 'mutual_auth',	
+		'authenticationType': 'mutual_auth',
 		'runEnvironment'    : 'api-matest.cybersource.com',
-		'enableClientCert'  : true,
+		'enableClientCert'  : false,
 		'clientCertDir'     : 'Resource',
 		'sslClientCert'     : '',
-        'privateKey'        : '',
+		'privateKey'        : '',
 		'clientId'          : '',
-		'clientSecret'      : ''
+		'clientSecret'      : '',
+		'logConfiguration'  : {
+			'enableLog': true,
+			'logFileName': 'cybs',
+			'logDirectory': 'log',
+			'logFileMaxSize': '5242880',
+			'enableMasking': true
+		}
 	};
 	return configObj;
 
@@ -90,7 +97,7 @@ function postAccessTokenFromAuthCode(callback, code, grantType)
 {
     var configObject = getConfiguration();
     var apiClient = new cybersourceRestApi.ApiClient();
-    var requestObj = new cybersourceRestApi.CreateAccessTokenRequest();		
+    var requestObj = new cybersourceRestApi.CreateAccessTokenRequest();	
     requestObj.client_id = configObject['clientId'];
     requestObj.client_secret = configObject['clientSecret'];
     requestObj.grant_type = grantType;
@@ -125,7 +132,7 @@ function postAccessTokenFromRefreshToken(callback, grantType, refreshToken)
 {
     var configObject = getConfiguration();
     var apiClient = new cybersourceRestApi.ApiClient();
-    var requestObj = new cybersourceRestApi.CreateAccessTokenRequest();	    	
+    var requestObj = new cybersourceRestApi.CreateAccessTokenRequest();
     requestObj.client_id = configObject['clientId'];
     requestObj.client_secret = configObject['clientSecret'];
     requestObj.grant_type = grantType;

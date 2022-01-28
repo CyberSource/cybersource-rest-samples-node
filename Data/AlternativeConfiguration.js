@@ -26,34 +26,39 @@ const PortfolioID = '';
 // logging parameters
 const EnableLog = true;
 const LogFileName = 'cybs';
-const LogDirectory = '../log';
+const LogDirectory = 'log';
 const LogfileMaxSize = '5242880'; //10 MB In Bytes
+const EnableMasking = true;
 
 // Constructor for Configuration
 function Configuration() {
 
-	var configObj = {
-		'authenticationType': AuthenticationType,	
-		'runEnvironment': RunEnvironment,
+    var configObj = {
+        'authenticationType': AuthenticationType,
+        'runEnvironment': RunEnvironment,
 
-		'merchantID': MerchantId,
-		'merchantKeyId': MerchantKeyId,
-		'merchantsecretKey': MerchantSecretKey,
-        
-		'keyAlias': KeyAlias,
-		'keyPass': KeyPass,
-		'keyFileName': KeyFileName,
-		'keysDirectory': KeysDirectory,
+        'merchantID': MerchantId,
+        'merchantKeyId': MerchantKeyId,
+        'merchantsecretKey': MerchantSecretKey,
 
-		'useMetaKey': UseMetaKey,
-		'portfolioID': PortfolioID,
-        
-		'enableLog': EnableLog,
-		'logFilename': LogFileName,
-		'logDirectory': LogDirectory,
-		'logFileMaxSize': LogfileMaxSize
-	};
-	return configObj;
+        'keyAlias': KeyAlias,
+        'keyPass': KeyPass,
+        'keyFileName': KeyFileName,
+        'keysDirectory': KeysDirectory,
+
+        'useMetaKey': UseMetaKey,
+        'portfolioID': PortfolioID,
+
+        'logConfiguration': {
+            'enableLog': EnableLog,
+            'logFileName': LogFileName,
+            'logDirectory': LogDirectory,
+            'logFileMaxSize': LogfileMaxSize,
+            'loggingLevel': 'debug',
+            'enableMasking': EnableMasking
+        }
+    };
+    return configObj;
 
 }
 
