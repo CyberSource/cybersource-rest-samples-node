@@ -16,6 +16,13 @@ const MerchantSecretKey = '';
 const UseMetaKey = true;
 const PortfolioID = '';
 
+// logging parameters
+const EnableLog = true;
+const LogFileName = 'cybs';
+const LogDirectory = 'log';
+const LogfileMaxSize = '5242880'; //10 MB In Bytes
+const EnableMasking = true;
+
 function getConfiguration() {
 
 	var configObj = {
@@ -27,7 +34,16 @@ function getConfiguration() {
 		'merchantsecretKey': MerchantSecretKey,
 
 		'useMetaKey': UseMetaKey,
-		'portfolioID': PortfolioID
+		'portfolioID': PortfolioID,
+
+        'logConfiguration': {
+            'enableLog': EnableLog,
+            'logFileName': LogFileName,
+            'logDirectory': LogDirectory,
+            'logFileMaxSize': LogfileMaxSize,
+            'loggingLevel': 'debug',
+            'enableMasking': EnableMasking
+        }
 	};
 	return configObj;
 
