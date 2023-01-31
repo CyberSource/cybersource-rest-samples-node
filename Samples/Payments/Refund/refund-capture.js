@@ -12,7 +12,7 @@ function refund_capture(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.RefundCaptureRequest();
 
-		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsidrefundsClientReferenceInformation();
 		clientReferenceInformation.code = 'TC50171_3';
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
