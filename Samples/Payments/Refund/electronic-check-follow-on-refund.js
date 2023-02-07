@@ -12,7 +12,7 @@ function electronic_check_follow_on_refund(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.RefundPaymentRequest();
 
-		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsidrefundsClientReferenceInformation();
 		clientReferenceInformation.code = 'TC50171_3';
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
@@ -20,7 +20,7 @@ function electronic_check_follow_on_refund(callback) {
 		requestObj.processingInformation = processingInformation;
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsidrefundsPaymentInformation();
-		var paymentInformationPaymentType = new cybersourceRestApi.Ptsv2paymentsPaymentInformationPaymentType();
+		var paymentInformationPaymentType = new cybersourceRestApi.Ptsv2paymentsidrefundsPaymentInformationPaymentType();
 		paymentInformationPaymentType.name = 'CHECK';
 		paymentInformation.paymentType = paymentInformationPaymentType;
 

@@ -20,7 +20,7 @@ function authorization_for_incremental_authorization_flow(callback) {
 		var paymentInformationCard = new cybersourceRestApi.Ptsv2paymentsPaymentInformationCard();
 		paymentInformationCard.number = '4111111111111111';
 		paymentInformationCard.expirationMonth = '12';
-		paymentInformationCard.expirationYear = '2021';
+		paymentInformationCard.expirationYear = '2031';
 		paymentInformationCard.type = '001';
 		paymentInformation.card = paymentInformationCard;
 

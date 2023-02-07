@@ -26,7 +26,7 @@ function electronic_check_standalone_credits(callback) {
 		paymentInformationBank.routingNumber = '071923284';
 		paymentInformation.bank = paymentInformationBank;
 
-		var paymentInformationPaymentType = new cybersourceRestApi.Ptsv2paymentsPaymentInformationPaymentType();
+		var paymentInformationPaymentType = new cybersourceRestApi.Ptsv2paymentsidrefundsPaymentInformationPaymentType();
 		paymentInformationPaymentType.name = 'CHECK';
 		paymentInformation.paymentType = paymentInformationPaymentType;
 
