@@ -1,6 +1,7 @@
 'use strict';
 
 var cybersourceRestApi = require('cybersource-rest-client');
+var path = require('path');
 
 function getConfiguration() {
 
@@ -22,7 +23,11 @@ function getConfiguration() {
         }
     };
     return configObj;
+}
 
+function write_log_audit(status) {
+	var filename = path.basename(__filename).split(".")[0];
+	console.log(`[Sample Code Testing] [${filename}] ${status}`);
 }
 
 function simple_authorization_internet(callback, accessToken, refreshToken) {
@@ -85,7 +90,9 @@ function simple_authorization_internet(callback, accessToken, refreshToken) {
 
             console.log('\nResponse : ' + JSON.stringify(response));
             console.log('\nResponse Code of Process a Payment : ' + JSON.stringify(response['status']));
-            callback(error, data, response);
+            var status = response['status'];
+			write_log_audit(status);
+			callback(error, data, response);
         });
     }
     catch (error) {

@@ -30,6 +30,8 @@ function get_netfunding_information_for_account_or_merchant(callback) {
 
 			console.log('\nResponse : ' + JSON.stringify(response));
 			console.log('\nResponse Code of Get Netfunding Information for an Account or a Merchant : ' + JSON.stringify(response['status']));
+			var status = response['status'];
+			write_log_audit(status);
 			callback(error, data, response);
 		});
 	}
@@ -37,6 +39,12 @@ function get_netfunding_information_for_account_or_merchant(callback) {
 		console.log('\nException on calling the API : ' + error);
 	}
 }
+
+function write_log_audit(status) {
+	var filename = path.basename(__filename).split(".")[0];
+	console.log(`[Sample Code Testing] [${filename}] ${status}`);
+}
+
 if (require.main === module) {
 	get_netfunding_information_for_account_or_merchant(function () {
 		console.log('\nGetNetFundingDetails end.');

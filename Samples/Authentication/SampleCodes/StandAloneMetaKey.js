@@ -1,7 +1,7 @@
 'use strict';
 
 var cybersourceRestApi = require('cybersource-rest-client');
-
+var path = require('path');
 
 // common parameters
 const AuthenticationType = 'http_signature';
@@ -22,6 +22,11 @@ const LogFileName = 'cybs';
 const LogDirectory = 'log';
 const LogfileMaxSize = '5242880'; //10 MB In Bytes
 const EnableMasking = true;
+
+function write_log_audit(status) {
+	var filename = path.basename(__filename).split(".")[0];
+	console.log(`[Sample Code Testing] [${filename}] ${status}`);
+}
 
 function getConfiguration() {
 
@@ -46,9 +51,7 @@ function getConfiguration() {
         }
 	};
 	return configObj;
-
 }
-
 
 function standaloneMetaKey(callback)
 {
@@ -102,7 +105,6 @@ function simple_payments_using_meta_key(callback, enable_capture) {
 
 		requestObj.orderInformation = orderInformation;
 
-
 		var instance = new cybersourceRestApi.PaymentsApi(configObject, apiClient);
 
 		instance.createPayment(requestObj, function (error, data, response) {
@@ -115,6 +117,8 @@ function simple_payments_using_meta_key(callback, enable_capture) {
 
 			console.log('\nResponse : ' + JSON.stringify(response));
 			console.log('\nResponse Code of Process a Payment : ' + JSON.stringify(response['status']));
+			var status = response['status'];
+			write_log_audit(status);
 			callback(error, data, response);
 		});
 	}
