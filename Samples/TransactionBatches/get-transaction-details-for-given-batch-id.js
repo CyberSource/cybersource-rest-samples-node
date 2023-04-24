@@ -27,10 +27,12 @@ function get_transaction_details_for_given_batch_id(callback) {
 		instance.getTransactionBatchDetails(id, opts, function (error, data, response) {
 			if (error) {
 				console.log('\nError : ' + JSON.stringify(error));
+				write_log_audit("404");
 			}
 			else {
 				console.log('\nSuccessfully retrieved response');
 				console.log('\nResponse downloaded at this location:' + apiClient.downloadFilePath);
+				write_log_audit("200");
 			}
 			callback(error, data, response);
 		});
@@ -39,6 +41,12 @@ function get_transaction_details_for_given_batch_id(callback) {
 		console.log('\nException on calling the API : ' + error);
 	}
 }
+
+function write_log_audit(status) {
+	var filename = path.basename(__filename).split(".")[0];
+	console.log(`[Sample Code Testing] [${filename}] ${status}`);
+}
+
 if (require.main === module) {
 	get_transaction_details_for_given_batch_id(function () {
 		console.log('\nGetTransactionBatchDetails end.');

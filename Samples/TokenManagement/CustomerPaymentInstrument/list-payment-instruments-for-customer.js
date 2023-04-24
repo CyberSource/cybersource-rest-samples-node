@@ -29,6 +29,8 @@ function list_payment_instruments_for_customer(callback) {
 
 			console.log('\nResponse : ' + JSON.stringify(response));
 			console.log('\nResponse Code of List Payment Instruments for a Customer : ' + JSON.stringify(response['status']));
+			var status = response['status'];
+			write_log_audit(status);
 			callback(error, data, response);
 		});
 	}
@@ -36,6 +38,12 @@ function list_payment_instruments_for_customer(callback) {
 		console.log('\nException on calling the API : ' + error);
 	}
 }
+
+function write_log_audit(status) {
+	var filename = path.basename(__filename).split(".")[0];
+	console.log(`[Sample Code Testing] [${filename}] ${status}`);
+}
+
 if (require.main === module) {	
 		list_payment_instruments_for_customer(function () {
 		console.log('\nGetCustomerPaymentInstrumentsList end.');

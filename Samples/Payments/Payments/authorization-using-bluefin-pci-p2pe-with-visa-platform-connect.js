@@ -79,6 +79,8 @@ function authorization_using_bluefin_pci_p2pe_with_visa_platform_connect(callbac
 
 			console.log('\nResponse : ' + JSON.stringify(response));
 			console.log('\nResponse Code of Process a Payment : ' + JSON.stringify(response['status']));
+			var status = response['status'];
+			write_log_audit(status);
 			callback(error, data, response);
 		});
 	}
@@ -86,6 +88,12 @@ function authorization_using_bluefin_pci_p2pe_with_visa_platform_connect(callbac
 		console.log('\nException on calling the API : ' + error);
 	}
 }
+
+function write_log_audit(status) {
+	var filename = path.basename(__filename).split(".")[0];
+	console.log(`[Sample Code Testing] [${filename}] ${status}`);
+}
+
 if (require.main === module) {	
 		authorization_using_bluefin_pci_p2pe_with_visa_platform_connect(function () {
 		console.log('\nCreatePayment end.');

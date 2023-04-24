@@ -41,6 +41,8 @@ function enroll_instrument_identifier_for_network_tokenization(callback) {
 
 			console.log('\nResponse : ' + JSON.stringify(response));
 			console.log('\nResponse Code of Enroll an Instrument Identifier for Network Tokenization : ' + JSON.stringify(response['status']));
+			var status = response['status'];
+			write_log_audit(status);
 			callback(error, data, response);
 		});
 	}
@@ -48,6 +50,12 @@ function enroll_instrument_identifier_for_network_tokenization(callback) {
 		console.log('\nException on calling the API : ' + error);
 	}
 }
+
+function write_log_audit(status) {
+	var filename = path.basename(__filename).split(".")[0];
+	console.log(`[Sample Code Testing] [${filename}] ${status}`);
+}
+
 if (require.main === module) {	
 		enroll_instrument_identifier_for_network_tokenization(function () {
 		console.log('\nPostInstrumentIdentifierEnrollment end.');
