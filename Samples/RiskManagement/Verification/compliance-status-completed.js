@@ -50,7 +50,7 @@ function compliance_status_completed(callback) {
 
 		var exportComplianceInformation = new cybersourceRestApi.Riskv1exportcomplianceinquiriesExportComplianceInformation();
 		exportComplianceInformation.addressOperator = 'and';
-		var exportComplianceInformationWeights = new cybersourceRestApi.Riskv1exportcomplianceinquiriesExportComplianceInformationWeights();
+		var exportComplianceInformationWeights = new cybersourceRestApi.Ptsv2paymentsWatchlistScreeningInformationWeights();
 		exportComplianceInformationWeights.address = 'abc';
 		exportComplianceInformationWeights.company = 'def';
 		exportComplianceInformationWeights.name = 'adb';

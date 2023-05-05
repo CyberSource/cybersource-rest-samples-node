@@ -54,7 +54,7 @@ function export_compliance_information_provided(callback) {
 
 		var exportComplianceInformation = new cybersourceRestApi.Riskv1exportcomplianceinquiriesExportComplianceInformation();
 		exportComplianceInformation.addressOperator = 'and';
-		var exportComplianceInformationWeights = new cybersourceRestApi.Riskv1exportcomplianceinquiriesExportComplianceInformationWeights();
+		var exportComplianceInformationWeights = new cybersourceRestApi.Ptsv2paymentsWatchlistScreeningInformationWeights();
 		exportComplianceInformationWeights.address = 'low';
 		exportComplianceInformationWeights.company = 'exact';
 		exportComplianceInformationWeights.name = 'exact';
