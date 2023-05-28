@@ -10,8 +10,8 @@ const RunEnvironment = 'apitest.cybersource.com';
 const MerchantId = 'testrest_cpctv';
 
 // http_signature parameters
-const MerchantKeyId = 'e547c3d3-16e4-444c-9313-2a08784b906a';
-const MerchantSecretKey = 'JXm4dqKYIxWofM1TIbtYY9HuYo7Cg1HPHxn29f6waRo=';
+const MerchantKeyId = '964f2ecc-96f0-4432-a742-db0b44e6a73a';
+const MerchantSecretKey = 'zXKpCqMQPmOR/JRldSlkQUtvvIzOewUVqsUP0sBHpxQ=';
 
 // jwt parameters
 const KeysDirectory = 'Resource';
