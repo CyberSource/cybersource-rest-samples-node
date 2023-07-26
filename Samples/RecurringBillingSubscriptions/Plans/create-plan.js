@@ -7,6 +7,9 @@ var configuration = require(filePath);
 
 function create_plan(callback) {
 	try {
+		// Required to make the sample code activate-plan.js work
+		var plan_status = "DRAFT";
+
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.CreatePlanRequest();
@@ -14,6 +17,7 @@ function create_plan(callback) {
 		var planInformation = new cybersourceRestApi.Rbsv1plansPlanInformation();
 		planInformation.name = 'Gold Plan 1';
 		planInformation.description = 'New Gold Plan 1';
+		planInformation.status = plan_status;
 		var planInformationBillingPeriod = new cybersourceRestApi.InlineResponse200PlanInformationBillingPeriod();
 		planInformationBillingPeriod.length = '1';
 		planInformationBillingPeriod.unit = 'M';
