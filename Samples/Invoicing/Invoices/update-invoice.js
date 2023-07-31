@@ -10,7 +10,7 @@ function update_invoice(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
-		var requestObj = new cybersourceRestApi.CreateInvoiceRequest();
+		var requestObj = new cybersourceRestApi.UpdateInvoiceRequest();
 
 		var customerInformation = new cybersourceRestApi.Invoicingv2invoicesCustomerInformation();
 		customerInformation.name = 'New Customer Name';
