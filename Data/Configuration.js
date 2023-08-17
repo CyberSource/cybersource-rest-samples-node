@@ -30,6 +30,12 @@ const LogDirectory = 'log';
 const LogfileMaxSize = '5242880'; //10 MB In Bytes
 const EnableMasking = true;
 
+/*
+PEM Key file path for decoding JWE Response Enter the folder path where the .pem file is located.
+It is optional property, require adding only during JWE decryption.
+*/
+const PemFileDirectory = 'Resource/NetworkTokenCert.pem';
+
 // Constructor for Configuration
 function Configuration() {
 
@@ -48,6 +54,7 @@ function Configuration() {
 
         'useMetaKey': UseMetaKey,
         'portfolioID': PortfolioID,
+        'pemFileDirectory': PemFileDirectory,
 
         'logConfiguration': {
             'enableLog': EnableLog,
