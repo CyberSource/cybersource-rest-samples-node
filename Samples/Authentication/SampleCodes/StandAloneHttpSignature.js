@@ -99,18 +99,18 @@ function getHttpSignature(resource, method, request) {
 	// Headers - list is choosen based on HTTP method. 
 	// Digest is not required for GET Method
 	if (method === "get") {
-		var headersForGetMethod = "host date (request-target) v-c-merchant-id";
+		var headersForGetMethod = "host date request-target v-c-merchant-id";
 		signatureHeader += ", headers=\"" + headersForGetMethod + "\"";
 	}
 	else if (method === "post") {
-		var headersForPostMethod = "host date (request-target) digest v-c-merchant-id";
+		var headersForPostMethod = "host date request-target digest v-c-merchant-id";
 		signatureHeader += ", headers=\"" + headersForPostMethod + "\"";
 	}
 
 	var signatureString = 'host: ' + requestHost;
 
 	signatureString += '\ndate: ' + new Date(Date.now()).toUTCString();
-	signatureString += '\n(request-target): ';
+	signatureString += '\nrequest-target: ';
 
 	if (method === "get") {
 		var targetUrlForGet = "get " + resource;
