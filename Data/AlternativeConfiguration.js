@@ -10,8 +10,8 @@ const RunEnvironment = 'apitest.cybersource.com';
 const MerchantId = 'testrest_cpctv';
 
 // http_signature parameters
-const MerchantKeyId = 'e547c3d3-16e4-444c-9313-2a08784b906a';
-const MerchantSecretKey = 'JXm4dqKYIxWofM1TIbtYY9HuYo7Cg1HPHxn29f6waRo=';
+const MerchantKeyId = '964f2ecc-96f0-4432-a742-db0b44e6a73a';
+const MerchantSecretKey = 'zXKpCqMQPmOR/JRldSlkQUtvvIzOewUVqsUP0sBHpxQ=';
 
 // jwt parameters
 const KeysDirectory = 'Resource';
@@ -26,34 +26,39 @@ const PortfolioID = '';
 // logging parameters
 const EnableLog = true;
 const LogFileName = 'cybs';
-const LogDirectory = '../log';
+const LogDirectory = 'log';
 const LogfileMaxSize = '5242880'; //10 MB In Bytes
+const EnableMasking = true;
 
 // Constructor for Configuration
 function Configuration() {
 
-	var configObj = {
-		'authenticationType': AuthenticationType,	
-		'runEnvironment': RunEnvironment,
+    var configObj = {
+        'authenticationType': AuthenticationType,
+        'runEnvironment': RunEnvironment,
 
-		'merchantID': MerchantId,
-		'merchantKeyId': MerchantKeyId,
-		'merchantsecretKey': MerchantSecretKey,
-        
-		'keyAlias': KeyAlias,
-		'keyPass': KeyPass,
-		'keyFileName': KeyFileName,
-		'keysDirectory': KeysDirectory,
+        'merchantID': MerchantId,
+        'merchantKeyId': MerchantKeyId,
+        'merchantsecretKey': MerchantSecretKey,
 
-		'useMetaKey': UseMetaKey,
-		'portfolioID': PortfolioID,
-        
-		'enableLog': EnableLog,
-		'logFilename': LogFileName,
-		'logDirectory': LogDirectory,
-		'logFileMaxSize': LogfileMaxSize
-	};
-	return configObj;
+        'keyAlias': KeyAlias,
+        'keyPass': KeyPass,
+        'keyFileName': KeyFileName,
+        'keysDirectory': KeysDirectory,
+
+        'useMetaKey': UseMetaKey,
+        'portfolioID': PortfolioID,
+
+        'logConfiguration': {
+            'enableLog': EnableLog,
+            'logFileName': LogFileName,
+            'logDirectory': LogDirectory,
+            'logFileMaxSize': LogfileMaxSize,
+            'loggingLevel': 'debug',
+            'enableMasking': EnableMasking
+        }
+    };
+    return configObj;
 
 }
 

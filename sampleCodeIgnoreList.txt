@@ -1,1 +1,2 @@
 .*VerifyToken.js
+.*StandAloneOAuth.js

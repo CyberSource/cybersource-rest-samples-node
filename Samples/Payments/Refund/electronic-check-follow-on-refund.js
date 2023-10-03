@@ -12,7 +12,7 @@ function electronic_check_follow_on_refund(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.RefundPaymentRequest();
 
-		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsidrefundsClientReferenceInformation();
 		clientReferenceInformation.code = 'TC50171_3';
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
@@ -20,7 +20,7 @@ function electronic_check_follow_on_refund(callback) {
 		requestObj.processingInformation = processingInformation;
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsidrefundsPaymentInformation();
-		var paymentInformationPaymentType = new cybersourceRestApi.Ptsv2paymentsPaymentInformationPaymentType();
+		var paymentInformationPaymentType = new cybersourceRestApi.Ptsv2paymentsidrefundsPaymentInformationPaymentType();
 		paymentInformationPaymentType.name = 'CHECK';
 		paymentInformation.paymentType = paymentInformationPaymentType;
 
@@ -50,6 +50,8 @@ function electronic_check_follow_on_refund(callback) {
 
 						console.log('\nResponse : ' + JSON.stringify(response));
 						console.log('\nResponse Code of Refund a Payment : ' + JSON.stringify(response['status']));
+						var status = response['status'];
+						write_log_audit(status);
 						callback(error, data, response);
 					});
 				}
@@ -59,6 +61,12 @@ function electronic_check_follow_on_refund(callback) {
 		console.log('\nException on calling the API : ' + error);
 	}
 }
+
+function write_log_audit(status) {
+	var filename = path.basename(__filename).split(".")[0];
+	console.log(`[Sample Code Testing] [${filename}] ${status}`);
+}
+
 if (require.main === module) {	
 		electronic_check_follow_on_refund(function () {
 		console.log('\nRefundPayment end.');

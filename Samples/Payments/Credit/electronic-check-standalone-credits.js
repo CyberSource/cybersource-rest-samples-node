@@ -16,7 +16,7 @@ function electronic_check_standalone_credits(callback) {
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsidrefundsPaymentInformation();
-		var paymentInformationBank = new cybersourceRestApi.Ptsv2paymentsPaymentInformationBank();
+		var paymentInformationBank = new cybersourceRestApi.Ptsv2paymentsidrefundsPaymentInformationBank();
 		var paymentInformationBankAccount = new cybersourceRestApi.Ptsv2paymentsPaymentInformationBankAccount();
 		paymentInformationBankAccount.type = 'C';
 		paymentInformationBankAccount.number = '4100';
@@ -26,7 +26,7 @@ function electronic_check_standalone_credits(callback) {
 		paymentInformationBank.routingNumber = '071923284';
 		paymentInformation.bank = paymentInformationBank;
 
-		var paymentInformationPaymentType = new cybersourceRestApi.Ptsv2paymentsPaymentInformationPaymentType();
+		var paymentInformationPaymentType = new cybersourceRestApi.Ptsv2paymentsidrefundsPaymentInformationPaymentType();
 		paymentInformationPaymentType.name = 'CHECK';
 		paymentInformation.paymentType = paymentInformationPaymentType;
 
@@ -65,6 +65,8 @@ function electronic_check_standalone_credits(callback) {
 
 			console.log('\nResponse : ' + JSON.stringify(response));
 			console.log('\nResponse Code of Process a Credit : ' + JSON.stringify(response['status']));
+			var status = response['status'];
+			write_log_audit(status);
 			callback(error, data, response);
 		});
 	}
@@ -72,6 +74,12 @@ function electronic_check_standalone_credits(callback) {
 		console.log('\nException on calling the API : ' + error);
 	}
 }
+
+function write_log_audit(status) {
+	var filename = path.basename(__filename).split(".")[0];
+	console.log(`[Sample Code Testing] [${filename}] ${status}`);
+}
+
 if (require.main === module) {	
 		electronic_check_standalone_credits(function () {
 		console.log('\nCreateCredit end.');

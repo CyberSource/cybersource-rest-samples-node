@@ -62,6 +62,8 @@ function incremental_authorization(callback, id) {
 
 					console.log('\nResponse : ' + JSON.stringify(response));
 					console.log('\nResponse Code of Increment an Authorization : ' + JSON.stringify(response['status']));
+					var status = response['status'];
+					write_log_audit(status);
 					callback(error, data, response);
 				});
 			}
@@ -71,6 +73,12 @@ function incremental_authorization(callback, id) {
 		console.log('\nException on calling the API : ' + error);
 	}
 }
+
+function write_log_audit(status) {
+	var filename = path.basename(__filename).split(".")[0];
+	console.log(`[Sample Code Testing] [${filename}] ${status}`);
+}
+
 if (require.main === module) {	
 		incremental_authorization(function () {
 		console.log('\nIncrementAuth end.');

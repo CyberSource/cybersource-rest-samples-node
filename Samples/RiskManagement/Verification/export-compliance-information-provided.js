@@ -54,7 +54,7 @@ function export_compliance_information_provided(callback) {
 
 		var exportComplianceInformation = new cybersourceRestApi.Riskv1exportcomplianceinquiriesExportComplianceInformation();
 		exportComplianceInformation.addressOperator = 'and';
-		var exportComplianceInformationWeights = new cybersourceRestApi.Riskv1exportcomplianceinquiriesExportComplianceInformationWeights();
+		var exportComplianceInformationWeights = new cybersourceRestApi.Ptsv2paymentsWatchlistScreeningInformationWeights();
 		exportComplianceInformationWeights.address = 'low';
 		exportComplianceInformationWeights.company = 'exact';
 		exportComplianceInformationWeights.name = 'exact';
@@ -80,6 +80,8 @@ function export_compliance_information_provided(callback) {
 
 			console.log('\nResponse : ' + JSON.stringify(response));
 			console.log('\nResponse Code of Validate export compliance : ' + JSON.stringify(response['status']));
+			var status = response['status'];
+			write_log_audit(status);
 			callback(error, data, response);
 		});
 	}
@@ -87,6 +89,12 @@ function export_compliance_information_provided(callback) {
 		console.log('\nException on calling the API : ' + error);
 	}
 }
+
+function write_log_audit(status) {
+	var filename = path.basename(__filename).split(".")[0];
+	console.log(`[Sample Code Testing] [${filename}] ${status}`);
+}
+
 if (require.main === module) {
 	export_compliance_information_provided(function () {
 		console.log('\nValidateExportCompliance end.');

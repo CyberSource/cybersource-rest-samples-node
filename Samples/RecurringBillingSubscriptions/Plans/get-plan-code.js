@@ -5,19 +5,14 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
-function generate_key_legacy_token_format(callback) {
+function get_plan_code(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
-		var requestObj = new cybersourceRestApi.GeneratePublicKeyRequest();
 
-		requestObj.encryptionType = 'None';
-		requestObj.targetOrigin = 'https://www.test.com';
-		var format = "legacy";
+		var instance = new cybersourceRestApi.PlansApi(configObject, apiClient);
 
-		var instance = new cybersourceRestApi.KeyGenerationApi(configObject, apiClient);
-
-		instance.generatePublicKey(format, requestObj, function (error, data, response) {
+		instance.getPlanCode(function(error, data, response) {
 			if (error) {
 				console.log('\nError : ' + JSON.stringify(error));
 			}
@@ -26,7 +21,10 @@ function generate_key_legacy_token_format(callback) {
 			}
 
 			console.log('\nResponse : ' + JSON.stringify(response));
-			console.log('\nResponse Code of Generate Key : ' + JSON.stringify(response['status']));
+			console.log('\nResponse Code of Get Plan Code : ' + JSON.stringify(response['status']));
+
+			var status = response['status'];
+			write_log_audit(status);
 			callback(error, data, response);
 		});
 	}
@@ -34,9 +32,16 @@ function generate_key_legacy_token_format(callback) {
 		console.log('\nException on calling the API : ' + error);
 	}
 }
+
+function write_log_audit(status) {
+	var filename = path.basename(__filename).split(".")[0];
+	console.log(`[Sample Code Testing] [${filename}] ${status}`);
+}
+
 if (require.main === module) {
-	generate_key_legacy_token_format(function () {
-		console.log('\nGeneratePublicKey end.');
+	get_plan_code(function () {
+		console.log('\nGetPlanCode end.');
 	});
 }
-module.exports.generate_key_legacy_token_format = generate_key_legacy_token_format;
+
+module.exports.get_plan_code = get_plan_code;

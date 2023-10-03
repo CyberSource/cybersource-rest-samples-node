@@ -10,8 +10,8 @@ function retrieve_available_reports(callback) {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var organizationId = null;
-		var startTime = '2020-04-01T00:00:00Z';
-		var endTime = '2020-04-03T23:59:59Z';
+		var startTime = '2021-04-01T00:00:00Z';
+		var endTime = '2021-04-03T23:59:59Z';
 		var timeQueryType = "executedTime";
 		var reportMimeType = "application/xml";
 		var reportFrequency = null;
@@ -39,6 +39,8 @@ function retrieve_available_reports(callback) {
 
 			console.log('\nResponse : ' + JSON.stringify(response));
 			console.log('\nResponse Code of Retrieve Available Reports : ' + JSON.stringify(response['status']));
+			var status = response['status'];
+			write_log_audit(status);
 			callback(error, data, response);
 		});
 	}
@@ -46,6 +48,12 @@ function retrieve_available_reports(callback) {
 		console.log('\nException on calling the API : ' + error);
 	}
 }
+
+function write_log_audit(status) {
+	var filename = path.basename(__filename).split(".")[0];
+	console.log(`[Sample Code Testing] [${filename}] ${status}`);
+}
+
 if (require.main === module) {
 	retrieve_available_reports(function () {
 		console.log('\nSearchReports end.');

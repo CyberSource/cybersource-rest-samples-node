@@ -25,10 +25,12 @@ function download_file_with_file_identifier(callback) {
 		instance.getFile(fileId, opts, function (error, data, response) {
 			if (error) {
 				console.log('\nError : ' + JSON.stringify(error));
+				write_log_audit("404");
 			}
 			else {
 				console.log('\nSuccessfully retrieved response');
 				console.log('\nResponse downloaded at this location:' + apiClient.downloadFilePath);
+				write_log_audit("200");
 			}
 			callback(error, data, response);
 		});
@@ -37,6 +39,12 @@ function download_file_with_file_identifier(callback) {
 		console.log('\nException on calling the API : ' + error);
 	}
 }
+
+function write_log_audit(status) {
+	var filename = path.basename(__filename).split(".")[0];
+	console.log(`[Sample Code Testing] [${filename}] ${status}`);
+}
+
 if (require.main === module) {
 	download_file_with_file_identifier(function () {
 		console.log('\nGetFile end.');

@@ -20,7 +20,7 @@ function authorization_for_incremental_authorization_flow(callback) {
 		var paymentInformationCard = new cybersourceRestApi.Ptsv2paymentsPaymentInformationCard();
 		paymentInformationCard.number = '4111111111111111';
 		paymentInformationCard.expirationMonth = '12';
-		paymentInformationCard.expirationYear = '2021';
+		paymentInformationCard.expirationYear = '2031';
 		paymentInformationCard.type = '001';
 		paymentInformation.card = paymentInformationCard;
 
@@ -161,6 +161,8 @@ function authorization_for_incremental_authorization_flow(callback) {
 
 			console.log('\nResponse : ' + JSON.stringify(response));
 			console.log('\nResponse Code of Process a Payment : ' + JSON.stringify(response['status']));
+			var status = response['status'];
+			write_log_audit(status);
 			callback(error, data, response);
 		});
 	}
@@ -168,6 +170,12 @@ function authorization_for_incremental_authorization_flow(callback) {
 		console.log('\nException on calling the API : ' + error);
 	}
 }
+
+function write_log_audit(status) {
+	var filename = path.basename(__filename).split(".")[0];
+	console.log(`[Sample Code Testing] [${filename}] ${status}`);
+}
+
 if (require.main === module) {	
 		authorization_for_incremental_authorization_flow(function () {
 		console.log('\nCreatePayment end.');
