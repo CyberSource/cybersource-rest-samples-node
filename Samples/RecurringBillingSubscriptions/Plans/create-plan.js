@@ -18,7 +18,7 @@ function create_plan(callback) {
 		planInformation.name = 'Gold Plan 1';
 		planInformation.description = 'New Gold Plan 1';
 		planInformation.status = plan_status;
-		var planInformationBillingPeriod = new cybersourceRestApi.InlineResponse200PlanInformationBillingPeriod();
+		var planInformationBillingPeriod = new cybersourceRestApi.GetAllPlansResponsePlanInformationBillingPeriod();
 		planInformationBillingPeriod.length = '1';
 		planInformationBillingPeriod.unit = 'M';
 		planInformation.billingPeriod = planInformationBillingPeriod;

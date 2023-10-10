@@ -15,7 +15,7 @@ function update_plan(callback) {
 		var planInformation = new cybersourceRestApi.Rbsv1plansidPlanInformation();
 		planInformation.name = 'Gold Plan NA';
 		planInformation.description = 'Updated Gold Plan';
-		var planInformationBillingPeriod = new cybersourceRestApi.InlineResponse200PlanInformationBillingPeriod();
+		var planInformationBillingPeriod = new cybersourceRestApi.GetAllPlansResponsePlanInformationBillingPeriod();
 		planInformationBillingPeriod.length = '2';
 		planInformationBillingPeriod.unit = 'W';
 		planInformation.billingPeriod = planInformationBillingPeriod;
@@ -33,8 +33,8 @@ function update_plan(callback) {
 
 		requestObj.processingInformation = processingInformation;
 
-		var orderInformation = new cybersourceRestApi.InlineResponse200OrderInformation();
-		var orderInformationAmountDetails = new cybersourceRestApi.InlineResponse200OrderInformationAmountDetails();
+		var orderInformation = new cybersourceRestApi.GetAllPlansResponseOrderInformation();
+		var orderInformationAmountDetails = new cybersourceRestApi.GetAllPlansResponseOrderInformationAmountDetails();
 		orderInformationAmountDetails.currency = 'USD';
 		orderInformationAmountDetails.billingAmount = '11';
 		orderInformationAmountDetails.setupFee = '2';
