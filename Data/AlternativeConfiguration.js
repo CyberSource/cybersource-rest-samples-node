@@ -30,6 +30,12 @@ const LogDirectory = 'log';
 const LogfileMaxSize = '5242880'; //10 MB In Bytes
 const EnableMasking = true;
 
+const UseProxy = true;
+const ProxyHost = '192.168.132.58';
+const ProxyPort = '8080';
+const ProxyUser = 'MebanMalkier';
+const ProxyPass = 'MebanBlake';
+
 // Constructor for Configuration
 function Configuration() {
 
@@ -48,6 +54,12 @@ function Configuration() {
 
         'useMetaKey': UseMetaKey,
         'portfolioID': PortfolioID,
+
+        'useProxy': UseProxy,
+        'proxyAddress': ProxyHost,
+        'proxyPort': ProxyPort,
+        'proxyUser': ProxyUser,
+        'proxyPassword': ProxyPass,
 
         'logConfiguration': {
             'enableLog': EnableLog,
