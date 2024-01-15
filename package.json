@@ -16,6 +16,6 @@
     "cybersource-rest-client": "0.0.51",
     "eslint": "^5.9.0",
     "jwk-to-pem": "^2.0.0",
-    "node-forge": "^1.2.1"
+    "node-forge": "^2.2.0"
   }
 }
