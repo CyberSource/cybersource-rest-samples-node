@@ -14,10 +14,11 @@ function payment_credentials_from_network_token(callback) {
         var configObject = new configuration();
 	    var apiClient = new cybersourceRestApi.ApiClient();
         var instance = new cybersourceRestApi.TokenApi(configObject, apiClient);
+		var postPaymentCredentialsRequest = new cybersourceRestApi.PostPaymentCredentialsRequest();
 
         var opts = [];
 
-        instance.postTokenPaymentCredentials(tokenId, opts, function(error, data, response) {
+        instance.postTokenPaymentCredentials(tokenId, postPaymentCredentialsRequest, opts, function(error, data, response) {
             if (error) {
 				console.log('\nError : ' + JSON.stringify(error));
 			}

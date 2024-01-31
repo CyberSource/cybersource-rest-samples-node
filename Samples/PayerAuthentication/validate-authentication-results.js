@@ -21,20 +21,10 @@ function validate_authentication_results(callback) {
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var orderInformation = new cybersourceRestApi.Riskv1authenticationresultsOrderInformation();
-		var orderInformationAmountDetails = new cybersourceRestApi.Riskv1authenticationsOrderInformationAmountDetails();
+		var orderInformationAmountDetails = new cybersourceRestApi.Riskv1authenticationresultsOrderInformationAmountDetails();
 		orderInformationAmountDetails.currency = 'USD';
 		orderInformationAmountDetails.totalAmount = '200.00';
 		orderInformation.amountDetails = orderInformationAmountDetails;
-
-
-		var lineItems =	new Array();
-		var	lineItems1 = new cybersourceRestApi.Riskv1authenticationresultsOrderInformationLineItems();
-		lineItems1.unitPrice = '10';
-		lineItems1.quantity = 2;
-		lineItems1.taxAmount = '32.40';
-		lineItems.push(lineItems1);
-
-		orderInformation.lineItems = lineItems;
 
 		requestObj.orderInformation = orderInformation;
 
@@ -50,7 +40,6 @@ function validate_authentication_results(callback) {
 
 		var consumerAuthenticationInformation = new cybersourceRestApi.Riskv1authenticationresultsConsumerAuthenticationInformation();
 		consumerAuthenticationInformation.authenticationTransactionId = 'PYffv9G3sa1e0CQr5fV0';
-		consumerAuthenticationInformation.signedPares = 'eNqdmFmT4jgSgN+J4D90zD4yMz45PEFVhHzgA2zwjXnzhQ984Nvw61dAV1';
 		requestObj.consumerAuthenticationInformation = consumerAuthenticationInformation;
 
 
@@ -66,6 +55,7 @@ function validate_authentication_results(callback) {
 
 			console.log('\nResponse : ' + JSON.stringify(response));
 			console.log('\nResponse Code of Validate Authentication Results : ' + JSON.stringify(response['status']));
+
 			var status = response['status'];
 			write_log_audit(status);
 			callback(error, data, response);
@@ -81,9 +71,10 @@ function write_log_audit(status) {
 	console.log(`[Sample Code Testing] [${filename}] ${status}`);
 }
 
-if (require.main === module) {	
-		validate_authentication_results(function () {
+if (require.main === module) {
+	validate_authentication_results(function () {
 		console.log('\nValidateAuthenticationResults end.');
 	});
 }
+
 module.exports.validate_authentication_results = validate_authentication_results;
