@@ -14,7 +14,7 @@ function create_instrument_identifier_card_enroll_for_network_token(callback) {
 		var requestObj = new cybersourceRestApi.PostInstrumentIdentifierRequest();
 
 		requestObj.type = 'enrollable card';
-		var card = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierCard();
+		var card = new cybersourceRestApi.TmsEmbeddedInstrumentIdentifierCard();
 		card.number = '5204245750003216';
 		card.expirationMonth = '12';
 		card.expirationYear = '2025';
