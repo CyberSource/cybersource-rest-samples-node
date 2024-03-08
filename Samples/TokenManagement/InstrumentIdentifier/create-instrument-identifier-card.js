@@ -13,7 +13,7 @@ function create_instrument_identifier_card(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.PostInstrumentIdentifierRequest();
 
-		var card = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierCard();
+		var card = new cybersourceRestApi.TmsEmbeddedInstrumentIdentifierCard();
 		card.number = '4111111111111111';
 		requestObj.card = card;
 
