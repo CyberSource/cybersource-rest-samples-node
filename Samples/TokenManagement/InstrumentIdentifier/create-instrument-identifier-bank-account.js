@@ -13,7 +13,7 @@ function create_instrument_identifier_bank_account(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.PostInstrumentIdentifierRequest();
 
-		var bankAccount = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierBankAccount();
+		var bankAccount = new cybersourceRestApi.TmsEmbeddedInstrumentIdentifierBankAccount();
 		bankAccount.number = '4100';
 		bankAccount.routingNumber = '071923284';
 		requestObj.bankAccount = bankAccount;

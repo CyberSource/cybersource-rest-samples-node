@@ -49,8 +49,8 @@ function create_payment_instrument_bank_account(callback) {
 		billTo.phoneNumber = '4158880000';
 		requestObj.billTo = billTo;
 
-		var processingInformation = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentProcessingInformation();
-		var processingInformationBankTransferOptions = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentProcessingInformationBankTransferOptions();
+		var processingInformation = new cybersourceRestApi.TmsPaymentInstrumentProcessingInfo();
+		var processingInformationBankTransferOptions = new cybersourceRestApi.TmsPaymentInstrumentProcessingInfoBankTransferOptions();
 		processingInformationBankTransferOptions.SECCode = 'WEB';
 		processingInformation.bankTransferOptions = processingInformationBankTransferOptions;
 

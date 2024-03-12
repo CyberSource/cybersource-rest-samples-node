@@ -14,14 +14,14 @@ function create_instrument_identifier_card_enroll_for_network_token(callback) {
 		var requestObj = new cybersourceRestApi.PostInstrumentIdentifierRequest();
 
 		requestObj.type = 'enrollable card';
-		var card = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierCard();
+		var card = new cybersourceRestApi.TmsEmbeddedInstrumentIdentifierCard();
 		card.number = '4111111111111111';
 		card.expirationMonth = '12';
 		card.expirationYear = '2031';
 		card.securityCode = '123';
 		requestObj.card = card;
 
-		var billTo = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentEmbeddedInstrumentIdentifierBillTo();
+		var billTo = new cybersourceRestApi.TmsEmbeddedInstrumentIdentifierBillTo();
 		billTo.address1 = '1 Market St';
 		billTo.locality = 'San Francisco';
 		billTo.administrativeArea = 'CA';
