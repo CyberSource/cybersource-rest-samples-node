@@ -1,0 +1,528 @@
+{
+    "/pts/v2/payments": {
+        "post": {
+            "Simple Authorization(Internet)": 201,
+            "Authorization with Capture(Sale)": 201,
+            "Payment with Flex Token": 400,
+            "Payment with Flex Token(Create Permanent TMS token)": 400,
+            "Authorization with Customer Token Creation": 201,
+            "Authorization with Customer Token Id": 400,
+            "Authorization with Customer Token, Default Payment Instrument and Shipping Address Creation": 400,
+            "Authorization with TMS Token bypassing Network Token": 201,
+            "Authorization with Customer, Payment Instrument and Shipping Address Token Id": 201,
+            "Authorization with Instrument Identifier Token Creation": 201,
+            "Authorization with Decision Manager": 201,
+            "Authorization - Skip DecisionManager for single transaction": 201,
+            "Authorization with Decision Manager (Device Information)": 201,
+            "Authorization with Decision Manager (Merchant Defined Information)": 201,
+            "Authorization with Decision Manager (Travel Information)": 201,
+            "Authorization with Decision Manager (Buyer Information)": 201,
+            "Authorization with Decision Manager (Shipping Information)": 201,
+            "Authorization with Decision Manager (custom setup)": 201,
+            "Authorization with PA Enroll (Authentication Needed)": 201,
+            "Authorization with Payer Auth Validation": 201,
+            "Authorization with DM(Accept) + PA Enroll": 201,
+            "Authorization with DM(Review) + PA Enroll": 201,
+            "Authorization with DM(Reject) + PA Enroll": 201,
+            "Payment Network Tokenization": 201,
+            "Digital Payment - GooglePay": 201,
+            "Digital Payments - ApplePay": 201,
+            "Zero Dollar Authorization": 201,
+            "Level II Data": 201,
+            "Level III Data": 201,
+            "Partial Authorization": 201,
+            "Electronic Check Debits": 201,
+            "Electronic Check Debits with Legacy Token": 400,
+            "Service Fees with Credit Card transaction": 201,
+            "Authorization Using Swiped Track Data": 201,
+            "Sale Using Swiped Track Data with Visa Platform Connect": 201,
+            "Sale Using Keyed Data with Visa Platform Connect": 201,
+            "Sale Using Keyed Data with Balance Inquiry": 201,
+            "Sale Using EMV Technology with Contact Read with Visa Platform Connect": 201,
+            "Sale Using EMV Technology with Contactless Read with Visa Platform Connect": 201,
+            "Authorization Using Bluefin PCI P2PE with Visa Platform Connect": 502,
+            "Restaurant Authorization": 201,
+            "Sale Using EMV Technology with a Contactless": 201,
+            "Sale Using EMV Technology with Contact Read (One) for Card Present Enabled Acquirer": 201,
+            "Swiped": 201,
+            "Sale Using Swiped Track Data for Card Present Enabled Acquirer": 201,
+            "Sale Using Keyed Data for Card Present Enabled Acquirer": 201,
+            "American Express Direct - EMV with Contact Read": 201,
+            "Sale Using EMV Technology with Contact Read (Two) for Card Present Enabled Acquirer": 201,
+            "Sale Using EMV Technology with Contactless Read for Card Present Enabled Acquirer": 201,
+            "Authorization Using Bluefin PCI P2PE for Card Present Enabled Acquirer": 502,
+            "Authorization with Instrument Identifier Token Id": 201,
+            "Authorization with Legacy Token": 400
+        }
+    },
+    "/pts/v2/payments/{id}": {
+        "patch": {
+            "Incremental Authorization": 400
+        }
+    },
+    "/pts/v2/payments/{id}/reversals": {
+        "post": {
+            "Process an Authorization Reversal": 201,
+            "Service Fees Authorization Reversal": 400
+        }
+    },
+    "/pts/v2/reversals/": {
+        "post": {
+            "Timeout Reversal": 400
+        }
+    },
+    "/pts/v2/payments/{id}/captures": {
+        "post": {
+            "Capture a Payment": 201,
+            "Capture a Payment - Service Fee": 400,
+            "Capture of Authorization that used Swiped track data": 401,
+            "Restaurant Capture with Gratuity": 401
+        }
+    },
+    "/pts/v2/payments/{id}/refunds": {
+        "post": {
+            "Refund a Payment": 400,
+            "Electronic check follow-on Refund": 400
+        }
+    },
+    "/pts/v2/captures/{id}/refunds": {
+        "post": {
+            "Refund a Capture": 201
+        }
+    },
+    "/pts/v2/credits": {
+        "post": {
+            "Credit": 201,
+            "Electronic Check Stand-Alone Credits": 201,
+            "Service Fees Credit": 201,
+            "Credit with Customer Token Id": 400,
+            "Credit with Customer, Payment Instrument and Shipping Address Token Id": 400,
+            "Credit with Instrument Identifier Token Id": 400,
+            "Credit Using Bluefin PCI P2PE with Visa Platform Connect": 502,
+            "Credit Using Bluefin PCI P2PE for Card Present Enabled Acquirer": 502
+        }
+    },
+    "/pts/v2/payments/{id}/voids": {
+        "post": {
+            "Void a Payment": 201
+        }
+    },
+    "/pts/v2/captures/{id}/voids": {
+        "post": {
+            "Void a Capture": 201
+        }
+    },
+    "/pts/v2/refunds/{id}/voids": {
+        "post": {
+            "Void a Refund": 201
+        }
+    },
+    "/pts/v2/credits/{id}/voids": {
+        "post": {
+            "Void a Credit": 201
+        }
+    },
+    "/pts/v2/voids/": {
+        "post": {
+            "Timeout void": 400
+        }
+    },
+    "/pts/v1/transaction-batches": {
+        "get": {
+            "Get a List of Batch Files": 404
+        }
+    },
+    "/pts/v1/transaction-batches/{id}": {
+        "get": {
+            "Get Individual Batch File": 401
+        }
+    },
+    "/pts/v1/transaction-batch-details/{id}": {
+        "get": {
+            "Get Transaction Details for a given Batch Id": 401
+        }
+    },
+    "/tms/v2/customers": {
+        "post": {
+            "Create Customer": 201
+        }
+    },
+    "/tms/v2/customers/{customerTokenId}": {
+        "get": {
+            "Retrieve a Customer": 200
+        },
+        "patch": {
+            "Update Customer": 200,
+            "Update Customers default Payment Instrument": 401,
+            "Update Customers default Shipping Address": 401
+        }
+    },
+    "/tms/v2/customers/{customerTokenId}/shipping-addresses": {
+        "post": {
+            "Create Customer Default Shipping Address": 201,
+            "Create Customer Non-Default Shipping Address": 201
+        },
+        "get": {
+            "List Shipping Addresses for a Customer": 200
+        }
+    },
+    "/tms/v2/customers/{customerTokenId}/shipping-addresses/{shippingAddressTokenId}": {
+        "get": {
+            "Retrieve a Customer Shipping Address": 200
+        },
+        "patch": {
+            "Update Customer Default Shipping Address": 200
+        }
+    },
+    "/tms/v2/customers/{customerTokenId}/payment-instruments": {
+        "post": {
+            "Create Customer Default Payment Instrument (Card)": 401,
+            "Create Customer Non-Default Payment Instrument (Card)": 401,
+            "Create Customer Payment Instrument (Bank Account)": 401,
+            "Create Customer Payment Instrument (Pinless Debit)": 401
+        },
+        "get": {
+            "List Payment Instruments for a Customer": 401
+        }
+    },
+    "/tms/v2/customers/{customerTokenId}/payment-instruments/{paymentInstrumentTokenId}": {
+        "get": {
+            "Retrieve a Customer Payment Instrument": 401
+        },
+        "patch": {}
+    },
+    "/tms/v1/paymentinstruments": {
+        "post": {
+            "Create Payment Instrument (Card)": 400,
+            "Create Payment Instrument (Bank Account)": 400,
+            "Create Payment Instrument (Pinless Debit)": 400
+        }
+    },
+    "/tms/v1/paymentinstruments/{paymentInstrumentTokenId}": {
+        "get": {
+            "Retrieve a Payment Instrument": 401
+        },
+        "patch": {
+            "Update Payment Instrument": 401
+        }
+    },
+    "/tms/v1/instrumentidentifiers": {
+        "post": {
+            "Create Instrument Identifier (Card)": 200,
+            "Create Instrument Identifier (Bank Account)": 200,
+            "Create Instrument Identifier (Card & Enroll for Network Token)": 200
+        }
+    },
+    "/tms/v1/instrumentidentifiers/{instrumentIdentifierTokenId}": {
+        "get": {
+            "Retrieve an Instrument Identifier": 200
+        },
+        "patch": {
+            "Update Instrument Identifier previousTransactionId": 401
+        }
+    },
+    "/tms/v1/instrumentidentifiers/{instrumentIdentifierTokenId}/paymentinstruments": {
+        "get": {
+            "List Payment Instruments for an Instrument Identifier": 200
+        }
+    },
+    "/tms/v1/instrumentidentifiers/{instrumentIdentifierTokenId}/enrollment": {
+        "post": {
+            "Enroll Instrument Identifier for Network Tokenization": 202
+        }
+    },
+    "/flex/v1/keys": {
+        "post": {
+            "Generate Key": 200
+        }
+    },
+    "/flex/v1/tokens": {
+        "post": {
+            "Flex Tokenize Card": 400
+        }
+    },
+    "/risk/v1/decisions": {
+        "post": {
+            "Basic DM Transaction": 201,
+            "DM With Device Information": 201,
+            "DM With Merchant Defined Information": 201,
+            "DM With Travel Information": 201,
+            "DM With Buyer Information": 201,
+            "DM With Shipping Information": 201,
+            "DM With Score_Exceeds_Threshold Response": 201,
+            "DM With Decision_Profile_Reject Response": 201
+        }
+    },
+    "/risk/v1/authentication-setups": {
+        "post": {
+            "Setup Completion with Card Number": 201,
+            "Setup Completion with Fluid Data Value and Payment Solution": 400,
+            "Setup Completion with Tokenized Card": 201,
+            "Setup Completion with TMS Token": 400,
+            "Setup Completion with Visa Checkout": 400,
+            "Setup Completion with Flex Transient Token": 400,
+            "Setup Completion with Secure Storage Token": 400
+        }
+    },
+    "/risk/v1/authentications": {
+        "post": {
+            "Enroll with Pending Authentication": 201,
+            "Enroll with Travel Information": 201,
+            "Authentication with NO Redirect": 201,
+            "Authentication with New Account": 201,
+            "Pending Authentication with Unknown path": 201,
+            "Enroll with customerId as payment information": 400,
+            "Enroll with transient token": 400
+        }
+    },
+    "/risk/v1/authentication-results": {
+        "post": {
+            "Validate authentication results": 201
+        }
+    },
+    "/risk/v1/lists/{type}/entries": {
+        "post": {
+            "Add Data to a List": 401,
+            "Add Duplicate Information": 401
+        }
+    },
+    "/risk/v1/decisions/{id}/marking": {
+        "post": {
+            "Mark as Suspect": 201,
+            "Remove from History": 201
+        }
+    },
+    "/risk/v1/address-verifications": {
+        "post": {
+            "Verbose Request with all fields": 201,
+            "Shipping Details not US or Canada": 201,
+            "Canadian Billing Details": 201,
+            "Multiple Line Items": 201,
+            "Apartment Number Missing or Not Found": 201,
+            "Address Match Not Found": 201
+        }
+    },
+    "/risk/v1/export-compliance-inquiries": {
+        "post": {
+            "Customer Match Denied Parties List": 201,
+            "Export Compliance Information Provided": 201,
+            "Compliance Status Completed": 201,
+            "Multiple Sanction Lists": 201,
+            "No Company Name": 201
+        }
+    },
+    "/pts/v2/payouts": {
+        "post": {
+            "Payout (Card not Token)": 400,
+            "Payout (Token)": 400
+        }
+    },
+    "/tss/v2/transactions/{id}": {
+        "get": {
+            "Retrieve a Transaction": 200
+        }
+    },
+    "/tss/v2/searches": {
+        "post": {
+            "Create a search request": 201
+        }
+    },
+    "/tss/v2/searches/{searchId}": {
+        "get": {
+            "Get Search Results": 200
+        }
+    },
+    "/reporting/v3/report-downloads": {
+        "get": {
+            "Download a Report": 404
+        }
+    },
+    "/reporting/v3/reports": {
+        "get": {
+            "Retrieve Available Reports": 400
+        },
+        "post": {
+            "Create Adhoc Report": 400
+        }
+    },
+    "/reporting/v3/reports/{reportId}": {
+        "get": {
+            "Get Report Based on Report Id": 401
+        }
+    },
+    "/reporting/v3/report-definitions/{reportDefinitionName}": {
+        "get": {
+            "Get Report Definition": 401
+        }
+    },
+    "/reporting/v3/report-definitions": {
+        "get": {
+            "Get Reporting Resource Information": 200
+        }
+    },
+    "/reporting/v3/report-subscriptions": {
+        "get": {
+            "Get All Subscriptions": 200
+        },
+        "put": {
+            "Create Report Subscription": 400
+        }
+    },
+    "/reporting/v3/report-subscriptions/{reportName}": {
+        "get": {
+            "Get Subscription for Report Name": 200
+        }
+    },
+    "/reporting/v3/predefined-report-subscriptions": {
+        "put": {
+            "Create Classic/Standard Report Subscription": 400
+        }
+    },
+    "/reporting/v3/notification-of-changes": {
+        "get": {
+            "Get Notification of Changes": 400
+        }
+    },
+    "/reporting/v3/purchase-refund-details": {
+        "get": {
+            "Get Purchase and Refund Details": 400
+        }
+    },
+    "/reporting/v3/payment-batch-summaries": {
+        "get": {
+            "Get Payment Batch Summary Data": 400
+        }
+    },
+    "/reporting/v3/conversion-details": {
+        "get": {
+            "Get Conversion Detail Transactions": 400
+        }
+    },
+    "/reporting/v3/net-fundings": {
+        "get": {
+            "Get Netfunding Information for an Account or a Merchant": 400
+        }
+    },
+    "/reporting/v3/dtds/{reportDefinitionNameVersion}": {
+        "get": {
+            "Download DTD for Report": 404
+        }
+    },
+    "/reporting/v3/xsds/{reportDefinitionNameVersion}": {
+        "get": {
+            "Download XSD for Report": 404
+        }
+    },
+    "/reporting/v3/chargeback-summaries": {
+        "get": {
+            "Get Chargeback Summaries": 400
+        }
+    },
+    "/reporting/v3/chargeback-details": {
+        "get": {
+            "Get Chargeback Details": 400
+        }
+    },
+    "/reporting/v3/retrieval-summaries": {
+        "get": {
+            "Get Retrieval Summaries": 400
+        }
+    },
+    "/reporting/v3/retrieval-details": {
+        "get": {
+            "Get Retrieval Details": 400
+        }
+    },
+    "/reporting/v3/interchange-clearing-level-details": {
+        "get": {
+            "Interchange Clearing Level data for an account or a merchant": 400
+        }
+    },
+    "/sfs/v1/file-details": {
+        "get": {
+            "Get List of Files": 400
+        }
+    },
+    "/sfs/v1/files/{fileId}": {
+        "get": {
+            "Download a File with File Identifier": 401
+        }
+    },
+    "/invoicing/v2/invoices": {
+        "post": {
+            "Create a draft invoice": 201,
+            "Create and send the invoice immediately": 201,
+            "Create an invoice and assign it a specific invoice number": 400,
+            "Create an invoice without sending it": 400
+        },
+        "get": {
+            "Get a List of Invoices": 200
+        }
+    },
+    "/invoicing/v2/invoices/{id}": {
+        "get": {
+            "Get Invoice Details": 200
+        },
+        "put": {}
+    },
+    "/invoicing/v2/invoices/{id}/delivery": {
+        "post": {}
+    },
+    "/invoicing/v2/invoices/{id}/cancelation": {
+        "post": {}
+    },
+    "/invoicing/v2/invoiceSettings": {
+        "put": {
+            "UpdateInvoiceSettings": 200
+        },
+        "get": {
+            "Get Invoice Settings": 200
+        }
+    },
+    "/ums/v1/users": {
+        "get": {
+            "Get User Information - Deprecated": 405
+        }
+    },
+    "/ums/v1/users/search": {
+        "post": {}
+    },
+    "/vas/v2/tax": {
+        "post": {
+            "Basic Tax Calculation Request": 201,
+            "Tax Refund Request": 201,
+            "Committed Tax Call Request": 201,
+            "Committed Tax Refund Call Request": 201
+        }
+    },
+    "/vas/v2/tax/{id}": {
+        "patch": {
+            "Void a Committed Tax Call": 401
+        }
+    },
+    "/kms/v2/keys-sym": {
+        "post": {}
+    },
+    "/kms/v2/keys-sym/{keyId}": {
+        "get": {
+            "Retrieves shared secret key details": 401
+        }
+    },
+    "/kms/v2/keys-sym/deletes": {
+        "post": {}
+    },
+    "/kms/v2/keys-asym": {
+        "post": {}
+    },
+    "/kms/v2/keys-asym/{keyId}": {
+        "get": {
+            "Retrieves PKCS#12 key details": 401
+        }
+    },
+    "/kms/v2/keys-asym/deletes": {
+        "post": {}
+    },
+    "/kms/v2/keys-sym/verifi": {
+        "post": {}
+    }
+}
