@@ -11,7 +11,7 @@ function authentication_with_no_redirect(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.CheckPayerAuthEnrollmentRequest();
 
-		var clientReferenceInformation = new cybersourceRestApi.Riskv1decisionsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Riskv1authenticationsetupsClientReferenceInformation();
 		clientReferenceInformation.code = 'cybs_test';
 		var clientReferenceInformationPartner = new cybersourceRestApi.Riskv1decisionsClientReferenceInformationPartner();
 		clientReferenceInformationPartner.developerId = '7891234';
@@ -42,7 +42,7 @@ function authentication_with_no_redirect(callback) {
 		requestObj.orderInformation = orderInformation;
 
 		var paymentInformation = new cybersourceRestApi.Riskv1authenticationsPaymentInformation();
-		var paymentInformationCard = new cybersourceRestApi.Riskv1authenticationsPaymentInformationCard();
+		var paymentInformationCard = new cybersourceRestApi.Riskv1authenticationsetupsPaymentInformationCard();
 		paymentInformationCard.type = '001';
 		paymentInformationCard.expirationMonth = '12';
 		paymentInformationCard.expirationYear = '2025';

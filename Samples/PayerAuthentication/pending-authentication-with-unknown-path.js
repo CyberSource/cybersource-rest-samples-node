@@ -11,7 +11,7 @@ function pending_authentication_with_unknown_path(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.CheckPayerAuthEnrollmentRequest();
 
-		var clientReferenceInformation = new cybersourceRestApi.Riskv1decisionsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Riskv1authenticationsetupsClientReferenceInformation();
 		clientReferenceInformation.code = 'UNKNOWN';
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
@@ -37,7 +37,7 @@ function pending_authentication_with_unknown_path(callback) {
 		requestObj.orderInformation = orderInformation;
 
 		var paymentInformation = new cybersourceRestApi.Riskv1authenticationsPaymentInformation();
-		var paymentInformationCard = new cybersourceRestApi.Riskv1authenticationsPaymentInformationCard();
+		var paymentInformationCard = new cybersourceRestApi.Riskv1authenticationsetupsPaymentInformationCard();
 		paymentInformationCard.type = '001';
 		paymentInformationCard.expirationMonth = '12';
 		paymentInformationCard.expirationYear = '2025';
