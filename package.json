@@ -13,7 +13,7 @@
   "author": "developer@cybersource.com",
   "license": "MIT",
   "dependencies": {
-    "cybersource-rest-client": "0.0.59",
+    "cybersource-rest-client": "0.0.60",
     "eslint": "^5.9.0",
     "jwk-to-pem": "^2.0.0",
     "node-forge": "^1.2.1"
