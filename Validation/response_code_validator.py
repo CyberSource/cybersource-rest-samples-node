@@ -92,7 +92,7 @@ def main():
     fails = 0
     validation_results = compare_results(expected_results, actual_results)
     for k, v in validation_results.items():
-        if v == "FAILURE":
+        if "FAILURE" in v:
             fails += 1
     dump_json_to_file(validation_results, destination_file)
     return fails
