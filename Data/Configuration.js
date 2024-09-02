@@ -5,7 +5,7 @@
 */
 
 // common parameters
-const AuthenticationType = 'http_signature';
+const AuthenticationType = 'jwt';
 const RunEnvironment = 'apitest.cybersource.com';
 const MerchantId = 'testrest';
 
