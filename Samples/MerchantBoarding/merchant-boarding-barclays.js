@@ -206,10 +206,7 @@ function merchant_boarding_barclays(callback) {
 
 
 
-        
-
-       
-var instance = new cybersourceRestApi.MerchantBoardingApi(configObject, apiClient);
+        var instance = new cybersourceRestApi.MerchantBoardingApi(configObject, apiClient);
 
 		instance.postRegistration( reqObj,null, function (error, data, response) {
 			if(error) {

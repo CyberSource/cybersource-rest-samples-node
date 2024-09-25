@@ -247,26 +247,26 @@ function merchant_boarding_amex_direct(callback) {
 
 
 
-var instance = new cybersourceRestApi.MerchantBoardingApi(configObject, apiClient);
+       var instance = new cybersourceRestApi.MerchantBoardingApi(configObject, apiClient);
 
-		instance.postRegistration( reqObj,null, function (error, data, response) {
-			if(error) {
-				console.log('\nError : ' + JSON.stringify(error));
-			}
-			else if (data) {
-				console.log('\nData : ' + JSON.stringify(data));
-			}
+        instance.postRegistration( reqObj,null, function (error, data, response) {
+          if(error) {
+            console.log('\nError : ' + JSON.stringify(error));
+          }
+          else if (data) {
+            console.log('\nData : ' + JSON.stringify(data));
+          }
 
-			console.log('\nResponse : ' + JSON.stringify(response));
-			console.log('\nResponse Code of Merchant Boarding API : ' + JSON.stringify(response['status']));
-			var status = response['status'];
-			write_log_audit(status);
-			callback(error, data, response);
-		});
-	}
-	catch (error) {
-		console.log('\nException on calling the API : ' + error);
-	}
+          console.log('\nResponse : ' + JSON.stringify(response));
+          console.log('\nResponse Code of Merchant Boarding API : ' + JSON.stringify(response['status']));
+          var status = response['status'];
+          write_log_audit(status);
+          callback(error, data, response);
+        });
+  }
+  catch (error) {
+      console.log('\nException on calling the API : ' + error);
+  }
 }
 
 function write_log_audit(status) {

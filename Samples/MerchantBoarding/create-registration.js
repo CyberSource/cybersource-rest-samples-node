@@ -205,7 +205,7 @@ function create_registration(callback) {
         
 
        
-var instance = new cybersourceRestApi.MerchantBoardingApi(configObject, apiClient);
+        var instance = new cybersourceRestApi.MerchantBoardingApi(configObject, apiClient);
 
 		instance.postRegistration( reqObj,null, function (error, data, response) {
 			if(error) {
@@ -228,8 +228,8 @@ var instance = new cybersourceRestApi.MerchantBoardingApi(configObject, apiClien
 }
 
 function write_log_audit(status) {
-	var filename = path.basename(__filename).split(".")[0];
-	console.log(`[Merchant boarding Sample Code Testing] [${filename}] ${status}`);
+	  var filename = path.basename(__filename).split(".")[0];
+	  console.log(`[Merchant boarding Sample Code Testing] [${filename}] ${status}`);
 }
 
 if (require.main === module) {	
