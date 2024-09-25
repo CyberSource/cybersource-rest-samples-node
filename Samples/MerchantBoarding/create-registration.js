@@ -216,7 +216,7 @@ var instance = new cybersourceRestApi.MerchantBoardingApi(configObject, apiClien
 			}
 
 			console.log('\nResponse : ' + JSON.stringify(response));
-			console.log('\nResponse Code of Process a Payment : ' + JSON.stringify(response['status']));
+			console.log('\nResponse Code of Merchant Boarding API : ' + JSON.stringify(response['status']));
 			var status = response['status'];
 			write_log_audit(status);
 			callback(error, data, response);

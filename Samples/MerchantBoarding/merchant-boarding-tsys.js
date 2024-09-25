@@ -59,243 +59,234 @@ const {
 
 function merchant_boarding_tsys(callback) {
 	try {
-		var configObject = new configuration();
-		var apiClient = new cybersourceRestApi.ApiClient();
+		  var configObject = new configuration();
+		  var apiClient = new cybersourceRestApi.ApiClient();
 
+      const reqObj = new PostRegistrationBody();
 
+      const organizationInformation = new Boardingv1registrationsOrganizationInformation();
+      organizationInformation.parentOrganizationId = "apitester00";
+      organizationInformation.type = Boardingv1registrationsOrganizationInformation.TypeEnum.MERCHANT;
+      organizationInformation.configurable = true;
+
+      const businessInformation = new Boardingv1registrationsOrganizationInformationBusinessInformation();
+      businessInformation.name = "StuartWickedFastEatz";
+
+      const address = new Boardingv1registrationsOrganizationInformationBusinessInformationAddress();
+      address.country = "US";
+      address.address1 = "123456 SandMarket";
+      address.locality = "ORMOND BEACH";
+      address.administrativeArea = "FL";
+      address.postalCode = "32176";
+      businessInformation.address = address;
+
+      businessInformation.websiteUrl = "https://www.StuartWickedEats.com";
+      businessInformation.phoneNumber = "6574567813";
+
+      const businessContact = new Boardingv1registrationsOrganizationInformationBusinessInformationBusinessContact();
+      businessContact.firstName = "Stuart";
+      businessContact.lastName = "Stuart";
+      businessContact.phoneNumber = "6574567813";
+      businessContact.email = "svc_email_bt@corpdev.visa.com";
+      businessInformation.businessContact = businessContact;
 
-    
+      businessInformation.merchantCategoryCode = "5999";
+      organizationInformation.businessInformation = businessInformation;
 
-const reqObj = new PostRegistrationBody();
+      reqObj.organizationInformation = organizationInformation;
 
-const organizationInformation = new Boardingv1registrationsOrganizationInformation();
-organizationInformation.parentOrganizationId = "apitester00";
-organizationInformation.type = Boardingv1registrationsOrganizationInformation.TypeEnum.MERCHANT;
-organizationInformation.configurable = true;
+      const productInformation = new Boardingv1registrationsProductInformation();
+      const selectedProducts = new Boardingv1registrationsProductInformationSelectedProducts();
 
-const businessInformation = new Boardingv1registrationsOrganizationInformationBusinessInformation();
-businessInformation.name = "StuartWickedFastEatz";
+      const payments = new PaymentsProducts();
+      const cardProcessing = new PaymentsProductsCardProcessing();
+      const subscriptionInformation = new PaymentsProductsCardProcessingSubscriptionInformation();
 
-const address = new Boardingv1registrationsOrganizationInformationBusinessInformationAddress();
-address.country = "US";
-address.address1 = "123456 SandMarket";
-address.locality = "ORMOND BEACH";
-address.administrativeArea = "FL";
-address.postalCode = "32176";
-businessInformation.address = address;
+      subscriptionInformation.enabled = true;
+      const features = {};
 
-businessInformation.websiteUrl = "https://www.StuartWickedEats.com";
-businessInformation.phoneNumber = "6574567813";
+      const featureObj = new PaymentsProductsCardProcessingSubscriptionInformationFeatures();
+      featureObj.enabled = true;
+      features["cardNotPresent"] = featureObj;
+      features["cardPresent"] = featureObj;
+      subscriptionInformation.features = features;
+      cardProcessing.subscriptionInformation = subscriptionInformation;
 
-const businessContact = new Boardingv1registrationsOrganizationInformationBusinessInformationBusinessContact();
-businessContact.firstName = "Stuart";
-businessContact.lastName = "Stuart";
-businessContact.phoneNumber = "6574567813";
-businessContact.email = "svc_email_bt@corpdev.visa.com";
-businessInformation.businessContact = businessContact;
+      const configurationInformation = new PaymentsProductsCardProcessingConfigurationInformation();
 
-businessInformation.merchantCategoryCode = "5999";
-organizationInformation.businessInformation = businessInformation;
+      const configurations = new CardProcessingConfig();
+      const common = new CardProcessingConfigCommon();
+      common.merchantCategoryCode = "5999";
+      common.processLevel3Data = "ignored";
+      common.defaultAuthTypeCode = CardProcessingConfigCommon.DefaultAuthTypeCodeEnum.FINAL;
+      common.enablePartialAuth = false;
+      common.amexVendorCode = "2233";
 
-reqObj.organizationInformation = organizationInformation;
+      const merchantDescriptorInformation = new CardProcessingConfigCommonMerchantDescriptorInformation();
 
-const productInformation = new Boardingv1registrationsProductInformation();
-const selectedProducts = new Boardingv1registrationsProductInformationSelectedProducts();
+      merchantDescriptorInformation.city = "cupertino";
+      merchantDescriptorInformation.country = "USA";
+      merchantDescriptorInformation.name = "kumar";
+      merchantDescriptorInformation.state = "CA";
+      merchantDescriptorInformation.phone = "888555333";
+      merchantDescriptorInformation.zip = "94043";
+      merchantDescriptorInformation.street = "steet1";
 
-const payments = new PaymentsProducts();
-const cardProcessing = new PaymentsProductsCardProcessing();
-const subscriptionInformation = new PaymentsProductsCardProcessingSubscriptionInformation();
+      common.merchantDescriptorInformation = merchantDescriptorInformation;
 
-subscriptionInformation.enabled = true;
-const features = {};
+      const processors = {};
+      const processorObj = new CardProcessingConfigCommonProcessors();
+      const acquirer = new CardProcessingConfigCommonAcquirer();
 
-const featureObj = new PaymentsProductsCardProcessingSubscriptionInformationFeatures();
-featureObj.enabled = true;
-features["cardNotPresent"] = featureObj;
-features["cardPresent"] = featureObj;
-subscriptionInformation.features = features;
-cardProcessing.subscriptionInformation = subscriptionInformation;
+      processorObj.acquirer = acquirer;
 
-const configurationInformation = new PaymentsProductsCardProcessingConfigurationInformation();
+      const currencies = {};
 
-const configurations = new CardProcessingConfig();
-const common = new CardProcessingConfigCommon();
-common.merchantCategoryCode = "5999";
-common.processLevel3Data = "ignored";
-common.defaultAuthTypeCode = CardProcessingConfigCommon.DefaultAuthTypeCodeEnum.FINAL;
-common.enablePartialAuth = false;
-common.amexVendorCode = "2233";
+      const currencyObj = new CardProcessingConfigCommonCurrencies1();
+      currencyObj.enabled = true;
+      currencyObj.enabledCardPresent = true;
+      currencyObj.enabledCardNotPresent = true;
+      currencyObj.terminalId = "1234";
+      currencyObj.serviceEnablementNumber = "";
 
-const merchantDescriptorInformation = new CardProcessingConfigCommonMerchantDescriptorInformation();
+      currencies["CAD"] = currencyObj;
 
-merchantDescriptorInformation.city = "cupertino";
-merchantDescriptorInformation.country = "USA";
-merchantDescriptorInformation.name = "kumar";
-merchantDescriptorInformation.state = "CA";
-merchantDescriptorInformation.phone = "888555333";
-merchantDescriptorInformation.zip = "94043";
-merchantDescriptorInformation.street = "steet1";
+      processorObj.currencies = currencies;
 
-common.merchantDescriptorInformation = merchantDescriptorInformation;
+      const paymentTypes = {};
+      const paymentTypeObj = new CardProcessingConfigCommonPaymentTypes();
+      paymentTypeObj.enabled = true;
 
-const processors = {};
-const processorObj = new CardProcessingConfigCommonProcessors();
-const acquirer = new CardProcessingConfigCommonAcquirer();
+      paymentTypes["MASTERCARD"] = paymentTypeObj;
+      paymentTypes["VISA"] = paymentTypeObj;
 
-processorObj.acquirer = acquirer;
+      processorObj.paymentTypes = paymentTypes;
 
-const currencies = {};
+      processorObj.bankNumber = "234576";
+      processorObj.chainNumber = "223344";
+      processorObj.batchGroup = "vital_1130";
+      processorObj.enhancedData = "disabled";
+      processorObj.industryCode = CardProcessingConfigCommonProcessors.IndustryCodeEnum.D;
+      processorObj.merchantBinNumber = "765576";
+      processorObj.merchantId = "834215123456";
+      processorObj.merchantLocationNumber = "00001";
+      processorObj.storeID = "2563";
+      processorObj.vitalNumber = "71234567";
+      processorObj.quasiCash = false;
+      processorObj.sendAmexLevel2Data = null;
+      processorObj.softDescriptorType = "1 - trans_ref_no";
+      processorObj.travelAgencyCode = "2356";
+      processorObj.travelAgencyName = "Agent";
 
-const currencyObj = new CardProcessingConfigCommonCurrencies1();
-currencyObj.enabled = true;
-currencyObj.enabledCardPresent = true;
-currencyObj.enabledCardNotPresent = true;
-currencyObj.terminalId = "1234";
-currencyObj.serviceEnablementNumber = "";
+      processors["tsys"] = processorObj;
 
-currencies["CAD"] = currencyObj;
+      common.processors = processors;
 
-processorObj.currencies = currencies;
+      configurations.common = common;
 
-const paymentTypes = {};
-const paymentTypeObj = new CardProcessingConfigCommonPaymentTypes();
-paymentTypeObj.enabled = true;
+      const features2 = new CardProcessingConfigFeatures();
 
-paymentTypes["MASTERCARD"] = paymentTypeObj;
-paymentTypes["VISA"] = paymentTypeObj;
+      const cardNotPresent = new CardProcessingConfigFeaturesCardNotPresent();
 
-processorObj.paymentTypes = paymentTypes;
+      cardNotPresent.visaStraightThroughProcessingOnly = false;
+      cardNotPresent.amexTransactionAdviceAddendum1 = null;
 
-processorObj.bankNumber = "234576";
-processorObj.chainNumber = "223344";
-processorObj.batchGroup = "vital_1130";
-processorObj.enhancedData = "disabled";
-processorObj.industryCode = CardProcessingConfigCommonProcessors.IndustryCodeEnum.D;
-processorObj.merchantBinNumber = "765576";
-processorObj.merchantId = "834215123456";
-processorObj.merchantLocationNumber = "00001";
-processorObj.storeID = "2563";
-processorObj.vitalNumber = "71234567";
-processorObj.quasiCash = false;
-processorObj.sendAmexLevel2Data = null;
-processorObj.softDescriptorType = "1 - trans_ref_no";
-processorObj.travelAgencyCode = "2356";
-processorObj.travelAgencyName = "Agent";
+      features2.cardNotPresent = cardNotPresent;
 
-processors["tsys"] = processorObj;
+      configurations.features = features2;
+      configurationInformation.configurations = configurations;
+      configurationInformation.templateId = uuidv4("818048AD-2860-4D2D-BC39-2447654628A1");
 
-common.processors = processors;
+      cardProcessing.configurationInformation = configurationInformation;
+      payments.cardProcessing = cardProcessing;
 
-configurations.common = common;
+      const virtualTerminal = new PaymentsProductsVirtualTerminal();
+      const subscriptionInformation5 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
+      subscriptionInformation5.enabled = true;
+      virtualTerminal.subscriptionInformation = subscriptionInformation5;
 
-const features2 = new CardProcessingConfigFeatures();
+      const configurationInformation5 = new PaymentsProductsVirtualTerminalConfigurationInformation();
+      configurationInformation5.templateId = uuidv4("9FA1BB94-5119-48D3-B2E5-A81FD3C657B5");
+      virtualTerminal.configurationInformation = configurationInformation5;
 
-const cardNotPresent = new CardProcessingConfigFeaturesCardNotPresent();
+      payments.virtualTerminal = virtualTerminal;
 
-cardNotPresent.visaStraightThroughProcessingOnly = false;
-cardNotPresent.amexTransactionAdviceAddendum1 = null;
+      const customerInvoicing = new PaymentsProductsTax();
 
-features2.cardNotPresent = cardNotPresent;
+      const subscriptionInformation6 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
 
-configurations.features = features2;
-configurationInformation.configurations = configurations;
-configurationInformation.templateId = uuidv4("818048AD-2860-4D2D-BC39-2447654628A1");
+      subscriptionInformation6.enabled = true;
+      customerInvoicing.subscriptionInformation = subscriptionInformation6;
+      payments.customerInvoicing = customerInvoicing;
 
-cardProcessing.configurationInformation = configurationInformation;
-payments.cardProcessing = cardProcessing;
+      selectedProducts.payments = payments;
 
-const virtualTerminal = new PaymentsProductsVirtualTerminal();
-const subscriptionInformation5 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-subscriptionInformation5.enabled = true;
-virtualTerminal.subscriptionInformation = subscriptionInformation5;
+      const risk = new RiskProducts();
 
-const configurationInformation5 = new PaymentsProductsVirtualTerminalConfigurationInformation();
-configurationInformation5.templateId = uuidv4("9FA1BB94-5119-48D3-B2E5-A81FD3C657B5");
-virtualTerminal.configurationInformation = configurationInformation5;
+      selectedProducts.risk = risk;
 
-payments.virtualTerminal = virtualTerminal;
+      const commerceSolutions = new CommerceSolutionsProducts();
 
-const customerInvoicing = new PaymentsProductsTax();
+      const tokenManagement = new CommerceSolutionsProductsTokenManagement();
 
-const subscriptionInformation6 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
+      const subscriptionInformation7 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
+      subscriptionInformation7.enabled = true;
+      tokenManagement.subscriptionInformation = subscriptionInformation7;
 
-subscriptionInformation6.enabled = true;
-customerInvoicing.subscriptionInformation = subscriptionInformation6;
-payments.customerInvoicing = customerInvoicing;
+      const configurationInformation7 = new CommerceSolutionsProductsTokenManagementConfigurationInformation();
 
-selectedProducts.payments = payments;
+      configurationInformation7.templateId = uuidv4("D62BEE20-DCFD-4AA2-8723-BA3725958ABA");
+      tokenManagement.configurationInformation = configurationInformation7;
 
-const risk = new RiskProducts();
+      commerceSolutions.tokenManagement = tokenManagement;
+      selectedProducts.commerceSolutions = commerceSolutions;
 
-selectedProducts.risk = risk;
+      const valueAddedServices = new ValueAddedServicesProducts();
 
-const commerceSolutions = new CommerceSolutionsProducts();
+      const transactionSearch = new PaymentsProductsTax();
 
-const tokenManagement = new CommerceSolutionsProductsTokenManagement();
+      const subscriptionInformation9 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
+      subscriptionInformation9.enabled = true;
+      transactionSearch.subscriptionInformation = subscriptionInformation9;
+      valueAddedServices.transactionSearch = transactionSearch;
 
-const subscriptionInformation7 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-subscriptionInformation7.enabled = true;
-tokenManagement.subscriptionInformation = subscriptionInformation7;
+      const reporting = new PaymentsProductsTax();
+      const subscriptionInformation3 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
+      subscriptionInformation3.enabled = true;
+      reporting.subscriptionInformation = subscriptionInformation3;
+      valueAddedServices.reporting = reporting;
 
-const configurationInformation7 = new CommerceSolutionsProductsTokenManagementConfigurationInformation();
+      selectedProducts.valueAddedServices = valueAddedServices;
 
-configurationInformation7.templateId = uuidv4("D62BEE20-DCFD-4AA2-8723-BA3725958ABA");
-tokenManagement.configurationInformation = configurationInformation7;
+      productInformation.selectedProducts = selectedProducts;
+      reqObj.productInformation = productInformation;
 
-commerceSolutions.tokenManagement = tokenManagement;
-selectedProducts.commerceSolutions = commerceSolutions;
 
-const valueAddedServices = new ValueAddedServicesProducts();
+      var instance = new cybersourceRestApi.MerchantBoardingApi(configObject, apiClient);
 
-const transactionSearch = new PaymentsProductsTax();
+      instance.postRegistration( reqObj,null, function (error, data, response) {
+        if(error) {
+          console.log('\nError : ' + JSON.stringify(error));
+        }
+        else if (data) {
+          console.log('\nData : ' + JSON.stringify(data));
+        }
 
-const subscriptionInformation9 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-subscriptionInformation9.enabled = true;
-transactionSearch.subscriptionInformation = subscriptionInformation9;
-valueAddedServices.transactionSearch = transactionSearch;
-
-const reporting = new PaymentsProductsTax();
-const subscriptionInformation3 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-subscriptionInformation3.enabled = true;
-reporting.subscriptionInformation = subscriptionInformation3;
-valueAddedServices.reporting = reporting;
-
-selectedProducts.valueAddedServices = valueAddedServices;
-
-productInformation.selectedProducts = selectedProducts;
-reqObj.productInformation = productInformation;
-
-
-
-
-        
-
-       
-var instance = new cybersourceRestApi.MerchantBoardingApi(configObject, apiClient);
-
-		instance.postRegistration( reqObj,null, function (error, data, response) {
-			if(error) {
-				console.log('\nError : ' + JSON.stringify(error));
-			}
-			else if (data) {
-				console.log('\nData : ' + JSON.stringify(data));
-			}
-
-			console.log('\nResponse : ' + JSON.stringify(response));
-			console.log('\nResponse Code of Process a Payment : ' + JSON.stringify(response['status']));
-			var status = response['status'];
-			write_log_audit(status);
-			callback(error, data, response);
-		});
+        console.log('\nResponse : ' + JSON.stringify(response));
+        console.log('\nResponse Code of Merchant Boarding API : ' + JSON.stringify(response['status']));
+        var status = response['status'];
+        write_log_audit(status);
+        callback(error, data, response);
+      });
 	}
 	catch (error) {
-		console.log('\nException on calling the API : ' + error);
+		  console.log('\nException on calling the API : ' + error);
 	}
 }
 
 function write_log_audit(status) {
-	var filename = path.basename(__filename).split(".")[0];
-	console.log(`[Merchant boarding Sample Code Testing] [${filename}] ${status}`);
+	  var filename = path.basename(__filename).split(".")[0];
+	  console.log(`[Merchant boarding Sample Code Testing] [${filename}] ${status}`);
 }
 
 if (require.main === module) {	
