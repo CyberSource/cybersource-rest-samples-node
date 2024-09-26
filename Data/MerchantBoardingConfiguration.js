@@ -7,17 +7,17 @@
 // common parameters
 const AuthenticationType = 'jwt';
 const RunEnvironment = 'apitest.cybersource.com';
-const MerchantId = 'apitester00';
+const MerchantId = '<insert merchantId here for testing the boarding samples>';
 
 // http_signature parameters
 const MerchantKeyId = '';
 const MerchantSecretKey = '';
 
 // jwt parameters
-const KeysDirectory = 'Resource';
-const KeyFileName = 'apitester00';
-const KeyAlias = 'apitester00';
-const KeyPass = 'Ap!C38tp12@';
+const KeysDirectory = '<insert .p12 file directory>';
+const KeyFileName = '<insert p12 file name without .p12 extension here for testing the boarding samples>';
+const KeyAlias = '<insert keyAlias (merchantId)  here for testing the boarding samples>';
+const KeyPass = '<insert p12 file password here for testing the boarding samples>';
 
 //meta key parameters
 const UseMetaKey = false;
