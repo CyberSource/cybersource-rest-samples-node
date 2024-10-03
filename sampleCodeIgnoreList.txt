@@ -2,3 +2,4 @@
 .*StandAloneOAuth.js
 .*Authentication/SampleCodes.*
 .*Webhooks.*
+.*MerchantBoarding.*
