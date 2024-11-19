@@ -36,6 +36,9 @@ It is optional property, require adding only during JWE decryption.
 */
 const PemFileDirectory = 'Resource/NetworkTokenCert.pem';
 
+//Add the property if required to override the cybs default developerId in all request body
+const DefaultDeveloperId = '';
+
 // Constructor for Configuration
 function Configuration() {
 
@@ -55,7 +58,7 @@ function Configuration() {
         'useMetaKey': UseMetaKey,
         'portfolioID': PortfolioID,
         'pemFileDirectory': PemFileDirectory,
-
+        'defaultDeveloperId': DefaultDeveloperId,
         'logConfiguration': {
             'enableLog': EnableLog,
             'logFileName': LogFileName,
