@@ -2,6 +2,7 @@
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
+const { faker } = require('@faker-js/faker');
 
 function getConfiguration() {
 
@@ -37,7 +38,11 @@ function simple_authorization_internet(callback, accessToken, refreshToken) {
         var requestObj = new cybersourceRestApi.CreatePaymentRequest();
 
         var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
-        clientReferenceInformation.code = 'TC50171_3';
+        var dt = new Date();
+        var expYear = dt.getFullYear()+4;
+        var fName = faker.person.firstName();
+        var lName = faker.person.lastName();
+        clientReferenceInformation.code = faker.string.uuid();
         requestObj.clientReferenceInformation = clientReferenceInformation;
 
         var processingInformation = new cybersourceRestApi.Ptsv2paymentsProcessingInformation();
@@ -48,29 +53,29 @@ function simple_authorization_internet(callback, accessToken, refreshToken) {
 
         var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();
         var paymentInformationCard = new cybersourceRestApi.Ptsv2paymentsPaymentInformationCard();
-        paymentInformationCard.number = '4111111111111111';
+        paymentInformationCard.number = faker.finance.creditCardNumber({issuer: '414720#########L'});
         paymentInformationCard.expirationMonth = '12';
-        paymentInformationCard.expirationYear = '2031';
+        paymentInformationCard.expirationYear = expYear;
         paymentInformation.card = paymentInformationCard;
 
         requestObj.paymentInformation = paymentInformation;
 
         var orderInformation = new cybersourceRestApi.Ptsv2paymentsOrderInformation();
         var orderInformationAmountDetails = new cybersourceRestApi.Ptsv2paymentsOrderInformationAmountDetails();
-        orderInformationAmountDetails.totalAmount = '50.00';
+        orderInformationAmountDetails.totalAmount = faker.commerce.price({ min: 10, max: 500 });
         orderInformationAmountDetails.currency = 'USD';
         orderInformation.amountDetails = orderInformationAmountDetails;
 
         var orderInformationBillTo = new cybersourceRestApi.Ptsv2paymentsOrderInformationBillTo();
-        orderInformationBillTo.firstName = 'John';
-        orderInformationBillTo.lastName = 'Doe';
-        orderInformationBillTo.address1 = '1 Market St';
-        orderInformationBillTo.locality = 'san francisco';
-        orderInformationBillTo.administrativeArea = 'CA';
-        orderInformationBillTo.postalCode = '94105';
+        orderInformationBillTo.firstName = fName;
+        orderInformationBillTo.lastName = lName;
+        orderInformationBillTo.address1 = faker.location.streetAddress();
+        orderInformationBillTo.locality = faker.location.city();
+        orderInformationBillTo.administrativeArea = faker.location.state();
+        orderInformationBillTo.postalCode = faker.location.zipCode();
         orderInformationBillTo.country = 'US';
-        orderInformationBillTo.email = 'test@cybs.com';
-        orderInformationBillTo.phoneNumber = '4158880000';
+        orderInformationBillTo.email = faker.internet.email({firstName:fName,lastName:lName});
+        orderInformationBillTo.phoneNumber = faker.phone.number();
         orderInformation.billTo = orderInformationBillTo;
 
         requestObj.orderInformation = orderInformation;

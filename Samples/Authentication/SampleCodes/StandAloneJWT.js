@@ -2,49 +2,71 @@
 
 const superagent = require('superagent');
 const crypto = require('crypto');
-
+const { faker } = require('@faker-js/faker');
 var fs = require('fs');
 var forge = require('node-forge');
 var Jwt = require('jwt-simple');
 var path = require('path');
-
+var dt = new Date();
+var curDate = dt.toGMTString();
+/* Create timestamp 8 hours back for report query */
+dt.setHours(dt.getHours() - 8);
 var requestHost = "apitest.cybersource.com";
 var merchantId = "testrest";
 var keyPass = "testrest";
-var payload = "{" +
-		"	\"clientReferenceInformation\": {" +
-		"	\"code\": \"TC50171_3\"" +
-		"	}," +
-		"	\"processingInformation\": {" +
-		"	\"commerceIndicator\": \"internet\"" +
-		"	}," +
-		"	\"orderInformation\": {" +
-		"	\"billTo\": {" +
-		"		\"firstName\": \"john\"," +
-		"		\"lastName\": \"doe\"," +
-		"		\"address1\": \"201 S. Division St.\"," +
-		"		\"postalCode\": \"48104-2201\"," +
-		"		\"locality\": \"Ann Arbor\"," +
-		"		\"administrativeArea\": \"MI\"," +
-		"		\"country\": \"US\"," +
-		"		\"phoneNumber\": \"999999999\"," +
-		"		\"email\": \"test@cybs.com\"" +
-		"	}," +
-		"	\"amountDetails\": {" +
-		"		\"totalAmount\": \"10\"," +
-		"		\"currency\": \"USD\"" +
-		"	}" +
-		"	}," +
-		"	\"paymentInformation\": {" +
-		"	\"card\": {" +
-		"		\"expirationYear\": \"2031\"," +
-		"		\"number\": \"5555555555554444\"," +
-		"		\"securityCode\": \"123\"," +
-		"		\"expirationMonth\": \"12\"," +
-		"		\"type\": \"002\"" +
-		"	}" +
-		"	}" +
-		"}";
+function personify(){
+	var fName = faker.person.firstName();
+	var lName = faker.person.lastName();
+	var expYear = dt.getFullYear()+4;
+	var payload = JSON.stringify({
+		"clientReferenceInformation" : {
+			"code" : faker.string.numeric(10)
+		},
+		"processingInformation" : {
+			"capture" : true,
+			"commerceIndicator" : "internet"
+		},
+		"orderInformation" : {
+			"billTo" : {
+				"firstName" : fName,
+				"lastName" : lName,
+				"address1" : faker.location.streetAddress(),
+				"postalCode" : faker.location.zipCode(),
+				"locality" : faker.location.city(),
+				"administrativeArea" : faker.location.state(),
+				"country" : "US",
+				"phoneNumber" : faker.phone.number(),
+				"email" : faker.internet.email({firstName:fName,lastName:lName})
+			},
+			"amountDetails" : {	
+				"totalAmount" : faker.commerce.price({ min: 10, max: 500 }),
+				"currency" : "USD"
+			}
+		},
+		"paymentInformation" : {
+			"card" : {
+				"expirationYear" : expYear,
+				"number" : faker.finance.creditCardNumber({issuer: '414720#########L'}),
+				"securityCode" : faker.finance.creditCardCVV(),
+				"expirationMonth" : "12",
+				"type" : "001"
+			}
+		},
+		"merchantDefinedInformation" : [
+		{
+			"key" : "1",
+			"value" : merchantId
+		}
+		],
+		"deviceInformation" : {
+			"fingerprintSessionId" : "",
+			"ipAddress" : faker.internet.ipv4(),
+			"useragent" : faker.internet.userAgent()
+		}
+	});
+	return payload;
+}
+var payload = personify();
 
 function generateDigest(request) {
 	var buffer = Buffer.from(payload, 'utf8');
@@ -213,7 +235,7 @@ function processPost(callback) {
 }
 
 function processGet(callback) {
-	var resource = "/reporting/v3/reports?startTime=2021-01-01T00:00:00.0Z&endTime=2021-01-02T23:59:59.0Z&timeQueryType=executedTime&reportMimeType=application/xml";
+	var resource = "/reporting/v3/reports?startTime="+dt.toISOString()+"&endTime="+(new Date()).toISOString()+"&timeQueryType=executedTime&reportMimeType=application/xml";
 	var method = "get";
 	var statusCode = -1;
 	var url = 'https://' + requestHost + resource;

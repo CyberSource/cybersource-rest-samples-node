@@ -5,7 +5,7 @@ var path = require('path');
 var filePath = path.resolve('Data/MerchantBoardingConfiguration.js');
 var configuration = require(filePath);
 const UUID = require('uuid');
-
+const { faker } = require('@faker-js/faker');
 const { v4: uuidv4 } = require('uuid');
 
 const {
@@ -69,23 +69,23 @@ function merchant_boarding_gpx(callback) {
       organizationInformation.configurable = true;
 
       const businessInformation = new Boardingv1registrationsOrganizationInformationBusinessInformation();
-      businessInformation.name = "StuartWickedFastEatz";
+      businessInformation.name = faker.word.adjective()+faker.word.noun();
 
       const address = new Boardingv1registrationsOrganizationInformationBusinessInformationAddress();
       address.country = "US";
-      address.address1 = "123456 SandMarket";
-      address.locality = "ORMOND BEACH";
+      address.address1 = faker.location.streetAddress();
+      address.locality = faker.location.city();
       address.administrativeArea = "FL";
-      address.postalCode = "32176";
+      address.postalCode = faker.helpers.fake('{{helpers.fromRegExp("[9][0-6][0-1][0-6][0-9]")}}');
       businessInformation.address = address;
 
-      businessInformation.websiteUrl = "https://www.StuartWickedEats.com";
-      businessInformation.phoneNumber = "6574567813";
+      businessInformation.websiteUrl = faker.internet.url({ protocol: 'https', appendSlash: false });
+      businessInformation.phoneNumber = faker.string.numeric(10);
 
       const businessContact = new Boardingv1registrationsOrganizationInformationBusinessInformationBusinessContact();
-      businessContact.firstName = "Stuart";
-      businessContact.lastName = "Stuart";
-      businessContact.phoneNumber = "6574567813";
+      businessContact.firstName = faker.person.firstName();
+      businessContact.firstName = faker.person.lastName();
+      businessContact.phoneNumber = faker.string.numeric(10);
       businessContact.email = "svc_email_bt@corpdev.visa.com";
       businessInformation.businessContact = businessContact;
 

@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
+const { faker, fa } = require('@faker-js/faker');
 
 function generate_unified_checkout_capture_context(callback) {
 	try {
@@ -23,7 +24,7 @@ function generate_unified_checkout_capture_context(callback) {
 
 		var orderInformation = new cybersourceRestApi.Upv1capturecontextsOrderInformation();
 		var orderInformationAmountDetails = new cybersourceRestApi.Upv1capturecontextsOrderInformationAmountDetails();
-		orderInformationAmountDetails.totalAmount = '50.00';
+		orderInformationAmountDetails.totalAmount = faker.commerce.price({ min: 100, max: 500 });
 		orderInformationAmountDetails.currency = 'USD';
 		orderInformation.amountDetails = orderInformationAmountDetails;
 

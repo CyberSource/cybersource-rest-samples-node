@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
+const { faker, fa } = require('@faker-js/faker');
 
 function credit_with_customer_payment_instrument_and_shipping_address_token_id(callback) {
 	try {
@@ -12,7 +13,7 @@ function credit_with_customer_payment_instrument_and_shipping_address_token_id(c
 		var requestObj = new cybersourceRestApi.CreateCreditRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
-		clientReferenceInformation.code = '12345678';
+		clientReferenceInformation.code = faker.string.uuid();
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsidrefundsPaymentInformation();
@@ -33,7 +34,7 @@ function credit_with_customer_payment_instrument_and_shipping_address_token_id(c
 		var orderInformation = new cybersourceRestApi.Ptsv2paymentsidrefundsOrderInformation();
 		var orderInformationAmountDetails = new cybersourceRestApi.Ptsv2paymentsidcapturesOrderInformationAmountDetails();
 		orderInformationAmountDetails.totalAmount = '200';
-		orderInformationAmountDetails.currency = 'usd';
+		orderInformationAmountDetails.currency = 'USD';
 		orderInformation.amountDetails = orderInformationAmountDetails;
 
 		requestObj.orderInformation = orderInformation;

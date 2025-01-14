@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
+const { faker, fa } = require('@faker-js/faker');
 
 function create_payment_instrument_pinless_debit(callback) {
 	var profileid = '93B32398-AD51-4CC2-A682-EA3E93614EB1';
@@ -14,8 +15,10 @@ function create_payment_instrument_pinless_debit(callback) {
 		var requestObj = new cybersourceRestApi.PostPaymentInstrumentRequest();
 
 		var card = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentCard();
+		var dt = new Date();
+        var expYear = dt.getFullYear()+4;
 		card.expirationMonth = '12';
-		card.expirationYear = '2031';
+		card.expirationYear = expYear;
 		card.type = 'visa';
 		card.issueNumber = '01';
 		card.startMonth = '01';
@@ -24,16 +27,18 @@ function create_payment_instrument_pinless_debit(callback) {
 		requestObj.card = card;
 
 		var billTo = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentBillTo();
-		billTo.firstName = 'John';
-		billTo.lastName = 'Doe';
-		billTo.company = 'CyberSource';
-		billTo.address1 = '1 Market St';
-		billTo.locality = 'San Francisco';
+		var fName = faker.person.firstName();
+        var lName = faker.person.lastName();
+		billTo.firstName = fName;
+		billTo.lastName = lName;
+		billTo.company = faker.company.name();
+		billTo.address1 = faker.location.streetAddress();
+		billTo.locality = faker.location.city();
 		billTo.administrativeArea = 'CA';
-		billTo.postalCode = '94105';
+		billTo.postalCode = faker.location.zipCode();
 		billTo.country = 'US';
-		billTo.email = 'test@cybs.com';
-		billTo.phoneNumber = '4158880000';
+		billTo.email = faker.internet.email({firstName:fName,lastName:lName});
+		billTo.phoneNumber = faker.string.numeric(10);
 		requestObj.billTo = billTo;
 
 		var instrumentIdentifier = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentInstrumentIdentifier();

@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
+const { faker } = require('@faker-js/faker');
 
 function enroll_with_transient_token(callback) {
 	try {
@@ -12,26 +13,27 @@ function enroll_with_transient_token(callback) {
 		var requestObj = new cybersourceRestApi.CheckPayerAuthEnrollmentRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Riskv1authenticationsetupsClientReferenceInformation();
-		clientReferenceInformation.code = 'UNKNOWN';
+		clientReferenceInformation.code = faker.string.uuid();
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var orderInformation = new cybersourceRestApi.Riskv1authenticationsOrderInformation();
 		var orderInformationAmountDetails = new cybersourceRestApi.Riskv1authenticationsOrderInformationAmountDetails();
 		orderInformationAmountDetails.currency = 'USD';
-		orderInformationAmountDetails.totalAmount = '10.99';
+		orderInformationAmountDetails.totalAmount = faker.commerce.price({ min: 10, max: 500 });
 		orderInformation.amountDetails = orderInformationAmountDetails;
-
 		var orderInformationBillTo = new cybersourceRestApi.Riskv1authenticationsOrderInformationBillTo();
-		orderInformationBillTo.address1 = '1 Market St';
-		orderInformationBillTo.address2 = 'Address 2';
-		orderInformationBillTo.administrativeArea = 'CA';
+		var fName = faker.person.firstName();
+        var lName = faker.person.lastName();
+		orderInformationBillTo.address1 = faker.location.streetAddress();
+		orderInformationBillTo.address2 = faker.location.secondaryAddress();
+		orderInformationBillTo.administrativeArea = faker.location.state();
 		orderInformationBillTo.country = 'US';
-		orderInformationBillTo.locality = 'san francisco';
-		orderInformationBillTo.firstName = 'John';
-		orderInformationBillTo.lastName = 'Doe';
-		orderInformationBillTo.phoneNumber = '4158880000';
-		orderInformationBillTo.email = 'test@cybs.com';
-		orderInformationBillTo.postalCode = '94105';
+		orderInformationBillTo.locality = faker.location.city();
+		orderInformationBillTo.firstName = fName;
+		orderInformationBillTo.lastName = lName;
+		orderInformationBillTo.phoneNumber = faker.phone.number();
+		orderInformationBillTo.email = faker.internet.email({firstName:fName,lastName:lName});
+		orderInformationBillTo.postalCode = faker.location.zipCode();
 		orderInformation.billTo = orderInformationBillTo;
 
 		requestObj.orderInformation = orderInformation;
