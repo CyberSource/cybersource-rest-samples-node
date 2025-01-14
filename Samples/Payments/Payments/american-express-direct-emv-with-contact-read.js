@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
+const { faker } = require('@faker-js/faker');
 
 function american_express_direct_emv_with_contact_read(callback) {
 	try {
@@ -12,7 +13,7 @@ function american_express_direct_emv_with_contact_read(callback) {
 		var requestObj = new cybersourceRestApi.CreatePaymentRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
-		clientReferenceInformation.code = '123456';
+		clientReferenceInformation.code = faker.string.uuid();
 		var clientReferenceInformationPartner = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformationPartner();
 		clientReferenceInformationPartner.originalTransactionId = '510be4aef90711e6acbc7d88388d803d';
 		clientReferenceInformation.partner = clientReferenceInformationPartner;

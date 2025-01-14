@@ -5,7 +5,7 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 var committedTaxCallRequest = require('./committed-tax-call-request');
-
+const { faker, fa } = require('@faker-js/faker');
 function void_committed_tax_call(callback) {
 	try {
 		var configObject = new configuration();
@@ -13,7 +13,7 @@ function void_committed_tax_call(callback) {
 		var requestObj = new cybersourceRestApi.VoidTaxRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Vasv2taxidClientReferenceInformation();
-		clientReferenceInformation.code = 'TAX_TC001';
+		clientReferenceInformation.code = faker.string.uuid();
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var instance = new cybersourceRestApi.TaxesApi(configObject, apiClient);

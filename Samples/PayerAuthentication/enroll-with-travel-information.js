@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
+const { faker, fa } = require('@faker-js/faker');
 
 function enroll_with_travel_information(callback) {
 	try {
@@ -12,35 +13,39 @@ function enroll_with_travel_information(callback) {
 		var requestObj = new cybersourceRestApi.CheckPayerAuthEnrollmentRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Riskv1authenticationsetupsClientReferenceInformation();
-		clientReferenceInformation.code = 'cybs_test';
+		clientReferenceInformation.code = faker.string.uuid();
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var orderInformation = new cybersourceRestApi.Riskv1authenticationsOrderInformation();
 		var orderInformationAmountDetails = new cybersourceRestApi.Riskv1authenticationsOrderInformationAmountDetails();
 		orderInformationAmountDetails.currency = 'USD';
-		orderInformationAmountDetails.totalAmount = '10.99';
+		orderInformationAmountDetails.totalAmount = faker.commerce.price({ min: 10, max: 500 });
 		orderInformation.amountDetails = orderInformationAmountDetails;
 
 		var orderInformationBillTo = new cybersourceRestApi.Riskv1authenticationsOrderInformationBillTo();
-		orderInformationBillTo.address1 = '1 Market St';
-		orderInformationBillTo.address2 = 'Address 2';
-		orderInformationBillTo.administrativeArea = 'CA';
+		var fName = faker.person.firstName();
+        var lName = faker.person.lastName();
+		orderInformationBillTo.address1 = faker.location.streetAddress();
+		orderInformationBillTo.address2 = faker.location.secondaryAddress();
+		orderInformationBillTo.administrativeArea = faker.location.state();
 		orderInformationBillTo.country = 'US';
-		orderInformationBillTo.locality = 'san francisco';
-		orderInformationBillTo.firstName = 'John';
-		orderInformationBillTo.lastName = 'Doe';
-		orderInformationBillTo.phoneNumber = '4158880000';
-		orderInformationBillTo.email = 'test@cybs.com';
-		orderInformationBillTo.postalCode = '94105';
+		orderInformationBillTo.locality = faker.location.city();
+		orderInformationBillTo.firstName = fName;
+		orderInformationBillTo.lastName = lName;
+		orderInformationBillTo.phoneNumber = faker.string.numeric(10);
+		orderInformationBillTo.email = faker.internet.email({firstName:fName,lastName:lName});
+		orderInformationBillTo.postalCode = faker.location.zipCode();
 		orderInformation.billTo = orderInformationBillTo;
 
 		requestObj.orderInformation = orderInformation;
 
 		var paymentInformation = new cybersourceRestApi.Riskv1authenticationsPaymentInformation();
 		var paymentInformationCard = new cybersourceRestApi.Riskv1authenticationsetupsPaymentInformationCard();
+		var dt = new Date();
+        var expYear = dt.getFullYear()+4;
 		paymentInformationCard.type = '002';
 		paymentInformationCard.expirationMonth = '12';
-		paymentInformationCard.expirationYear = '2025';
+		paymentInformationCard.expirationYear = expYear;
 		paymentInformationCard.number = '5200340000000015';
 		paymentInformation.card = paymentInformationCard;
 
@@ -60,13 +65,13 @@ function enroll_with_travel_information(callback) {
 		var	legs1 = new cybersourceRestApi.Riskv1decisionsTravelInformationLegs();
 		legs1.destination = 'DEF';
 		legs1.carrierCode = 'UA';
-		legs1.departureDate = '2019-01-01';
+		legs1.departureDate = expYear+'-01-01';
 		legs.push(legs1);
 
 		var	legs2 = new cybersourceRestApi.Riskv1decisionsTravelInformationLegs();
 		legs2.destination = 'RES';
 		legs2.carrierCode = 'AS';
-		legs2.departureDate = '2019-02-21';
+		legs2.departureDate = expYear+'-02-21';
 		legs.push(legs2);
 
 		travelInformation.legs = legs;
@@ -75,13 +80,13 @@ function enroll_with_travel_information(callback) {
 
 		var passengers =	new Array();
 		var	passengers1 = new cybersourceRestApi.Riskv1decisionsTravelInformationPassengers();
-		passengers1.firstName = 'Raj';
-		passengers1.lastName = 'Charles';
+		passengers1.firstName = faker.person.firstName();
+		passengers1.lastName = faker.person.lastName();
 		passengers.push(passengers1);
 
 		var	passengers2 = new cybersourceRestApi.Riskv1decisionsTravelInformationPassengers();
-		passengers2.firstName = 'Potter';
-		passengers2.lastName = 'Suhember';
+		passengers2.firstName = faker.person.firstName();
+		passengers2.lastName = faker.person.lastName();
 		passengers.push(passengers2);
 
 		travelInformation.passengers = passengers;

@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
+const { faker, fa } = require('@faker-js/faker');
 
 function validate_authentication_results(callback) {
 	try {
@@ -12,7 +13,7 @@ function validate_authentication_results(callback) {
 		var requestObj = new cybersourceRestApi.ValidateRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Riskv1authenticationsetupsClientReferenceInformation();
-		clientReferenceInformation.code = 'pavalidatecheck';
+		clientReferenceInformation.code = faker.string.uuid();
 		var clientReferenceInformationPartner = new cybersourceRestApi.Riskv1decisionsClientReferenceInformationPartner();
 		clientReferenceInformationPartner.developerId = '7891234';
 		clientReferenceInformationPartner.solutionId = '89012345';
@@ -30,9 +31,11 @@ function validate_authentication_results(callback) {
 
 		var paymentInformation = new cybersourceRestApi.Riskv1authenticationresultsPaymentInformation();
 		var paymentInformationCard = new cybersourceRestApi.Riskv1authenticationresultsPaymentInformationCard();
+		var dt = new Date();
+        var expYear = dt.getFullYear()+4;
 		paymentInformationCard.type = '002';
 		paymentInformationCard.expirationMonth = '12';
-		paymentInformationCard.expirationYear = '2025';
+		paymentInformationCard.expirationYear = expYear;
 		paymentInformationCard.number = '5200000000000007';
 		paymentInformation.card = paymentInformationCard;
 

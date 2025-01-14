@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
+const { faker, fa } = require('@faker-js/faker');
 
 function setup_completion_with_secure_storage_token(callback) {
 	try {
@@ -12,7 +13,7 @@ function setup_completion_with_secure_storage_token(callback) {
 		var requestObj = new cybersourceRestApi.PayerAuthSetupRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Riskv1authenticationsetupsClientReferenceInformation();
-		clientReferenceInformation.code = 'cybs_test';
+		clientReferenceInformation.code = faker.string.uuid();
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var paymentInformation = new cybersourceRestApi.Riskv1authenticationsetupsPaymentInformation();

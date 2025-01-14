@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
+const { faker, fa } = require('@faker-js/faker');
 
 function create_instrument_identifier_card(callback) {
 	var profileid = '93B32398-AD51-4CC2-A682-EA3E93614EB1';
@@ -14,7 +15,7 @@ function create_instrument_identifier_card(callback) {
 		var requestObj = new cybersourceRestApi.PostInstrumentIdentifierRequest();
 
 		var card = new cybersourceRestApi.TmsEmbeddedInstrumentIdentifierCard();
-		card.number = '4111111111111111';
+		card.number = faker.finance.creditCardNumber({issuer: '414720#########L'});
 		requestObj.card = card;
 
 	var opts = [];

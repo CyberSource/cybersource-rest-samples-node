@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
+const { faker, fa } = require('@faker-js/faker');
 
 function create_instrument_identifier_card_enroll_for_network_token(callback) {
 	var profileid = '93B32398-AD51-4CC2-A682-EA3E93614EB1';
@@ -15,17 +16,20 @@ function create_instrument_identifier_card_enroll_for_network_token(callback) {
 
 		requestObj.type = 'enrollable card';
 		var card = new cybersourceRestApi.TmsEmbeddedInstrumentIdentifierCard();
-		card.number = '4111111111111111';
+		var dt = new Date();
+        var expYear = dt.getFullYear()+4;
+		// test card specific to network token provisioning
+		card.number = '4622943123100662';
 		card.expirationMonth = '12';
-		card.expirationYear = '2031';
+		card.expirationYear = expYear;
 		card.securityCode = '123';
 		requestObj.card = card;
 
 		var billTo = new cybersourceRestApi.TmsEmbeddedInstrumentIdentifierBillTo();
-		billTo.address1 = '1 Market St';
-		billTo.locality = 'San Francisco';
+		billTo.address1 = faker.location.streetAddress();
+		billTo.locality = faker.location.city();
 		billTo.administrativeArea = 'CA';
-		billTo.postalCode = '94105';
+		billTo.postalCode = faker.location.zipCode();
 		billTo.country = 'US';
 		requestObj.billTo = billTo;
 

@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
+const { faker, fa } = require('@faker-js/faker');
 
 function create_instrument_identifier_bank_account(callback) {
 	var profileid = '93B32398-AD51-4CC2-A682-EA3E93614EB1';
@@ -14,8 +15,8 @@ function create_instrument_identifier_bank_account(callback) {
 		var requestObj = new cybersourceRestApi.PostInstrumentIdentifierRequest();
 
 		var bankAccount = new cybersourceRestApi.TmsEmbeddedInstrumentIdentifierBankAccount();
-		bankAccount.number = '4100';
-		bankAccount.routingNumber = '071923284';
+		bankAccount.number = faker.finance.accountNumber(9);
+		bankAccount.routingNumber = faker.finance.routingNumber();
 		requestObj.bankAccount = bankAccount;
 
 	var opts = [];

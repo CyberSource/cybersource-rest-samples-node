@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
+const { faker } = require('@faker-js/faker');
 
 function authorization_with_customer_token_creation(callback) {
 	try {
@@ -12,7 +13,7 @@ function authorization_with_customer_token_creation(callback) {
 		var requestObj = new cybersourceRestApi.CreatePaymentRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
-		clientReferenceInformation.code = 'TC50171_3';
+		clientReferenceInformation.code = faker.string.uuid();
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var processingInformation = new cybersourceRestApi.Ptsv2paymentsProcessingInformation();
@@ -33,9 +34,11 @@ function authorization_with_customer_token_creation(callback) {
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();
 		var paymentInformationCard = new cybersourceRestApi.Ptsv2paymentsPaymentInformationCard();
-		paymentInformationCard.number = '4111111111111111';
+		var dt = new Date();
+        var expYear = dt.getFullYear()+4;
+		paymentInformationCard.number = faker.finance.creditCardNumber({issuer: '414720#########L'});
 		paymentInformationCard.expirationMonth = '12';
-		paymentInformationCard.expirationYear = '2031';
+		paymentInformationCard.expirationYear = expYear;
 		paymentInformationCard.securityCode = '123';
 		paymentInformation.card = paymentInformationCard;
 
@@ -48,24 +51,26 @@ function authorization_with_customer_token_creation(callback) {
 		orderInformation.amountDetails = orderInformationAmountDetails;
 
 		var orderInformationBillTo = new cybersourceRestApi.Ptsv2paymentsOrderInformationBillTo();
-		orderInformationBillTo.firstName = 'John';
-		orderInformationBillTo.lastName = 'Doe';
-		orderInformationBillTo.address1 = '1 Market St';
-		orderInformationBillTo.locality = 'san francisco';
-		orderInformationBillTo.administrativeArea = 'CA';
-		orderInformationBillTo.postalCode = '94105';
+		var fName = faker.person.firstName();
+        var lName = faker.person.lastName();
+		orderInformationBillTo.firstName = fName;
+		orderInformationBillTo.lastName = lName;
+		orderInformationBillTo.address1 = faker.location.streetAddress();
+		orderInformationBillTo.locality = faker.location.city();
+		orderInformationBillTo.administrativeArea = faker.location.state();
+		orderInformationBillTo.postalCode = faker.location.zipCode();
 		orderInformationBillTo.country = 'US';
-		orderInformationBillTo.email = 'test@cybs.com';
-		orderInformationBillTo.phoneNumber = '4158880000';
+		orderInformationBillTo.email = faker.internet.email({firstName:fName,lastName:lName});
+		orderInformationBillTo.phoneNumber = faker.string.numeric(10);
 		orderInformation.billTo = orderInformationBillTo;
 
 		var orderInformationShipTo = new cybersourceRestApi.Ptsv2paymentsOrderInformationShipTo();
-		orderInformationShipTo.firstName = 'John';
-		orderInformationShipTo.lastName = 'Doe';
-		orderInformationShipTo.address1 = '1 Market St';
-		orderInformationShipTo.locality = 'san francisco';
-		orderInformationShipTo.administrativeArea = 'CA';
-		orderInformationShipTo.postalCode = '94105';
+		orderInformationShipTo.firstName = fName;
+		orderInformationShipTo.lastName = lName;
+		orderInformationShipTo.address1 = faker.location.streetAddress();
+		orderInformationShipTo.locality = faker.location.city();
+		orderInformationShipTo.administrativeArea = faker.location.state();
+		orderInformationShipTo.postalCode = faker.location.zipCode();
 		orderInformationShipTo.country = 'US';
 		orderInformation.shipTo = orderInformationShipTo;
 

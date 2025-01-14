@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
+const { faker, fa } = require('@faker-js/faker');
 
 function create_customer(callback) {
 	try {
@@ -12,19 +13,19 @@ function create_customer(callback) {
 		var requestObj = new cybersourceRestApi.PostCustomerRequest();
 
 		var buyerInformation = new cybersourceRestApi.Tmsv2customersBuyerInformation();
-		buyerInformation.merchantCustomerID = 'Your customer identifier';
-		buyerInformation.email = 'test@cybs.com';
+		buyerInformation.merchantCustomerID = faker.string.ulid();
+		buyerInformation.email = faker.internet.email();
 		requestObj.buyerInformation = buyerInformation;
 
 		var clientReferenceInformation = new cybersourceRestApi.Tmsv2customersClientReferenceInformation();
-		clientReferenceInformation.code = 'TC50171_3';
+		clientReferenceInformation.code = faker.string.uuid();
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 
 		var merchantDefinedInformation =	new Array();
 		var	merchantDefinedInformation1 = new cybersourceRestApi.Tmsv2customersMerchantDefinedInformation();
 		merchantDefinedInformation1.name = 'data1';
-		merchantDefinedInformation1.value = 'Your customer data';
+		merchantDefinedInformation1.value = faker.company.catchPhrase();
 		merchantDefinedInformation.push(merchantDefinedInformation1);
 
 		requestObj.merchantDefinedInformation = merchantDefinedInformation;

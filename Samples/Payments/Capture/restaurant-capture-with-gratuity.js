@@ -5,6 +5,7 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 var processPayment = require('../Payments/restaurant-authorization');
+const { faker, fa } = require('@faker-js/faker');
 
 function restaurant_capture_with_gratuity(callback) {
 	try {
@@ -13,7 +14,7 @@ function restaurant_capture_with_gratuity(callback) {
 		var requestObj = new cybersourceRestApi.CapturePaymentRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
-		clientReferenceInformation.code = '1234567890';
+		clientReferenceInformation.code = faker.string.uuid();
 		var clientReferenceInformationPartner = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformationPartner();
 		clientReferenceInformationPartner.thirdPartyCertificationNumber = '123456789012';
 		clientReferenceInformation.partner = clientReferenceInformationPartner;

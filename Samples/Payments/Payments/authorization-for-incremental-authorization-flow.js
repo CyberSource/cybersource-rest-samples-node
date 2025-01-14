@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/AlternativeConfiguration.js');
 var configuration = require(filePath);
+const { faker } = require('@faker-js/faker');
 
 function authorization_for_incremental_authorization_flow(callback) {
 	try {
@@ -18,9 +19,11 @@ function authorization_for_incremental_authorization_flow(callback) {
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();
 		var paymentInformationCard = new cybersourceRestApi.Ptsv2paymentsPaymentInformationCard();
-		paymentInformationCard.number = '4111111111111111';
+		var dt = new Date();
+        var expYear = dt.getFullYear()+4;
+		paymentInformationCard.number = faker.finance.creditCardNumber({issuer: '414720#########L'});
 		paymentInformationCard.expirationMonth = '12';
-		paymentInformationCard.expirationYear = '2031';
+		paymentInformationCard.expirationYear = expYear;
 		paymentInformationCard.type = '001';
 		paymentInformation.card = paymentInformationCard;
 
@@ -37,28 +40,30 @@ function authorization_for_incremental_authorization_flow(callback) {
 		orderInformation.amountDetails = orderInformationAmountDetails;
 
 		var orderInformationBillTo = new cybersourceRestApi.Ptsv2paymentsOrderInformationBillTo();
-		orderInformationBillTo.firstName = 'John';
-		orderInformationBillTo.lastName = 'Smith';
-		orderInformationBillTo.address1 = '201 S. Division St.';
-		orderInformationBillTo.address2 = 'Suite 500';
-		orderInformationBillTo.locality = 'Ann Arbor';
-		orderInformationBillTo.administrativeArea = 'MI';
-		orderInformationBillTo.postalCode = '12345';
+		var fName = faker.person.firstName();
+        var lName = faker.person.lastName();
+		orderInformationBillTo.firstName = fName;
+		orderInformationBillTo.lastName = lName;
+		orderInformationBillTo.address1 = faker.location.streetAddress();
+		orderInformationBillTo.address2 = faker.location.secondaryAddress();
+		orderInformationBillTo.locality = faker.location.city();
+		orderInformationBillTo.administrativeArea = faker.location.state();
+		orderInformationBillTo.postalCode = faker.location.zipCode();
 		orderInformationBillTo.country = 'US';
-		orderInformationBillTo.email = 'null@cybersource.com';
-		orderInformationBillTo.phoneNumber = '514-670-8700';
+		orderInformationBillTo.email = faker.internet.email({firstName:fName,lastName:lName});
+		orderInformationBillTo.phoneNumber = faker.string.numeric(10);
 		orderInformation.billTo = orderInformationBillTo;
 
 		var orderInformationShipTo = new cybersourceRestApi.Ptsv2paymentsOrderInformationShipTo();
-		orderInformationShipTo.firstName = 'Olivia';
-		orderInformationShipTo.lastName = 'White';
-		orderInformationShipTo.address1 = '1295 Charleston Rd';
-		orderInformationShipTo.address2 = 'Cube 2386';
-		orderInformationShipTo.locality = 'Mountain View';
-		orderInformationShipTo.administrativeArea = 'CA';
-		orderInformationShipTo.postalCode = '94041';
+		orderInformationShipTo.firstName = faker.person.firstName();
+		orderInformationShipTo.lastName = faker.person.lastName();
+		orderInformationShipTo.address1 = faker.location.streetAddress();
+		orderInformationShipTo.address2 = faker.location.secondaryAddress();
+		orderInformationShipTo.locality = faker.location.city();
+		orderInformationShipTo.administrativeArea = faker.location.state();
+		orderInformationShipTo.postalCode = faker.location.zipCode();
 		orderInformationShipTo.country = 'AE';
-		orderInformationShipTo.phoneNumber = '650-965-6000';
+		orderInformationShipTo.phoneNumber = faker.string.numeric(10);
 		orderInformation.shipTo = orderInformationShipTo;
 
 		requestObj.orderInformation = orderInformation;
@@ -108,7 +113,7 @@ function authorization_for_incremental_authorization_flow(callback) {
 		travelInformationLodging.roomBedType = 'king';
 		travelInformationLodging.roomTaxType = 'tourist';
 		travelInformationLodging.roomRateType = 'sr citizen';
-		travelInformationLodging.guestName = 'Tulasi';
+		travelInformationLodging.guestName = faker.person.firstName()+' '+faker.person.lastName();
 		travelInformationLodging.customerServicePhoneNumber = '+13304026334';
 		travelInformationLodging.corporateClientCode = 'HDGGASJDGSUY';
 		travelInformationLodging.additionalDiscountAmount = '99.123456781';

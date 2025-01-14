@@ -6,6 +6,7 @@ var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
 function remove_from_history(callback) {
+	// Refresh id with an active value
 	var id = "5825489395116729903003";
 
 	try {

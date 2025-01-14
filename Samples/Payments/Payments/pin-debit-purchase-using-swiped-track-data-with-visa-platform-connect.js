@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/AlternativeConfiguration.js');
 var configuration = require(filePath);
+const { faker, fa } = require('@faker-js/faker');
 
 function pin_debit_purchase_using_swiped_track_data_with_visa_platform_connect(callback) {
 	try {
@@ -12,7 +13,7 @@ function pin_debit_purchase_using_swiped_track_data_with_visa_platform_connect(c
 		var requestObj = new cybersourceRestApi.CreatePaymentRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
-		clientReferenceInformation.code = '2.2 Purchase';
+		clientReferenceInformation.code = faker.string.uuid();
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var processingInformation = new cybersourceRestApi.Ptsv2paymentsProcessingInformation();

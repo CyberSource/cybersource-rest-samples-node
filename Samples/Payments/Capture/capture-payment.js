@@ -5,6 +5,7 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 var simple_authorization_internet = require('../Payments/simple-authorizationinternet');
+const { faker, fa } = require('@faker-js/faker');
 
 function capture_payment(callback) {
 	try {

@@ -5,6 +5,7 @@ var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 var processPayment = require('../Payments/authorization-using-swiped-track-data');
+const { faker, fa } = require('@faker-js/faker');
 
 function capture_of_authorization_that_used_swiped_track_data(callback) {
 	try {
@@ -13,7 +14,7 @@ function capture_of_authorization_that_used_swiped_track_data(callback) {
 		var requestObj = new cybersourceRestApi.CapturePaymentRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
-		clientReferenceInformation.code = '1234567890';
+		clientReferenceInformation.code = faker.string.uuid();
 		var clientReferenceInformationPartner = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformationPartner();
 		clientReferenceInformationPartner.thirdPartyCertificationNumber = '123456789012';
 		clientReferenceInformation.partner = clientReferenceInformationPartner;

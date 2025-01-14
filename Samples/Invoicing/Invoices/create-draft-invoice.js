@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
+const { faker } = require('@faker-js/faker');
 
 function create_draft_invoice(callback) {
 	try {
@@ -12,13 +13,20 @@ function create_draft_invoice(callback) {
 		var requestObj = new cybersourceRestApi.CreateInvoiceRequest();
 
 		var customerInformation = new cybersourceRestApi.Invoicingv2invoicesCustomerInformation();
-		customerInformation.name = 'Tanya Lee';
-		customerInformation.email = 'tanya.lee@my-email.world';
+		var fName = faker.person.firstName();
+		var lName = faker.person.lastName();
+		customerInformation.name = fName + ' ' + lName;
+		customerInformation.email = faker.internet.email({firstName:fName,lastName:lName});
 		requestObj.customerInformation = customerInformation;
-
+		
 		var invoiceInformation = new cybersourceRestApi.Invoicingv2invoicesInvoiceInformation();
-		invoiceInformation.description = 'This is a test invoice';
-		invoiceInformation.dueDate = '2019-07-11';
+		invoiceInformation.description = faker.lorem.sentence(5);
+		var date = new Date();
+		var year = date.getFullYear();
+		var month = (date.getMonth() + 1).toString().padStart(2, '0');
+		var day = date.getDate().toString().padStart(2, '0');
+		var formattedDate = `${year}-${month}-${day}`;
+		invoiceInformation.dueDate = formattedDate;
 		invoiceInformation.sendImmediately = false;
 		invoiceInformation.allowPartialPayments = true;
 		invoiceInformation.deliveryMode = 'none';
@@ -26,11 +34,14 @@ function create_draft_invoice(callback) {
 
 		var orderInformation = new cybersourceRestApi.Invoicingv2invoicesOrderInformation();
 		var orderInformationAmountDetails = new cybersourceRestApi.Invoicingv2invoicesOrderInformationAmountDetails();
-		orderInformationAmountDetails.totalAmount = '2623.64';
+		var totalAmount = faker.commerce.price({ min: 10, max: 500 });
+		orderInformationAmountDetails.totalAmount = totalAmount;
 		orderInformationAmountDetails.currency = 'USD';
-		orderInformationAmountDetails.discountAmount = '126.08';
-		orderInformationAmountDetails.discountPercent = 5.0;
-		orderInformationAmountDetails.subAmount = 2749.72;
+		var discount = Math.round((25/100)*totalAmount);
+		var discountAmount = discount.toFixed(2);
+		orderInformationAmountDetails.discountAmount = discountAmount;
+		orderInformationAmountDetails.discountPercent = .25;
+		orderInformationAmountDetails.subAmount = totalAmount - discountAmount;
 		orderInformationAmountDetails.minimumPartialAmount = 20.00;
 		var orderInformationAmountDetailsTaxDetails = new cybersourceRestApi.Invoicingv2invoicesOrderInformationAmountDetailsTaxDetails();
 		orderInformationAmountDetailsTaxDetails.type = 'State Tax';
@@ -48,8 +59,8 @@ function create_draft_invoice(callback) {
 
 		var lineItems =	new Array();
 		var	lineItems1 = new cybersourceRestApi.Invoicingv2invoicesOrderInformationLineItems();
-		lineItems1.productSku = 'P653727383';
-		lineItems1.productName = 'First line item\'s name';
+		lineItems1.productSku = faker.commerce.isbn(13);
+		lineItems1.productName = faker.commerce.productName();
 		lineItems1.quantity = 21;
 		lineItems1.unitPrice = '120.08';
 		lineItems.push(lineItems1);

@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
+const { faker, fa } = require('@faker-js/faker');
 
 function restaurant_authorization(callback) {
 	try {
@@ -12,7 +13,7 @@ function restaurant_authorization(callback) {
 		var requestObj = new cybersourceRestApi.CreatePaymentRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
-		clientReferenceInformation.code = 'demomerchant';
+		clientReferenceInformation.code = faker.string.uuid();
 		var clientReferenceInformationPartner = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformationPartner();
 		clientReferenceInformationPartner.thirdPartyCertificationNumber = '123456789012';
 		clientReferenceInformation.partner = clientReferenceInformationPartner;
@@ -32,7 +33,7 @@ function restaurant_authorization(callback) {
 
 		var orderInformation = new cybersourceRestApi.Ptsv2paymentsOrderInformation();
 		var orderInformationAmountDetails = new cybersourceRestApi.Ptsv2paymentsOrderInformationAmountDetails();
-		orderInformationAmountDetails.totalAmount = '100.00';
+		orderInformationAmountDetails.totalAmount = faker.commerce.price({ min: 100, max: 200 });
 		orderInformationAmountDetails.currency = 'USD';
 		orderInformation.amountDetails = orderInformationAmountDetails;
 

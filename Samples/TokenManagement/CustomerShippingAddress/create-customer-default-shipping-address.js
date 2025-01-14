@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
+const { faker, fa } = require('@faker-js/faker');
 
 function create_customer_default_shipping_address(callback) {
 	var customerTokenId = 'AB695DA801DD1BB6E05341588E0A3BDC';
@@ -14,16 +15,18 @@ function create_customer_default_shipping_address(callback) {
 
 		requestObj._default = true;
 		var shipTo = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultShippingAddressShipTo();
-		shipTo.firstName = 'John';
-		shipTo.lastName = 'Doe';
-		shipTo.company = 'CyberSource';
-		shipTo.address1 = '1 Market St';
-		shipTo.locality = 'San Francisco';
+		var fName = faker.person.firstName();
+        var lName = faker.person.lastName();
+		shipTo.firstName = fName;
+		shipTo.lastName = lName;
+		shipTo.company = faker.company.name();
+		shipTo.address1 = faker.location.streetAddress();
+		shipTo.locality = faker.location.city();
 		shipTo.administrativeArea = 'CA';
-		shipTo.postalCode = '94105';
+		shipTo.postalCode = faker.location.zipCode();
 		shipTo.country = 'US';
-		shipTo.email = 'test@cybs.com';
-		shipTo.phoneNumber = '4158880000';
+		shipTo.email = faker.internet.email({firstName:fName,lastName:lName});
+		shipTo.phoneNumber = faker.string.numeric(10);
 		requestObj.shipTo = shipTo;
 
 		var opts = [];
