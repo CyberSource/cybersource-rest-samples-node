@@ -18,6 +18,7 @@ function list_payment_instruments_for_instrument_identifier(callback) {
 		if (offset!= null) opts['offset'] = offset;
 		if (limit!= null) opts['limit'] = limit;
 	if (profileid != null) opts['profile-id'] = profileid;
+	    opts['retrieveBinDetails'] = false;
 
 		var instance = new cybersourceRestApi.InstrumentIdentifierApi(configObject, apiClient);
 

@@ -64,7 +64,7 @@ function merchant_boarding_fdiglobal(callback) {
 
     const organizationInformation = new Boardingv1registrationsOrganizationInformation();
     organizationInformation.parentOrganizationId = "apitester00";
-    organizationInformation.type = Boardingv1registrationsOrganizationInformation.TypeEnum.MERCHANT;
+    organizationInformation.type = "Merchant";
     organizationInformation.configurable = true;
 
     const businessInformation = new Boardingv1registrationsOrganizationInformationBusinessInformation();
@@ -114,7 +114,7 @@ function merchant_boarding_fdiglobal(callback) {
     const configurations = new CardProcessingConfig();
     const common = new CardProcessingConfigCommon();
     common.merchantCategoryCode = "0742";
-    common.defaultAuthTypeCode = CardProcessingConfigCommon.DefaultAuthTypeCodeEnum.PRE;
+    common.defaultAuthTypeCode = "Pre";
     common.processLevel3Data = "ignored";
     common.masterCardAssignedId = "123456789";
     common.enablePartialAuth = true;

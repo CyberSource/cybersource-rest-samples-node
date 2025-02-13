@@ -53,7 +53,7 @@ function merchant_boarding_barclays(callback) {
         
         const organizationInformation = new Boardingv1registrationsOrganizationInformation();
         organizationInformation.parentOrganizationId = "apitester00";
-        organizationInformation.type = Boardingv1registrationsOrganizationInformation.TypeEnum.MERCHANT;
+        organizationInformation.type = "Merchant";
         organizationInformation.configurable = true;
         
         const businessInformation = new Boardingv1registrationsOrganizationInformationBusinessInformation();
@@ -100,7 +100,7 @@ function merchant_boarding_barclays(callback) {
         const configurations = new CardProcessingConfig();
         const common = new CardProcessingConfigCommon();
         common.merchantCategoryCode = "5999";
-        common.defaultAuthTypeCode = CardProcessingConfigCommon.DefaultAuthTypeCodeEnum.FINAL;
+        common.defaultAuthTypeCode = "Final";
         
         const processors = new Map();
         const obj2 = new CardProcessingConfigCommonProcessors();

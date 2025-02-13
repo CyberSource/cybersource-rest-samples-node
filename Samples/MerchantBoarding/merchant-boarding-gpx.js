@@ -65,7 +65,7 @@ function merchant_boarding_gpx(callback) {
       const reqObj = new PostRegistrationBody();
       const organizationInformation = new Boardingv1registrationsOrganizationInformation();
       organizationInformation.parentOrganizationId = "apitester00";
-      organizationInformation.type = Boardingv1registrationsOrganizationInformation.TypeEnum.MERCHANT;
+      organizationInformation.type = "Merchant";
       organizationInformation.configurable = true;
 
       const businessInformation = new Boardingv1registrationsOrganizationInformationBusinessInformation();
@@ -116,7 +116,7 @@ function merchant_boarding_gpx(callback) {
       const common = new CardProcessingConfigCommon();
       
       common.merchantCategoryCode = "1799";
-      common.defaultAuthTypeCode = CardProcessingConfigCommon.DefaultAuthTypeCodeEnum.FINAL;
+      common.defaultAuthTypeCode = "Final";
       common.foodAndConsumerServiceId = "1456";
       common.masterCardAssignedId = "4567";
       common.sicCode = "1345";

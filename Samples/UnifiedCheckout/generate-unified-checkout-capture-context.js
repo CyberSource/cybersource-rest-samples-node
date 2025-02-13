@@ -12,14 +12,55 @@ function generate_unified_checkout_capture_context(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.GenerateUnifiedCheckoutCaptureContextRequest();
 
+		requestObj.clientVersion = '0.23';
+
+		var targetOrigins = new Array();
+		targetOrigins.push("https://yourCheckoutPage.com");
+		requestObj.targetOrigins = targetOrigins;
+
+
+		var allowedCardNetworks = new Array();
+		allowedCardNetworks.push("VISA");
+		allowedCardNetworks.push("MASTERCARD");
+		allowedCardNetworks.push("AMEX");
+		allowedCardNetworks.push("CARNET");
+		allowedCardNetworks.push("CARTESBANCAIRES");
+		allowedCardNetworks.push("CUP");
+		allowedCardNetworks.push("DINERSCLUB");
+		allowedCardNetworks.push("DISCOVER");
+		allowedCardNetworks.push("EFTPOS");
+		allowedCardNetworks.push("ELO");
+		allowedCardNetworks.push("JCB");
+		allowedCardNetworks.push("JCREW");
+		allowedCardNetworks.push("MADA");
+		allowedCardNetworks.push("MAESTRO");
+		allowedCardNetworks.push("MEEZA");
+		requestObj.allowedCardNetworks = allowedCardNetworks;
+
+
+		var allowedPaymentTypes = new Array();
+		allowedPaymentTypes.push("APPLEPAY");
+		allowedPaymentTypes.push("CHECK");
+		allowedPaymentTypes.push("CLICKTOPAY");
+		allowedPaymentTypes.push("GOOGLEPAY");
+		allowedPaymentTypes.push("PANENTRY");
+		allowedPaymentTypes.push("PAZE");
+		requestObj.allowedPaymentTypes = allowedPaymentTypes;
+
+		requestObj.country = 'US';
+		requestObj.locale = 'en_US';
 		var captureMandate = new cybersourceRestApi.Upv1capturecontextsCaptureMandate();
 		captureMandate.billingType = 'FULL';
 		captureMandate.requestEmail = true;
 		captureMandate.requestPhone = true;
-        captureMandate.requestShipping = true;
-        captureMandate.showAcceptedNetworkIcons = true;
-        captureMandate.shipToCountries = ["US", "GB"];
+		captureMandate.requestShipping = true;
 
+		var shipToCountries = new Array();
+		shipToCountries.push("US");
+		shipToCountries.push("GB");
+		captureMandate.shipToCountries = shipToCountries;
+
+		captureMandate.showAcceptedNetworkIcons = true;
 		requestObj.captureMandate = captureMandate;
 
 		var orderInformation = new cybersourceRestApi.Upv1capturecontextsOrderInformation();
@@ -29,14 +70,6 @@ function generate_unified_checkout_capture_context(callback) {
 		orderInformation.amountDetails = orderInformationAmountDetails;
 
 		requestObj.orderInformation = orderInformation;
-
-        requestObj.locale = 'en_US';
-        requestObj.country = 'US';
-        requestObj.clientVersion = '0.11';
-        requestObj.targetOrigins = ["https://the-up-demo.appspot.com"];
-        
-        requestObj.allowedCardNetworks = ["VISA", "MASTERCARD", "AMEX"]
-        requestObj.allowedPaymentTypes = ["PANENTRY", "SRC"];
 
 
 		var instance = new cybersourceRestApi.UnifiedCheckoutCaptureContextApi(configObject, apiClient);

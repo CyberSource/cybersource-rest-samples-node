@@ -66,7 +66,7 @@ function merchant_boarding_vpc(callback) {
 
       const organizationInformation = new Boardingv1registrationsOrganizationInformation();
       organizationInformation.parentOrganizationId = "apitester00";
-      organizationInformation.type = Boardingv1registrationsOrganizationInformation.TypeEnum.MERCHANT;
+      organizationInformation.type = "Merchant";
       organizationInformation.configurable = true;
       
       const businessInformation = new Boardingv1registrationsOrganizationInformationBusinessInformation();
@@ -117,7 +117,7 @@ function merchant_boarding_vpc(callback) {
       const common = new CardProcessingConfigCommon();
       
       common.merchantCategoryCode = "1799";
-      common.defaultAuthTypeCode = CardProcessingConfigCommon.DefaultAuthTypeCodeEnum.FINAL;
+      common.defaultAuthTypeCode = "Final";
       common.masterCardAssignedId = null;
       common.sicCode = null;
       common.enablePartialAuth = false;

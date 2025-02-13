@@ -66,7 +66,7 @@ function merchant_boarding_tsys(callback) {
 
       const organizationInformation = new Boardingv1registrationsOrganizationInformation();
       organizationInformation.parentOrganizationId = "apitester00";
-      organizationInformation.type = Boardingv1registrationsOrganizationInformation.TypeEnum.MERCHANT;
+      organizationInformation.type = "Merchant";
       organizationInformation.configurable = true;
 
       const businessInformation = new Boardingv1registrationsOrganizationInformationBusinessInformation();
@@ -118,7 +118,7 @@ function merchant_boarding_tsys(callback) {
       const common = new CardProcessingConfigCommon();
       common.merchantCategoryCode = "5999";
       common.processLevel3Data = "ignored";
-      common.defaultAuthTypeCode = CardProcessingConfigCommon.DefaultAuthTypeCodeEnum.FINAL;
+      common.defaultAuthTypeCode = "Final";
       common.enablePartialAuth = false;
       common.amexVendorCode = "2233";
 
@@ -166,7 +166,7 @@ function merchant_boarding_tsys(callback) {
       processorObj.chainNumber = "223344";
       processorObj.batchGroup = "vital_1130";
       processorObj.enhancedData = "disabled";
-      processorObj.industryCode = CardProcessingConfigCommonProcessors.IndustryCodeEnum.D;
+      processorObj.industryCode = "D";
       processorObj.merchantBinNumber = "765576";
       processorObj.merchantId = "834215123456";
       processorObj.merchantLocationNumber = "00001";

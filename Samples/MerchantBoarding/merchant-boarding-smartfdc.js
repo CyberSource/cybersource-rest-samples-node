@@ -66,7 +66,7 @@ function merchant_boarding_smartfdc(callback) {
 
       const organizationInformation = new Boardingv1registrationsOrganizationInformation();
       organizationInformation.parentOrganizationId = "apitester00";
-      organizationInformation.type = Boardingv1registrationsOrganizationInformation.TypeEnum.MERCHANT;
+      organizationInformation.type = "Merchant";
       organizationInformation.configurable = true;
 
       const businessInformation = new Boardingv1registrationsOrganizationInformationBusinessInformation();
@@ -119,7 +119,7 @@ function merchant_boarding_smartfdc(callback) {
       const common = new CardProcessingConfigCommon();
 
       common.merchantCategoryCode = "1799";
-      common.defaultAuthTypeCode = CardProcessingConfigCommon.DefaultAuthTypeCodeEnum.FINAL;
+      common.defaultAuthTypeCode = "Final";
       common.enablePartialAuth = true;
 
       const processors = {};

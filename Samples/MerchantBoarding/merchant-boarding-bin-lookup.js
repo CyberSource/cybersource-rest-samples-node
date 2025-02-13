@@ -66,7 +66,7 @@ function merchant_boarding_bin_lookup(callback) {
     // Organization Information
     const organizationInformation = new Boardingv1registrationsOrganizationInformation();
     organizationInformation.parentOrganizationId = "apitester00";
-    organizationInformation.type = Boardingv1registrationsOrganizationInformation.TypeEnum.MERCHANT;
+    organizationInformation.type = "Merchant";
     organizationInformation.configurable = true;
 
     // Business Information
