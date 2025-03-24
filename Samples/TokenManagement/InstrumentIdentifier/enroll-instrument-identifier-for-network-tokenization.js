@@ -15,8 +15,10 @@ function enroll_instrument_identifier_for_network_tokenization(callback) {
 
 		requestObj.type = 'enrollable card';
 		var card = new cybersourceRestApi.TmsEmbeddedInstrumentIdentifierCard();
+		var dt = new Date();
+        var expYear = dt.getFullYear()+4;
 		card.expirationMonth = '12';
-		card.expirationYear = '2031';
+		card.expirationYear = expYear;
 		card.securityCode = '123';
 		requestObj.card = card;
 

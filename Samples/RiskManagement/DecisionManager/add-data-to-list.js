@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
+const { faker, fa } = require('@faker-js/faker');
 
 function add_data_to_list(callback) {
 	var type = 'negative';
@@ -15,18 +16,20 @@ function add_data_to_list(callback) {
 
 		var orderInformation = new cybersourceRestApi.Riskv1liststypeentriesOrderInformation();
 		var orderInformationAddress = new cybersourceRestApi.Riskv1liststypeentriesOrderInformationAddress();
-		orderInformationAddress.address1 = '1234 Sample St.';
-		orderInformationAddress.address2 = 'Mountain View';
-		orderInformationAddress.locality = 'California';
+		orderInformationAddress.address1 = faker.location.streetAddress();
+		orderInformationAddress.address2 = faker.location.secondaryAddress();
+		orderInformationAddress.locality = faker.location.city();
 		orderInformationAddress.country = 'US';
-		orderInformationAddress.administrativeArea = 'CA';
-		orderInformationAddress.postalCode = '94043';
+		orderInformationAddress.administrativeArea = faker.location.state();
+		orderInformationAddress.postalCode = faker.location.zipCode();
 		orderInformation.address = orderInformationAddress;
 
 		var orderInformationBillTo = new cybersourceRestApi.Riskv1liststypeentriesOrderInformationBillTo();
-		orderInformationBillTo.firstName = 'John';
-		orderInformationBillTo.lastName = 'Doe';
-		orderInformationBillTo.email = 'test@example.com';
+		var fName = faker.person.firstName();
+        var lName = faker.person.lastName();
+		orderInformationBillTo.firstName = fName;
+		orderInformationBillTo.lastName = lName;
+		orderInformationBillTo.email = faker.internet.email({firstName:fName,lastName:lName});
 		orderInformation.billTo = orderInformationBillTo;
 
 		requestObj.orderInformation = orderInformation;

@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
+const { faker } = require('@faker-js/faker');
 
 function authorization_with_decision_manager_merchant_defined_information(callback) {
 	try {
@@ -12,14 +13,16 @@ function authorization_with_decision_manager_merchant_defined_information(callba
 		var requestObj = new cybersourceRestApi.CreatePaymentRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
-		clientReferenceInformation.code = '54323007';
+		clientReferenceInformation.code = faker.string.uuid();
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();
 		var paymentInformationCard = new cybersourceRestApi.Ptsv2paymentsPaymentInformationCard();
-		paymentInformationCard.number = '4444444444444448';
+		var dt = new Date();
+        var expYear = dt.getFullYear()+4;
+		paymentInformationCard.number = faker.finance.creditCardNumber({issuer: '414720#########L'});
 		paymentInformationCard.expirationMonth = '12';
-		paymentInformationCard.expirationYear = '2020';
+		paymentInformationCard.expirationYear = expYear;
 		paymentInformation.card = paymentInformationCard;
 
 		requestObj.paymentInformation = paymentInformation;
@@ -31,15 +34,17 @@ function authorization_with_decision_manager_merchant_defined_information(callba
 		orderInformation.amountDetails = orderInformationAmountDetails;
 
 		var orderInformationBillTo = new cybersourceRestApi.Ptsv2paymentsOrderInformationBillTo();
-		orderInformationBillTo.firstName = 'James';
-		orderInformationBillTo.lastName = 'Smith';
-		orderInformationBillTo.address1 = '96, powers street';
-		orderInformationBillTo.locality = 'Clearwater milford';
-		orderInformationBillTo.administrativeArea = 'NH';
-		orderInformationBillTo.postalCode = '03055';
+		var fName = faker.person.firstName();
+        var lName = faker.person.lastName();
+		orderInformationBillTo.firstName = fName;
+		orderInformationBillTo.lastName = lName;
+		orderInformationBillTo.address1 = faker.location.streetAddress();
+		orderInformationBillTo.locality = faker.location.city();
+		orderInformationBillTo.administrativeArea = faker.location.state();
+		orderInformationBillTo.postalCode = faker.location.zipCode();
 		orderInformationBillTo.country = 'US';
-		orderInformationBillTo.email = 'test@visa.com';
-		orderInformationBillTo.phoneNumber = '7606160717';
+		orderInformationBillTo.email = faker.internet.email({firstName:fName,lastName:lName});
+		orderInformationBillTo.phoneNumber = faker.string.numeric(10);
 		orderInformation.billTo = orderInformationBillTo;
 
 		requestObj.orderInformation = orderInformation;
@@ -48,12 +53,12 @@ function authorization_with_decision_manager_merchant_defined_information(callba
 		var merchantDefinedInformation =	new Array();
 		var	merchantDefinedInformation1 = new cybersourceRestApi.Ptsv2paymentsMerchantDefinedInformation();
 		merchantDefinedInformation1.key = '1';
-		merchantDefinedInformation1.value = 'Test';
+		merchantDefinedInformation1.value = faker.word.noun();
 		merchantDefinedInformation.push(merchantDefinedInformation1);
 
 		var	merchantDefinedInformation2 = new cybersourceRestApi.Ptsv2paymentsMerchantDefinedInformation();
 		merchantDefinedInformation2.key = '2';
-		merchantDefinedInformation2.value = 'Test2';
+		merchantDefinedInformation2.value = faker.word.verb();
 		merchantDefinedInformation.push(merchantDefinedInformation2);
 
 		requestObj.merchantDefinedInformation = merchantDefinedInformation;

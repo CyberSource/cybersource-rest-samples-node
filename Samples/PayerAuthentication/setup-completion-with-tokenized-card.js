@@ -4,6 +4,8 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
+const { faker, fa } = require('@faker-js/faker');
+const exp = require('constants');
 
 function setup_completion_with_tokenized_card(callback) {
 	try {
@@ -12,15 +14,17 @@ function setup_completion_with_tokenized_card(callback) {
 		var requestObj = new cybersourceRestApi.PayerAuthSetupRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Riskv1authenticationsetupsClientReferenceInformation();
-		clientReferenceInformation.code = 'cybs_test';
+		clientReferenceInformation.code = faker.string.uuid();
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var paymentInformation = new cybersourceRestApi.Riskv1authenticationsetupsPaymentInformation();
 		var paymentInformationTokenizedCard = new cybersourceRestApi.Riskv1authenticationsetupsPaymentInformationTokenizedCard();
+		var dt = new Date();
+        var expYear = dt.getFullYear()+4;
 		paymentInformationTokenizedCard.transactionType = '1';
 		paymentInformationTokenizedCard.type = '001';
 		paymentInformationTokenizedCard.expirationMonth = '11';
-		paymentInformationTokenizedCard.expirationYear = '2025';
+		paymentInformationTokenizedCard.expirationYear = expYear;
 		paymentInformationTokenizedCard.number = '4111111111111111';
 		paymentInformation.tokenizedCard = paymentInformationTokenizedCard;
 

@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/AlternativeConfiguration.js');
 var configuration = require(filePath);
+const { faker } = require('@faker-js/faker');
 
 function ebt_purchase_from_cash_benefits_account_with_cashback(callback) {
 	try {
@@ -12,7 +13,7 @@ function ebt_purchase_from_cash_benefits_account_with_cashback(callback) {
 		var requestObj = new cybersourceRestApi.CreatePaymentRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
-		clientReferenceInformation.code = 'EBT - Purchase from Cash Benefits Account with CB';
+		clientReferenceInformation.code = faker.string.uuid();
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var processingInformation = new cybersourceRestApi.Ptsv2paymentsProcessingInformation();

@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/AlternativeConfiguration.js');
 var configuration = require(filePath);
+const { faker } = require('@faker-js/faker');
 
 function ebt_electronic_voucher_purchase_from_snap_account_with_visa_platform_connect(callback) {
 	try {
@@ -12,7 +13,7 @@ function ebt_electronic_voucher_purchase_from_snap_account_with_visa_platform_co
 		var requestObj = new cybersourceRestApi.CreatePaymentRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
-		clientReferenceInformation.code = 'EBT - Voucher Purchase From SNAP Account';
+		clientReferenceInformation.code = faker.string.uuid();
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var processingInformation = new cybersourceRestApi.Ptsv2paymentsProcessingInformation();
@@ -31,9 +32,11 @@ function ebt_electronic_voucher_purchase_from_snap_account_with_visa_platform_co
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();
 		var paymentInformationCard = new cybersourceRestApi.Ptsv2paymentsPaymentInformationCard();
-		paymentInformationCard.number = '4012002000013007';
-		paymentInformationCard.expirationMonth = '12';
-		paymentInformationCard.expirationYear = '25';
+		var dt = new Date();
+        var expYear = dt.getFullYear()+4;
+		paymentInformationCard.number = faker.finance.creditCardNumber({issuer: '414720#########L'});
+		paymentInformationCard.expirationMonth = '03';
+		paymentInformationCard.expirationYear = expYear;
 		paymentInformation.card = paymentInformationCard;
 
 		var paymentInformationPaymentType = new cybersourceRestApi.Ptsv2paymentsPaymentInformationPaymentType();

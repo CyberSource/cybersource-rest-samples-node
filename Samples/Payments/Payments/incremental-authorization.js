@@ -5,6 +5,7 @@ var path = require('path');
 var filePath = path.resolve('Data/AlternativeConfiguration.js');
 var configuration = require(filePath);
 var authorization_flow = require('./authorization-for-incremental-authorization-flow');
+const { faker } = require('@faker-js/faker');
 
 function incremental_authorization(callback, id) {
 	try {
@@ -13,7 +14,7 @@ function incremental_authorization(callback, id) {
 		var requestObj = new cybersourceRestApi.IncrementAuthRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsidClientReferenceInformation();
-		clientReferenceInformation.code = 'TC50171_3';
+		clientReferenceInformation.code = faker.string.uuid();
 
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
@@ -49,7 +50,7 @@ function incremental_authorization(callback, id) {
 		authorization_flow.authorization_for_incremental_authorization_flow(function (error, data) {
 			if (data) {
 				var id = data['id'];
-				console.log('\n*************** Incremental Authorization *********************');
+				console.log('\n********************* Incremental Authorization *********************');
 				console.log('Payment ID : ' + id);
 
 				instance.incrementAuth( id, requestObj, function (error, data, response) {

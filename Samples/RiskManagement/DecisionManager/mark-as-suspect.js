@@ -7,6 +7,7 @@ var configuration = require(filePath);
 
 function mark_as_suspect(callback) {
 	try {
+		// Refresh id with an active value
 		var id = "5825489395116729903003";
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();

@@ -4,7 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
-
+const { faker, fa, fakerEN_CA } = require('@faker-js/faker');
 function committed_tax_call_request(callback) {
 	try {
 		var configObject = new configuration();
@@ -12,7 +12,7 @@ function committed_tax_call_request(callback) {
 		var requestObj = new cybersourceRestApi.TaxRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Vasv2taxClientReferenceInformation();
-		clientReferenceInformation.code = 'TAX_TC001';
+		clientReferenceInformation.code = faker.string.uuid();
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var taxInformation = new cybersourceRestApi.Vasv2taxTaxInformation();
@@ -26,52 +26,57 @@ function committed_tax_call_request(callback) {
 		orderInformation.amountDetails = orderInformationAmountDetails;
 
 		var orderInformationBillTo = new cybersourceRestApi.Vasv2taxOrderInformationBillTo();
-		orderInformationBillTo.address1 = '1 Market St';
-		orderInformationBillTo.locality = 'San Francisco';
-		orderInformationBillTo.administrativeArea = 'CA';
-		orderInformationBillTo.postalCode = '94105';
+		var fName = faker.person.firstName();
+        var lName = faker.person.lastName();
+		orderInformationBillTo.firstName = fName;
+		orderInformationBillTo.lastName = lName;
+		orderInformationBillTo.address1 = faker.location.streetAddress();
+		orderInformationBillTo.locality = faker.location.city();
+		orderInformationBillTo.administrativeArea = faker.location.state();
+		orderInformationBillTo.postalCode = faker.location.zipCode();
 		orderInformationBillTo.country = 'US';
+		orderInformationBillTo.email = faker.internet.email({firstName:fName,lastName:lName});
+		orderInformationBillTo.phoneNumber = faker.string.numeric(10);
 		orderInformation.billTo = orderInformationBillTo;
 
 		var orderInformationShippingDetails = new cybersourceRestApi.Vasv2taxOrderInformationShippingDetails();
-		orderInformationShippingDetails.shipFromLocality = 'Cambridge Bay';
+		orderInformationShippingDetails.shipFromLocality = faker.location.streetAddress();
 		orderInformationShippingDetails.shipFromCountry = 'CA';
-		orderInformationShippingDetails.shipFromPostalCode = 'A0G 1T0';
-		orderInformationShippingDetails.shipFromAdministrativeArea = 'NL';
+		orderInformationShippingDetails.shipFromPostalCode = fakerEN_CA.location.zipCode();
+		orderInformationShippingDetails.shipFromAdministrativeArea = fakerEN_CA.location.state();
 		orderInformation.shippingDetails = orderInformationShippingDetails;
 
 		var orderInformationShipTo = new cybersourceRestApi.Vasv2taxOrderInformationShipTo();
 		orderInformationShipTo.country = 'US';
-		orderInformationShipTo.administrativeArea = 'FL';
-		orderInformationShipTo.locality = 'Panama City';
-		orderInformationShipTo.postalCode = '32401';
-		orderInformationShipTo.address1 = '123 Russel St.';
+		orderInformationShipTo.administrativeArea = faker.location.state();
+		orderInformationShipTo.locality = faker.location.city();
+		orderInformationShipTo.postalCode = faker.location.zipCode();
+		orderInformationShipTo.address1 = faker.location.streetAddress();
 		orderInformation.shipTo = orderInformationShipTo;
-
 
 		var lineItems =	new Array();
 		var	lineItems1 = new cybersourceRestApi.Vasv2taxOrderInformationLineItems();
-		lineItems1.productSKU = '07-12-00657';
-		lineItems1.productCode = '50161815';
+		lineItems1.productSKU = faker.commerce.isbn(10);
+		lineItems1.productCode = faker.commerce.department();
 		lineItems1.quantity = 1;
-		lineItems1.productName = 'Chewing Gum';
-		lineItems1.unitPrice = '1200';
+		lineItems1.productName = faker.commerce.productName();
+		lineItems1.unitPrice = faker.commerce.price({ min: 100, max: 1200 });
 		lineItems.push(lineItems1);
 
 		var	lineItems2 = new cybersourceRestApi.Vasv2taxOrderInformationLineItems();
-		lineItems2.productSKU = '07-12-00659';
-		lineItems2.productCode = '50181905';
-		lineItems2.quantity = 1;
-		lineItems2.productName = 'Sugar Cookies';
-		lineItems2.unitPrice = '1240';
+		lineItems2.productSKU = faker.commerce.isbn(10);
+		lineItems2.productCode = faker.commerce.department();
+		lineItems2.quantity = 1;5
+		lineItems2.productName = faker.commerce.productName();
+		lineItems2.unitPrice = faker.commerce.price({ min: 100, max: 1200 });
 		lineItems.push(lineItems2);
 
 		var	lineItems3 = new cybersourceRestApi.Vasv2taxOrderInformationLineItems();
-		lineItems3.productSKU = '07-12-00658';
-		lineItems3.productCode = '5020.11';
+		lineItems3.productSKU = faker.commerce.isbn(10);
+		lineItems3.productCode = faker.commerce.department();
 		lineItems3.quantity = 1;
-		lineItems3.productName = 'Carbonated Water';
-		lineItems3.unitPrice = '9001';
+		lineItems3.productName = faker.commerce.productName();
+		lineItems3.unitPrice = faker.commerce.price({ min: 100, max: 1200 });
 		lineItems.push(lineItems3);
 
 		orderInformation.lineItems = lineItems;
