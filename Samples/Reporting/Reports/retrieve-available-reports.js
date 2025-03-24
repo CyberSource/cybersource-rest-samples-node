@@ -10,8 +10,8 @@ function retrieve_available_reports(callback) {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var organizationId = null;
-		var startTime = '2021-04-01T00:00:00Z';
-		var endTime = '2021-04-03T23:59:59Z';
+		var startTime = '2024-04-01T00:00:00Z';
+		var endTime = '2024-04-03T23:59:59Z';
 		var timeQueryType = "executedTime";
 		var reportMimeType = "application/xml";
 		var reportFrequency = null;
