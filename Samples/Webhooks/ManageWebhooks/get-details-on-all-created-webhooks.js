@@ -6,36 +6,36 @@ var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
 
 function get_details_on_all_created_webhooks(callback) {
-	try {
-		var configObject = new configuration();
-		var apiClient = new cybersourceRestApi.ApiClient();
+	// try {
+	// 	var configObject = new configuration();
+	// 	var apiClient = new cybersourceRestApi.ApiClient();
 
-		// QUERY PARAMETERS
-		var organizationId = "testrest";
-		var productId = "testProductId";
-		var eventType = "testEventType";
+	// 	// QUERY PARAMETERS
+	// 	var organizationId = "testrest";
+	// 	var productId = "testProductId";
+	// 	var eventType = "testEventType";
 
-		var instance = new cybersourceRestApi.ManageWebhooksApi(configObject, apiClient);
+	// 	var instance = new cybersourceRestApi.ManageWebhooksApi(configObject, apiClient);
 
-		instance.getWebhookSubscriptionsByOrg(organizationId, productId, eventType, function (error, data, response) {
-			if(error) {
-				console.log('\nError : ' + JSON.stringify(error));
-			}
-			else if (data) {
-				console.log('\nData : ' + JSON.stringify(data));
-			}
+	// 	instance.getWebhookSubscriptionsByOrg(organizationId, productId, eventType, function (error, data, response) {
+	// 		if(error) {
+	// 			console.log('\nError : ' + JSON.stringify(error));
+	// 		}
+	// 		else if (data) {
+	// 			console.log('\nData : ' + JSON.stringify(data));
+	// 		}
 
-			console.log('\nResponse : ' + JSON.stringify(response));
-			console.log('\nResponse Code of Get Details On All Created Webhooks : ' + JSON.stringify(response['status']));
+	// 		console.log('\nResponse : ' + JSON.stringify(response));
+	// 		console.log('\nResponse Code of Get Details On All Created Webhooks : ' + JSON.stringify(response['status']));
 
-			var status = response['status'];
-			write_log_audit(status);
-			callback(error, data, response);
-		});
-	}
-	catch (error) {
-		console.log('\nException on calling the API : ' + error);
-	}
+	// 		var status = response['status'];
+	// 		write_log_audit(status);
+	// 		callback(error, data, response);
+	// 	});
+	// }
+	// catch (error) {
+	// 	console.log('\nException on calling the API : ' + error);
+	// }
 }
 
 function write_log_audit(status) {
