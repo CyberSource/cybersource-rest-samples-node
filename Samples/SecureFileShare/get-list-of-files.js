@@ -9,8 +9,8 @@ function get_list_of_files(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
-		var startDate = '2020-07-20';
-		var endDate = '2020-07-30';
+		var startDate = '2024-07-20';
+		var endDate = '2024-07-30';
 		var organizationId = "testrest";
 		var name = null;
 

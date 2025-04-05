@@ -11,8 +11,8 @@ function get_chargeback_details(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		// QUERY PARAMETERS
 		var organizationId = "testrest";
-		var startTime = '2021-07-01T00:00:00Z';
-		var endTime = '2021-09-01T23:59:59Z';
+		var startTime = '2024-07-01T00:00:00Z';
+		var endTime = '2024-09-01T23:59:59Z';
 		var opts = {};
 		if (organizationId != null) opts['organizationId'] = organizationId;
 

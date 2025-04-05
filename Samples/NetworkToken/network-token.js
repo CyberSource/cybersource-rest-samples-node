@@ -1,5 +1,6 @@
 'use strict';
 
+var fs = require('fs');
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
@@ -14,7 +15,22 @@ function network_token(callback) {
     paymentCredentialsFromNetworkToken.payment_credentials_from_network_token(function(error, data, response) {
         const encodedRespone = data;
         //Step-II
-        cybersourceRestApi.JWEUtility.decryptJWEResponse(encodedRespone, merchantConfig)
+
+        // The following method JWEUtility.decryptJWEResponse(String, MerchantConfig) has been deprecated.
+        // cybersourceRestApi.JWEUtility.decryptJWEResponse(encodedRespone, merchantConfig)
+        //     .then(decodedResponse => {
+        //         console.log("Decoded Response");
+        //         console.log(decodedResponse);
+        //         callback();
+        //     },
+        //     error => {
+        //         console.log(error);
+        //     }
+        // )
+
+        // Using the new method JWEUtility.decryptJWEResponseUsingPrivateKey(PrivateKey, String) instead
+        var privateKey = fs.readFileSync(merchantConfig.getpemFileDirectory());
+        cybersourceRestApi.JWEUtility.decryptJWEResponseUsingPrivateKey(privateKey, encodedRespone)
             .then(decodedResponse => {
                 console.log("Decoded Response");
                 console.log(decodedResponse);
@@ -23,7 +39,7 @@ function network_token(callback) {
             error => {
                 console.log(error);
             }
-        )   
+        );
     });
 }
 
