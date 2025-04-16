@@ -5,7 +5,7 @@
 */
 
 // common parameters
-const AuthenticationType = 'http_signature';
+const AuthenticationType = 'jwt';
 const RunEnvironment = 'apitest.cybersource.com';
 const MerchantId = 'testrest';
 
@@ -72,4 +72,27 @@ function Configuration() {
 
 }
 
+function getMerchantDetailsForBatchUploadSample() {
+    return {
+        'authenticationType': 'jwt',
+        'merchantID': 'qaebc2',
+        'runEnvironment': 'apitest.cybersource.com',
+        'portfolioID': '',
+        'useMetaKey': false,
+        'keyAlias': 'qaebc2',
+        'keyPass': '?Test1234',
+        'keyFileName': 'qaebc2',
+        'keysDirectory': 'Resource',
+        'defaultDeveloperId': '',
+        'logConfiguration': {
+            'enableLog': EnableLog,
+            'logFileName': LogFileName,
+            'logDirectory': LogDirectory,
+            'logFileMaxSize': LogfileMaxSize,
+            'loggingLevel': 'debug',
+            'enableMasking': EnableMasking
+        }
+    };
+}
 module.exports = Configuration;
+module.exports.getMerchantDetailsForBatchUploadSample = getMerchantDetailsForBatchUploadSample;
