@@ -4,6 +4,7 @@ var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/Configuration.js');
 var configuration = require(filePath);
+const { faker, fa } = require('@faker-js/faker');
 
 function sale_using_keyed_data_with_visa_platform_connect(callback) {
 	try {
@@ -12,7 +13,7 @@ function sale_using_keyed_data_with_visa_platform_connect(callback) {
 		var requestObj = new cybersourceRestApi.CreatePaymentRequest();
 
 		var clientReferenceInformation = new cybersourceRestApi.Ptsv2paymentsClientReferenceInformation();
-		clientReferenceInformation.code = '123456';
+		clientReferenceInformation.code = faker.string.uuid();
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var processingInformation = new cybersourceRestApi.Ptsv2paymentsProcessingInformation();
@@ -28,9 +29,11 @@ function sale_using_keyed_data_with_visa_platform_connect(callback) {
 
 		var paymentInformation = new cybersourceRestApi.Ptsv2paymentsPaymentInformation();
 		var paymentInformationCard = new cybersourceRestApi.Ptsv2paymentsPaymentInformationCard();
-		paymentInformationCard.number = '4111111111111111';
+		var dt = new Date();
+        var expYear = dt.getFullYear()+4;
+		paymentInformationCard.number = faker.finance.creditCardNumber({issuer: '414720#########L'});
 		paymentInformationCard.expirationMonth = '12';
-		paymentInformationCard.expirationYear = '2031';
+		paymentInformationCard.expirationYear = expYear;
 		paymentInformationCard.securityCode = '123';
 		paymentInformation.card = paymentInformationCard;
 
@@ -38,7 +41,7 @@ function sale_using_keyed_data_with_visa_platform_connect(callback) {
 
 		var orderInformation = new cybersourceRestApi.Ptsv2paymentsOrderInformation();
 		var orderInformationAmountDetails = new cybersourceRestApi.Ptsv2paymentsOrderInformationAmountDetails();
-		orderInformationAmountDetails.totalAmount = '100.00';
+		orderInformationAmountDetails.totalAmount = faker.commerce.price({ min: 100, max: 200 });
 		orderInformationAmountDetails.currency = 'USD';
 		orderInformation.amountDetails = orderInformationAmountDetails;
 
