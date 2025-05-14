@@ -30,9 +30,9 @@ function create_invoice_and_assign_it_specific_invoice_number(callback) {
 		orderInformationAmountDetails.totalAmount = '2623.64';
 		orderInformationAmountDetails.currency = 'USD';
 		orderInformationAmountDetails.discountAmount = '126.08';
-		orderInformationAmountDetails.discountPercent = 5.0;
-		orderInformationAmountDetails.subAmount = 2749.72;
-		orderInformationAmountDetails.minimumPartialAmount = 20.00;
+		orderInformationAmountDetails.discountPercent = "5.0";
+		orderInformationAmountDetails.subAmount = "2749.72";
+		orderInformationAmountDetails.minimumPartialAmount = "20.00";
 		var orderInformationAmountDetailsTaxDetails = new cybersourceRestApi.Invoicingv2invoicesOrderInformationAmountDetailsTaxDetails();
 		orderInformationAmountDetailsTaxDetails.type = 'State Tax';
 		orderInformationAmountDetailsTaxDetails.amount = '208.04';
