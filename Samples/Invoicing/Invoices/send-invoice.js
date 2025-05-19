@@ -16,7 +16,7 @@ function send_invoice(callback) {
 		create_draft_invoice.create_draft_invoice(function(error, data) {
 			if (data) {
 				var invoice_id = data['id'];
-				instance.performCancelAction(invoice_id, function(error, data, response) {
+				instance.performSendAction(invoice_id, function(error, data, response) {
 					if (error) {
 						console.log('\nError : ' + JSON.stringify(error));
 					}
