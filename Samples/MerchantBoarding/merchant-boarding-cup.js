@@ -21,7 +21,6 @@ const {
     CommerceSolutionsProductsBinLookupConfigurationInformationConfigurations,
     PaymentsProducts,
     PaymentsProductsPayerAuthentication,
-    PaymentsProductsPayerAuthenticationSubscriptionInformation,
     PaymentsProductsPayerAuthenticationConfigurationInformation,
     PayerAuthConfig,
     PayerAuthConfigCardTypes,
@@ -160,10 +159,6 @@ function merchant_boarding_cup(callback) {
         payments.cardProcessing = cardProcessing;
         
         const virtualTerminal = new PaymentsProductsVirtualTerminal();
-        const subscriptionInformation2 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-        
-        subscriptionInformation2.enabled = true;
-        virtualTerminal.subscriptionInformation = subscriptionInformation2;
         
         const configurationInformation2 = new PaymentsProductsVirtualTerminalConfigurationInformation();
         const templateId2 = uuidv4("9FA1BB94-5119-48D3-B2E5-A81FD3C657B5");
@@ -172,10 +167,6 @@ function merchant_boarding_cup(callback) {
         payments.virtualTerminal = virtualTerminal;
         
         const customerInvoicing = new PaymentsProductsTax();
-        const subscriptionInformation3 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-        
-        subscriptionInformation3.enabled = true;
-        customerInvoicing.subscriptionInformation = subscriptionInformation3;
         payments.customerInvoicing = customerInvoicing;
         selectedProducts.payments = payments;
         
@@ -186,10 +177,7 @@ function merchant_boarding_cup(callback) {
         // Commerce Solutions
         const commerceSolutions = new CommerceSolutionsProducts();
         const tokenManagement = new CommerceSolutionsProductsTokenManagement();
-        const subscriptionInformation4 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-        
-        subscriptionInformation4.enabled = true;
-        tokenManagement.subscriptionInformation = subscriptionInformation4;
+
         
         const configurationInformation3 = new CommerceSolutionsProductsTokenManagementConfigurationInformation();
         const templateId3 = uuidv4("9FA1BB94-5119-48D3-B2E5-A81FD3C657B5");
@@ -202,10 +190,6 @@ function merchant_boarding_cup(callback) {
         // Value Added Services
         const valueAddedServices = new ValueAddedServicesProducts();
         const transactionSearch = new PaymentsProductsTax();
-        const subscriptionInformation5 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-        
-        subscriptionInformation5.enabled = true;
-        transactionSearch.subscriptionInformation = subscriptionInformation5;
         valueAddedServices.transactionSearch = transactionSearch;
         
         const reporting = new PaymentsProductsTax();

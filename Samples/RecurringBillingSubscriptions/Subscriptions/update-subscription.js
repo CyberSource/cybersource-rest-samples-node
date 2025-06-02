@@ -14,7 +14,7 @@ function update_subscription(callback, id) {
 
 		var clientReferenceInformation = new cybersourceRestApi.Rbsv1subscriptionsClientReferenceInformation();
 		clientReferenceInformation.code = 'APGHU';
-		var clientReferenceInformationPartner = new cybersourceRestApi.Riskv1decisionsClientReferenceInformationPartner();
+		var clientReferenceInformationPartner = new cybersourceRestApi.Rbsv1subscriptionsClientReferenceInformationPartner();
 		clientReferenceInformationPartner.developerId = 'ABCD1234';
 		clientReferenceInformationPartner.solutionId = 'GEF1234';
 		clientReferenceInformation.partner = clientReferenceInformationPartner;

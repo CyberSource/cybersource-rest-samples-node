@@ -21,7 +21,6 @@ const {
     CommerceSolutionsProductsBinLookupConfigurationInformationConfigurations,
     PaymentsProducts,
     PaymentsProductsPayerAuthentication,
-    PaymentsProductsPayerAuthenticationSubscriptionInformation,
     PaymentsProductsPayerAuthenticationConfigurationInformation,
     PayerAuthConfig,
     PayerAuthConfigCardTypes,
@@ -111,10 +110,6 @@ function merchant_boarding_bin_lookup(callback) {
     // Commerce Solutions
     const commerceSolutions = new CommerceSolutionsProducts();
     const binLookup = new CommerceSolutionsProductsBinLookup();
-    const subscriptionInformation = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-
-    subscriptionInformation.enabled = true;
-    binLookup.subscriptionInformation = subscriptionInformation;
 
     const configurationInformation = new CommerceSolutionsProductsBinLookupConfigurationInformation();
     const configurations = new CommerceSolutionsProductsBinLookupConfigurationInformationConfigurations();

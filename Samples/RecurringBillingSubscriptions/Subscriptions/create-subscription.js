@@ -13,7 +13,7 @@ function create_subscription(callback) {
 
 		var clientReferenceInformation = new cybersourceRestApi.Rbsv1subscriptionsClientReferenceInformation();
 		clientReferenceInformation.code = 'TC501713';
-		var clientReferenceInformationPartner = new cybersourceRestApi.Riskv1decisionsClientReferenceInformationPartner();
+		var clientReferenceInformationPartner = new cybersourceRestApi.Rbsv1subscriptionsClientReferenceInformationPartner();
 		clientReferenceInformationPartner.developerId = 'ABCD1234';
 		clientReferenceInformationPartner.solutionId = 'GEF1234';
 		clientReferenceInformation.partner = clientReferenceInformationPartner;

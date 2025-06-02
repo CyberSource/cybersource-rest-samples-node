@@ -22,7 +22,6 @@ const {
     CommerceSolutionsProductsBinLookupConfigurationInformationConfigurations,
     PaymentsProducts,
     PaymentsProductsPayerAuthentication,
-    PaymentsProductsPayerAuthenticationSubscriptionInformation,
     PaymentsProductsPayerAuthenticationConfigurationInformation,
     PayerAuthConfig,
     PayerAuthConfigCardTypes,
@@ -156,10 +155,6 @@ function merchant_boarding_smartfdc(callback) {
       payments.cardProcessing = cardProcessing;
 
       const virtualTerminal = new PaymentsProductsVirtualTerminal();
-      const virtualTerminalSubscriptionInformation = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-
-      virtualTerminalSubscriptionInformation.enabled = true;
-      virtualTerminal.subscriptionInformation = virtualTerminalSubscriptionInformation;
 
       const virtualTerminalConfigInformation = new PaymentsProductsVirtualTerminalConfigurationInformation();
       virtualTerminalConfigInformation.templateId = uuidv4("9FA1BB94-5119-48D3-B2E5-A81FD3C657B5");
@@ -168,10 +163,7 @@ function merchant_boarding_smartfdc(callback) {
       payments.virtualTerminal = virtualTerminal;
 
       const customerInvoicing = new PaymentsProductsTax();
-      const customerInvoicingSubscriptionInformation = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
 
-      customerInvoicingSubscriptionInformation.enabled = true;
-      customerInvoicing.subscriptionInformation = customerInvoicingSubscriptionInformation;
       payments.customerInvoicing = customerInvoicing;
 
       selectedProducts.payments = payments;
@@ -181,10 +173,7 @@ function merchant_boarding_smartfdc(callback) {
 
       const commerceSolutions = new CommerceSolutionsProducts();
       const tokenManagement = new CommerceSolutionsProductsTokenManagement();
-      const tokenManagementSubscriptionInformation = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
 
-      tokenManagementSubscriptionInformation.enabled = true;
-      tokenManagement.subscriptionInformation = tokenManagementSubscriptionInformation;
 
       const tokenManagementConfigInformation = new CommerceSolutionsProductsTokenManagementConfigurationInformation();
       tokenManagementConfigInformation.templateId = uuidv4("D62BEE20-DCFD-4AA2-8723-BA3725958ABA");
@@ -196,17 +185,11 @@ function merchant_boarding_smartfdc(callback) {
 
       const valueAddedServices = new ValueAddedServicesProducts();
       const transactionSearch = new PaymentsProductsTax();
-      const transactionSearchSubscriptionInformation = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
 
-      transactionSearchSubscriptionInformation.enabled = true;
-      transactionSearch.subscriptionInformation = transactionSearchSubscriptionInformation;
       valueAddedServices.transactionSearch = transactionSearch;
 
       const reporting = new PaymentsProductsTax();
-      const reportingSubscriptionInformation = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
 
-      reportingSubscriptionInformation.enabled = true;
-      reporting.subscriptionInformation = reportingSubscriptionInformation;
       valueAddedServices.reporting = reporting;
 
       selectedProducts.valueAddedServices = valueAddedServices;
