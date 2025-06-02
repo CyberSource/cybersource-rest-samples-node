@@ -30,7 +30,6 @@ const {
     CardProcessingConfigFeaturesCardNotPresentProcessors, 
     CardProcessingConfigFeaturesCardNotPresentPayouts, 
     PaymentsProductsVirtualTerminal, 
-    PaymentsProductsPayerAuthenticationSubscriptionInformation, 
     PaymentsProductsVirtualTerminalConfigurationInformation, 
     PaymentsProductsTax, 
     RiskProducts, 
@@ -153,9 +152,6 @@ function create_registration(callback) {
         payments.cardProcessing = cardProcessing;
         
         const virtualTerminal = new PaymentsProductsVirtualTerminal();
-        const subscriptionInformation2 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-        subscriptionInformation2.enabled = true;
-        virtualTerminal.subscriptionInformation = subscriptionInformation2;
         
         const configurationInformation2 = new PaymentsProductsVirtualTerminalConfigurationInformation();
         configurationInformation2.templateId = "E4EDB280-9DAC-4698-9EB9-9434D40FF60C";
@@ -163,9 +159,6 @@ function create_registration(callback) {
         payments.virtualTerminal = virtualTerminal;
         
         const customerInvoicing = new PaymentsProductsTax();
-        const subscriptionInformation3 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-        subscriptionInformation3.enabled = true;
-        customerInvoicing.subscriptionInformation = subscriptionInformation3;
         payments.customerInvoicing = customerInvoicing;
         
         selectedProducts.payments = payments;
@@ -175,9 +168,6 @@ function create_registration(callback) {
         
         const commerceSolutions = new CommerceSolutionsProducts();
         const tokenManagement = new CommerceSolutionsProductsTokenManagement();
-        const subscriptionInformation5 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-        subscriptionInformation5.enabled = true;
-        tokenManagement.subscriptionInformation = subscriptionInformation5;
         
         const configurationInformation5 = new CommerceSolutionsProductsTokenManagementConfigurationInformation();
         configurationInformation5.templateId = "D62BEE20-DCFD-4AA2-8723-BA3725958ABA";
@@ -187,15 +177,9 @@ function create_registration(callback) {
         
         const valueAddedServices = new ValueAddedServicesProducts();
         const transactionSearch = new PaymentsProductsTax();
-        const subscriptionInformation6 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-        subscriptionInformation6.enabled = true;
-        transactionSearch.subscriptionInformation = subscriptionInformation6;
         valueAddedServices.transactionSearch = transactionSearch;
         
         const reporting = new PaymentsProductsTax();
-        const subscriptionInformation7 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-        subscriptionInformation7.enabled = true;
-        reporting.subscriptionInformation = subscriptionInformation7;
         valueAddedServices.reporting = reporting;
         selectedProducts.valueAddedServices = valueAddedServices;
         

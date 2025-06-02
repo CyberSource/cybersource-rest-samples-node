@@ -18,7 +18,6 @@ const {
     Boardingv1registrationsProductInformationSelectedProducts,
     PaymentsProducts,
     PaymentsProductsPayerAuthentication,
-    PaymentsProductsPayerAuthenticationSubscriptionInformation,
     PaymentsProductsPayerAuthenticationConfigurationInformation,
     PayerAuthConfig,
     PayerAuthConfigCardTypes,
@@ -190,9 +189,6 @@ function merchant_boarding_amex_direct(callback) {
 
         // Virtual Terminal
         const virtualTerminal = new PaymentsProductsVirtualTerminal();
-        const subscriptionInformation2 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-        subscriptionInformation2.enabled = true;
-        virtualTerminal.subscriptionInformation = subscriptionInformation2;
 
         const configurationInformation3 = new PaymentsProductsVirtualTerminalConfigurationInformation();
         configurationInformation3.templateId = uuidv4("9FA1BB94-5119-48D3-B2E5-A81FD3C657B5");
@@ -201,9 +197,6 @@ function merchant_boarding_amex_direct(callback) {
 
         // Customer Invoicing
         const customerInvoicing = new PaymentsProductsTax();
-        const subscriptionInformation6 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-        subscriptionInformation6.enabled = true;
-        customerInvoicing.subscriptionInformation = subscriptionInformation6;
         payments.customerInvoicing = customerInvoicing;
 
         selectedProducts.payments = payments;
@@ -215,9 +208,6 @@ function merchant_boarding_amex_direct(callback) {
         // Commerce Solutions
         const commerceSolutions = new CommerceSolutionsProducts();
         const tokenManagement = new CommerceSolutionsProductsTokenManagement();
-        const subscriptionInformation7 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-        subscriptionInformation7.enabled = true;
-        tokenManagement.subscriptionInformation = subscriptionInformation7;
 
         const configurationInformation4 = new CommerceSolutionsProductsTokenManagementConfigurationInformation();
         configurationInformation4.templateId = uuidv4("D62BEE20-DCFD-4AA2-8723-BA3725958ABA");
@@ -228,15 +218,9 @@ function merchant_boarding_amex_direct(callback) {
         // Value Added Services
         const valueAddedServices = new ValueAddedServicesProducts();
         const transactionSearch = new PaymentsProductsTax();
-        const subscriptionInformation8 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-        subscriptionInformation8.enabled = true;
-        transactionSearch.subscriptionInformation = subscriptionInformation8;
         valueAddedServices.transactionSearch = transactionSearch;
 
         const reporting = new PaymentsProductsTax();
-        const subscriptionInformation9 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-        subscriptionInformation9.enabled = true;
-        reporting.subscriptionInformation = subscriptionInformation9;
         valueAddedServices.reporting = reporting;
 
         selectedProducts.valueAddedServices = valueAddedServices;
