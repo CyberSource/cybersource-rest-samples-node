@@ -22,7 +22,6 @@ const {
     CommerceSolutionsProductsBinLookupConfigurationInformationConfigurations,
     PaymentsProducts,
     PaymentsProductsPayerAuthentication,
-    PaymentsProductsPayerAuthenticationSubscriptionInformation,
     PaymentsProductsPayerAuthenticationConfigurationInformation,
     PayerAuthConfig,
     PayerAuthConfigCardTypes,
@@ -228,9 +227,6 @@ function merchant_boarding_gpx(callback) {
       payments.cardProcessing = cardProcessing;
       
       const virtualTerminal = new PaymentsProductsVirtualTerminal();
-      const subscriptionInformation5 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-      subscriptionInformation5.enabled = true;
-      virtualTerminal.subscriptionInformation = subscriptionInformation5;
       
       const configurationInformation5 = new PaymentsProductsVirtualTerminalConfigurationInformation();
       const templateId2 = uuidv4("9FA1BB94-5119-48D3-B2E5-A81FD3C657B5");
@@ -240,9 +236,7 @@ function merchant_boarding_gpx(callback) {
       payments.virtualTerminal = virtualTerminal;
       
       const customerInvoicing = new PaymentsProductsTax();
-      const subscriptionInformation6 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-      subscriptionInformation6.enabled = true;
-      customerInvoicing.subscriptionInformation = subscriptionInformation6;
+
       payments.customerInvoicing = customerInvoicing;
       
       selectedProducts.payments = payments;
@@ -253,9 +247,6 @@ function merchant_boarding_gpx(callback) {
       const commerceSolutions = new CommerceSolutionsProducts();
       const tokenManagement = new CommerceSolutionsProductsTokenManagement();
       
-      const subscriptionInformation7 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-      subscriptionInformation7.enabled = true;
-      tokenManagement.subscriptionInformation = subscriptionInformation7;
       
       const configurationInformation7 = new CommerceSolutionsProductsTokenManagementConfigurationInformation();
       const templateId3 = uuidv4("D62BEE20-DCFD-4AA2-8723-BA3725958ABA");
@@ -268,15 +259,11 @@ function merchant_boarding_gpx(callback) {
       const valueAddedServices = new ValueAddedServicesProducts();
       const transactionSearch = new PaymentsProductsTax();
       
-      const subscriptionInformation9 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-      subscriptionInformation9.enabled = true;
-      transactionSearch.subscriptionInformation = subscriptionInformation9;
+
       valueAddedServices.transactionSearch = transactionSearch;
       
       const reporting = new PaymentsProductsTax();
-      const subscriptionInformation3 = new PaymentsProductsPayerAuthenticationSubscriptionInformation();
-      subscriptionInformation3.enabled = true;
-      reporting.subscriptionInformation = subscriptionInformation3;
+
       valueAddedServices.reporting = reporting;
       
       selectedProducts.valueAddedServices = valueAddedServices;
