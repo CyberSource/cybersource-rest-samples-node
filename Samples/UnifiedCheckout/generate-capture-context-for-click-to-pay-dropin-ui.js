@@ -65,6 +65,10 @@ function generate_capture_context_for_click_to_pay_dropin_ui(callback) {
 
         requestObj.orderInformation = orderInformation;
 
+        var completeMandate = new cybersourceRestApi.Upv1capturecontextsCompleteMandate();
+        completeMandate.type = 'CAPTURE';
+        completeMandate.decisionManager = false;
+        requestObj.completeMandate = completeMandate;
 
         var instance = new cybersourceRestApi.UnifiedCheckoutCaptureContextApi(configObject, apiClient);
 

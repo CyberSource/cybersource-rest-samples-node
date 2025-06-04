@@ -70,6 +70,10 @@ function generate_unified_checkout_capture_context(callback) {
 
 		requestObj.orderInformation = orderInformation;
 
+		var completeMandate = new cybersourceRestApi.Upv1capturecontextsCompleteMandate();
+		completeMandate.type = 'CAPTURE';
+		completeMandate.decisionManager = false;
+		requestObj.completeMandate = completeMandate;
 
 		var instance = new cybersourceRestApi.UnifiedCheckoutCaptureContextApi(configObject, apiClient);
 
