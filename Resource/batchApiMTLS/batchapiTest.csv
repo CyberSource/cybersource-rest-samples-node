@@ -1,0 +1,5 @@
+merchantID=qaebc2,batchID=rgdltnd0,recordCount=2,statusEmail=ynachire@visa.com,targetAPIVersion=1.86,creationDate=2025-03-05,reference=
+merchantID,merchantReferenceCode,merchantDefinedData_field1,ccAuthService_run,billTo_firstName,billTo_lastName,billTo_email,billTo_street1,billTo_city,billTo_state,billTo_country,billTo_postalCode,card_accountNumber,card_expirationMonth,card_expirationYear,card_cardType,purchaseTotals_currency,purchaseTotals_grandTotalAmount,item_#_productCode
+qaebc2,1,4837,true,Jay,Smith,ynachire@visa.com,8 Mission Street,San Francisco,CA,US,94101,4111111111111111,12,2036,001,GBP,8.00,1
+qaebc2,2,7209,true,Jay,Smith,ynachire@visa.com,8 Mission Street,San Francisco,CA,US,94101,4111111111111111,12,2036,001,GBP,8.00,1
+END,SUM=16.00
