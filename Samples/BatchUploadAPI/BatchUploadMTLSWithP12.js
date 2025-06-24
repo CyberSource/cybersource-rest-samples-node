@@ -26,16 +26,27 @@ function run(callback) {
         // Store path (server cert)
         const serverCertPath = path.resolve(__dirname, '../../Resource/batchApiMTLS/serverCasCert.pem');
 
-        const apiInstance = new BatchUploadWithMTLSApi();
+        //Log configuration
+        const log_config = {
+            enableLog: true,
+            logFileName: 'cybs-batch-upload',
+            logDirectory: './logs',
+            logFileMaxSize: 5242880,
+            loggingLevel: 'debug',
+            enableMasking: false
+        };
 
-        apiInstance.uploadBatchAPIWithP12({
+        const apiInstance = new BatchUploadWithMTLSApi(log_config);
+
+        apiInstance.uploadBatchAPIWithP12(
             inputFilePath,
-            environmentHostname: envHostName,
-            publicKeyFilePath: publicKeyFile,
-            clientCertP12FilePath: p12Path,
-            clientCertP12Password: p12Password,
-            serverTrustCertPath: serverCertPath
-        }, function (error, result) {
+            envHostName,
+            publicKeyFile,
+            p12Path,
+            p12Password,
+            serverCertPath,
+            true,
+        function (error, result) {
             if (error) {
                 console.log('\nError : ' + JSON.stringify(error));
                 writeLogAudit('Error');
