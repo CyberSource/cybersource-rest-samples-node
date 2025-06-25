@@ -10,55 +10,63 @@ function writeLogAudit(status) {
 
 function run(callback) {
     try {
-        // Input file
+        // Input file: : add your own path
         const inputFilePath = path.resolve(__dirname, '../../Resource/batchApiMTLS/batchapiTest.csv');
         // Host name
         const envHostName = 'secure-batch-test.cybersource.com';
 
-        // Path of public key for pgp encryption
+        // Path of public key for pgp encryption: add your own path
         const publicKeyFile = path.resolve(__dirname, '../../Resource/batchApiMTLS/bts-encryption-public.asc');
-        // Store path (P12) containing client private key and cert
-        const p12Path = path.resolve(__dirname, '../../Resource/batchApiMTLS/pushtest.p12');
+        // Path (P12) containing client private key and cert: add your own path
+        const clientCertP12FilePath = path.resolve(__dirname, '../../Resource/batchApiMTLS/pushtest.p12');
 
-        // Store password
-        const p12Password = 'changeit';
+        // Store password: : add your own
+        const clientCertP12Password = 'changeit';
 
-        // Store path (server cert)
-        const serverCertPath = path.resolve(__dirname, '../../Resource/batchApiMTLS/serverCasCert.pem');
-
-        //Log configuration
+        // Server cert: : add your own path
+        const serverTrustCertPath = path.resolve(__dirname, '../../Resource/batchApiMTLS/serverCasCert.pem');
         const log_config = {
             enableLog: true,
             logFileName: 'cybs-batch-upload',
             logDirectory: './logs',
             logFileMaxSize: 5242880,
-            loggingLevel: 'debug',
-            enableMasking: false
+            loggingLevel: 'debug'
         };
 
         const apiInstance = new BatchUploadWithMTLSApi(log_config);
 
-        apiInstance.uploadBatchAPIWithP12(
+        const opts = {
             inputFilePath,
-            envHostName,
-            publicKeyFile,
-            p12Path,
-            p12Password,
-            serverCertPath,
-            true,
-        function (error, result) {
-            if (error) {
-                console.log('\nError : ' + JSON.stringify(error));
-                writeLogAudit('Error');
-            } else if (result) {
-                const responseCode = result.status;
-                const responseMessage = result.statusText;
-                console.log('ResponseCode :', responseCode);
-                console.log('ResponseMessage :', responseMessage);
-                writeLogAudit(responseCode);
+            environmentHostname: envHostName,
+            publicKeyFilePath: publicKeyFile,
+            clientCertP12FilePath,
+            clientCertP12Password,
+            serverTrustCertPath,
+            verify_ssl: true
+        };
+
+        apiInstance.uploadBatchAPIWithP12(
+            opts,
+            function (error, result) {
+                if (error) {
+                    if (error.message) {
+                        console.log('\nError :', error.message);
+                    } else if (error.error && error.error.message) {
+                        console.log('\nError :', error.error.message);
+                    } else {
+                        console.log('\nError :', JSON.stringify(error, null, 2));
+                    }
+                    writeLogAudit('Error');
+                } else if (result) {
+                    const responseCode = result.status;
+                    const responseMessage = result.statusText;
+                    console.log('ResponseCode :', responseCode);
+                    console.log('ResponseMessage :', responseMessage);
+                    writeLogAudit(responseCode);
+                }
+                if (callback) callback(error, result);
             }
-            if (callback) callback(error, result);
-        });
+        );
     } catch (e) {
         console.log('\nException : ' + e);
         writeLogAudit('Exception');

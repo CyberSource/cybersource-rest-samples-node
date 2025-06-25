@@ -10,24 +10,24 @@ function writeLogAudit(status) {
 
 function run(callback) {
     try {
-        // File path from resources folder
+        // File path: add your own path
         const fileName = 'batchapiTest.csv';
-        const inputFile = path.resolve(__dirname, '../../Resource/batchApiMTLS/', fileName);
+        const inputFilePath = path.resolve(__dirname, '../../Resource/batchApiMTLS/', fileName);
 
         // Env Host name
-        const envHostName = 'secure-batch-test.cybersource.com';
+        const environmentHostname = 'secure-batch-test.cybersource.com';
 
-        // PGP Public Key Path
-        const publicKeyPath = path.resolve(__dirname, '../../Resource/batchApiMTLS/bts-encryption-public.asc');
+        // PGP Public Key Path: add your own path
+        const publicKeyFilePath = path.resolve(__dirname, '../../Resource/batchApiMTLS/bts-encryption-public.asc');
 
-        // Client Private Key Path
-        const clientPrivateKeyPath = path.resolve(__dirname, '../../Resource/batchApiMTLS/client_private_key.key');
+        // Client Private Key Path: add your own path
+        const clientPrivateKeyFilePath = path.resolve(__dirname, '../../Resource/batchApiMTLS/client_private_key.key');
 
-        // Client Certificate Path
-        const clientCertPath = path.resolve(__dirname, '../../Resource/batchApiMTLS/client_cert.crt');
+        // Client Certificate Path: add your own path
+        const clientCertFilePath = path.resolve(__dirname, '../../Resource/batchApiMTLS/client_cert.crt');
 
-        // Server Certificate Path
-        const serverCertPath = path.resolve(__dirname, '../../Resource/batchApiMTLS/serverCasCert.pem');
+        // Server Certificate Path: add your own path
+        const serverTrustCertPath = path.resolve(__dirname, '../../Resource/batchApiMTLS/serverCasCert.pem');
 
         // Log configuration
         const log_config = {
@@ -38,31 +38,42 @@ function run(callback) {
             loggingLevel: 'debug',
             enableMasking: false
         };
+        
 
         const apiInstance = new BatchUploadWithMTLSApi(log_config);
 
+        const opts = {
+            inputFilePath,
+            environmentHostname,
+            publicKeyFilePath,
+            clientPrivateKeyFilePath,
+            clientCertFilePath,
+            serverTrustCertPath,
+            // clientKeyPassword: undefined, // add if needed
+            verify_ssl: true
+        };
+
         apiInstance.uploadBatchAPIWithKeys(
-            inputFile,
-            envHostName,
-            publicKeyPath,
-            clientPrivateKeyPath,
-            clientCertPath,
-            serverCertPath,
-            undefined,
-            undefined,
-        function (error, result) {
-            if (error) {
-                console.log('\nError : ' + JSON.stringify(error));
-                writeLogAudit('Error');
-            } else if (result) {
-                const responseCode = result.status;
-                const responseMessage = result.statusText;
-                console.log('ResponseCode :', responseCode);
-                console.log('ResponseMessage :', responseMessage);
-                writeLogAudit(responseCode);
+            opts,
+            function (error, result) {
+                if (error) {
+                    if (error.message) {
+                        console.log('\nError :', error.message);
+                    } else if (error.error && error.error.message) {
+                        console.log('\nError :', error.error.message);
+                    } else {
+                        console.log('\nError :', JSON.stringify(error, null, 2));
+                    }                    writeLogAudit('Error');
+                } else if (result) {
+                    const responseCode = result.status;
+                    const responseMessage = result.statusText;
+                    console.log('ResponseCode :', responseCode);
+                    console.log('ResponseMessage :', responseMessage);
+                    writeLogAudit(responseCode);
+                }
+                if (callback) callback(error, result);
             }
-            if (callback) callback(error, result);
-        });
+        );
     } catch (e) {
         console.log('\nException : ' + e);
         writeLogAudit('Exception');
