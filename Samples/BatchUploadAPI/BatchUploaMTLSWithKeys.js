@@ -63,7 +63,8 @@ function run(callback) {
                         console.log('\nError :', error.error.message);
                     } else {
                         console.log('\nError :', JSON.stringify(error, null, 2));
-                    }                    writeLogAudit('Error');
+                    }
+                    writeLogAudit('Error');
                 } else if (result) {
                     const responseCode = result.status;
                     const responseMessage = result.statusText;
