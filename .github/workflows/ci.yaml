@@ -1,0 +1,17 @@
+on:
+  push:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ "lts/*", latest]
+    steps:
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
+        with:
+          node-version: ${{matrix.node-version}}
+      - run: npm install
+      - run: bash sample_code_runner.sh
+      - run: cat output.log
