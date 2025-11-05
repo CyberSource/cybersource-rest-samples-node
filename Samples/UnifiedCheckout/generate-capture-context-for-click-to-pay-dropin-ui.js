@@ -74,7 +74,7 @@ function generate_capture_context_for_click_to_pay_dropin_ui(callback) {
 
         instance.generateUnifiedCheckoutCaptureContext(requestObj, function (error, data, response) {
             if (error) {
-                console.log('\nError : ' + error);
+                console.log('\nError : ' + JSON.stringify(error));
             }
             else if (data) {
                 console.log('\nData : ' + JSON.stringify(data));
@@ -88,7 +88,7 @@ function generate_capture_context_for_click_to_pay_dropin_ui(callback) {
             }
 
             console.log('\nResponse : ' + JSON.stringify(response));
-            // console.log('\nResponse Code of Process a Payment : ' + JSON.stringify(response['status']));
+            console.log('\nResponse Code of Process a Payment : ' + JSON.stringify(response['status']));
             callback(error, data, response);
         });
     }
