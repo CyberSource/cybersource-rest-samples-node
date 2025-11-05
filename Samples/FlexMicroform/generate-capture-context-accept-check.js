@@ -30,6 +30,13 @@ function generate_capture_context_accept_check(callback) {
             }
             else if (data) {
                 console.log('\nData : ' + JSON.stringify(data));
+                cybersourceRestApi.CaptureContextParsingUtility.parseCaptureContextResponse(data, apiClient.merchantConfig, true, function (err, result) {
+                    if (err) {
+                        console.log('\nError in Capture Context Parsing : ' + JSON.stringify(err));
+                    } else {
+                        console.log('\nParsed Capture Context : ' + JSON.stringify(result));
+                    }
+                });
             }
 
             console.log('\nResponse : ' + JSON.stringify(response));
