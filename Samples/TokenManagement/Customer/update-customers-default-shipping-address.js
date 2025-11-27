@@ -12,7 +12,7 @@ function update_customers_default_shipping_address(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.PatchCustomerRequest();
 
-		var defaultShippingAddress = new cybersourceRestApi.Tmsv2customersDefaultShippingAddress();
+		var defaultShippingAddress = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerDefaultShippingAddress();
 		defaultShippingAddress.id = 'AB6A54B97C00FCB6E05341588E0A3935';
 		requestObj.defaultShippingAddress = defaultShippingAddress;
 

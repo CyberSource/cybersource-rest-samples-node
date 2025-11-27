@@ -13,13 +13,13 @@ function create_payment_instrument_card(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.PostPaymentInstrumentRequest();
 
-		var card = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentCard();
+		var card = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentCard();
 		card.expirationMonth = '12';
 		card.expirationYear = '2031';
 		card.type = 'visa';
 		requestObj.card = card;
 
-		var billTo = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentBillTo();
+		var billTo = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentBillTo();
 		billTo.firstName = 'John';
 		billTo.lastName = 'Doe';
 		billTo.company = 'CyberSource';
@@ -32,7 +32,7 @@ function create_payment_instrument_card(callback) {
 		billTo.phoneNumber = '4158880000';
 		requestObj.billTo = billTo;
 
-		var instrumentIdentifier = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentInstrumentIdentifier();
+		var instrumentIdentifier = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentInstrumentIdentifier();
 		instrumentIdentifier.id = '7010000000016241111';
 		requestObj.instrumentIdentifier = instrumentIdentifier;
 

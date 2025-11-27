@@ -12,20 +12,20 @@ function create_customer_payment_instrument_bank_account(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.PostCustomerPaymentInstrumentRequest();
 
-		var bankAccount = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentBankAccount();
+		var bankAccount = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentBankAccount();
 		bankAccount.type = 'savings';
 		requestObj.bankAccount = bankAccount;
 
-		var buyerInformation = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentBuyerInformation();
+		var buyerInformation = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentBuyerInformation();
 		buyerInformation.companyTaxID = '12345';
 		buyerInformation.currency = 'USD';
 		buyerInformation.dateOfBirth = '2000-12-13';
 
 		var personalIdentification =	new Array();
-		var	personalIdentification1 = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentBuyerInformationPersonalIdentification();
+		var	personalIdentification1 = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentBuyerInformationPersonalIdentification();
 		personalIdentification1.id = '57684432111321';
 		personalIdentification1.type = 'driver license';
-		var issuedBy1 = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentBuyerInformationIssuedBy();
+		var issuedBy1 = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentBuyerInformationIssuedBy();
 		issuedBy1.administrativeArea = 'CA';
 		personalIdentification1.issuedBy = issuedBy1;
 
@@ -35,7 +35,7 @@ function create_customer_payment_instrument_bank_account(callback) {
 
 		requestObj.buyerInformation = buyerInformation;
 
-		var billTo = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentBillTo();
+		var billTo = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentBillTo();
 		billTo.firstName = 'John';
 		billTo.lastName = 'Doe';
 		billTo.company = 'CyberSource';
@@ -55,7 +55,7 @@ function create_customer_payment_instrument_bank_account(callback) {
 
 		requestObj.processingInformation = processingInformation;
 
-		var instrumentIdentifier = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultPaymentInstrumentInstrumentIdentifier();
+		var instrumentIdentifier = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentInstrumentIdentifier();
 		instrumentIdentifier.id = 'A7A91A2CA872B272E05340588D0A0699';
 		requestObj.instrumentIdentifier = instrumentIdentifier;
 

@@ -13,7 +13,7 @@ function update_customers_default_payment_instrument(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.PatchCustomerRequest();
 
-		var defaultPaymentInstrument = new cybersourceRestApi.Tmsv2customersDefaultPaymentInstrument();
+		var defaultPaymentInstrument = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerDefaultPaymentInstrument();
 		defaultPaymentInstrument.id = 'AB6A54B982A6FCB6E05341588E0A3935';
 		requestObj.defaultPaymentInstrument = defaultPaymentInstrument;
 
