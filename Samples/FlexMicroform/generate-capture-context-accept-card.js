@@ -49,7 +49,7 @@ function generate_capture_context_accept_card(callback) {
             }
             else if (data) {
                 console.log('\nData : ' + JSON.stringify(data));
-                cybersourceRestApi.CaptureContextParsingUtility.parseCaptureContextResponse(data, apiClient.merchantConfig, true, function (err, result) {
+                cybersourceRestApi.CaptureContextParsingUtility.parseCaptureContextResponse(data, apiClient.merchantConfig, function (err, result) {
                     if (err) {
                         console.log('\nError in Capture Context Parsing : ' + JSON.stringify(err));
                     } else {
