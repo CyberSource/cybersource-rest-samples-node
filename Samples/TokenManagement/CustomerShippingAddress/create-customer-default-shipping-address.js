@@ -13,7 +13,7 @@ function create_customer_default_shipping_address(callback) {
 		var requestObj = new cybersourceRestApi.PostCustomerShippingAddressRequest();
 
 		requestObj._default = true;
-		var shipTo = new cybersourceRestApi.Tmsv2customersEmbeddedDefaultShippingAddressShipTo();
+		var shipTo = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultShippingAddressShipTo();
 		shipTo.firstName = 'John';
 		shipTo.lastName = 'Doe';
 		shipTo.company = 'CyberSource';

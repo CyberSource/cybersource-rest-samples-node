@@ -12,18 +12,18 @@ function update_customer(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.PatchCustomerRequest();
 
-		var buyerInformation = new cybersourceRestApi.Tmsv2customersBuyerInformation();
+		var buyerInformation = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerBuyerInformation();
 		buyerInformation.merchantCustomerID = 'Your customer identifier';
 		buyerInformation.email = 'test@cybs.com';
 		requestObj.buyerInformation = buyerInformation;
 
-		var clientReferenceInformation = new cybersourceRestApi.Tmsv2customersClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerClientReferenceInformation();
 		clientReferenceInformation.code = 'TC50171_3';
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 
 		var merchantDefinedInformation =	new Array();
-		var	merchantDefinedInformation1 = new cybersourceRestApi.Tmsv2customersMerchantDefinedInformation();
+		var	merchantDefinedInformation1 = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerMerchantDefinedInformation();
 		merchantDefinedInformation1.name = 'data1';
 		merchantDefinedInformation1.value = 'Your customer data';
 		merchantDefinedInformation.push(merchantDefinedInformation1);
