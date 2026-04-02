@@ -11,7 +11,7 @@ function pending_authentication_with_unknown_path(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.CheckPayerAuthEnrollmentRequest();
 
-		var clientReferenceInformation = new cybersourceRestApi.Riskv1authenticationsetupsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Riskv1decisionsClientReferenceInformation();
 		clientReferenceInformation.code = 'UNKNOWN';
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 

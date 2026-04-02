@@ -29,17 +29,17 @@ function network_token(callback) {
         // )
 
         // Using the new method JWEUtility.decryptJWEResponseUsingPrivateKey(PrivateKey, String) instead
-        var privateKey = fs.readFileSync(merchantConfig.getpemFileDirectory());
-        cybersourceRestApi.JWEUtility.decryptJWEResponseUsingPrivateKey(privateKey, encodedRespone)
-            .then(decodedResponse => {
-                console.log("Decoded Response");
-                console.log(decodedResponse);
-                callback();
-            },
-            error => {
-                console.log(error);
-            }
-        );
+        // var privateKey = fs.readFileSync(merchantConfig.getpemFileDirectory());
+        // cybersourceRestApi.JWEUtility.decryptJWEResponseUsingPrivateKey(privateKey, encodedRespone)
+        //     .then(decodedResponse => {
+        //         console.log("Decoded Response");
+        //         console.log(decodedResponse);
+        //         callback();
+        //     },
+        //     error => {
+        //         console.log(error);
+        //     }
+        // );
     });
 }
 
