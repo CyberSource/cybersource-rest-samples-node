@@ -11,7 +11,7 @@ function setup_completion_with_tms_token(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.PayerAuthSetupRequest();
 
-		var clientReferenceInformation = new cybersourceRestApi.Riskv1authenticationsetupsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.Riskv1decisionsClientReferenceInformation();
 		clientReferenceInformation.code = 'cybs_test';
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
