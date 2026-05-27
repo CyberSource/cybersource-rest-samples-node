@@ -1,5 +1,21 @@
 'use strict';
 
+/**
+ * Default merchant configuration using HTTP Signature authentication.
+ *
+ * Note: If you are currently using HTTP Signature authentication and want to migrate
+ * to JWT (required for MLE support), you can now use JWT with the same shared secret
+ * credentials (merchantKeyId + merchantsecretKey) you already have — no P12 certificate
+ * needed. HTTP Signature is being deprecated; JWT with Shared Secret is the recommended
+ * migration path.
+ *
+ * See JwtSharedSecretConfiguration for JWT with Shared Secret configuration,
+ * which supports both Request MLE and Response MLE.
+ *
+ * @see {@link ./JwtSharedSecretConfiguration.js#getMerchantDetails}
+ * @see {@link ./JwtSharedSecretConfiguration.js#getMerchantDetailsWithMLE}
+ */
+
 /*
 * Merchant configuration properties are taken from Configuration module
 */
@@ -17,7 +33,7 @@ const MerchantSecretKey = 'yBJxy6LjM2TmcPGu+GaJrHtkke25fPpUX+UY6/L/1tE=';
 const KeysDirectory = 'Resource';
 const KeyFileName = 'testrest';
 const KeyAlias = 'testrest';
-const KeyPass = 'testrest';
+const KeyPass = 'Ap!C38tp12@';
 
 //meta key parameters
 const UseMetaKey = false;

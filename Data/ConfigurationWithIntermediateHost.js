@@ -18,7 +18,7 @@ const MerchantSecretKey = 'yBJxy6LjM2TmcPGu+GaJrHtkke25fPpUX+UY6/L/1tE=';
 const KeysDirectory = 'Resource';
 const KeyFileName = 'testrest';
 const KeyAlias = 'testrest';
-const KeyPass = 'testrest';
+const KeyPass = 'Ap!C38tp12@';
 
 //meta key parameters
 const UseMetaKey = false;

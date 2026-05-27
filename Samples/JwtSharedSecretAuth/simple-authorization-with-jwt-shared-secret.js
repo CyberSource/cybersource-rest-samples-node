@@ -1,27 +1,31 @@
 'use strict';
 
 /**
- * Payment with MLE controlled exclusively via mapToControlMLEonAPI (global MLE disabled).
+ * Simple Authorization using JWT authentication with Shared Secret (HS256).
  *
- * Note: MLE also works with JWT using Shared Secret credentials
- * (jwtKeyType='SHARED_SECRET'), allowing merchants to migrate from HTTP Signature
- * and gain MLE support (both Request and Response MLE) using the same merchantKeyId
- * and merchantsecretKey — no P12 file needed.
+ * This sample demonstrates a drop-in replacement for HTTP Signature authentication.
+ * It uses the same merchantKeyId and merchantsecretKey credentials
+ * you already use for HTTP Signature, but authenticates via JWT instead.
  *
- * See Samples/JwtSharedSecretAuth/mle-payment-with-jwt-shared-secret.js and
- * Data/JwtSharedSecretConfiguration.js getMerchantDetailsWithMLE() for an example.
+ * Migration from HTTP Signature:
+ * HTTP Signature authentication is being deprecated. To migrate:
+ * 1. Change authenticationType from 'http_signature' to 'jwt'
+ * 2. Add jwtKeyType = 'SHARED_SECRET'
+ * 3. Keep your existing merchantKeyId and merchantsecretKey as-is
+ *
+ * See Data/JwtSharedSecretConfiguration.js getMerchantDetails() for the
+ * full configuration.
  */
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/ConfigurationWithMLE.js');
-var {MLEConfiguration3} = require(filePath);
+var filePath = path.resolve('Data/JwtSharedSecretConfiguration.js');
+var {getMerchantDetails} = require(filePath);
 
-function simple_authorization_internet_with_Map_Control_MLE_True(callback, enable_capture) {
+function simple_authorization_with_jwt_shared_secret(callback, enable_capture) {
 	try {
-        //useMLEGlobally=false in config, but mapToControlMLEonAPI has createPayment=true, so MLE will be enable only for createPayment function/method.
-		var configObject = new MLEConfiguration3();
-
+		/* Load JWT + Shared Secret configuration */
+		var configObject = getMerchantDetails();
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.CreatePaymentRequest();
 
@@ -48,7 +52,7 @@ function simple_authorization_internet_with_Map_Control_MLE_True(callback, enabl
 
 		var orderInformation = new cybersourceRestApi.Ptsv2paymentsOrderInformation();
 		var orderInformationAmountDetails = new cybersourceRestApi.Ptsv2paymentsOrderInformationAmountDetails();
-		orderInformationAmountDetails.totalAmount = '50.00';
+		orderInformationAmountDetails.totalAmount = '102.21';
 		orderInformationAmountDetails.currency = 'USD';
 		orderInformation.amountDetails = orderInformationAmountDetails;
 
@@ -66,7 +70,6 @@ function simple_authorization_internet_with_Map_Control_MLE_True(callback, enabl
 
 		requestObj.orderInformation = orderInformation;
 
-
 		var instance = new cybersourceRestApi.PaymentsApi(configObject, apiClient);
 
 		instance.createPayment(requestObj, function (error, data, response) {
@@ -78,7 +81,7 @@ function simple_authorization_internet_with_Map_Control_MLE_True(callback, enabl
 			}
 
 			console.log('\nResponse : ' + JSON.stringify(response));
-			console.log('\nResponse Code of Process a Payment with mapToControlMLEonAPI true : ' + JSON.stringify(response['status']));
+			console.log('\nResponse Code of Process a Payment with JWT Shared Secret : ' + JSON.stringify(response['status']));
 			var status = response['status'];
 			write_log_audit(status);
 			callback(error, data, response);
@@ -95,8 +98,9 @@ function write_log_audit(status) {
 }
 
 if (require.main === module) {
-	simple_authorization_internet_with_Map_Control_MLE_True(function () {
-		console.log('\nCreatePayment with with mapToControlMLEonAPI has true end.');
+	simple_authorization_with_jwt_shared_secret(function () {
+		console.log('\nCreatePayment with JWT Shared Secret end.');
 	});
 }
-module.exports.simple_authorization_internet_with_Map_Control_MLE_True = simple_authorization_internet_with_Map_Control_MLE_True;
+
+module.exports.simple_authorization_with_jwt_shared_secret = simple_authorization_with_jwt_shared_secret;

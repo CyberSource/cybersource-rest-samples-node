@@ -13,7 +13,7 @@ function payment_credentials_from_network_token(callback) {
         const tokenId = '7010000000008573216';
         var configObject = new configuration();
 	    var apiClient = new cybersourceRestApi.ApiClient();
-        var instance = new cybersourceRestApi.TokenApi(configObject, apiClient);
+        var instance = new cybersourceRestApi.NetworkTokensApi(configObject, apiClient);
 		var postPaymentCredentialsRequest = new cybersourceRestApi.PostPaymentCredentialsRequest();
 
         var opts = [];

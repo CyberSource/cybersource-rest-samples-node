@@ -10,7 +10,7 @@ var path = require('path');
 
 var requestHost = "apitest.cybersource.com";
 var merchantId = "testrest";
-var keyPass = "testrest";
+var keyPass = "Ap!C38tp12@";
 var payload = "{" +
 		"	\"clientReferenceInformation\": {" +
 		"	\"code\": \"TC50171_3\"" +
