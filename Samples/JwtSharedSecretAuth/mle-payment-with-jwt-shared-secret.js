@@ -1,27 +1,37 @@
 'use strict';
 
 /**
- * Payment with MLE controlled exclusively via mapToControlMLEonAPI (global MLE disabled).
+ * Simple Authorization using JWT with Shared Secret + MLE (Message Level Encryption).
  *
- * Note: MLE also works with JWT using Shared Secret credentials
- * (jwtKeyType='SHARED_SECRET'), allowing merchants to migrate from HTTP Signature
- * and gain MLE support (both Request and Response MLE) using the same merchantKeyId
- * and merchantsecretKey — no P12 file needed.
+ * This sample demonstrates the primary benefit of migrating from HTTP Signature
+ * to JWT with Shared Secret: MLE support. MLE encrypts the request payload
+ * at the application level before it is sent over the network, providing an
+ * additional layer of security beyond TLS.
  *
- * See Samples/JwtSharedSecretAuth/mle-payment-with-jwt-shared-secret.js and
- * Data/JwtSharedSecretConfiguration.js getMerchantDetailsWithMLE() for an example.
+ * Key Difference from HTTP Signature:
+ * HTTP Signature does not support MLE. By switching to JWT with Shared Secret,
+ * you gain MLE capability using the same credentials you already have.
+ *
+ * MLE Certificate:
+ * When using jwtKeyType=SHARED_SECRET, the MLE public certificate must
+ * be provided via the mleForRequestPublicCertPath property. Download it from
+ * the CyberSource Business Center:
+ * - Test: https://businesscentertest.cybersource.com/ebc2
+ * - Production: https://businesscenter.cybersource.com/ebc2
+ *
+ * See Data/JwtSharedSecretConfiguration.js getMerchantDetailsWithMLE() for the
+ * full configuration.
  */
 
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
-var filePath = path.resolve('Data/ConfigurationWithMLE.js');
-var {MLEConfiguration3} = require(filePath);
+var filePath = path.resolve('Data/JwtSharedSecretConfiguration.js');
+var {getMerchantDetailsWithMLE} = require(filePath);
 
-function simple_authorization_internet_with_Map_Control_MLE_True(callback, enable_capture) {
+function mle_payment_with_jwt_shared_secret(callback, enable_capture) {
 	try {
-        //useMLEGlobally=false in config, but mapToControlMLEonAPI has createPayment=true, so MLE will be enable only for createPayment function/method.
-		var configObject = new MLEConfiguration3();
-
+		/* Load JWT + Shared Secret + MLE configuration */
+		var configObject = getMerchantDetailsWithMLE();
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.CreatePaymentRequest();
 
@@ -48,7 +58,7 @@ function simple_authorization_internet_with_Map_Control_MLE_True(callback, enabl
 
 		var orderInformation = new cybersourceRestApi.Ptsv2paymentsOrderInformation();
 		var orderInformationAmountDetails = new cybersourceRestApi.Ptsv2paymentsOrderInformationAmountDetails();
-		orderInformationAmountDetails.totalAmount = '50.00';
+		orderInformationAmountDetails.totalAmount = '102.21';
 		orderInformationAmountDetails.currency = 'USD';
 		orderInformation.amountDetails = orderInformationAmountDetails;
 
@@ -66,7 +76,6 @@ function simple_authorization_internet_with_Map_Control_MLE_True(callback, enabl
 
 		requestObj.orderInformation = orderInformation;
 
-
 		var instance = new cybersourceRestApi.PaymentsApi(configObject, apiClient);
 
 		instance.createPayment(requestObj, function (error, data, response) {
@@ -78,7 +87,7 @@ function simple_authorization_internet_with_Map_Control_MLE_True(callback, enabl
 			}
 
 			console.log('\nResponse : ' + JSON.stringify(response));
-			console.log('\nResponse Code of Process a Payment with mapToControlMLEonAPI true : ' + JSON.stringify(response['status']));
+			console.log('\nResponse Code of Process a Payment with JWT Shared Secret + MLE : ' + JSON.stringify(response['status']));
 			var status = response['status'];
 			write_log_audit(status);
 			callback(error, data, response);
@@ -95,8 +104,9 @@ function write_log_audit(status) {
 }
 
 if (require.main === module) {
-	simple_authorization_internet_with_Map_Control_MLE_True(function () {
-		console.log('\nCreatePayment with with mapToControlMLEonAPI has true end.');
+	mle_payment_with_jwt_shared_secret(function () {
+		console.log('\nCreatePayment with JWT Shared Secret + MLE end.');
 	});
 }
-module.exports.simple_authorization_internet_with_Map_Control_MLE_True = simple_authorization_internet_with_Map_Control_MLE_True;
+
+module.exports.mle_payment_with_jwt_shared_secret = mle_payment_with_jwt_shared_secret;

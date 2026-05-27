@@ -5,6 +5,19 @@ var path = require('path');
 var filePath = path.resolve('Data/ConfigurationWithMLE.js');
 var {MLEConfigurationWithRequestAndResponseMLE1,MLEConfigurationWithRequestAndResponseMLE2} = require(filePath);
 
+
+/**
+ * ACP API example with both Request MLE and Response MLE enabled.
+ *
+ * Note: MLE also works with JWT using Shared Secret credentials
+ * (jwtKeyType='SHARED_SECRET'), allowing merchants to migrate from HTTP Signature
+ * and gain MLE support (both Request and Response MLE) using the same merchantKeyId
+ * and merchantsecretKey — no P12 file needed.
+ *
+ * See Samples/JwtSharedSecretAuth/mle-payment-with-jwt-shared-secret.js and
+ * Data/JwtSharedSecretConfiguration.js getMerchantDetailsWithMLE() for an example.
+ */
+
 function acp_api_example(callback) {
 	try {
 		var configObject = new MLEConfigurationWithRequestAndResponseMLE2();

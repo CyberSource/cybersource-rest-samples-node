@@ -4,7 +4,7 @@
     "runEnvironment"        : "CyberSource.Environment.SANDBOX",
 
     "keyAlias"		        : "testrest",
-    "keyPass"	            : "testrest",
+    "keyPass"	            : "Ap!C38tp12@",
     "keyFileName"           : "testrest",
     "keysDirectory"	        : "resource",
     

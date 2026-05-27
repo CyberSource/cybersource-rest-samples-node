@@ -1,5 +1,18 @@
 'use strict';
 
+/**
+ * Merchant configuration for MLE (Message Level Encryption) using JWT with P12 certificate.
+ *
+ * Note: If you want to use MLE with shared secret credentials (without P12 certificate management),
+ * consider using JWT with Shared Secret instead. This approach uses the same merchantKeyId and
+ * merchantsecretKey you already have for HTTP Signature authentication.
+ *
+ * See JwtSharedSecretConfiguration for JWT with Shared Secret + MLE configuration,
+ * which provides a simpler setup without P12 certificate requirements.
+ *
+ * @see {@link ./JwtSharedSecretConfiguration.js#getMerchantDetailsWithMLE}
+ */
+
 /*
 * Merchant configuration properties are taken from Configuration module
 */
@@ -17,7 +30,7 @@ const MerchantSecretKey = '';
 const KeysDirectory = 'Resource';
 const KeyFileName = 'testrest';
 const KeyAlias = 'testrest';
-const KeyPass = 'testrest';
+const KeyPass = 'Ap!C38tp12@';
 
 //meta key parameters
 const UseMetaKey = false;

@@ -38,9 +38,11 @@ e.g.
     node Samples/Payments/Payments/authorization-with-capturesale.js
 ```
 
-### To set your own sandbox credentials for an API request, configure the following information in Data/Configuration.js file
+## Setting Your API Credentials
 
-* Http
+To set your API credentials for an API request, configure the following information in `Data/Configuration.js` file:
+
+* Http Signature (**Deprecated** — migrate to JWT with Shared Secret below)
 
 ```javascript
     const MerchantId = "your_merchant_id";
@@ -50,42 +52,91 @@ e.g.
     const RunEnvironment = "apitest.cybersource.com";
 ```
 
-* Jwt
+* Jwt (with P12 certificate)
 
 ```javascript
-    const MerchantId = "your_merchant_id";
     const AuthenticationType = "jwt";
-    const KeysDirectory = "Resource";
-    const KeyFileName = "your_merchant_id";
-    const RunEnvironment = "apitest.cybersource.com";
+    const MerchantId = "your_merchant_id";
     const KeyAlias = "your_merchant_id";
     const KeyPass = "your_merchant_id";
+    const KeyFileName = "your_merchant_id";
+    const KeysDirectory = "Resource";
+    const UseMetaKey = false;
+    const RunEnvironment = "apitest.cybersource.com";
 ```
 
-* MetaKey Http
+* Jwt with Shared Secret (**Recommended migration path from Http Signature**)
+
+  Uses the **same** `merchantKeyId` and `merchantsecretKey` credentials as Http Signature, but authenticates via JWT. This enables MLE (Message Level Encryption) support for both request and response payloads, which Http Signature does not support.
+
+  For detailed migration guide, configuration, and sample code, see the [JWT Shared Secret Auth samples](Samples/JwtSharedSecretAuth/README.md).
 
 ```javascript
-    const AuthenticationType  = "http_Signature";
-    const MerchantId          = "your_child_merchant_id";
-    const MerchantKeyId       = "your_metakey_serial_number";
-    const MerchantSecretKey   = "your_metakey_shared_secret";
-    const PortfolioId         = "your_portfolio_id";
-    const UseMetaKey          = true;
-    const EnableClientCert    = false;
+    const AuthenticationType = "jwt";
+    const JwtKeyType = "SHARED_SECRET";
+    const MerchantId = "your_merchant_id";
+    const MerchantKeyId = "your_key_serial_number";
+    const MerchantSecretKey = "your_shared_secret";
+    const RunEnvironment = "apitest.cybersource.com";
 ```
 
-* MetaKey JWT
+* MetaKey Http (**Deprecated** — migrate to MetaKey JWT Shared Secret below)
 
 ```javascript
-    const AuthenticationType  = "jwt";
-    const MerchantId          = "your_child_merchant_id";
-    const KeyAlias            = "your_child_merchant_id";
-    const KeyPass             = "your_portfolio_id";
-    const KeyFileName         = "your_portfolio_id";
-    const KeysDirectory       = "Resource";
-    const UseMetaKey          = true;
-    const EnableClientCert    = false;
+    const AuthenticationType = "http_signature";
+    const MerchantId = "your_transacting_merchant_id";
+    const MerchantKeyId = "your_metakey_portfolio_KeyId";
+    const MerchantSecretKey = "your_metakey_portfolio_shared_secret_key";
+    const PortfolioID = "your_portfolio_id";
+    const UseMetaKey = true;
 ```
+
+* MetaKey JWT (P12)
+
+```javascript
+    const AuthenticationType = "jwt";
+    const MerchantId = "your_transacting_merchant_id";
+    const KeyAlias = "your_portfolio_id";
+    const KeyPass = "your_metakey_portfolio_p12File_password";
+    const KeyFileName = "your_metakey_portfolio_p12FileName";
+    const PortfolioID = "your_portfolio_id";
+    const KeysDirectory = "Resource";
+    const UseMetaKey = true;
+```
+
+* MetaKey JWT with Shared Secret (**Recommended migration from MetaKey Http**)
+
+  Uses the same MetaKey credentials as MetaKey Http but authenticates via JWT, enabling MLE support.
+
+```javascript
+    const AuthenticationType = "jwt";
+    const JwtKeyType = "SHARED_SECRET";
+    const MerchantId = "your_transacting_merchant_id";
+    const MerchantKeyId = "your_metakey_portfolio_KeyId";
+    const MerchantSecretKey = "your_metakey_portfolio_shared_secret_key";
+    const PortfolioID = "your_portfolio_id";
+    const UseMetaKey = true;
+```
+
+* Response MLE with MetaKey
+
+  When Response MLE is enabled (`enableResponseMleGlobally: true`) and MetaKey is in use (`useMetaKey: true`), the Response MLE configuration must use the **portfolio's** response MLE key — not the transacting merchant's. Specifically:
+
+  - `responseMlePrivateKeyFilePath` (or `responseMlePrivateKey` object) must point to the **portfolio's** response MLE private key.
+  - `responseMleKID` — the KID value associated with the **portfolio's** response MLE certificate.
+    - **Optional** when `responseMlePrivateKeyFilePath` points to a CyberSource-generated P12 file (SDK auto-fetches from P12).
+    - **Required** when using PEM format files (`.pem`, `.key`, `.p8`) or when providing `responseMlePrivateKey` object directly.
+
+```javascript
+    const EnableResponseMleGlobally = true;
+    const ResponseMlePrivateKeyFilePath = "Resource/portfolio_response_mle_private_key.p12";
+    const ResponseMlePrivateKeyFilePassword = "portfolio_private_key_password";
+    // responseMleKID is optional when using a CyberSource-generated P12 file (auto-fetched from P12)
+    // Required when using PEM files or responseMlePrivateKey object
+    // const ResponseMleKID = "your_portfolio_response_mle_kid";
+```
+
+  > **Important:** The response MLE private key (and KID, if applicable) must belong to the portfolio (parent account), since in MetaKey mode the portfolio is the transaction submitter and the response is encrypted using the portfolio's MLE certificate.
 
 ### Switching between the sandbox environment and the production environment
 

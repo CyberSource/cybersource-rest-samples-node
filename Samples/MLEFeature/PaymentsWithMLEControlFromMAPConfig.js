@@ -1,5 +1,17 @@
 'use strict';
 
+/**
+ * Payment with MLE using API-level control via mapToControlMLEonAPI.
+ *
+ * Note: MLE also works with JWT using Shared Secret credentials
+ * (jwtKeyType='SHARED_SECRET'), allowing merchants to migrate from HTTP Signature
+ * and gain MLE support (both Request and Response MLE) using the same merchantKeyId
+ * and merchantsecretKey — no P12 file needed.
+ *
+ * See Samples/JwtSharedSecretAuth/mle-payment-with-jwt-shared-secret.js and
+ * Data/JwtSharedSecretConfiguration.js getMerchantDetailsWithMLE() for an example.
+ */
+
 var cybersourceRestApi = require('cybersource-rest-client');
 var path = require('path');
 var filePath = path.resolve('Data/ConfigurationWithMLE.js');
