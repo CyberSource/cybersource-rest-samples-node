@@ -12,18 +12,13 @@ function update_subscription(callback, id) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.UpdateSubscription();
 
-		var clientReferenceInformation = new cybersourceRestApi.Rbsv1subscriptionsClientReferenceInformation();
+		var clientReferenceInformation = new cybersourceRestApi.GetAllSubscriptionsResponseClientReferenceInformation();
 		clientReferenceInformation.code = 'APGHU';
-		var clientReferenceInformationPartner = new cybersourceRestApi.Rbsv1subscriptionsClientReferenceInformationPartner();
-		clientReferenceInformationPartner.developerId = 'ABCD1234';
-		clientReferenceInformationPartner.solutionId = 'GEF1234';
-		clientReferenceInformation.partner = clientReferenceInformationPartner;
-
 		requestObj.clientReferenceInformation = clientReferenceInformation;
 
 		var processingInformation = new cybersourceRestApi.Rbsv1subscriptionsProcessingInformation();
-		var processingInformationAuthorizationOptions = new cybersourceRestApi.Rbsv1subscriptionsProcessingInformationAuthorizationOptions();
-		var processingInformationAuthorizationOptionsInitiator = new cybersourceRestApi.Rbsv1subscriptionsProcessingInformationAuthorizationOptionsInitiator();
+		var processingInformationAuthorizationOptions = new cybersourceRestApi.RbsAuthorizationOptions();
+		var processingInformationAuthorizationOptionsInitiator = new cybersourceRestApi.RbsAuthorizationOptionsInitiator();
 		processingInformationAuthorizationOptionsInitiator.type = 'merchant';
 		processingInformationAuthorizationOptions.initiator = processingInformationAuthorizationOptionsInitiator;
 

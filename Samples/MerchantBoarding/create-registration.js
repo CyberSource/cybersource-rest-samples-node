@@ -9,9 +9,9 @@ const UUID = require('uuid');
 const { 
     PostRegistrationBody, 
     Boardingv1registrationsOrganizationInformation, 
-    Boardingv1registrationsOrganizationInformationBusinessInformation, 
-    Boardingv1registrationsOrganizationInformationBusinessInformationAddress, 
-    Boardingv1registrationsOrganizationInformationBusinessInformationBusinessContact, 
+    BoardingBusinessInformation, 
+    BoardingBusinessInformationAddress, 
+    BoardingBusinessInformationBusinessContact, 
     Boardingv1registrationsProductInformation, 
     Boardingv1registrationsProductInformationSelectedProducts, 
     PaymentsProducts, 
@@ -52,10 +52,10 @@ function create_registration(callback) {
         organizationInformation.type = "Merchant";
         organizationInformation.configurable = true;
         
-        const businessInformation = new Boardingv1registrationsOrganizationInformationBusinessInformation();
+        const businessInformation = new BoardingBusinessInformation();
         businessInformation.name = "StuartWickedFastEatz";
         
-        const address = new Boardingv1registrationsOrganizationInformationBusinessInformationAddress();
+        const address = new BoardingBusinessInformationAddress();
         address.country = "US";
         address.address1 = "123456 SandMarket";
         address.locality = "ORMOND BEACH";
@@ -65,7 +65,7 @@ function create_registration(callback) {
         businessInformation.websiteUrl = "https://www.StuartWickedEats.com";
         businessInformation.phoneNumber = "6574567813";
         
-        const businessContact = new Boardingv1registrationsOrganizationInformationBusinessInformationBusinessContact();
+        const businessContact = new BoardingBusinessInformationBusinessContact();
         businessContact.firstName = "Stuart";
         businessContact.lastName = "Stuart";
         businessContact.phoneNumber = "6574567813";

@@ -103,7 +103,7 @@ function generate_unified_checkout_capture_context_passing_billing_shipping(call
         orderInformationBillTo.phoneType = 'phoneType';
         orderInformation.billTo = orderInformationBillTo;
 
-        var orderInformationShipTo = new cybersourceRestApi.Upv1capturecontextsOrderInformationShipTo();
+        var orderInformationShipTo = new cybersourceRestApi.Upv1capturecontextsDataOrderInformationShipTo();
         orderInformationShipTo.address1 = 'CyberSource';
         orderInformationShipTo.address2 = 'Victoria House';
         orderInformationShipTo.address3 = '15-17 Gloucester Street';

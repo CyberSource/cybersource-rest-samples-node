@@ -13,20 +13,20 @@ function create_payment_instrument_bank_account(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.PostPaymentInstrumentRequest();
 
-		var bankAccount = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentBankAccount();
+		var bankAccount = new cybersourceRestApi.DefaultPaymentInstrumentBankAccount();
 		bankAccount.type = 'savings';
 		requestObj.bankAccount = bankAccount;
 
-		var buyerInformation = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentBuyerInformation();
+		var buyerInformation = new cybersourceRestApi.DefaultPaymentInstrumentBuyerInformation();
 		buyerInformation.companyTaxID = '12345';
 		buyerInformation.currency = 'USD';
 		buyerInformation.dateOfBirth = '2000-12-13';
 
 		var personalIdentification = new Array();
-		var	personalIdentification1 = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentBuyerInformationPersonalIdentification();
+		var	personalIdentification1 = new cybersourceRestApi.DefaultPaymentInstrumentBuyerInformationPersonalIdentification();
 		personalIdentification1.id = '57684432111321';
 		personalIdentification1.type = 'driver license';
-		var issuedBy1 = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentBuyerInformationIssuedBy();
+		var issuedBy1 = new cybersourceRestApi.DefaultPaymentInstrumentBuyerInformationIssuedBy();
 		issuedBy1.administrativeArea = 'CA';
 		personalIdentification1.issuedBy = issuedBy1;
 
@@ -36,7 +36,7 @@ function create_payment_instrument_bank_account(callback) {
 
 		requestObj.buyerInformation = buyerInformation;
 
-		var billTo = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentBillTo();
+		var billTo = new cybersourceRestApi.DefaultPaymentInstrumentBillTo();
 		billTo.firstName = 'John';
 		billTo.lastName = 'Doe';
 		billTo.company = 'CyberSource';
@@ -56,7 +56,7 @@ function create_payment_instrument_bank_account(callback) {
 
 		requestObj.processingInformation = processingInformation;
 
-		var instrumentIdentifier = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentInstrumentIdentifier();
+		var instrumentIdentifier = new cybersourceRestApi.DefaultPaymentInstrumentInstrumentIdentifier();
 		instrumentIdentifier.id = 'A7A91A2CA872B272E05340588D0A0699';
 
 		requestObj.instrumentIdentifier = instrumentIdentifier;
