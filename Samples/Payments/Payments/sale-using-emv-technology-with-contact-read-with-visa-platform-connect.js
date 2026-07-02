@@ -18,7 +18,7 @@ function sale_using_emv_technology_with_contact_read_with_visa_platform_connect(
 		var processingInformation = new cybersourceRestApi.Ptsv2paymentsProcessingInformation();
 		processingInformation.capture = false;
 		processingInformation.commerceIndicator = 'retail';
-		var processingInformationAuthorizationOptions = new cybersourceRestApi.Ptsv2paymentsProcessingInformationAuthorizationOptions();
+		var processingInformationAuthorizationOptions = new cybersourceRestApi.ProcessingInfoAuthorizationOptions();
 		processingInformationAuthorizationOptions.partialAuthIndicator = true;
 		processingInformationAuthorizationOptions.ignoreAvsResult = false;
 		processingInformationAuthorizationOptions.ignoreCvResult = false;

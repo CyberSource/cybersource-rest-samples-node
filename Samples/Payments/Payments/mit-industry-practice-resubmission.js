@@ -18,13 +18,13 @@ function mit_industry_practice_resubmission(callback) {
 		var processingInformation = new cybersourceRestApi.Ptsv2paymentsProcessingInformation();
 		processingInformation.capture = false;
 		processingInformation.commerceIndicator = 'moto';
-		var processingInformationAuthorizationOptions = new cybersourceRestApi.Ptsv2paymentsProcessingInformationAuthorizationOptions();
+		var processingInformationAuthorizationOptions = new cybersourceRestApi.ProcessingInfoAuthorizationOptions();
 		processingInformationAuthorizationOptions.ignoreAvsResult = false;
 		processingInformationAuthorizationOptions.ignoreCvResult = false;
-		var processingInformationAuthorizationOptionsInitiator = new cybersourceRestApi.Ptsv2paymentsProcessingInformationAuthorizationOptionsInitiator();
+		var processingInformationAuthorizationOptionsInitiator = new cybersourceRestApi.ProcessingInfoAuthorizationOptionsInitiator();
 		processingInformationAuthorizationOptionsInitiator.type = 'merchant';
 		processingInformationAuthorizationOptionsInitiator.storedCredentialUsed = true;
-		var processingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction = new cybersourceRestApi.Ptsv2paymentsProcessingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction();
+		var processingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction = new cybersourceRestApi.ProcessingInfoAuthorizationOptionsInitiatorMerchantInitiatedTransaction();
 		processingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction.reason = '1';
 		processingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction.previousTransactionId = '123456789012345';
 		processingInformationAuthorizationOptionsInitiator.merchantInitiatedTransaction = processingInformationAuthorizationOptionsInitiatorMerchantInitiatedTransaction;

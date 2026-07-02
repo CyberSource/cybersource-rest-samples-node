@@ -18,10 +18,10 @@ function cit_initiating_instalment_subscription_uk(callback) {
 		var processingInformation = new cybersourceRestApi.Ptsv2paymentsProcessingInformation();
 		processingInformation.capture = false;
 		processingInformation.commerceIndicator = 'vbv';
-		var processingInformationAuthorizationOptions = new cybersourceRestApi.Ptsv2paymentsProcessingInformationAuthorizationOptions();
+		var processingInformationAuthorizationOptions = new cybersourceRestApi.ProcessingInfoAuthorizationOptions();
 		processingInformationAuthorizationOptions.ignoreAvsResult = false;
 		processingInformationAuthorizationOptions.ignoreCvResult = false;
-		var processingInformationAuthorizationOptionsInitiator = new cybersourceRestApi.Ptsv2paymentsProcessingInformationAuthorizationOptionsInitiator();
+		var processingInformationAuthorizationOptionsInitiator = new cybersourceRestApi.ProcessingInfoAuthorizationOptionsInitiator();
 		processingInformationAuthorizationOptionsInitiator.credentialStoredOnFile = true;
 		processingInformationAuthorizationOptions.initiator = processingInformationAuthorizationOptionsInitiator;
 

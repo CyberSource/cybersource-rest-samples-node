@@ -18,7 +18,7 @@ function sale_using_swiped_track_data_with_visa_platform_connect(callback) {
 		var processingInformation = new cybersourceRestApi.Ptsv2paymentsProcessingInformation();
 		processingInformation.capture = true;
 		processingInformation.commerceIndicator = 'retail';
-		var processingInformationAuthorizationOptions = new cybersourceRestApi.Ptsv2paymentsProcessingInformationAuthorizationOptions();
+		var processingInformationAuthorizationOptions = new cybersourceRestApi.ProcessingInfoAuthorizationOptions();
 		processingInformationAuthorizationOptions.partialAuthIndicator = true;
 		processingInformationAuthorizationOptions.ignoreAvsResult = false;
 		processingInformationAuthorizationOptions.ignoreCvResult = false;

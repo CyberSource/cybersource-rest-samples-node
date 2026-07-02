@@ -14,13 +14,13 @@ function update_payment_instrument(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.PatchPaymentInstrumentRequest();
 
-		var card = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentCard();
+		var card = new cybersourceRestApi.DefaultPaymentInstrumentCard();
 		card.expirationMonth = '12';
 		card.expirationYear = '2031';
 		card.type = 'visa';
 		requestObj.card = card;
 
-		var billTo = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentBillTo();
+		var billTo = new cybersourceRestApi.DefaultPaymentInstrumentBillTo();
 		billTo.firstName = 'Jack';
 		billTo.lastName = 'Smith';
 		billTo.company = 'CyberSource';
@@ -33,7 +33,7 @@ function update_payment_instrument(callback) {
 		billTo.phoneNumber = '4158888674';
 		requestObj.billTo = billTo;
 
-		var instrumentIdentifier = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentInstrumentIdentifier();
+		var instrumentIdentifier = new cybersourceRestApi.DefaultPaymentInstrumentInstrumentIdentifier();
 		instrumentIdentifier.id = '7010000000016241111';
 		requestObj.instrumentIdentifier = instrumentIdentifier;
 

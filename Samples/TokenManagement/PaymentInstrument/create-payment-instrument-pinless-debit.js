@@ -13,7 +13,7 @@ function create_payment_instrument_pinless_debit(callback) {
 		var apiClient = new cybersourceRestApi.ApiClient();
 		var requestObj = new cybersourceRestApi.PostPaymentInstrumentRequest();
 
-		var card = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentCard();
+		var card = new cybersourceRestApi.DefaultPaymentInstrumentCard();
 		card.expirationMonth = '12';
 		card.expirationYear = '2031';
 		card.type = 'visa';
@@ -23,7 +23,7 @@ function create_payment_instrument_pinless_debit(callback) {
 		card.useAs = 'pinless debit';
 		requestObj.card = card;
 
-		var billTo = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentBillTo();
+		var billTo = new cybersourceRestApi.DefaultPaymentInstrumentBillTo();
 		billTo.firstName = 'John';
 		billTo.lastName = 'Doe';
 		billTo.company = 'CyberSource';
@@ -36,7 +36,7 @@ function create_payment_instrument_pinless_debit(callback) {
 		billTo.phoneNumber = '4158880000';
 		requestObj.billTo = billTo;
 
-		var instrumentIdentifier = new cybersourceRestApi.Tmsv2tokenizeTokenInformationCustomerEmbeddedDefaultPaymentInstrumentInstrumentIdentifier();
+		var instrumentIdentifier = new cybersourceRestApi.DefaultPaymentInstrumentInstrumentIdentifier();
 		instrumentIdentifier.id = '7010000000016241111';
 		requestObj.instrumentIdentifier = instrumentIdentifier;
 
