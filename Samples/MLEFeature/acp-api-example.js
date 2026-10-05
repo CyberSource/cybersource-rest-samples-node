@@ -135,7 +135,7 @@ function acp_api_example(callback) {
 		requestObj.consentData = consentData;
 
 
-		var instance = new cybersourceRestApi.AgentCapabilitiesApi(configObject, apiClient);
+		var instance = new cybersourceRestApi.EnrollmentApi(configObject, apiClient);
 
 		instance.enrollCard(requestObj, function (error, data, response) {
 			if(error) {
