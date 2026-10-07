@@ -204,7 +204,7 @@ function MLEConfigurationWithRequestAndResponseMLE1() {
         'merchantID': 'agentic_mid_091225001',
 
         'keyAlias': 'agentic_mid_091225001',
-        'keyPass': 'Changeit@123',
+        'keyPass': 'Ap!C38tp12@',
         'keyFileName': 'agentic_mid_091225001',
         'keysDirectory': KeysDirectory,
 
@@ -224,8 +224,8 @@ function MLEConfigurationWithRequestAndResponseMLE1() {
         //Set Response MLE Settings in Merchant Configuration [Refer MLE.md on cybersource-rest-client-node github repo]
         'enableResponseMleGlobally': true, //Enables response MLE globally for all APIs that support MLE responses
         'responseMlePrivateKeyFilePath': "Resource/agentic_mid_091225001_mle.p12", //Path to the Response MLE private key file. Supported formats: .p12, .pfx, .pem, .key, .p8. Recommendation use encrypted private Key (password protection) for MLE response.
-        'responseMlePrivateKeyFilePassword': "Changeit@123", //Password for the private key file (required for .p12/.pfx files or encrypted private keys).
-        'responseMleKID': "1757970970891045729358" //Optional since p12 is Cybs Generated.
+        'responseMlePrivateKeyFilePassword': "Ap!C38tp12@ML3", //Password for the private key file (required for .p12/.pfx files or encrypted private keys).
+        'responseMleKID': "1764300612804157241592" //Optional since p12 is Cybs Generated.
 		//This parameter is optional when responseMlePrivateKeyFilePath points to a CyberSource-generated P12 file. If not provided, the SDK will automatically fetch the Key ID from the P12 file. If provided, the SDK will use the user-provided value instead of the auto-fetched value.
 		//Required when using PEM format files (.pem, .key, .p8) or when providing responseMlePrivateKey object directly.
 
@@ -244,7 +244,7 @@ function MLEConfigurationWithRequestAndResponseMLE2() {
         'merchantID': 'agentic_mid_091225001',
 
         'keyAlias': 'agentic_mid_091225001',
-        'keyPass': 'Changeit@123',
+        'keyPass': 'Ap!C38tp12@',
         'keyFileName': 'agentic_mid_091225001',
         'keysDirectory': KeysDirectory,
 
@@ -271,8 +271,8 @@ function MLEConfigurationWithRequestAndResponseMLE2() {
 
         //since one of the API has Response MLE true, so below fields are required for Response MLE
         'responseMlePrivateKeyFilePath': "Resource/agentic_mid_091225001_new_generated_mle.p12", //Path to the Response MLE private key file. Supported formats: .p12, .pfx, .pem, .key, .p8. Recommendation use encrypted private Key (password protection) for MLE response.
-        'responseMlePrivateKeyFilePassword': "Changeit@123", //Password for the private key file (required for .p12/.pfx files or encrypted private keys).
-        'responseMleKID': "1764104507829324018353" //Optional since p12 is Cybs Generated.
+        'responseMlePrivateKeyFilePassword': "Ap!C38tp12@ML3", //Password for the private key file (required for .p12/.pfx files or encrypted private keys).
+        'responseMleKID': "1764300612804157241592" //Optional since p12 is Cybs Generated.
 		//This parameter is optional when responseMlePrivateKeyFilePath points to a CyberSource-generated P12 file. If not provided, the SDK will automatically fetch the Key ID from the P12 file. If provided, the SDK will use the user-provided value instead of the auto-fetched value.
 		//Required when using PEM format files (.pem, .key, .p8) or when providing responseMlePrivateKey object directly.
 
