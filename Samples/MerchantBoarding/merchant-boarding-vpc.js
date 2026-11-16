@@ -16,7 +16,7 @@ const {
     BoardingBusinessInformationBusinessContact,
     Boardingv1registrationsProductInformation,
     Boardingv1registrationsProductInformationSelectedProducts,
-    CardProcessingConfigCommonCurrencies,
+    CurrencyConfiguration,
     CommerceSolutionsProductsBinLookup,
     CommerceSolutionsProductsBinLookupConfigurationInformation,
     CommerceSolutionsProductsBinLookupConfigurationInformationConfigurations,
@@ -29,7 +29,7 @@ const {
     PayerAuthConfigCardTypesVerifiedByVisaCurrencies,
     PaymentsProductsCardProcessing,
     PaymentsProductsCardProcessingSubscriptionInformation,
-    PaymentsProductsCardProcessingSubscriptionInformationFeatures,
+    CardProessingFeatureSubscriptionItem,
     PaymentsProductsCardProcessingConfigurationInformation,
     CardProcessingConfigFeaturesCardPresent,
     CardProcessingConfigFeaturesCardPresentProcessors,
@@ -40,7 +40,7 @@ const {
     CardProcessingConfigFeatures,
     CardProcessingConfigFeaturesCardNotPresent,
     CardProcessingConfigCommonAcquirer,
-    CardProcessingConfigCommonCurrencies1,
+    CurrencyUpdatedConfiguration,
     ValueAddedServicesProducts,
     CommerceSolutionsProductsTokenManagementConfigurationInformation,
     CardProcessingConfigFeaturesCardNotPresentProcessors,
@@ -104,7 +104,7 @@ function merchant_boarding_vpc(callback) {
       subscriptionInformation.enabled = true;
       const features = {};
       
-      const obj1 = new PaymentsProductsCardProcessingSubscriptionInformationFeatures();
+      const obj1 = new CardProessingFeatureSubscriptionItem();
       obj1.enabled = true;
       features["cardNotPresent"] = obj1;
       features["cardPresent"] = obj1;
@@ -146,7 +146,7 @@ function merchant_boarding_vpc(callback) {
       obj7.enabled = true;
       
       const currencies = {};
-      const obj2 = new CardProcessingConfigCommonCurrencies();
+      const obj2 = new CurrencyConfiguration();
       obj2.enabled = true;
       obj2.enabledCardPresent = false;
       obj2.enabledCardNotPresent = true;

@@ -29,7 +29,7 @@ function updateinvoicesettings(callback) {
 
 		var instance = new cybersourceRestApi.InvoiceSettingsApi(configObject, apiClient);
 
-		instance.updateInvoiceSettings( requestObj, function (error, data, response) {
+		instance.updateInvoiceSettings( requestObj, {}, function (error, data, response) {
 			if(error) {
 				console.log('\nError : ' + JSON.stringify(error));
 			}

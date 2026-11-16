@@ -39,6 +39,7 @@ function write_log_audit(status) {
 }
 
 if (require.main === module) {
+	var organizationId = 'INSERT ID VALUE';
 	find_products_you_can_subscribe_to(function () {
 		console.log('\nFindProductsToSubscribe end.');
 	}, organizationId);

@@ -53,6 +53,9 @@ function write_log_audit(status) {
 }
 
 if (require.main === module) {
+	var vCcorrelationId = 'INSERT ID VALUE';
+	var vCsenderOrganizationId = 'INSERT ID VALUE';
+	var vCpermissions = 'INSERT ID VALUE';
 	create_asymmetric_key(function () {
 		console.log('\nSaveAsymEgressKey end.');
 	}, vCcorrelationId, vCsenderOrganizationId, vCpermissions);

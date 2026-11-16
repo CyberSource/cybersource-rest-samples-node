@@ -52,6 +52,9 @@ function write_log_audit(status) {
 }
 
 if (require.main === module) {
+	var vCcorrelationId = 'INSERT ID VALUE';
+	var vCsenderOrganizationId = 'INSERT ID VALUE';
+	var vCpermissions = 'INSERT ID VALUE';
 	create_webhook_symmetric_key(function () {
 		console.log('\nSaveSymEgressKey end.');
 	}, vCcorrelationId, vCsenderOrganizationId, vCpermissions);

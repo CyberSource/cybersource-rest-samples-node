@@ -17,7 +17,7 @@ function get_details_on_all_created_webhooks(callback) {
 
 		var instance = new cybersourceRestApi.ManageWebhooksApi(configObject, apiClient);
 
-		instance.getWebhookSubscriptionsByOrg(organizationId, productId, eventType, function (error, data, response) {
+		instance.getWebhookSubscriptionsByOrg(organizationId, {'productId': productId, 'eventType': eventType}, function (error, data, response) {
 			if(error) {
 				console.log('\nError : ' + JSON.stringify(error));
 			}

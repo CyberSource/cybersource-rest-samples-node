@@ -9,24 +9,28 @@ function create_decision_manager_webhook(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
-		var requestObj = new cybersourceRestApi.CreateWebhookRequest();
+		var requestObj = new cybersourceRestApi.CreateWebhook();
 
 		requestObj.name = 'My Custom Webhook';
 		requestObj.description = 'Sample Webhook from Developer Center';
 		requestObj.organizationId = '<INSERT ORGANIZATION ID HERE>';
-		requestObj.productId = 'decisionManager';
 
+		var products = new Array();
+		var product = new cybersourceRestApi.CreateWebhookRequestProductItem();
+		product.productId = 'decisionManager';
 		var eventTypes = new Array();
 		eventTypes.push("risk.profile.decision.reject");
 		eventTypes.push("risk.casemanagement.addnote");
 		eventTypes.push("risk.casemanagement.decision.accept");
 		eventTypes.push("risk.casemanagement.decision.reject");
-		requestObj.eventTypes = eventTypes;
+		product.eventTypes = eventTypes;
+		products.push(product);
+		requestObj.products = products;
 
 		requestObj.webhookUrl = 'https://MyWebhookServer.com:8443/simulateClient';
 		requestObj.healthCheckUrl = 'https://MyWebhookServer.com:8443/simulateClientHealthCheck';
 		requestObj.notificationScope = 'SELF';
-		var retryPolicy = new cybersourceRestApi.Notificationsubscriptionsv1webhooksRetryPolicy();
+		var retryPolicy = new cybersourceRestApi.Notificationsubscriptionsv2webhooksRetryPolicy();
 		retryPolicy.algorithm = 'ARITHMETIC';
 		retryPolicy.firstRetry = 1;
 		retryPolicy.interval = 1;
@@ -36,12 +40,13 @@ function create_decision_manager_webhook(callback) {
 		retryPolicy.repeatSequenceWaitTime = 0;
 		requestObj.retryPolicy = retryPolicy;
 
-		var securityPolicy = new cybersourceRestApi.Notificationsubscriptionsv1webhooksSecurityPolicy1();
+		var securityPolicy = new cybersourceRestApi.Notificationsubscriptionsv2webhooksSecurityPolicy();
 		securityPolicy.securityType = 'KEY';
-		securityPolicy.proxyType = 'external';
+		// proxyType removed from Notificationsubscriptionsv2webhooksSecurityPolicy in 0.0.86, no replacement
+		// securityPolicy.proxyType = 'external';
 		requestObj.securityPolicy = securityPolicy;
 		var opts = {};
-		if (requestObj != null) opts['createWebhookRequest'] = requestObj;
+		if (requestObj != null) opts['createWebhook'] = requestObj;
 
 
 		var instance = new cybersourceRestApi.CreateNewWebhooksApi(configObject, apiClient);

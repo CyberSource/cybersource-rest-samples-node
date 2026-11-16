@@ -9,7 +9,7 @@ function amex_registration_instrument_identifier_token_batch(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
-		var requestObj = new cybersourceRestApi.Body();
+		var requestObj = new cybersourceRestApi.PostBatchRequest();
 
 		requestObj.type = 'amexRegistration';
 		var included = new cybersourceRestApi.Accountupdaterv1batchesIncluded();

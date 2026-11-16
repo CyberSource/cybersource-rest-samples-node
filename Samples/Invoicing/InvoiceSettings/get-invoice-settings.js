@@ -12,7 +12,7 @@ function get_invoice_settings(callback) {
 
 		var instance = new cybersourceRestApi.InvoiceSettingsApi(configObject, apiClient);
 
-		instance.getInvoiceSettings(function (error, data, response) {
+		instance.getInvoiceSettings({}, function (error, data, response) {
 			if(error) {
 				console.log('\nError : ' + JSON.stringify(error));
 			}

@@ -25,7 +25,7 @@ const {
     PayerAuthConfigCardTypesVerifiedByVisaCurrencies,
     PaymentsProductsCardProcessing,
     PaymentsProductsCardProcessingSubscriptionInformation,
-    PaymentsProductsCardProcessingSubscriptionInformationFeatures,
+    CardProessingFeatureSubscriptionItem,
     PaymentsProductsCardProcessingConfigurationInformation,
     CardProcessingConfig,
     CardProcessingConfigCommon,
@@ -34,7 +34,7 @@ const {
     CardProcessingConfigFeatures,
     CardProcessingConfigFeaturesCardNotPresent,
     CardProcessingConfigCommonAcquirer,
-    CardProcessingConfigCommonCurrencies1,
+    CurrencyUpdatedConfiguration,
     ValueAddedServicesProducts,
     CommerceSolutionsProductsTokenManagementConfigurationInformation,
     CardProcessingConfigFeaturesCardNotPresentProcessors,
@@ -106,7 +106,7 @@ function merchant_boarding_amex_direct(callback) {
         subscriptionInformation.enabled = true;
 
         const features = {};
-        const featureObj = new PaymentsProductsCardProcessingSubscriptionInformationFeatures();
+        const featureObj = new CardProessingFeatureSubscriptionItem();
         featureObj.enabled = true;
         features["cardNotPresent"] = featureObj;
         features["cardPresent"] = featureObj;
@@ -140,7 +140,7 @@ function merchant_boarding_amex_direct(callback) {
         processorObj.acquirer = new CardProcessingConfigCommonAcquirer();
 
         const currencies = {};
-        const currencyObj = new CardProcessingConfigCommonCurrencies1();
+        const currencyObj = new CurrencyUpdatedConfiguration();
         currencyObj.enabled = true;
         currencyObj.enabledCardPresent = true;
         currencyObj.terminalId = "";

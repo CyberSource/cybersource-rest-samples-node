@@ -48,7 +48,7 @@ function process_authorization_reversal(callback) {
 					callback(error, data, response);
 				});
 			}
-		}, enable_capture);
+		});
 	}
 	catch (error) {
 		console.log('\nException on calling the API : ' + error);

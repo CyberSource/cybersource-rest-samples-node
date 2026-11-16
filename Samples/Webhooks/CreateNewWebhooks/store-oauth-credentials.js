@@ -55,6 +55,9 @@ function write_log_audit(status) {
 }
 
 if (require.main === module) {
+	var vCcorrelationId = 'INSERT ID VALUE';
+	var vCsenderOrganizationId = 'INSERT ID VALUE';
+	var vCpermissions = 'INSERT ID VALUE';
 	store_oauth_credentials(function () {
 		console.log('\nSaveSymEgressKey end.');
 	}, vCcorrelationId, vCsenderOrganizationId, vCpermissions);

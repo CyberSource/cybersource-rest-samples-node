@@ -39,6 +39,7 @@ function write_log_audit(status) {
 }
 
 if (require.main === module) {
+	var webhookId = 'INSERT ID VALUE';
 	delete_webhook_subscription(function () {
 		console.log('\nDeleteWebhookSubscription end.');
 	}, webhookId);
