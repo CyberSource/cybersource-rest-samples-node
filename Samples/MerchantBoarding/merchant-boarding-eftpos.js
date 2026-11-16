@@ -29,7 +29,7 @@ const {
     PayerAuthConfigCardTypesVerifiedByVisaCurrencies,
     PaymentsProductsCardProcessing,
     PaymentsProductsCardProcessingSubscriptionInformation,
-    PaymentsProductsCardProcessingSubscriptionInformationFeatures,
+    CardProessingFeatureSubscriptionItem,
     PaymentsProductsCardProcessingConfigurationInformation,
     CardProcessingConfig,
     CardProcessingConfigCommon,
@@ -38,7 +38,7 @@ const {
     CardProcessingConfigFeatures,
     CardProcessingConfigFeaturesCardNotPresent,
     CardProcessingConfigCommonAcquirer,
-    CardProcessingConfigCommonCurrencies1,
+    CurrencyUpdatedConfiguration,
     ValueAddedServicesProducts,
     CommerceSolutionsProductsTokenManagementConfigurationInformation,
     CardProcessingConfigFeaturesCardNotPresentProcessors,
@@ -102,7 +102,7 @@ function merchant_boarding_eftpos(callback) {
       subscriptionInformation.enabled = true;
       const features = {};
 
-      const obj1 = new PaymentsProductsCardProcessingSubscriptionInformationFeatures();
+      const obj1 = new CardProessingFeatureSubscriptionItem();
       obj1.enabled = true;
       features.cardNotPresent = obj1;
       obj1.enabled = false;
@@ -124,7 +124,7 @@ function merchant_boarding_eftpos(callback) {
       obj5.acquirer = acquirer;
 
       const currencies = {};
-      const obj6 = new CardProcessingConfigCommonCurrencies1();
+      const obj6 = new CurrencyUpdatedConfiguration();
       obj6.enabled = true;
       obj6.merchantId = "12345612344";
       obj6.terminalId = "12121212";

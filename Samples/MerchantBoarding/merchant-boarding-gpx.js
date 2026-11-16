@@ -16,7 +16,7 @@ const {
     BoardingBusinessInformationBusinessContact,
     Boardingv1registrationsProductInformation,
     Boardingv1registrationsProductInformationSelectedProducts,
-    CardProcessingConfigCommonCurrencies,
+    CurrencyConfiguration,
     CommerceSolutionsProductsBinLookup,
     CommerceSolutionsProductsBinLookupConfigurationInformation,
     CommerceSolutionsProductsBinLookupConfigurationInformationConfigurations,
@@ -29,7 +29,7 @@ const {
     PayerAuthConfigCardTypesVerifiedByVisaCurrencies,
     PaymentsProductsCardProcessing,
     PaymentsProductsCardProcessingSubscriptionInformation,
-    PaymentsProductsCardProcessingSubscriptionInformationFeatures,
+    CardProessingFeatureSubscriptionItem,
     PaymentsProductsCardProcessingConfigurationInformation,
     CardProcessingConfigFeaturesCardPresent,
     CardProcessingConfigFeaturesCardPresentProcessors,
@@ -40,7 +40,7 @@ const {
     CardProcessingConfigFeatures,
     CardProcessingConfigFeaturesCardNotPresent,
     CardProcessingConfigCommonAcquirer,
-    CardProcessingConfigCommonCurrencies1,
+    CurrencyUpdatedConfiguration,
     ValueAddedServicesProducts,
     CommerceSolutionsProductsTokenManagementConfigurationInformation,
     CardProcessingConfigFeaturesCardNotPresentProcessors,
@@ -103,7 +103,7 @@ function merchant_boarding_gpx(callback) {
       subscriptionInformation.enabled = true;
       const features = {};
       
-      const featureObj1 = new PaymentsProductsCardProcessingSubscriptionInformationFeatures();
+      const featureObj1 = new CardProessingFeatureSubscriptionItem();
       featureObj1.enabled = true;
       features['cardNotPresent'] = featureObj1;
       features['cardPresent'] = featureObj1;
@@ -139,7 +139,7 @@ function merchant_boarding_gpx(callback) {
       processorObj.acquirer = acquirer;
       
       const currencies = {};
-      const currencyObj = new CardProcessingConfigCommonCurrencies1();
+      const currencyObj = new CurrencyUpdatedConfiguration();
       currencyObj.enabled = true;
       currencyObj.enabledCardPresent = false;
       currencyObj.enabledCardNotPresent = true;

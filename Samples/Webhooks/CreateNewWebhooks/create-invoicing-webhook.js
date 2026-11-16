@@ -9,13 +9,15 @@ function create_invoicing_webhook(callback) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
-		var requestObj = new cybersourceRestApi.CreateWebhookRequest();
+		var requestObj = new cybersourceRestApi.CreateWebhook();
 
 		requestObj.name = 'My Custom Webhook';
 		requestObj.description = 'Sample Webhook from Developer Center';
 		requestObj.organizationId = '<INSERT ORGANIZATION ID HERE>';
-		requestObj.productId = 'customerInvoicing';
 
+		var products = new Array();
+		var product = new cybersourceRestApi.CreateWebhookRequestProductItem();
+		product.productId = 'customerInvoicing';
 		var eventTypes = new Array();
 		eventTypes.push("invoicing.customer.invoice.cancel");
 		eventTypes.push("invoicing.customer.invoice.overdue-reminder");
@@ -24,12 +26,14 @@ function create_invoicing_webhook(callback) {
 		eventTypes.push("invoicing.customer.invoice.partial-resend");
 		eventTypes.push("invoicing.customer.invoice.reminder");
 		eventTypes.push("invoicing.customer.invoice.send");
-		requestObj.eventTypes = eventTypes;
+		product.eventTypes = eventTypes;
+		products.push(product);
+		requestObj.products = products;
 
 		requestObj.webhookUrl = 'https://MyWebhookServer.com:8443/simulateClient';
 		requestObj.healthCheckUrl = 'https://MyWebhookServer.com:8443/simulateClientHealthCheck';
 		requestObj.notificationScope = 'SELF';
-		var retryPolicy = new cybersourceRestApi.Notificationsubscriptionsv1webhooksRetryPolicy();
+		var retryPolicy = new cybersourceRestApi.Notificationsubscriptionsv2webhooksRetryPolicy();
 		retryPolicy.algorithm = 'ARITHMETIC';
 		retryPolicy.firstRetry = 1;
 		retryPolicy.interval = 1;
@@ -39,12 +43,13 @@ function create_invoicing_webhook(callback) {
 		retryPolicy.repeatSequenceWaitTime = 0;
 		requestObj.retryPolicy = retryPolicy;
 
-		var securityPolicy = new cybersourceRestApi.Notificationsubscriptionsv1webhooksSecurityPolicy1();
+		var securityPolicy = new cybersourceRestApi.Notificationsubscriptionsv2webhooksSecurityPolicy();
 		securityPolicy.securityType = 'KEY';
-		securityPolicy.proxyType = 'external';
+		// proxyType removed from Notificationsubscriptionsv2webhooksSecurityPolicy in 0.0.86, no replacement
+		// securityPolicy.proxyType = 'external';
 		requestObj.securityPolicy = securityPolicy;
 		var opts = {};
-		if (requestObj != null) opts['createWebhookRequest'] = requestObj;
+		if (requestObj != null) opts['createWebhook'] = requestObj;
 
 
 		var instance = new cybersourceRestApi.CreateNewWebhooksApi(configObject, apiClient);

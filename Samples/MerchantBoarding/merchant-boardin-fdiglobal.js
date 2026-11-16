@@ -16,7 +16,7 @@ const {
     BoardingBusinessInformationBusinessContact,
     Boardingv1registrationsProductInformation,
     Boardingv1registrationsProductInformationSelectedProducts,
-    CardProcessingConfigCommonCurrencies,
+    CurrencyConfiguration,
     CommerceSolutionsProductsBinLookup,
     CommerceSolutionsProductsBinLookupConfigurationInformation,
     CommerceSolutionsProductsBinLookupConfigurationInformationConfigurations,
@@ -30,7 +30,7 @@ const {
     PayerAuthConfigCardTypesVerifiedByVisaCurrencies,
     PaymentsProductsCardProcessing,
     PaymentsProductsCardProcessingSubscriptionInformation,
-    PaymentsProductsCardProcessingSubscriptionInformationFeatures,
+    CardProessingFeatureSubscriptionItem,
     PaymentsProductsCardProcessingConfigurationInformation,
     CardProcessingConfig,
     CardProcessingConfigCommon,
@@ -39,7 +39,7 @@ const {
     CardProcessingConfigFeatures,
     CardProcessingConfigFeaturesCardNotPresent,
     CardProcessingConfigCommonAcquirer,
-    CardProcessingConfigCommonCurrencies1,
+    CurrencyUpdatedConfiguration,
     ValueAddedServicesProducts,
     CommerceSolutionsProductsTokenManagementConfigurationInformation,
     CardProcessingConfigFeaturesCardNotPresentProcessors,
@@ -103,7 +103,7 @@ function merchant_boarding_fdiglobal(callback) {
     subscriptionInformation.enabled = true;
     const features = {};
 
-    const obj1 = new PaymentsProductsCardProcessingSubscriptionInformationFeatures();
+    const obj1 = new CardProessingFeatureSubscriptionItem();
     obj1.enabled = true;
     features.cardNotPresent = obj1;
     features.cardPresent = obj1;
@@ -125,7 +125,7 @@ function merchant_boarding_fdiglobal(callback) {
     obj5.acquirer = acquirer;
 
     const currencies = {};
-    const obj6 = new CardProcessingConfigCommonCurrencies1();
+    const obj6 = new CurrencyUpdatedConfiguration();
     obj6.enabled = true;
     obj6.enabledCardPresent = false;
     obj6.enabledCardNotPresent = true;
@@ -150,7 +150,7 @@ function merchant_boarding_fdiglobal(callback) {
     paymentTypes.CUP = obj7;
 
     const currencies2 = {};
-    const ob1 = new CardProcessingConfigCommonCurrencies();
+    const ob1 = new CurrencyConfiguration();
     ob1.enabled = true;
     ob1.terminalId = "pint123";
     ob1.merchantId = "pinm123";

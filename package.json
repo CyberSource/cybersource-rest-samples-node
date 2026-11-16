@@ -13,10 +13,11 @@
   "author": "developer@cybersource.com",
   "license": "MIT",
   "dependencies": {
-    "cybersource-rest-client": "0.0.84",
+    "cybersource-rest-client": "0.0.85",
     "eslint": "^5.9.0",
     "jwk-to-pem": "^2.0.0",
-    "node-forge": "^1.2.1"
+    "node-forge": "^1.2.1",
+    "superagent": "^10.4.1"
   },
   "overrides": {
     "glob": "10.4.2"

@@ -29,7 +29,7 @@ const {
     PayerAuthConfigCardTypesVerifiedByVisaCurrencies,
     PaymentsProductsCardProcessing,
     PaymentsProductsCardProcessingSubscriptionInformation,
-    PaymentsProductsCardProcessingSubscriptionInformationFeatures,
+    CardProessingFeatureSubscriptionItem,
     PaymentsProductsCardProcessingConfigurationInformation,
     CardProcessingConfigFeaturesCardPresent,
     CardProcessingConfigFeaturesCardPresentProcessors,
@@ -40,7 +40,7 @@ const {
     CardProcessingConfigFeatures,
     CardProcessingConfigFeaturesCardNotPresent,
     CardProcessingConfigCommonAcquirer,
-    CardProcessingConfigCommonCurrencies1,
+    CurrencyUpdatedConfiguration,
     ValueAddedServicesProducts,
     CommerceSolutionsProductsTokenManagementConfigurationInformation,
     CardProcessingConfigFeaturesCardNotPresentProcessors,
@@ -104,7 +104,7 @@ function merchant_boarding_smartfdc(callback) {
       subscriptionInformation.enabled = true;
       const features = {};
 
-      const cardNotPresentFeature = new PaymentsProductsCardProcessingSubscriptionInformationFeatures();
+      const cardNotPresentFeature = new CardProessingFeatureSubscriptionItem();
       cardNotPresentFeature.enabled = true;
 
       features.cardNotPresent = cardNotPresentFeature;

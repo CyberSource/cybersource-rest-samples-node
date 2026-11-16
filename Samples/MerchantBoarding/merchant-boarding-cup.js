@@ -28,7 +28,7 @@ const {
     PayerAuthConfigCardTypesVerifiedByVisaCurrencies,
     PaymentsProductsCardProcessing,
     PaymentsProductsCardProcessingSubscriptionInformation,
-    PaymentsProductsCardProcessingSubscriptionInformationFeatures,
+    CardProessingFeatureSubscriptionItem,
     PaymentsProductsCardProcessingConfigurationInformation,
     CardProcessingConfig,
     CardProcessingConfigCommon,
@@ -37,7 +37,7 @@ const {
     CardProcessingConfigFeatures,
     CardProcessingConfigFeaturesCardNotPresent,
     CardProcessingConfigCommonAcquirer,
-    CardProcessingConfigCommonCurrencies1,
+    CurrencyUpdatedConfiguration,
     ValueAddedServicesProducts,
     CommerceSolutionsProductsTokenManagementConfigurationInformation,
     CardProcessingConfigFeaturesCardNotPresentProcessors,
@@ -107,7 +107,7 @@ function merchant_boarding_cup(callback) {
         subscriptionInformation.enabled = true;
         const features = {};
         
-        const obj1 = new PaymentsProductsCardProcessingSubscriptionInformationFeatures();
+        const obj1 = new CardProessingFeatureSubscriptionItem();
         obj1.enabled = true;
         features["cardNotPresent"] = obj1;
         features["cardPresent"] = obj1;
@@ -129,7 +129,7 @@ function merchant_boarding_cup(callback) {
         obj2.acquirer = acquirer;
         
         const currencies = {};
-        const obj3 = new CardProcessingConfigCommonCurrencies1();
+        const obj3 = new CurrencyUpdatedConfiguration();
         obj3.enabled = true;
         obj3.enabledCardPresent = false;
         obj3.enabledCardNotPresent = true;
@@ -193,6 +193,7 @@ function merchant_boarding_cup(callback) {
         valueAddedServices.transactionSearch = transactionSearch;
         
         const reporting = new PaymentsProductsTax();
+        var subscriptionInformation5 = 'INSERT ID VALUE';
         reporting.subscriptionInformation = subscriptionInformation5;
         valueAddedServices.reporting = reporting;
         

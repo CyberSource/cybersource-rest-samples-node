@@ -17,13 +17,13 @@ const {
     PaymentsProducts, 
     PaymentsProductsCardProcessing, 
     PaymentsProductsCardProcessingSubscriptionInformation, 
-    PaymentsProductsCardProcessingSubscriptionInformationFeatures, 
+    CardProessingFeatureSubscriptionItem, 
     PaymentsProductsCardProcessingConfigurationInformation, 
     CardProcessingConfig, 
     CardProcessingConfigCommon, 
     CardProcessingConfigCommonProcessors, 
     CardProcessingConfigCommonAcquirer, 
-    CardProcessingConfigCommonCurrencies1, 
+    CurrencyUpdatedConfiguration, 
     CardProcessingConfigCommonPaymentTypes, 
     CardProcessingConfigFeatures, 
     CardProcessingConfigFeaturesCardNotPresent, 
@@ -85,7 +85,7 @@ function create_registration(callback) {
         subscriptionInformation.enabled = true;
         
         const features = new Map();
-        const obj1 = new PaymentsProductsCardProcessingSubscriptionInformationFeatures();
+        const obj1 = new CardProessingFeatureSubscriptionItem();
         obj1.enabled = true;
         features.set("cardNotPresent", obj1);
         features.set("cardPresent", obj1);
@@ -104,7 +104,7 @@ function create_registration(callback) {
         obj2.acquirer = acquirer;
         
         const currencies = new Map();
-        const obj3 = new CardProcessingConfigCommonCurrencies1();
+        const obj3 = new CurrencyUpdatedConfiguration();
         obj3.enabled = true;
         obj3.enabledCardPresent = false;
         obj3.enabledCardNotPresent = true;

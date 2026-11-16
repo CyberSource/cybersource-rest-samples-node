@@ -9,26 +9,28 @@ function update_webhook(callback, webhookId) {
 	try {
 		var configObject = new configuration();
 		var apiClient = new cybersourceRestApi.ApiClient();
-		var requestObj = new cybersourceRestApi.UpdateWebhookRequest();
+		var requestObj = new cybersourceRestApi.UpdateWebhook();
 
 		requestObj.name = 'My Sample Webhook';
 		requestObj.description = 'Update to my sample webhook';
 		requestObj.organizationId = '<INSERT ORGANIZATION ID HERE>';
-		requestObj.productId = 'terminalManagement';
 
+		var products = new Array();
+		var product = new cybersourceRestApi.CreateWebhookRequestProductItem();
+		product.productId = 'terminalManagement';
 		var eventTypes = new Array();
 		eventTypes.push("terminalManagement.assignment.update");
 		eventTypes.push("terminalManagement.status.update");
-		requestObj.eventTypes = eventTypes;
+		product.eventTypes = eventTypes;
+		products.push(product);
+		requestObj.products = products;
 
 		requestObj.webhookUrl = 'https://MyWebhookServer.com:8443:/simulateClient';
 		requestObj.healthCheckUrl = 'https://MyWebhookServer.com:8443:/simulateClientHealthCheck';
 		requestObj.status = 'INACTIVE';
-		var notificationScope = new cybersourceRestApi.Notificationsubscriptionsv1webhooksNotificationScope();
-		notificationScope.scope = 'SELF';
-		requestObj.notificationScope = notificationScope;
+		requestObj.notificationScope = 'SELF';
 		var opts = {};
-		if (requestObj != null) opts['createWebhookRequest'] = requestObj;
+		if (requestObj != null) opts['updateWebhook'] = requestObj;
 
 
 		var instance = new cybersourceRestApi.ManageWebhooksApi(configObject, apiClient);
@@ -60,6 +62,7 @@ function write_log_audit(status) {
 }
 
 if (require.main === module) {
+	var webhookId = 'INSERT ID VALUE';
 	update_webhook(function () {
 		console.log('\nUpdateWebhookSubscription end.');
 	}, webhookId);
